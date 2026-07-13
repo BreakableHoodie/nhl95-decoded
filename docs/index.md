@@ -7,7 +7,10 @@ title: NHL 95 (Genesis) — Decoded
 A reverse-engineering deep-dive into `NHL 95 (USA, Europe).gen`, the 1994
 Sega Genesis classic.
 
-**[Read the full write-up →](FINDINGS.md)**
+**New here? [Read the plain-English version →](OVERVIEW.md)** — what we
+found, no assembly required.
+**Want the proof? [Read the full technical write-up →](FINDINGS.md)** —
+every claim backed by ROM addresses and live-debugger evidence.
 
 ## Why should you care?
 
@@ -33,4 +36,4 @@ Along the way, this also turned up genuine data-quality bugs in a
 well-known community stats resource — verified directly against the ROM
 rather than assumed.
 
-**[Read the full write-up →](FINDINGS.md)** · [Source on GitHub](https://github.com/BreakableHoodie/nhl95-decoded)
+**[Plain English →](OVERVIEW.md)** · **[Full technical write-up →](FINDINGS.md)** · [Source on GitHub](https://github.com/BreakableHoodie/nhl95-decoded)

@@ -1409,3 +1409,35 @@ loop (`0x0083E88`). See §5.
    formula applies that a pure linear model can't reproduce. Not chased
    further this session; worth keeping in mind if the named-stat formulas
    get revisited.
+
+   **Full production-DB audit: no second Rangers-style bug anywhere else.**
+   With the formulas now live-validated, ran the same ROM-vs-external
+   comparison directly against the tournament app's live production
+   database (all 618 skaters, not the raw nhl-95.com CSV) to answer the
+   obvious next question — is Rangers' Overall Rating bug a one-off, or are
+   other teams silently wrong too? Per-team mean *signed* residual (not
+   absolute — signed catches a systematic one-directional bug the way
+   Rangers had) is small and has no consistent direction for every one of
+   the other 25 teams: it ranges only ±0.9 points, indistinguishable from
+   fit noise. The already-applied Rangers fix itself now tracks at +1.18
+   mean / 1.45 mean|resid| — back in line with everyone else. **Conclusion:
+   Rangers was a one-off data bug in the source spreadsheet, not a pattern
+   — no other team needs a wholesale Overall Rating correction.**
+
+   The individual-player-outlier picture is also much cleaner against the
+   production DB than against the raw CSV: the worst single-player residual
+   anywhere in the entire 618-player database is now only **8 points** (Stu
+   Grimson, ANA) — nothing remotely like the 15-37 point Kozlov/Konstantinov
+   gap seen in the raw CSV. More interesting: the largest remaining
+   residuals cluster almost entirely among **low-rated "enforcer"-type
+   players** (Grimson, Smyth, Twist, Shannon, Watters, Maley, Vukota,
+   Dineen, Brown, Cronin, Charron — all +5 to +8, i.e. production rates
+   them *higher* than the linear formula predicts), independently
+   confirming the "possible floor/clamp at the low end" hypothesis flagged
+   earlier in this section using a completely different dataset. Reads as a
+   real, minor formula-precision gap (the linear fit slightly
+   under-predicts a floor the real game formula applies), not a data
+   error — and not worth a production write, since there's no clean
+   individually-verified correction to make the way the Rangers bug had.
+   **Net result: no further production database changes are recommended at
+   this time** — the Rangers fix already applied was the one genuine bug.

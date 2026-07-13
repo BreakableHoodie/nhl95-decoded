@@ -4,7 +4,11 @@ A reverse-engineering deep-dive into `NHL 95 (USA, Europe).gen`, the 1994
 Sega Genesis classic — full static (Ghidra) + live (BlastEm debugger)
 analysis of its data formats and game logic.
 
-**Read the full write-up: [`docs/FINDINGS.md`](docs/FINDINGS.md).**
+**New here? Start with [`docs/OVERVIEW.md`](docs/OVERVIEW.md) — what we
+found, in plain English, no assembly required.**
+**Want the proof? [`docs/FINDINGS.md`](docs/FINDINGS.md) is the full
+technical write-up** — every claim backed by ROM addresses, disassembly,
+and live-debugger evidence.
 
 ## Why should you care?
 
@@ -37,6 +41,8 @@ story and the corrected numbers.
 
 ## What's in this repo
 
+- **`docs/OVERVIEW.md`** — the plain-English version of every finding below,
+  no ROM addresses or assembly required.
 - **`docs/FINDINGS.md`** — the living document. Every finding, with the
   reasoning and evidence behind it, root-cause first.
 - **`docs/full_roster_database.json`** — every player's name, jersey

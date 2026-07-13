@@ -35,27 +35,35 @@ thing:**
 Every player has a hidden "Overall Rating" plus 11 more specific stats
 (Agility, Speed, Shot Power, Checking, etc.). Nobody had previously
 published the actual math the game uses to compute these from its raw
-data. We now have it, and checked it directly against the running game
-(not just against outside sources) — predictions come within about 2
-points of the real, live number for Overall Rating, and within single
-digits for the other stats.
+data. We now have it, checked two completely independent ways:
 
-One side effect of doing this rigorously: we found real errors in a
-well-known, long-used fan stats resource for this game. Most notably, an
-**entire team's Overall Ratings were wrong across the board** — every
-Ranger was rated too low by anywhere from 5 to 16 points. Nothing else we
-checked showed a similar team-wide problem; that was a one-off data-entry
-bug, not a sign the rest of the numbers are unreliable.
+- **Statistically**, by fitting the ROM's raw attribute bytes against an
+  outside stat list, then checking predictions directly against the
+  running game — within about 2 points of the real, live number for
+  Overall Rating, single digits for the other stats.
+- **Then confirmed a second time from the ROM itself.** While digging
+  through the game's on-screen text data for an unrelated reason, we found
+  the exact ROM table the game uses to decide which raw attributes feed
+  into Overall Rating — and it matched our statistically-fitted formula
+  exactly, bit for bit. That's no longer a best-fit guess; it's read
+  directly out of the game's own code.
 
-## The Line Editor "clone" bug — root cause found
+## The Line Editor "clone" bug — root cause found, and it's just one player
 
-Some players occasionally saw a duplicate/glitched player name appear in
-the line editor. This turned out to be a real, specific bug in the game's
-own code (not corrupted ROMs, not an emulator quirk) — a piece of code
-that patches its own return address to skip over inline data made an
-off-by-one-style mistake under a specific condition. Full technical
-root-cause is in `FINDINGS.md` §3; the short version is that it's a real
-bug in the original 1994 game, reproducible, and now explained.
+The bug report that started this whole project: assign Boston's Bryan
+Smolinski to right wing on the top line, and he shows up listed at *both*
+left wing and right wing at once, instead of normally swapping with
+whoever was there. This turned out to be a real, specific bug in the
+game's own code (not a corrupted ROM, not an emulator quirk) — a
+duplicate-player safety check scans the wrong slot first and gets fooled
+by a stale, leftover data entry.
+
+**We checked every line on every team (all 208 line/position
+combinations) for the same underlying condition, and Smolinski's is the
+only one in the entire game.** So if you've never seen this personally,
+that's why — it's a genuine, reproducible 1994 shipping bug, but a real
+one-off, not a general glitch anyone could stumble into. Full technical
+root-cause, including the exact bad byte, is in `FINDINGS.md` §3.
 
 ## The full 7-line system, confirmed against a real penalty kill
 

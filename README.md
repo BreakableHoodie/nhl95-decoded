@@ -21,23 +21,27 @@ the NHL 95 community has argued about for 30 years:
   gets picked hot/cold each game, confirmed live against the actual
   on-screen announcement. See [§5](docs/FINDINGS.md#5-hotcold-streaks--confirmed-real-mechanism-partially-traced).
 - **What's the actual formula behind a player's Overall Rating?** Solved
-  and live-validated: a fixed linear combination of 12 specific nibbles out
-  of the game's 7-byte player attribute block, matching the ROM's own live
-  output almost exactly (mean error under 2 points across every player
-  checked). Every named stat (Agility, Shot Power, Checking, etc.) is
-  mapped the same way. See [§6](docs/FINDINGS.md#6-player-rating-bytes--jersey-number-solved-overall-rating-identity-confirmed-exact-storageformula-still-open).
-- **A duplicate-player "clone bug" some players hit in the Line Editor** —
-  root-caused to a specific self-patching code path, not a mystery glitch.
+  two independent ways: statistically (a fixed linear combination of 12
+  specific nibbles out of the game's 7-byte attribute block, live-validated
+  to within ~2 points of the ROM's own output), and then confirmed a second
+  time by decoding the ROM's own UI-widget bytecode directly — the exact
+  set of nibbles the formula uses is bit-for-bit identical to a parameter
+  found sitting in the ROM itself, not just inferred from outside data.
+  Every named stat (Agility, Shot Power, Checking, etc.) is mapped the same
+  way. See [§6](docs/FINDINGS.md#6-player-rating-bytes--jersey-number-solved-overall-rating-formula-solved-and-rom-confirmed-exact-weights--opcode-still-open).
+- **The bug report that started this whole project**: Boston's Bryan
+  Smolinski shows up cloned at two positions at once in the Line Editor.
+  Root-caused to a specific stale-data condition — and checking all 208
+  line/team combinations in the game confirmed it's the *only* one, a
+  genuine one-off 1994 shipping bug, not a general glitch.
   See [§3](docs/FINDINGS.md#3-bug-smolinski-line-editor-clone-root-caused-live-confirmed).
-- **The full 7-line system** (Sc1/Sc2/Chk/PP1/PP2/PK1/PK2), confirmed
-  byte-for-byte against a live penalty kill, including *why* the Line
-  Editor sometimes shows one line and sometimes shows all seven.
-
-Along the way, this also turned up genuine data-quality bugs in a
-well-known community stats resource (nhl-95.com) — including an entire
-team's Overall Rating column being wrong — verified directly against the
-ROM rather than assumed. See §6's "live validation" writeup for the full
-story and the corrected numbers.
+- **The full 7-line system** (Sc1/Sc2/Chk/PP1/PP2/PK1/PK2) mapped and
+  confirmed byte-for-byte against a live penalty kill — including *why*
+  the in-game Line Editor sometimes shows only one line and sometimes
+  shows all seven, a real UI-behavior gotcha this project hit before it
+  understood the setting driving it. Mainly useful if you're building
+  tools against this ROM (a save editor, another stats tracker) and need
+  to know which internal slot is actually the penalty-kill unit.
 
 ## What's in this repo
 

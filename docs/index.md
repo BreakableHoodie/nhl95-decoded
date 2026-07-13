@@ -23,17 +23,19 @@ the NHL 95 community has argued about for 30 years:
   gets picked hot/cold each game, confirmed live against the actual
   on-screen announcement.
 - **What's the actual formula behind a player's Overall Rating?** Solved
-  and live-validated: a fixed linear combination of 12 specific nibbles out
-  of the game's 7-byte player attribute block, matching the ROM's own live
-  output almost exactly. Every named stat (Agility, Shot Power, Checking,
-  etc.) is mapped the same way.
-- **A duplicate-player "clone bug" some players hit in the Line Editor** —
-  root-caused to a specific self-patching code path, not a mystery glitch.
-- **The full 7-line system** (Sc1/Sc2/Chk/PP1/PP2/PK1/PK2), confirmed
-  byte-for-byte against a live penalty kill.
-
-Along the way, this also turned up genuine data-quality bugs in a
-well-known community stats resource — verified directly against the ROM
-rather than assumed.
+  two independent ways: statistically (live-validated to within ~2 points
+  of the ROM's own output), then confirmed a second time by decoding the
+  ROM's own UI-widget bytecode directly — the exact nibbles the formula
+  uses are bit-for-bit identical to a parameter found sitting in the ROM
+  itself. Every named stat (Agility, Shot Power, Checking, etc.) is mapped
+  the same way.
+- **The bug report that started this whole project**: Boston's Bryan
+  Smolinski shows up cloned at two positions at once in the Line Editor.
+  Root-caused to a stale-data condition — checking all 208 line/team
+  combinations confirmed it's the *only* one, a genuine one-off 1994
+  shipping bug, not a general glitch.
+- **The full 7-line system** (Sc1/Sc2/Chk/PP1/PP2/PK1/PK2) mapped and
+  confirmed byte-for-byte against a live penalty kill — including *why*
+  the Line Editor sometimes shows one line and sometimes shows all seven.
 
 **[Plain English →](OVERVIEW.md)** · **[Full technical write-up →](FINDINGS.md)** · [Source on GitHub](https://github.com/BreakableHoodie/nhl95-decoded)

@@ -1,0 +1,7904 @@
+[
+ {
+  "addr": "0xdb8",
+  "city": "Anaheim",
+  "abbr": "ANH",
+  "mascot": "Mighty Ducks",
+  "lines": [
+   [
+    1,
+    21,
+    18,
+    13,
+    3,
+    8,
+    5,
+    0
+   ],
+   [
+    1,
+    21,
+    18,
+    13,
+    3,
+    8,
+    5,
+    0
+   ],
+   [
+    1,
+    19,
+    23,
+    15,
+    5,
+    9,
+    3,
+    0
+   ],
+   [
+    1,
+    17,
+    22,
+    12,
+    4,
+    11,
+    3,
+    0
+   ],
+   [
+    1,
+    21,
+    18,
+    5,
+    4,
+    8,
+    3,
+    0
+   ],
+   [
+    1,
+    19,
+    23,
+    13,
+    3,
+    9,
+    8,
+    0
+   ],
+   [
+    1,
+    19,
+    23,
+    13,
+    3,
+    8,
+    9,
+    0
+   ],
+   [
+    1,
+    21,
+    18,
+    15,
+    6,
+    9,
+    3,
+    0
+   ]
+  ],
+  "roster": [
+   {
+    "addr": 3576,
+    "name": "Guy Hebert",
+    "jersey_bcd": 31,
+    "jersey_byte_hex": "31",
+    "unknown1_hex": "64",
+    "attr7_hex": "64333200003333",
+    "roster_index": 1
+   },
+   {
+    "addr": 3596,
+    "name": "Mikhail Shtalenkov",
+    "jersey_bcd": 35,
+    "jersey_byte_hex": "35",
+    "unknown1_hex": "62",
+    "attr7_hex": "62222300002222",
+    "roster_index": 2
+   },
+   {
+    "addr": 3624,
+    "name": "Bob Corkum",
+    "jersey_bcd": 20,
+    "jersey_byte_hex": "20",
+    "unknown1_hex": "a3",
+    "attr7_hex": "a3333338633522",
+    "roster_index": 3
+   },
+   {
+    "addr": 3644,
+    "name": "Stephan Lebeau",
+    "jersey_bcd": 47,
+    "jersey_byte_hex": "47",
+    "unknown1_hex": "53",
+    "attr7_hex": "53343326644231",
+    "roster_index": 4
+   },
+   {
+    "addr": 3668,
+    "name": "Anatoli Semenov\u0000",
+    "jersey_bcd": 19,
+    "jersey_byte_hex": "19",
+    "unknown1_hex": "73",
+    "attr7_hex": "73434327634032",
+    "roster_index": 5
+   },
+   {
+    "addr": 3694,
+    "name": "Shaun VanAllen",
+    "jersey_bcd": 22,
+    "jersey_byte_hex": "22",
+    "unknown1_hex": "92",
+    "attr7_hex": "9222223b623122",
+    "roster_index": 6
+   },
+   {
+    "addr": 3718,
+    "name": "Joe Sacco\u0000",
+    "jersey_bcd": 14,
+    "jersey_byte_hex": "14",
+    "unknown1_hex": "83",
+    "attr7_hex": "8333233b633322",
+    "roster_index": 7
+   },
+   {
+    "addr": 3738,
+    "name": "Terry Yake",
+    "jersey_bcd": 25,
+    "jersey_byte_hex": "25",
+    "unknown1_hex": "63",
+    "attr7_hex": "6344233a644232",
+    "roster_index": 8
+   },
+   {
+    "addr": 3758,
+    "name": "Peter Douris",
+    "jersey_bcd": 16,
+    "jersey_byte_hex": "16",
+    "unknown1_hex": "83",
+    "attr7_hex": "83323328322421",
+    "roster_index": 9
+   },
+   {
+    "addr": 3780,
+    "name": "Todd Ewen\u0000",
+    "jersey_bcd": 36,
+    "jersey_byte_hex": "36",
+    "unknown1_hex": "b1",
+    "attr7_hex": "b1121238522315",
+    "roster_index": 10
+   },
+   {
+    "addr": 3800,
+    "name": "Steven King\u0000",
+    "jersey_bcd": 17,
+    "jersey_byte_hex": "17",
+    "unknown1_hex": "72",
+    "attr7_hex": "72232226633422",
+    "roster_index": 11
+   },
+   {
+    "addr": 3822,
+    "name": "Troy Loney",
+    "jersey_bcd": 24,
+    "jersey_byte_hex": "24",
+    "unknown1_hex": "a2",
+    "attr7_hex": "a2323249713212",
+    "roster_index": 12
+   },
+   {
+    "addr": 3842,
+    "name": "Garry Valk",
+    "jersey_bcd": 18,
+    "jersey_byte_hex": "18",
+    "unknown1_hex": "72",
+    "attr7_hex": "72223339733323",
+    "roster_index": 13
+   },
+   {
+    "addr": 3862,
+    "name": "Stu Grimson\u0000",
+    "jersey_bcd": 32,
+    "jersey_byte_hex": "32",
+    "unknown1_hex": "b1",
+    "attr7_hex": "b110212b212515",
+    "roster_index": 14
+   },
+   {
+    "addr": 3884,
+    "name": "Tim Sweeney\u0000",
+    "jersey_bcd": 8,
+    "jersey_byte_hex": "08",
+    "unknown1_hex": "73",
+    "attr7_hex": "7323331b633421",
+    "roster_index": 15
+   },
+   {
+    "addr": 3906,
+    "name": "Patrik Carnback\u0000",
+    "jersey_bcd": 21,
+    "jersey_byte_hex": "21",
+    "unknown1_hex": "72",
+    "attr7_hex": "72232207622322",
+    "roster_index": 16
+   },
+   {
+    "addr": 3932,
+    "name": "David Williams",
+    "jersey_bcd": 4,
+    "jersey_byte_hex": "04",
+    "unknown1_hex": "82",
+    "attr7_hex": "82222228322423",
+    "roster_index": 17
+   },
+   {
+    "addr": 3956,
+    "name": "Sean Hill\u0000",
+    "jersey_bcd": 6,
+    "jersey_byte_hex": "06",
+    "unknown1_hex": "83",
+    "attr7_hex": "83322226623324",
+    "roster_index": 18
+   },
+   {
+    "addr": 3976,
+    "name": "Bobby Dollas",
+    "jersey_bcd": 2,
+    "jersey_byte_hex": "02",
+    "unknown1_hex": "a3",
+    "attr7_hex": "a3224339623222",
+    "roster_index": 19
+   },
+   {
+    "addr": 3998,
+    "name": "Don McSween\u0000",
+    "jersey_bcd": 39,
+    "jersey_byte_hex": "39",
+    "unknown1_hex": "82",
+    "attr7_hex": "82122327622222",
+    "roster_index": 20
+   },
+   {
+    "addr": 4020,
+    "name": "Bill Houlder",
+    "jersey_bcd": 23,
+    "jersey_byte_hex": "23",
+    "unknown1_hex": "b1",
+    "attr7_hex": "b122232b633422",
+    "roster_index": 21
+   },
+   {
+    "addr": 4042,
+    "name": "Mark Ferner\u0000",
+    "jersey_bcd": 3,
+    "jersey_byte_hex": "03",
+    "unknown1_hex": "82",
+    "attr7_hex": "82122227322322",
+    "roster_index": 22
+   },
+   {
+    "addr": 4064,
+    "name": "Randy Ladouceur\u0000",
+    "jersey_bcd": 29,
+    "jersey_byte_hex": "29",
+    "unknown1_hex": "b3",
+    "attr7_hex": "b3214139714514",
+    "roster_index": 23
+   }
+  ]
+ },
+ {
+  "addr": "0x107c",
+  "city": "Boston",
+  "abbr": "BOS",
+  "mascot": "Bruins",
+  "lines": [
+   [
+    1,
+    18,
+    20,
+    6,
+    3,
+    8,
+    6,
+    0
+   ],
+   [
+    1,
+    18,
+    21,
+    14,
+    3,
+    8,
+    6,
+    0
+   ],
+   [
+    1,
+    20,
+    22,
+    15,
+    6,
+    10,
+    3,
+    0
+   ],
+   [
+    1,
+    19,
+    23,
+    16,
+    7,
+    12,
+    3,
+    0
+   ],
+   [
+    1,
+    18,
+    20,
+    14,
+    3,
+    8,
+    6,
+    0
+   ],
+   [
+    1,
+    19,
+    22,
+    15,
+    6,
+    10,
+    3,
+    0
+   ],
+   [
+    1,
+    18,
+    21,
+    15,
+    3,
+    8,
+    6,
+    0
+   ],
+   [
+    1,
+    19,
+    23,
+    16,
+    6,
+    10,
+    3,
+    0
+   ]
+  ],
+  "roster": [
+   {
+    "addr": 4284,
+    "name": "Jon Casey\u0000",
+    "jersey_bcd": 30,
+    "jersey_byte_hex": "30",
+    "unknown1_hex": "24",
+    "attr7_hex": "24334300004343",
+    "roster_index": 1
+   },
+   {
+    "addr": 4304,
+    "name": "Vincent Riendeau",
+    "jersey_bcd": 37,
+    "jersey_byte_hex": "37",
+    "unknown1_hex": "63",
+    "attr7_hex": "63322200003222",
+    "roster_index": 2
+   },
+   {
+    "addr": 4330,
+    "name": "Adam Oates",
+    "jersey_bcd": 12,
+    "jersey_byte_hex": "12",
+    "unknown1_hex": "75",
+    "attr7_hex": "7546533a545061",
+    "roster_index": 3
+   },
+   {
+    "addr": 4350,
+    "name": "Jozef Stumpel\u0000",
+    "jersey_bcd": 22,
+    "jersey_byte_hex": "22",
+    "unknown1_hex": "52",
+    "attr7_hex": "52222218633231",
+    "roster_index": 4
+   },
+   {
+    "addr": 4374,
+    "name": "Andrew McKim",
+    "jersey_bcd": 45,
+    "jersey_byte_hex": "45",
+    "unknown1_hex": "82",
+    "attr7_hex": "82222118322321",
+    "roster_index": 5
+   },
+   {
+    "addr": 4396,
+    "name": "Bryan Smolinski\u0000",
+    "jersey_bcd": 20,
+    "jersey_byte_hex": "20",
+    "unknown1_hex": "04",
+    "attr7_hex": "0444332a933433",
+    "roster_index": 6
+   },
+   {
+    "addr": 4422,
+    "name": "Dan Marois",
+    "jersey_bcd": 33,
+    "jersey_byte_hex": "33",
+    "unknown1_hex": "73",
+    "attr7_hex": "73321314632423",
+    "roster_index": 7
+   },
+   {
+    "addr": 4442,
+    "name": "Cam Neely\u0000",
+    "jersey_bcd": 8,
+    "jersey_byte_hex": "08",
+    "unknown1_hex": "a3",
+    "attr7_hex": "a3354540455444",
+    "roster_index": 8
+   },
+   {
+    "addr": 4462,
+    "name": "Stephen Leach\u0000",
+    "jersey_bcd": 27,
+    "jersey_byte_hex": "27",
+    "unknown1_hex": "63",
+    "attr7_hex": "63233434734433",
+    "roster_index": 9
+   },
+   {
+    "addr": 4486,
+    "name": "Stephen Heinze",
+    "jersey_bcd": 23,
+    "jersey_byte_hex": "23",
+    "unknown1_hex": "63",
+    "attr7_hex": "6343333a333431",
+    "roster_index": 10
+   },
+   {
+    "addr": 4510,
+    "name": "Glen Murray\u0000",
+    "jersey_bcd": 44,
+    "jersey_byte_hex": "44",
+    "unknown1_hex": "04",
+    "attr7_hex": "0433232a643422",
+    "roster_index": 11
+   },
+   {
+    "addr": 4532,
+    "name": "Mariusz Czerkawski",
+    "jersey_bcd": 19,
+    "jersey_byte_hex": "19",
+    "unknown1_hex": "73",
+    "attr7_hex": "73332212623332",
+    "roster_index": 12
+   },
+   {
+    "addr": 4560,
+    "name": "Brent Hughes",
+    "jersey_bcd": 18,
+    "jersey_byte_hex": "18",
+    "unknown1_hex": "63",
+    "attr7_hex": "63323239722534",
+    "roster_index": 13
+   },
+   {
+    "addr": 4582,
+    "name": "Dmitri Kvartalnov\u0000",
+    "jersey_bcd": 10,
+    "jersey_byte_hex": "10",
+    "unknown1_hex": "64",
+    "attr7_hex": "64441317944241",
+    "roster_index": 14
+   },
+   {
+    "addr": 4610,
+    "name": "Ted Donato",
+    "jersey_bcd": 21,
+    "jersey_byte_hex": "21",
+    "unknown1_hex": "43",
+    "attr7_hex": "4343432d333332",
+    "roster_index": 15
+   },
+   {
+    "addr": 4630,
+    "name": "Dave Reid\u0000",
+    "jersey_bcd": 17,
+    "jersey_byte_hex": "17",
+    "unknown1_hex": "93",
+    "attr7_hex": "9332332b244220",
+    "roster_index": 16
+   },
+   {
+    "addr": 4650,
+    "name": "Paul Stanton",
+    "jersey_bcd": 25,
+    "jersey_byte_hex": "25",
+    "unknown1_hex": "83",
+    "attr7_hex": "83323439213543",
+    "roster_index": 17
+   },
+   {
+    "addr": 4672,
+    "name": "Ray Bourque\u0000",
+    "jersey_bcd": 77,
+    "jersey_byte_hex": "77",
+    "unknown1_hex": "a5",
+    "attr7_hex": "a5455549c56452",
+    "roster_index": 18
+   },
+   {
+    "addr": 4694,
+    "name": "David Shaw",
+    "jersey_bcd": 34,
+    "jersey_byte_hex": "34",
+    "unknown1_hex": "92",
+    "attr7_hex": "92224236724523",
+    "roster_index": 19
+   },
+   {
+    "addr": 4714,
+    "name": "Al Iafrate",
+    "jersey_bcd": 43,
+    "jersey_byte_hex": "43",
+    "unknown1_hex": "b4",
+    "attr7_hex": "b4444649a23344",
+    "roster_index": 20
+   },
+   {
+    "addr": 4734,
+    "name": "Don Sweeney\u0000",
+    "jersey_bcd": 32,
+    "jersey_byte_hex": "32",
+    "unknown1_hex": "44",
+    "attr7_hex": "44334346a14142",
+    "roster_index": 21
+   },
+   {
+    "addr": 4756,
+    "name": "Glen Wesley\u0000",
+    "jersey_bcd": 26,
+    "jersey_byte_hex": "26",
+    "unknown1_hex": "85",
+    "attr7_hex": "8544443b424442",
+    "roster_index": 22
+   },
+   {
+    "addr": 4778,
+    "name": "Gordie Roberts",
+    "jersey_bcd": 14,
+    "jersey_byte_hex": "14",
+    "unknown1_hex": "73",
+    "attr7_hex": "73213137233023",
+    "roster_index": 23
+   },
+   {
+    "addr": 4802,
+    "name": "Glen Feathrston\u0000",
+    "jersey_bcd": 6,
+    "jersey_byte_hex": "06",
+    "unknown1_hex": "b3",
+    "attr7_hex": "b3312247432325",
+    "roster_index": 24
+   }
+  ]
+ },
+ {
+  "addr": "0x1356",
+  "city": "Buffalo",
+  "abbr": "BUF",
+  "mascot": "Sabres",
+  "lines": [
+   [
+    1,
+    19,
+    23,
+    5,
+    4,
+    14,
+    9,
+    0
+   ],
+   [
+    1,
+    19,
+    24,
+    9,
+    4,
+    14,
+    5,
+    0
+   ],
+   [
+    1,
+    20,
+    22,
+    10,
+    5,
+    16,
+    14,
+    0
+   ],
+   [
+    1,
+    18,
+    23,
+    13,
+    8,
+    15,
+    4,
+    0
+   ],
+   [
+    1,
+    19,
+    24,
+    9,
+    4,
+    14,
+    5,
+    0
+   ],
+   [
+    1,
+    21,
+    23,
+    10,
+    5,
+    16,
+    14,
+    0
+   ],
+   [
+    1,
+    23,
+    24,
+    8,
+    5,
+    16,
+    4,
+    0
+   ],
+   [
+    1,
+    20,
+    22,
+    9,
+    3,
+    15,
+    5,
+    0
+   ]
+  ],
+  "roster": [
+   {
+    "addr": 5014,
+    "name": "Dominik Hasek\u0000",
+    "jersey_bcd": 39,
+    "jersey_byte_hex": "39",
+    "unknown1_hex": "45",
+    "attr7_hex": "45355400005656",
+    "roster_index": 1
+   },
+   {
+    "addr": 5038,
+    "name": "Grant Fuhr",
+    "jersey_bcd": 31,
+    "jersey_byte_hex": "31",
+    "unknown1_hex": "75",
+    "attr7_hex": "75455501003455",
+    "roster_index": 2
+   },
+   {
+    "addr": 5058,
+    "name": "Dave Hannan\u0000",
+    "jersey_bcd": 14,
+    "jersey_byte_hex": "14",
+    "unknown1_hex": "63",
+    "attr7_hex": "6322322b632122",
+    "roster_index": 3
+   },
+   {
+    "addr": 5080,
+    "name": "Pat LaFontaine",
+    "jersey_bcd": 16,
+    "jersey_byte_hex": "16",
+    "unknown1_hex": "55",
+    "attr7_hex": "55464424c46252",
+    "roster_index": 4
+   },
+   {
+    "addr": 5104,
+    "name": "Dale Hawerchuk",
+    "jersey_bcd": 10,
+    "jersey_byte_hex": "10",
+    "unknown1_hex": "66",
+    "attr7_hex": "6645442bc34052",
+    "roster_index": 5
+   },
+   {
+    "addr": 5128,
+    "name": "Bob Sweeney\u0000",
+    "jersey_bcd": 20,
+    "jersey_byte_hex": "20",
+    "unknown1_hex": "93",
+    "attr7_hex": "93235337344233",
+    "roster_index": 6
+   },
+   {
+    "addr": 5150,
+    "name": "Rob Ray\u0000",
+    "jersey_bcd": 32,
+    "jersey_byte_hex": "32",
+    "unknown1_hex": "a3",
+    "attr7_hex": "a341214b521515",
+    "roster_index": 7
+   },
+   {
+    "addr": 5168,
+    "name": "Randy Wood",
+    "jersey_bcd": 19,
+    "jersey_byte_hex": "19",
+    "unknown1_hex": "82",
+    "attr7_hex": "8253423d334423",
+    "roster_index": 8
+   },
+   {
+    "addr": 5188,
+    "name": "Yuri Khmylev",
+    "jersey_bcd": 13,
+    "jersey_byte_hex": "13",
+    "unknown1_hex": "74",
+    "attr7_hex": "74344436944332",
+    "roster_index": 9
+   },
+   {
+    "addr": 5210,
+    "name": "Brad May",
+    "jersey_bcd": 27,
+    "jersey_byte_hex": "27",
+    "unknown1_hex": "92",
+    "attr7_hex": "9223234b433524",
+    "roster_index": 10
+   },
+   {
+    "addr": 5228,
+    "name": "Craig Simpson\u0000",
+    "jersey_bcd": 22,
+    "jersey_byte_hex": "22",
+    "unknown1_hex": "83",
+    "attr7_hex": "83343423643132",
+    "roster_index": 11
+   },
+   {
+    "addr": 5252,
+    "name": "Jason Dawe",
+    "jersey_bcd": 43,
+    "jersey_byte_hex": "43",
+    "unknown1_hex": "83",
+    "attr7_hex": "83332329643431",
+    "roster_index": 12
+   },
+   {
+    "addr": 5272,
+    "name": "Derek Plante",
+    "jersey_bcd": 26,
+    "jersey_byte_hex": "26",
+    "unknown1_hex": "44",
+    "attr7_hex": "4444332b933241",
+    "roster_index": 13
+   },
+   {
+    "addr": 5294,
+    "name": "Alexnder Mogilny",
+    "jersey_bcd": 89,
+    "jersey_byte_hex": "89",
+    "unknown1_hex": "76",
+    "attr7_hex": "76663417944451",
+    "roster_index": 14
+   },
+   {
+    "addr": 5320,
+    "name": "Wayne Presley\u0000",
+    "jersey_bcd": 18,
+    "jersey_byte_hex": "18",
+    "unknown1_hex": "63",
+    "attr7_hex": "63334336733423",
+    "roster_index": 15
+   },
+   {
+    "addr": 5344,
+    "name": "Donald Audette",
+    "jersey_bcd": 28,
+    "jersey_byte_hex": "28",
+    "unknown1_hex": "53",
+    "attr7_hex": "53343426643532",
+    "roster_index": 16
+   },
+   {
+    "addr": 5368,
+    "name": "Matthew Barnaby\u0000",
+    "jersey_bcd": 36,
+    "jersey_byte_hex": "36",
+    "unknown1_hex": "72",
+    "attr7_hex": "72221239523324",
+    "roster_index": 17
+   },
+   {
+    "addr": 5394,
+    "name": "Randy Moller",
+    "jersey_bcd": 24,
+    "jersey_byte_hex": "24",
+    "unknown1_hex": "a3",
+    "attr7_hex": "a3221238411124",
+    "roster_index": 18
+   },
+   {
+    "addr": 5416,
+    "name": "Doug Bodger\u0000",
+    "jersey_bcd": 8,
+    "jersey_byte_hex": "08",
+    "unknown1_hex": "a4",
+    "attr7_hex": "a4334229914132",
+    "roster_index": 19
+   },
+   {
+    "addr": 5438,
+    "name": "Ken Sutton",
+    "jersey_bcd": 41,
+    "jersey_byte_hex": "41",
+    "unknown1_hex": "83",
+    "attr7_hex": "83224219323232",
+    "roster_index": 20
+   },
+   {
+    "addr": 5458,
+    "name": "Philippe Boucher",
+    "jersey_bcd": 4,
+    "jersey_byte_hex": "04",
+    "unknown1_hex": "73",
+    "attr7_hex": "73332328923243",
+    "roster_index": 21
+   },
+   {
+    "addr": 5484,
+    "name": "Craig Muni",
+    "jersey_bcd": 5,
+    "jersey_byte_hex": "05",
+    "unknown1_hex": "92",
+    "attr7_hex": "9221524b614223",
+    "roster_index": 22
+   },
+   {
+    "addr": 5504,
+    "name": "Petr Svoboda",
+    "jersey_bcd": 7,
+    "jersey_byte_hex": "07",
+    "unknown1_hex": "54",
+    "attr7_hex": "54424339704033",
+    "roster_index": 23
+   },
+   {
+    "addr": 5526,
+    "name": "Richard Smehlik\u0000",
+    "jersey_bcd": 42,
+    "jersey_byte_hex": "42",
+    "unknown1_hex": "a3",
+    "attr7_hex": "a323443d633332",
+    "roster_index": 24
+   }
+  ]
+ },
+ {
+  "addr": "0x1632",
+  "city": "Calgary",
+  "abbr": "CGY",
+  "mascot": "Flames",
+  "lines": [
+   [
+    1,
+    16,
+    18,
+    9,
+    3,
+    12,
+    14,
+    0
+   ],
+   [
+    1,
+    16,
+    18,
+    9,
+    3,
+    14,
+    12,
+    0
+   ],
+   [
+    1,
+    17,
+    21,
+    8,
+    4,
+    12,
+    3,
+    0
+   ],
+   [
+    1,
+    19,
+    20,
+    10,
+    5,
+    11,
+    3,
+    0
+   ],
+   [
+    1,
+    16,
+    18,
+    9,
+    3,
+    12,
+    14,
+    0
+   ],
+   [
+    1,
+    17,
+    21,
+    8,
+    4,
+    11,
+    3,
+    0
+   ],
+   [
+    1,
+    16,
+    18,
+    8,
+    12,
+    4,
+    3,
+    0
+   ],
+   [
+    1,
+    17,
+    21,
+    9,
+    3,
+    7,
+    14,
+    0
+   ]
+  ],
+  "roster": [
+   {
+    "addr": 5746,
+    "name": "Mike Vernon\u0000",
+    "jersey_bcd": 30,
+    "jersey_byte_hex": "30",
+    "unknown1_hex": "43",
+    "attr7_hex": "43444400004444",
+    "roster_index": 1
+   },
+   {
+    "addr": 5768,
+    "name": "Trevor Kidd\u0000",
+    "jersey_bcd": 37,
+    "jersey_byte_hex": "37",
+    "unknown1_hex": "33",
+    "attr7_hex": "33322200003322",
+    "roster_index": 2
+   },
+   {
+    "addr": 5790,
+    "name": "Joe Nieuwendyk",
+    "jersey_bcd": 25,
+    "jersey_byte_hex": "25",
+    "unknown1_hex": "84",
+    "attr7_hex": "84353437954342",
+    "roster_index": 3
+   },
+   {
+    "addr": 5814,
+    "name": "Robert Reichel",
+    "jersey_bcd": 26,
+    "jersey_byte_hex": "26",
+    "unknown1_hex": "64",
+    "attr7_hex": "6434352d953342",
+    "roster_index": 4
+   },
+   {
+    "addr": 5838,
+    "name": "Joel Otto\u0000",
+    "jersey_bcd": 29,
+    "jersey_byte_hex": "29",
+    "unknown1_hex": "b3",
+    "attr7_hex": "b322535a744225",
+    "roster_index": 5
+   },
+   {
+    "addr": 5858,
+    "name": "Michael Nylander",
+    "jersey_bcd": 92,
+    "jersey_byte_hex": "92",
+    "unknown1_hex": "54",
+    "attr7_hex": "54443327923142",
+    "roster_index": 6
+   },
+   {
+    "addr": 5884,
+    "name": "Kelly Kisio\u0000",
+    "jersey_bcd": 11,
+    "jersey_byte_hex": "11",
+    "unknown1_hex": "63",
+    "attr7_hex": "63234342634133",
+    "roster_index": 7
+   },
+   {
+    "addr": 5906,
+    "name": "German Titov",
+    "jersey_bcd": 13,
+    "jersey_byte_hex": "13",
+    "unknown1_hex": "73",
+    "attr7_hex": "73333339643532",
+    "roster_index": 8
+   },
+   {
+    "addr": 5928,
+    "name": "Gary Roberts",
+    "jersey_bcd": 10,
+    "jersey_byte_hex": "10",
+    "unknown1_hex": "73",
+    "attr7_hex": "73454449a55345",
+    "roster_index": 9
+   },
+   {
+    "addr": 5950,
+    "name": "Paul Kruse",
+    "jersey_bcd": 12,
+    "jersey_byte_hex": "12",
+    "unknown1_hex": "92",
+    "attr7_hex": "92222239523424",
+    "roster_index": 10
+   },
+   {
+    "addr": 5970,
+    "name": "Wes Walz",
+    "jersey_bcd": 17,
+    "jersey_byte_hex": "17",
+    "unknown1_hex": "62",
+    "attr7_hex": "62333216633131",
+    "roster_index": 11
+   },
+   {
+    "addr": 5988,
+    "name": "Theoren Fleury",
+    "jersey_bcd": 14,
+    "jersey_byte_hex": "14",
+    "unknown1_hex": "35",
+    "attr7_hex": "3554444ca44333",
+    "roster_index": 12
+   },
+   {
+    "addr": 6012,
+    "name": "Sandy McCarthy",
+    "jersey_bcd": 15,
+    "jersey_byte_hex": "15",
+    "unknown1_hex": "71",
+    "attr7_hex": "7112223a523425",
+    "roster_index": 13
+   },
+   {
+    "addr": 6036,
+    "name": "Ronnie Stern",
+    "jersey_bcd": 22,
+    "jersey_byte_hex": "22",
+    "unknown1_hex": "82",
+    "attr7_hex": "82221238522325",
+    "roster_index": 14
+   },
+   {
+    "addr": 6058,
+    "name": "Brad Schlegel\u0000",
+    "jersey_bcd": 21,
+    "jersey_byte_hex": "21",
+    "unknown1_hex": "72",
+    "attr7_hex": "72212226313422",
+    "roster_index": 15
+   },
+   {
+    "addr": 6082,
+    "name": "Zarley Zalapski\u0000",
+    "jersey_bcd": 33,
+    "jersey_byte_hex": "33",
+    "unknown1_hex": "a5",
+    "attr7_hex": "a5443437925332",
+    "roster_index": 16
+   },
+   {
+    "addr": 6108,
+    "name": "James Patrick\u0000",
+    "jersey_bcd": 6,
+    "jersey_byte_hex": "06",
+    "unknown1_hex": "95",
+    "attr7_hex": "95434336923242",
+    "roster_index": 17
+   },
+   {
+    "addr": 6132,
+    "name": "Al MacInnis\u0000",
+    "jersey_bcd": 2,
+    "jersey_byte_hex": "02",
+    "unknown1_hex": "84",
+    "attr7_hex": "84444638925343",
+    "roster_index": 18
+   },
+   {
+    "addr": 6154,
+    "name": "Dan Keczmer\u0000",
+    "jersey_bcd": 39,
+    "jersey_byte_hex": "39",
+    "unknown1_hex": "72",
+    "attr7_hex": "72213127622513",
+    "roster_index": 19
+   },
+   {
+    "addr": 6176,
+    "name": "Trent Yawney",
+    "jersey_bcd": 18,
+    "jersey_byte_hex": "18",
+    "unknown1_hex": "73",
+    "attr7_hex": "73324227623232",
+    "roster_index": 20
+   },
+   {
+    "addr": 6198,
+    "name": "Frank Musil\u0000",
+    "jersey_bcd": 3,
+    "jersey_byte_hex": "03",
+    "unknown1_hex": "93",
+    "attr7_hex": "93414239413323",
+    "roster_index": 21
+   },
+   {
+    "addr": 6220,
+    "name": "Michel Petit",
+    "jersey_bcd": 7,
+    "jersey_byte_hex": "07",
+    "unknown1_hex": "93",
+    "attr7_hex": "93323446713223",
+    "roster_index": 22
+   },
+   {
+    "addr": 6242,
+    "name": "Kevin Dahl",
+    "jersey_bcd": 4,
+    "jersey_byte_hex": "04",
+    "unknown1_hex": "73",
+    "attr7_hex": "73214134613132",
+    "roster_index": 23
+   },
+   {
+    "addr": 6262,
+    "name": "Chris Dahlquist\u0000",
+    "jersey_bcd": 5,
+    "jersey_byte_hex": "05",
+    "unknown1_hex": "83",
+    "attr7_hex": "83214239713323",
+    "roster_index": 24
+   }
+  ]
+ },
+ {
+  "addr": "0x1910",
+  "city": "Chicago",
+  "abbr": "CHI",
+  "mascot": "Blackhawks",
+  "lines": [
+   [
+    1,
+    19,
+    18,
+    9,
+    3,
+    16,
+    14,
+    0
+   ],
+   [
+    1,
+    19,
+    18,
+    11,
+    3,
+    14,
+    16,
+    0
+   ],
+   [
+    1,
+    24,
+    23,
+    8,
+    4,
+    16,
+    3,
+    0
+   ],
+   [
+    1,
+    17,
+    20,
+    9,
+    5,
+    13,
+    3,
+    0
+   ],
+   [
+    1,
+    18,
+    23,
+    14,
+    3,
+    16,
+    8,
+    0
+   ],
+   [
+    1,
+    24,
+    19,
+    8,
+    4,
+    13,
+    11,
+    0
+   ],
+   [
+    1,
+    19,
+    18,
+    4,
+    3,
+    14,
+    11,
+    0
+   ],
+   [
+    1,
+    24,
+    23,
+    5,
+    13,
+    11,
+    14,
+    0
+   ]
+  ],
+  "roster": [
+   {
+    "addr": 6480,
+    "name": "Ed Belfour",
+    "jersey_bcd": 30,
+    "jersey_byte_hex": "30",
+    "unknown1_hex": "66",
+    "attr7_hex": "66466500006655",
+    "roster_index": 1
+   },
+   {
+    "addr": 6500,
+    "name": "Jeff Hackett",
+    "jersey_bcd": 31,
+    "jersey_byte_hex": "31",
+    "unknown1_hex": "52",
+    "attr7_hex": "52311200002222",
+    "roster_index": 2
+   },
+   {
+    "addr": 6522,
+    "name": "Jeremy Roenick",
+    "jersey_bcd": 27,
+    "jersey_byte_hex": "27",
+    "unknown1_hex": "45",
+    "attr7_hex": "4555453cd55253",
+    "roster_index": 3
+   },
+   {
+    "addr": 6546,
+    "name": "Christan Ruuttu\u0000",
+    "jersey_bcd": 22,
+    "jersey_byte_hex": "22",
+    "unknown1_hex": "84",
+    "attr7_hex": "84434347624243",
+    "roster_index": 4
+   },
+   {
+    "addr": 6572,
+    "name": "Brent Sutter",
+    "jersey_bcd": 12,
+    "jersey_byte_hex": "12",
+    "unknown1_hex": "63",
+    "attr7_hex": "63235347a35134",
+    "roster_index": 5
+   },
+   {
+    "addr": 6594,
+    "name": "Jeff Shantz\u0000",
+    "jersey_bcd": 11,
+    "jersey_byte_hex": "11",
+    "unknown1_hex": "72",
+    "attr7_hex": "72331226623232",
+    "roster_index": 6
+   },
+   {
+    "addr": 6616,
+    "name": "Steve Dubinsky",
+    "jersey_bcd": 32,
+    "jersey_byte_hex": "32",
+    "unknown1_hex": "73",
+    "attr7_hex": "73322319623221",
+    "roster_index": 7
+   },
+   {
+    "addr": 6640,
+    "name": "Paul Ysebaert\u0000",
+    "jersey_bcd": 14,
+    "jersey_byte_hex": "14",
+    "unknown1_hex": "74",
+    "attr7_hex": "74434329633342",
+    "roster_index": 8
+   },
+   {
+    "addr": 6664,
+    "name": "Michel Goulet\u0000",
+    "jersey_bcd": 16,
+    "jersey_byte_hex": "16",
+    "unknown1_hex": "84",
+    "attr7_hex": "84333225643312",
+    "roster_index": 9
+   },
+   {
+    "addr": 6688,
+    "name": "Randy Cunnyworth",
+    "jersey_bcd": 19,
+    "jersey_byte_hex": "19",
+    "unknown1_hex": "62",
+    "attr7_hex": "62323339723533",
+    "roster_index": 10
+   },
+   {
+    "addr": 6714,
+    "name": "Patrick Poulin",
+    "jersey_bcd": 44,
+    "jersey_byte_hex": "44",
+    "unknown1_hex": "a3",
+    "attr7_hex": "a3332339635232",
+    "roster_index": 11
+   },
+   {
+    "addr": 6738,
+    "name": "Darin Kimble",
+    "jersey_bcd": 20,
+    "jersey_byte_hex": "20",
+    "unknown1_hex": "91",
+    "attr7_hex": "91121136241315",
+    "roster_index": 12
+   },
+   {
+    "addr": 6760,
+    "name": "Dirk Graham\u0000",
+    "jersey_bcd": 33,
+    "jersey_byte_hex": "33",
+    "unknown1_hex": "84",
+    "attr7_hex": "84335348724534",
+    "roster_index": 13
+   },
+   {
+    "addr": 6782,
+    "name": "Tony Amonte\u0000",
+    "jersey_bcd": 10,
+    "jersey_byte_hex": "10",
+    "unknown1_hex": "64",
+    "attr7_hex": "6454341d634532",
+    "roster_index": 14
+   },
+   {
+    "addr": 6804,
+    "name": "Rich Sutter\u0000",
+    "jersey_bcd": 15,
+    "jersey_byte_hex": "15",
+    "unknown1_hex": "73",
+    "attr7_hex": "7332412a424424",
+    "roster_index": 15
+   },
+   {
+    "addr": 6826,
+    "name": "Joe Murphy",
+    "jersey_bcd": 17,
+    "jersey_byte_hex": "17",
+    "unknown1_hex": "74",
+    "attr7_hex": "7454343b734343",
+    "roster_index": 16
+   },
+   {
+    "addr": 6846,
+    "name": "Eric Weinrich\u0000",
+    "jersey_bcd": 2,
+    "jersey_byte_hex": "02",
+    "unknown1_hex": "a3",
+    "attr7_hex": "a3433339624132",
+    "roster_index": 17
+   },
+   {
+    "addr": 6870,
+    "name": "Chris Chelios\u0000",
+    "jersey_bcd": 7,
+    "jersey_byte_hex": "07",
+    "unknown1_hex": "74",
+    "attr7_hex": "7444654aa26245",
+    "roster_index": 18
+   },
+   {
+    "addr": 6894,
+    "name": "Steve Smith\u0000",
+    "jersey_bcd": 5,
+    "jersey_byte_hex": "05",
+    "unknown1_hex": "b4",
+    "attr7_hex": "b4434347725244",
+    "roster_index": 19
+   },
+   {
+    "addr": 6916,
+    "name": "Neil Wilkinson",
+    "jersey_bcd": 23,
+    "jersey_byte_hex": "23",
+    "unknown1_hex": "73",
+    "attr7_hex": "73313238704433",
+    "roster_index": 20
+   },
+   {
+    "addr": 6940,
+    "name": "Keith Carney",
+    "jersey_bcd": 4,
+    "jersey_byte_hex": "04",
+    "unknown1_hex": "92",
+    "attr7_hex": "92321239621424",
+    "roster_index": 21
+   },
+   {
+    "addr": 6962,
+    "name": "Greg Smyth",
+    "jersey_bcd": 3,
+    "jersey_byte_hex": "03",
+    "unknown1_hex": "a1",
+    "attr7_hex": "a1111016211405",
+    "roster_index": 22
+   },
+   {
+    "addr": 6982,
+    "name": "Gary Suter",
+    "jersey_bcd": 6,
+    "jersey_byte_hex": "06",
+    "unknown1_hex": "75",
+    "attr7_hex": "75444447a25244",
+    "roster_index": 23
+   },
+   {
+    "addr": 7002,
+    "name": "Cam Russell\u0000",
+    "jersey_bcd": 8,
+    "jersey_byte_hex": "08",
+    "unknown1_hex": "53",
+    "attr7_hex": "53313239513525",
+    "roster_index": 24
+   }
+  ]
+ },
+ {
+  "addr": "0x1bf0",
+  "city": "Detroit",
+  "abbr": "DET",
+  "mascot": "Red Wings",
+  "lines": [
+   [
+    1,
+    19,
+    18,
+    4,
+    3,
+    13,
+    14,
+    0
+   ],
+   [
+    1,
+    21,
+    18,
+    5,
+    3,
+    14,
+    4,
+    0
+   ],
+   [
+    1,
+    19,
+    23,
+    8,
+    4,
+    13,
+    3,
+    0
+   ],
+   [
+    1,
+    22,
+    20,
+    9,
+    6,
+    7,
+    3,
+    0
+   ],
+   [
+    1,
+    21,
+    18,
+    5,
+    3,
+    14,
+    4,
+    0
+   ],
+   [
+    1,
+    19,
+    23,
+    8,
+    4,
+    13,
+    3,
+    0
+   ],
+   [
+    1,
+    19,
+    23,
+    9,
+    4,
+    3,
+    14,
+    0
+   ],
+   [
+    1,
+    21,
+    20,
+    5,
+    3,
+    14,
+    4,
+    0
+   ]
+  ],
+  "roster": [
+   {
+    "addr": 7216,
+    "name": "Bob Essensa\u0000",
+    "jersey_bcd": 35,
+    "jersey_byte_hex": "35",
+    "unknown1_hex": "33",
+    "attr7_hex": "33443300003333",
+    "roster_index": 1
+   },
+   {
+    "addr": 7238,
+    "name": "Chris Osgood",
+    "jersey_bcd": 30,
+    "jersey_byte_hex": "30",
+    "unknown1_hex": "34",
+    "attr7_hex": "34334300003333",
+    "roster_index": 2
+   },
+   {
+    "addr": 7260,
+    "name": "Steve Yzerman\u0000",
+    "jersey_bcd": 19,
+    "jersey_byte_hex": "19",
+    "unknown1_hex": "66",
+    "attr7_hex": "66564418c46151",
+    "roster_index": 3
+   },
+   {
+    "addr": 7284,
+    "name": "Sergei Fedorov",
+    "jersey_bcd": 91,
+    "jersey_byte_hex": "91",
+    "unknown1_hex": "76",
+    "attr7_hex": "7666542bc55253",
+    "roster_index": 4
+   },
+   {
+    "addr": 7308,
+    "name": "Keith Primeau\u0000",
+    "jersey_bcd": 55,
+    "jersey_byte_hex": "55",
+    "unknown1_hex": "b2",
+    "attr7_hex": "b2243339753224",
+    "roster_index": 5
+   },
+   {
+    "addr": 7332,
+    "name": "Kris Draper\u0000",
+    "jersey_bcd": 33,
+    "jersey_byte_hex": "33",
+    "unknown1_hex": "73",
+    "attr7_hex": "73424229624232",
+    "roster_index": 6
+   },
+   {
+    "addr": 7354,
+    "name": "Greg Johnson",
+    "jersey_bcd": 23,
+    "jersey_byte_hex": "23",
+    "unknown1_hex": "63",
+    "attr7_hex": "63332229623322",
+    "roster_index": 7
+   },
+   {
+    "addr": 7376,
+    "name": "Vachslav Kozlov\u0000",
+    "jersey_bcd": 13,
+    "jersey_byte_hex": "13",
+    "unknown1_hex": "54",
+    "attr7_hex": "5434231b943532",
+    "roster_index": 8
+   },
+   {
+    "addr": 7402,
+    "name": "Shawn Burr",
+    "jersey_bcd": 11,
+    "jersey_byte_hex": "11",
+    "unknown1_hex": "62",
+    "attr7_hex": "62224237723124",
+    "roster_index": 9
+   },
+   {
+    "addr": 7422,
+    "name": "Bob Probert\u0000",
+    "jersey_bcd": 24,
+    "jersey_byte_hex": "24",
+    "unknown1_hex": "b4",
+    "attr7_hex": "b4322349524236",
+    "roster_index": 10
+   },
+   {
+    "addr": 7444,
+    "name": "Micah Aivazoff",
+    "jersey_bcd": 27,
+    "jersey_byte_hex": "27",
+    "unknown1_hex": "72",
+    "attr7_hex": "72222227633221",
+    "roster_index": 11
+   },
+   {
+    "addr": 7468,
+    "name": "Mike Sillinger",
+    "jersey_bcd": 12,
+    "jersey_byte_hex": "12",
+    "unknown1_hex": "73",
+    "attr7_hex": "73322227624021",
+    "roster_index": 12
+   },
+   {
+    "addr": 7492,
+    "name": "Dino Ciccarelli\u0000",
+    "jersey_bcd": 22,
+    "jersey_byte_hex": "22",
+    "unknown1_hex": "55",
+    "attr7_hex": "55352526754344",
+    "roster_index": 13
+   },
+   {
+    "addr": 7518,
+    "name": "Ray Sheppard",
+    "jersey_bcd": 26,
+    "jersey_byte_hex": "26",
+    "unknown1_hex": "62",
+    "attr7_hex": "62251318653421",
+    "roster_index": 14
+   },
+   {
+    "addr": 7540,
+    "name": "Darren McCarty",
+    "jersey_bcd": 25,
+    "jersey_byte_hex": "25",
+    "unknown1_hex": "a2",
+    "attr7_hex": "a222324a524326",
+    "roster_index": 15
+   },
+   {
+    "addr": 7564,
+    "name": "Sheldon Kennedy\u0000",
+    "jersey_bcd": 15,
+    "jersey_byte_hex": "15",
+    "unknown1_hex": "43",
+    "attr7_hex": "43522218332521",
+    "roster_index": 16
+   },
+   {
+    "addr": 7590,
+    "name": "Sergei Bautin\u0000",
+    "jersey_bcd": 29,
+    "jersey_byte_hex": "29",
+    "unknown1_hex": "73",
+    "attr7_hex": "73213319312221",
+    "roster_index": 17
+   },
+   {
+    "addr": 7614,
+    "name": "Paul Coffey\u0000",
+    "jersey_bcd": 77,
+    "jersey_byte_hex": "77",
+    "unknown1_hex": "96",
+    "attr7_hex": "9654342bc25163",
+    "roster_index": 18
+   },
+   {
+    "addr": 7636,
+    "name": "Steve Chiasson",
+    "jersey_bcd": 3,
+    "jersey_byte_hex": "03",
+    "unknown1_hex": "93",
+    "attr7_hex": "9334443b724234",
+    "roster_index": 19
+   },
+   {
+    "addr": 7660,
+    "name": "Terry Carkner\u0000",
+    "jersey_bcd": 2,
+    "jersey_byte_hex": "02",
+    "unknown1_hex": "a1",
+    "attr7_hex": "a1213237413024",
+    "roster_index": 20
+   },
+   {
+    "addr": 7684,
+    "name": "Nicklas Lidstrom",
+    "jersey_bcd": 5,
+    "jersey_byte_hex": "05",
+    "unknown1_hex": "54",
+    "attr7_hex": "5433442b614241",
+    "roster_index": 21
+   },
+   {
+    "addr": 7710,
+    "name": "Mark Howe\u0000",
+    "jersey_bcd": 4,
+    "jersey_byte_hex": "04",
+    "unknown1_hex": "63",
+    "attr7_hex": "63234323613031",
+    "roster_index": 22
+   },
+   {
+    "addr": 7730,
+    "name": "Vladimir Konstantov\u0000",
+    "jersey_bcd": 16,
+    "jersey_byte_hex": "16",
+    "unknown1_hex": "64",
+    "attr7_hex": "6442434a714235",
+    "roster_index": 23
+   },
+   {
+    "addr": 7760,
+    "name": "Bob Halkidis",
+    "jersey_bcd": 21,
+    "jersey_byte_hex": "21",
+    "unknown1_hex": "91",
+    "attr7_hex": "91212237423224",
+    "roster_index": 24
+   }
+  ]
+ },
+ {
+  "addr": "0x1eee",
+  "city": "Edmonton",
+  "abbr": "EDM",
+  "mascot": "Oilers",
+  "lines": [
+   [
+    1,
+    19,
+    22,
+    10,
+    3,
+    13,
+    5,
+    0
+   ],
+   [
+    1,
+    19,
+    24,
+    10,
+    3,
+    14,
+    5,
+    0
+   ],
+   [
+    1,
+    22,
+    20,
+    13,
+    5,
+    16,
+    3,
+    0
+   ],
+   [
+    1,
+    23,
+    21,
+    12,
+    7,
+    17,
+    3,
+    0
+   ],
+   [
+    1,
+    19,
+    20,
+    10,
+    3,
+    14,
+    5,
+    0
+   ],
+   [
+    1,
+    22,
+    18,
+    13,
+    5,
+    16,
+    3,
+    0
+   ],
+   [
+    1,
+    23,
+    22,
+    10,
+    3,
+    5,
+    14,
+    0
+   ],
+   [
+    1,
+    19,
+    24,
+    17,
+    5,
+    3,
+    14,
+    0
+   ]
+  ],
+  "roster": [
+   {
+    "addr": 7982,
+    "name": "Bill Ranford",
+    "jersey_bcd": 30,
+    "jersey_byte_hex": "30",
+    "unknown1_hex": "45",
+    "attr7_hex": "45343500004455",
+    "roster_index": 1
+   },
+   {
+    "addr": 8004,
+    "name": "Fred Brathwaite\u0000",
+    "jersey_bcd": 31,
+    "jersey_byte_hex": "31",
+    "unknown1_hex": "52",
+    "attr7_hex": "52222200002122",
+    "roster_index": 2
+   },
+   {
+    "addr": 8030,
+    "name": "Doug Weight\u0000",
+    "jersey_bcd": 39,
+    "jersey_byte_hex": "39",
+    "unknown1_hex": "63",
+    "attr7_hex": "6334333da33243",
+    "roster_index": 3
+   },
+   {
+    "addr": 8052,
+    "name": "Todd Marchant\u0000",
+    "jersey_bcd": 36,
+    "jersey_byte_hex": "36",
+    "unknown1_hex": "74",
+    "attr7_hex": "74422302633232",
+    "roster_index": 4
+   },
+   {
+    "addr": 8076,
+    "name": "Jason Arnott",
+    "jersey_bcd": 7,
+    "jersey_byte_hex": "07",
+    "unknown1_hex": "83",
+    "attr7_hex": "8334443aa43343",
+    "roster_index": 5
+   },
+   {
+    "addr": 8098,
+    "name": "Dean McAmmond\u0000",
+    "jersey_bcd": 37,
+    "jersey_byte_hex": "37",
+    "unknown1_hex": "73",
+    "attr7_hex": "73424329623221",
+    "roster_index": 6
+   },
+   {
+    "addr": 8122,
+    "name": "Scott Thornton",
+    "jersey_bcd": 17,
+    "jersey_byte_hex": "17",
+    "unknown1_hex": "93",
+    "attr7_hex": "93313227423223",
+    "roster_index": 7
+   },
+   {
+    "addr": 8146,
+    "name": "Mike Stapleton",
+    "jersey_bcd": 25,
+    "jersey_byte_hex": "25",
+    "unknown1_hex": "63",
+    "attr7_hex": "6332222a622530",
+    "roster_index": 8
+   },
+   {
+    "addr": 8170,
+    "name": "Brent Grieve",
+    "jersey_bcd": 34,
+    "jersey_byte_hex": "34",
+    "unknown1_hex": "93",
+    "attr7_hex": "93422339743322",
+    "roster_index": 9
+   },
+   {
+    "addr": 8192,
+    "name": "Shayne Corson\u0000",
+    "jersey_bcd": 9,
+    "jersey_byte_hex": "09",
+    "unknown1_hex": "93",
+    "attr7_hex": "93334447734334",
+    "roster_index": 10
+   },
+   {
+    "addr": 8216,
+    "name": "Louie DeBrusk\u0000",
+    "jersey_bcd": 29,
+    "jersey_byte_hex": "29",
+    "unknown1_hex": "c1",
+    "attr7_hex": "c1121237531515",
+    "roster_index": 11
+   },
+   {
+    "addr": 8240,
+    "name": "Scott Pearson\u0000",
+    "jersey_bcd": 33,
+    "jersey_byte_hex": "33",
+    "unknown1_hex": "93",
+    "attr7_hex": "93312235423123",
+    "roster_index": 12
+   },
+   {
+    "addr": 8264,
+    "name": "Zdeno Ciger\u0000",
+    "jersey_bcd": 8,
+    "jersey_byte_hex": "08",
+    "unknown1_hex": "73",
+    "attr7_hex": "7333342d643230",
+    "roster_index": 13
+   },
+   {
+    "addr": 8286,
+    "name": "Steven Rice\u0000",
+    "jersey_bcd": 12,
+    "jersey_byte_hex": "12",
+    "unknown1_hex": "b2",
+    "attr7_hex": "b2232227422223",
+    "roster_index": 14
+   },
+   {
+    "addr": 8308,
+    "name": "Shjon Podein",
+    "jersey_bcd": 26,
+    "jersey_byte_hex": "26",
+    "unknown1_hex": "92",
+    "attr7_hex": "92232227342512",
+    "roster_index": 15
+   },
+   {
+    "addr": 8330,
+    "name": "Kirk Maltby\u0000",
+    "jersey_bcd": 18,
+    "jersey_byte_hex": "18",
+    "unknown1_hex": "73",
+    "attr7_hex": "73223238724323",
+    "roster_index": 16
+   },
+   {
+    "addr": 8352,
+    "name": "Kelly Buchberger",
+    "jersey_bcd": 16,
+    "jersey_byte_hex": "16",
+    "unknown1_hex": "a3",
+    "attr7_hex": "a332324c723214",
+    "roster_index": 17
+   },
+   {
+    "addr": 8378,
+    "name": "Ilya Byakin\u0000",
+    "jersey_bcd": 10,
+    "jersey_byte_hex": "10",
+    "unknown1_hex": "73",
+    "attr7_hex": "73232207632240",
+    "roster_index": 18
+   },
+   {
+    "addr": 8400,
+    "name": "Igor Kravchuk\u0000",
+    "jersey_bcd": 21,
+    "jersey_byte_hex": "21",
+    "unknown1_hex": "95",
+    "attr7_hex": "9533443b924332",
+    "roster_index": 19
+   },
+   {
+    "addr": 8424,
+    "name": "Fredrik Olausson",
+    "jersey_bcd": 15,
+    "jersey_byte_hex": "15",
+    "unknown1_hex": "94",
+    "attr7_hex": "94343418923141",
+    "roster_index": 20
+   },
+   {
+    "addr": 8450,
+    "name": "Adam Bennett",
+    "jersey_bcd": 35,
+    "jersey_byte_hex": "35",
+    "unknown1_hex": "92",
+    "attr7_hex": "92212126401312",
+    "roster_index": 21
+   },
+   {
+    "addr": 8472,
+    "name": "Bob Beers\u0000",
+    "jersey_bcd": 2,
+    "jersey_byte_hex": "02",
+    "unknown1_hex": "93",
+    "attr7_hex": "9332333a723323",
+    "roster_index": 22
+   },
+   {
+    "addr": 8492,
+    "name": "Luke Richardson\u0000",
+    "jersey_bcd": 22,
+    "jersey_byte_hex": "22",
+    "unknown1_hex": "b3",
+    "attr7_hex": "b3313249702434",
+    "roster_index": 23
+   },
+   {
+    "addr": 8518,
+    "name": "Boris Mironov\u0000",
+    "jersey_bcd": 20,
+    "jersey_byte_hex": "20",
+    "unknown1_hex": "64",
+    "attr7_hex": "64322338712323",
+    "roster_index": 24
+   }
+  ]
+ },
+ {
+  "addr": "0x21e0",
+  "city": "Florida",
+  "abbr": "FLA",
+  "mascot": "Panthers",
+  "lines": [
+   [
+    1,
+    17,
+    20,
+    10,
+    6,
+    15,
+    3,
+    0
+   ],
+   [
+    1,
+    17,
+    20,
+    10,
+    6,
+    15,
+    3,
+    0
+   ],
+   [
+    1,
+    23,
+    18,
+    8,
+    3,
+    13,
+    6,
+    0
+   ],
+   [
+    1,
+    24,
+    21,
+    9,
+    4,
+    14,
+    6,
+    0
+   ],
+   [
+    1,
+    24,
+    20,
+    10,
+    6,
+    15,
+    3,
+    0
+   ],
+   [
+    1,
+    17,
+    21,
+    9,
+    4,
+    14,
+    6,
+    0
+   ],
+   [
+    1,
+    23,
+    21,
+    8,
+    3,
+    10,
+    6,
+    0
+   ],
+   [
+    1,
+    17,
+    18,
+    13,
+    4,
+    6,
+    3,
+    0
+   ]
+  ],
+  "roster": [
+   {
+    "addr": 8736,
+    "name": "John Vanbiesbrk\u0000",
+    "jersey_bcd": 34,
+    "jersey_byte_hex": "34",
+    "unknown1_hex": "54",
+    "attr7_hex": "54345300004455",
+    "roster_index": 1
+   },
+   {
+    "addr": 8762,
+    "name": "Mark Fitzpatrik\u0000",
+    "jersey_bcd": 30,
+    "jersey_byte_hex": "30",
+    "unknown1_hex": "73",
+    "attr7_hex": "73422300003434",
+    "roster_index": 2
+   },
+   {
+    "addr": 8788,
+    "name": "Brian Skrudland\u0000",
+    "jersey_bcd": 20,
+    "jersey_byte_hex": "20",
+    "unknown1_hex": "84",
+    "attr7_hex": "84325249734334",
+    "roster_index": 3
+   },
+   {
+    "addr": 8814,
+    "name": "Stu Barnes",
+    "jersey_bcd": 14,
+    "jersey_byte_hex": "14",
+    "unknown1_hex": "52",
+    "attr7_hex": "52343328933431",
+    "roster_index": 4
+   },
+   {
+    "addr": 8834,
+    "name": "Rob Neidrmayer",
+    "jersey_bcd": 44,
+    "jersey_byte_hex": "44",
+    "unknown1_hex": "94",
+    "attr7_hex": "94522337733422",
+    "roster_index": 5
+   },
+   {
+    "addr": 8858,
+    "name": "Jesse Belanger",
+    "jersey_bcd": 26,
+    "jersey_byte_hex": "26",
+    "unknown1_hex": "53",
+    "attr7_hex": "53443328943241",
+    "roster_index": 6
+   },
+   {
+    "addr": 8882,
+    "name": "Tom Fitzgerald",
+    "jersey_bcd": 21,
+    "jersey_byte_hex": "21",
+    "unknown1_hex": "82",
+    "attr7_hex": "8232333a633222",
+    "roster_index": 7
+   },
+   {
+    "addr": 8906,
+    "name": "Mike Hough",
+    "jersey_bcd": 18,
+    "jersey_byte_hex": "18",
+    "unknown1_hex": "73",
+    "attr7_hex": "73223339723233",
+    "roster_index": 8
+   },
+   {
+    "addr": 8926,
+    "name": "Dave Lowry",
+    "jersey_bcd": 10,
+    "jersey_byte_hex": "10",
+    "unknown1_hex": "82",
+    "attr7_hex": "8233323b723424",
+    "roster_index": 9
+   },
+   {
+    "addr": 8946,
+    "name": "Andrei Lomakin",
+    "jersey_bcd": 19,
+    "jersey_byte_hex": "19",
+    "unknown1_hex": "74",
+    "attr7_hex": "74333319933242",
+    "roster_index": 10
+   },
+   {
+    "addr": 8970,
+    "name": "Bill Lindsay",
+    "jersey_bcd": 11,
+    "jersey_byte_hex": "11",
+    "unknown1_hex": "61",
+    "attr7_hex": "6122322d412322",
+    "roster_index": 11
+   },
+   {
+    "addr": 8992,
+    "name": "Jeff Daniels",
+    "jersey_bcd": 23,
+    "jersey_byte_hex": "23",
+    "unknown1_hex": "92",
+    "attr7_hex": "92212229332421",
+    "roster_index": 12
+   },
+   {
+    "addr": 9014,
+    "name": "Jody Hull\u0000",
+    "jersey_bcd": 12,
+    "jersey_byte_hex": "12",
+    "unknown1_hex": "92",
+    "attr7_hex": "92223234323321",
+    "roster_index": 13
+   },
+   {
+    "addr": 9034,
+    "name": "Scott Mellanby",
+    "jersey_bcd": 27,
+    "jersey_byte_hex": "27",
+    "unknown1_hex": "91",
+    "attr7_hex": "9113334a743324",
+    "roster_index": 14
+   },
+   {
+    "addr": 9058,
+    "name": "Bob Kudelski",
+    "jersey_bcd": 22,
+    "jersey_byte_hex": "22",
+    "unknown1_hex": "92",
+    "attr7_hex": "9234342c643432",
+    "roster_index": 15
+   },
+   {
+    "addr": 9080,
+    "name": "Mike Foligno",
+    "jersey_bcd": 17,
+    "jersey_byte_hex": "17",
+    "unknown1_hex": "82",
+    "attr7_hex": "82223242433423",
+    "roster_index": 16
+   },
+   {
+    "addr": 9102,
+    "name": "Brian Benning\u0000",
+    "jersey_bcd": 7,
+    "jersey_byte_hex": "07",
+    "unknown1_hex": "83",
+    "attr7_hex": "83232327624234",
+    "roster_index": 17
+   },
+   {
+    "addr": 9126,
+    "name": "Geoff Smith\u0000",
+    "jersey_bcd": 25,
+    "jersey_byte_hex": "25",
+    "unknown1_hex": "94",
+    "attr7_hex": "94313124913231",
+    "roster_index": 18
+   },
+   {
+    "addr": 9148,
+    "name": "Brent Severyn\u0000",
+    "jersey_bcd": 24,
+    "jersey_byte_hex": "24",
+    "unknown1_hex": "a2",
+    "attr7_hex": "a2213347523325",
+    "roster_index": 19
+   },
+   {
+    "addr": 9172,
+    "name": "Gord Murphy\u0000",
+    "jersey_bcd": 5,
+    "jersey_byte_hex": "05",
+    "unknown1_hex": "85",
+    "attr7_hex": "8543343c623333",
+    "roster_index": 20
+   },
+   {
+    "addr": 9194,
+    "name": "Joe Cirella\u0000",
+    "jersey_bcd": 2,
+    "jersey_byte_hex": "02",
+    "unknown1_hex": "a2",
+    "attr7_hex": "a2213336423323",
+    "roster_index": 21
+   },
+   {
+    "addr": 9216,
+    "name": "Paul Laus\u0000",
+    "jersey_bcd": 3,
+    "jersey_byte_hex": "03",
+    "unknown1_hex": "93",
+    "attr7_hex": "93202246213325",
+    "roster_index": 22
+   },
+   {
+    "addr": 9236,
+    "name": "Keith Brown\u0000",
+    "jersey_bcd": 4,
+    "jersey_byte_hex": "04",
+    "unknown1_hex": "72",
+    "attr7_hex": "72223234413433",
+    "roster_index": 23
+   },
+   {
+    "addr": 9258,
+    "name": "Peter Andersson\u0000",
+    "jersey_bcd": 6,
+    "jersey_byte_hex": "06",
+    "unknown1_hex": "93",
+    "attr7_hex": "93332229923342",
+    "roster_index": 24
+   }
+  ]
+ },
+ {
+  "addr": "0x24c0",
+  "city": "Hartford",
+  "abbr": "HFD",
+  "mascot": "Whalers",
+  "lines": [
+   [
+    1,
+    19,
+    23,
+    9,
+    4,
+    15,
+    6,
+    0
+   ],
+   [
+    1,
+    20,
+    18,
+    9,
+    4,
+    15,
+    6,
+    0
+   ],
+   [
+    1,
+    19,
+    23,
+    13,
+    6,
+    17,
+    8,
+    0
+   ],
+   [
+    1,
+    22,
+    24,
+    12,
+    8,
+    14,
+    4,
+    0
+   ],
+   [
+    1,
+    20,
+    23,
+    9,
+    4,
+    15,
+    6,
+    0
+   ],
+   [
+    1,
+    22,
+    18,
+    8,
+    6,
+    17,
+    4,
+    0
+   ],
+   [
+    1,
+    20,
+    23,
+    15,
+    4,
+    9,
+    6,
+    0
+   ],
+   [
+    1,
+    22,
+    18,
+    10,
+    5,
+    9,
+    6,
+    0
+   ]
+  ],
+  "roster": [
+   {
+    "addr": 9472,
+    "name": "Sean Burke",
+    "jersey_bcd": 1,
+    "jersey_byte_hex": "01",
+    "unknown1_hex": "a4",
+    "attr7_hex": "a4322300003344",
+    "roster_index": 1
+   },
+   {
+    "addr": 9492,
+    "name": "Jeff Reese",
+    "jersey_bcd": 35,
+    "jersey_byte_hex": "35",
+    "unknown1_hex": "42",
+    "attr7_hex": "42332200002222",
+    "roster_index": 2
+   },
+   {
+    "addr": 9512,
+    "name": "Frank Pietrngelo",
+    "jersey_bcd": 40,
+    "jersey_byte_hex": "40",
+    "unknown1_hex": "63",
+    "attr7_hex": "63311300002222",
+    "roster_index": 3
+   },
+   {
+    "addr": 9538,
+    "name": "Andrew Cassels",
+    "jersey_bcd": 21,
+    "jersey_byte_hex": "21",
+    "unknown1_hex": "73",
+    "attr7_hex": "7334422b334142",
+    "roster_index": 4
+   },
+   {
+    "addr": 9562,
+    "name": "Mark Janssens\u0000",
+    "jersey_bcd": 22,
+    "jersey_byte_hex": "22",
+    "unknown1_hex": "b3",
+    "attr7_hex": "b322434d734124",
+    "roster_index": 5
+   },
+   {
+    "addr": 9586,
+    "name": "Ted Drury\u0000",
+    "jersey_bcd": 17,
+    "jersey_byte_hex": "17",
+    "unknown1_hex": "74",
+    "attr7_hex": "74423235923232",
+    "roster_index": 6
+   },
+   {
+    "addr": 9606,
+    "name": "Igor Chibirev\u0000",
+    "jersey_bcd": 32,
+    "jersey_byte_hex": "32",
+    "unknown1_hex": "53",
+    "attr7_hex": "53432317633231",
+    "roster_index": 7
+   },
+   {
+    "addr": 9630,
+    "name": "Darren Turcotte\u0000",
+    "jersey_bcd": 89,
+    "jersey_byte_hex": "89",
+    "unknown1_hex": "64",
+    "attr7_hex": "64443427924331",
+    "roster_index": 8
+   },
+   {
+    "addr": 9656,
+    "name": "Geoff Sanderson\u0000",
+    "jersey_bcd": 8,
+    "jersey_byte_hex": "08",
+    "unknown1_hex": "64",
+    "attr7_hex": "6454342b644331",
+    "roster_index": 9
+   },
+   {
+    "addr": 9682,
+    "name": "Brian Propp\u0000",
+    "jersey_bcd": 26,
+    "jersey_byte_hex": "26",
+    "unknown1_hex": "83",
+    "attr7_hex": "83323335322530",
+    "roster_index": 10
+   },
+   {
+    "addr": 9704,
+    "name": "Kevin Smyth\u0000",
+    "jersey_bcd": 20,
+    "jersey_byte_hex": "20",
+    "unknown1_hex": "b3",
+    "attr7_hex": "b3323239334224",
+    "roster_index": 11
+   },
+   {
+    "addr": 9726,
+    "name": "Jim Storm\u0000",
+    "jersey_bcd": 24,
+    "jersey_byte_hex": "24",
+    "unknown1_hex": "93",
+    "attr7_hex": "93323239724332",
+    "roster_index": 12
+   },
+   {
+    "addr": 9746,
+    "name": "Jocelyn Lemieux\u0000",
+    "jersey_bcd": 23,
+    "jersey_byte_hex": "23",
+    "unknown1_hex": "94",
+    "attr7_hex": "9443343b723314",
+    "roster_index": 13
+   },
+   {
+    "addr": 9772,
+    "name": "Paul Ranheim",
+    "jersey_bcd": 14,
+    "jersey_byte_hex": "14",
+    "unknown1_hex": "84",
+    "attr7_hex": "8453331a623431",
+    "roster_index": 14
+   },
+   {
+    "addr": 9794,
+    "name": "Pat Verbeek\u0000",
+    "jersey_bcd": 16,
+    "jersey_byte_hex": "16",
+    "unknown1_hex": "73",
+    "attr7_hex": "7344343ca44444",
+    "roster_index": 15
+   },
+   {
+    "addr": 9816,
+    "name": "Jim Sandlak\u0000",
+    "jersey_bcd": 41,
+    "jersey_byte_hex": "41",
+    "unknown1_hex": "b1",
+    "attr7_hex": "b1223324423324",
+    "roster_index": 16
+   },
+   {
+    "addr": 9838,
+    "name": "Robert Kron\u0000",
+    "jersey_bcd": 18,
+    "jersey_byte_hex": "18",
+    "unknown1_hex": "53",
+    "attr7_hex": "53434229933330",
+    "roster_index": 17
+   },
+   {
+    "addr": 9860,
+    "name": "Bryan Marchment\u0000",
+    "jersey_bcd": 27,
+    "jersey_byte_hex": "27",
+    "unknown1_hex": "83",
+    "attr7_hex": "83324247413215",
+    "roster_index": 18
+   },
+   {
+    "addr": 9886,
+    "name": "Alexnder Godynyuk\u0000",
+    "jersey_bcd": 5,
+    "jersey_byte_hex": "05",
+    "unknown1_hex": "a2",
+    "attr7_hex": "a2323239723512",
+    "roster_index": 19
+   },
+   {
+    "addr": 9914,
+    "name": "Adam Burt\u0000",
+    "jersey_bcd": 6,
+    "jersey_byte_hex": "06",
+    "unknown1_hex": "74",
+    "attr7_hex": "74323447714334",
+    "roster_index": 20
+   },
+   {
+    "addr": 9934,
+    "name": "Brad McCrimmon",
+    "jersey_bcd": 10,
+    "jersey_byte_hex": "10",
+    "unknown1_hex": "83",
+    "attr7_hex": "83214244303133",
+    "roster_index": 21
+   },
+   {
+    "addr": 9958,
+    "name": "Frantsek Kucera\u0000",
+    "jersey_bcd": 4,
+    "jersey_byte_hex": "04",
+    "unknown1_hex": "93",
+    "attr7_hex": "93324329613422",
+    "roster_index": 22
+   },
+   {
+    "addr": 9984,
+    "name": "Chris Pronger\u0000",
+    "jersey_bcd": 44,
+    "jersey_byte_hex": "44",
+    "unknown1_hex": "73",
+    "attr7_hex": "7333323ba23334",
+    "roster_index": 23
+   },
+   {
+    "addr": 10008,
+    "name": "Ted Crowley\u0000",
+    "jersey_bcd": 33,
+    "jersey_byte_hex": "33",
+    "unknown1_hex": "73",
+    "attr7_hex": "73323228723322",
+    "roster_index": 24
+   }
+  ]
+ },
+ {
+  "addr": "0x27b4",
+  "city": "Los Angeles",
+  "abbr": "Kings",
+  "mascot": "e Great Western Forum",
+  "lines": [
+   [
+    1,
+    16,
+    17,
+    8,
+    3,
+    11,
+    4,
+    0
+   ],
+   [
+    1,
+    16,
+    18,
+    10,
+    3,
+    11,
+    4,
+    0
+   ],
+   [
+    1,
+    17,
+    22,
+    8,
+    4,
+    15,
+    3,
+    0
+   ],
+   [
+    1,
+    19,
+    20,
+    7,
+    5,
+    12,
+    3,
+    0
+   ],
+   [
+    1,
+    16,
+    18,
+    8,
+    3,
+    11,
+    4,
+    0
+   ],
+   [
+    1,
+    17,
+    19,
+    10,
+    4,
+    12,
+    3,
+    0
+   ],
+   [
+    1,
+    16,
+    19,
+    7,
+    11,
+    3,
+    8,
+    0
+   ],
+   [
+    1,
+    18,
+    20,
+    10,
+    3,
+    11,
+    8,
+    0
+   ]
+  ],
+  "roster": [
+   {
+    "addr": 10228,
+    "name": "Kelly Hrudey",
+    "jersey_bcd": 32,
+    "jersey_byte_hex": "32",
+    "unknown1_hex": "63",
+    "attr7_hex": "63334300002223",
+    "roster_index": 1
+   },
+   {
+    "addr": 10250,
+    "name": "Robb Stauber",
+    "jersey_bcd": 35,
+    "jersey_byte_hex": "35",
+    "unknown1_hex": "62",
+    "attr7_hex": "62344300002222",
+    "roster_index": 2
+   },
+   {
+    "addr": 10272,
+    "name": "Wayne Gretzky\u0000",
+    "jersey_bcd": 99,
+    "jersey_byte_hex": "99",
+    "unknown1_hex": "46",
+    "attr7_hex": "46464319c46160",
+    "roster_index": 3
+   },
+   {
+    "addr": 10296,
+    "name": "Robert Lang\u0000",
+    "jersey_bcd": 13,
+    "jersey_byte_hex": "13",
+    "unknown1_hex": "63",
+    "attr7_hex": "63332216643240",
+    "roster_index": 4
+   },
+   {
+    "addr": 10318,
+    "name": "Kevin Todd",
+    "jersey_bcd": 14,
+    "jersey_byte_hex": "14",
+    "unknown1_hex": "52",
+    "attr7_hex": "52333327423332",
+    "roster_index": 5
+   },
+   {
+    "addr": 10338,
+    "name": "Brian McReynolds",
+    "jersey_bcd": 26,
+    "jersey_byte_hex": "26",
+    "unknown1_hex": "83",
+    "attr7_hex": "8331323b333232",
+    "roster_index": 6
+   },
+   {
+    "addr": 10364,
+    "name": "Pat Conacher",
+    "jersey_bcd": 15,
+    "jersey_byte_hex": "15",
+    "unknown1_hex": "72",
+    "attr7_hex": "72223229632432",
+    "roster_index": 7
+   },
+   {
+    "addr": 10386,
+    "name": "Luc Robitaille",
+    "jersey_bcd": 20,
+    "jersey_byte_hex": "20",
+    "unknown1_hex": "74",
+    "attr7_hex": "7445352b965443",
+    "roster_index": 8
+   },
+   {
+    "addr": 10410,
+    "name": "Warren Rychel\u0000",
+    "jersey_bcd": 10,
+    "jersey_byte_hex": "10",
+    "unknown1_hex": "73",
+    "attr7_hex": "7322113b521415",
+    "roster_index": 9
+   },
+   {
+    "addr": 10434,
+    "name": "Mike Donnelly\u0000",
+    "jersey_bcd": 11,
+    "jersey_byte_hex": "11",
+    "unknown1_hex": "64",
+    "attr7_hex": "6443323b634332",
+    "roster_index": 10
+   },
+   {
+    "addr": 10458,
+    "name": "Jari Kurri",
+    "jersey_bcd": 17,
+    "jersey_byte_hex": "17",
+    "unknown1_hex": "84",
+    "attr7_hex": "8434442b944232",
+    "roster_index": 11
+   },
+   {
+    "addr": 10478,
+    "name": "Tony Granato",
+    "jersey_bcd": 21,
+    "jersey_byte_hex": "21",
+    "unknown1_hex": "64",
+    "attr7_hex": "64544336a43335",
+    "roster_index": 12
+   },
+   {
+    "addr": 10500,
+    "name": "Dixon Ward",
+    "jersey_bcd": 9,
+    "jersey_byte_hex": "09",
+    "unknown1_hex": "93",
+    "attr7_hex": "93333338643123",
+    "roster_index": 13
+   },
+   {
+    "addr": 10520,
+    "name": "Gary Shuchuk",
+    "jersey_bcd": 14,
+    "jersey_byte_hex": "14",
+    "unknown1_hex": "62",
+    "attr7_hex": "62221126321322",
+    "roster_index": 14
+   },
+   {
+    "addr": 10542,
+    "name": "John Druce",
+    "jersey_bcd": 19,
+    "jersey_byte_hex": "19",
+    "unknown1_hex": "92",
+    "attr7_hex": "92234236333322",
+    "roster_index": 15
+   },
+   {
+    "addr": 10562,
+    "name": "Rob Blake\u0000",
+    "jersey_bcd": 4,
+    "jersey_byte_hex": "04",
+    "unknown1_hex": "a4",
+    "attr7_hex": "a444444aa24344",
+    "roster_index": 16
+   },
+   {
+    "addr": 10582,
+    "name": "Marty McSorley",
+    "jersey_bcd": 33,
+    "jersey_byte_hex": "33",
+    "unknown1_hex": "c2",
+    "attr7_hex": "c2224347825436",
+    "roster_index": 17
+   },
+   {
+    "addr": 10606,
+    "name": "Alex Zhitnik",
+    "jersey_bcd": 2,
+    "jersey_byte_hex": "02",
+    "unknown1_hex": "65",
+    "attr7_hex": "6543333b924143",
+    "roster_index": 18
+   },
+   {
+    "addr": 10628,
+    "name": "Darryl Sydor",
+    "jersey_bcd": 25,
+    "jersey_byte_hex": "25",
+    "unknown1_hex": "94",
+    "attr7_hex": "9433233da13332",
+    "roster_index": 19
+   },
+   {
+    "addr": 10650,
+    "name": "Charlie Huddy\u0000",
+    "jersey_bcd": 22,
+    "jersey_byte_hex": "22",
+    "unknown1_hex": "a3",
+    "attr7_hex": "a3224339723132",
+    "roster_index": 20
+   },
+   {
+    "addr": 10674,
+    "name": "Jim Paek",
+    "jersey_bcd": 7,
+    "jersey_byte_hex": "07",
+    "unknown1_hex": "82",
+    "attr7_hex": "82312227313122",
+    "roster_index": 21
+   },
+   {
+    "addr": 10692,
+    "name": "Doug Houda",
+    "jersey_bcd": 6,
+    "jersey_byte_hex": "06",
+    "unknown1_hex": "72",
+    "attr7_hex": "72212236312414",
+    "roster_index": 22
+   },
+   {
+    "addr": 10712,
+    "name": "Tim Watters\u0000",
+    "jersey_bcd": 5,
+    "jersey_byte_hex": "05",
+    "unknown1_hex": "62",
+    "attr7_hex": "62212125102122",
+    "roster_index": 23
+   }
+  ]
+ },
+ {
+  "addr": "0x2a76",
+  "city": "Dallas",
+  "abbr": "DAL",
+  "mascot": "Stars",
+  "lines": [
+   [
+    1,
+    19,
+    20,
+    4,
+    3,
+    16,
+    8,
+    0
+   ],
+   [
+    1,
+    19,
+    23,
+    8,
+    3,
+    16,
+    4,
+    0
+   ],
+   [
+    1,
+    24,
+    20,
+    10,
+    4,
+    14,
+    3,
+    0
+   ],
+   [
+    1,
+    21,
+    18,
+    11,
+    5,
+    17,
+    3,
+    0
+   ],
+   [
+    1,
+    19,
+    23,
+    9,
+    3,
+    16,
+    8,
+    0
+   ],
+   [
+    1,
+    24,
+    20,
+    10,
+    4,
+    14,
+    3,
+    0
+   ],
+   [
+    1,
+    19,
+    24,
+    11,
+    5,
+    3,
+    16,
+    0
+   ],
+   [
+    1,
+    21,
+    20,
+    17,
+    7,
+    3,
+    16,
+    0
+   ]
+  ],
+  "roster": [
+   {
+    "addr": 10934,
+    "name": "Andy Moog\u0000",
+    "jersey_bcd": 35,
+    "jersey_byte_hex": "35",
+    "unknown1_hex": "43",
+    "attr7_hex": "43312300003233",
+    "roster_index": 1
+   },
+   {
+    "addr": 10954,
+    "name": "Darcy Wakaluk\u0000",
+    "jersey_bcd": 34,
+    "jersey_byte_hex": "34",
+    "unknown1_hex": "63",
+    "attr7_hex": "63333400003344",
+    "roster_index": 2
+   },
+   {
+    "addr": 10978,
+    "name": "Mike Modano\u0000",
+    "jersey_bcd": 9,
+    "jersey_byte_hex": "09",
+    "unknown1_hex": "75",
+    "attr7_hex": "75564529c45342",
+    "roster_index": 3
+   },
+   {
+    "addr": 11000,
+    "name": "Dave Gagner\u0000",
+    "jersey_bcd": 15,
+    "jersey_byte_hex": "15",
+    "unknown1_hex": "64",
+    "attr7_hex": "64443329944444",
+    "roster_index": 4
+   },
+   {
+    "addr": 11022,
+    "name": "Neal Broten\u0000",
+    "jersey_bcd": 7,
+    "jersey_byte_hex": "07",
+    "unknown1_hex": "43",
+    "attr7_hex": "43435329624241",
+    "roster_index": 5
+   },
+   {
+    "addr": 11044,
+    "name": "Dave Barr\u0000",
+    "jersey_bcd": 10,
+    "jersey_byte_hex": "10",
+    "unknown1_hex": "82",
+    "attr7_hex": "82213234723222",
+    "roster_index": 6
+   },
+   {
+    "addr": 11064,
+    "name": "Dean Evason\u0000",
+    "jersey_bcd": 16,
+    "jersey_byte_hex": "16",
+    "unknown1_hex": "62",
+    "attr7_hex": "6222322a733133",
+    "roster_index": 7
+   },
+   {
+    "addr": 11086,
+    "name": "Trent Klatt\u0000",
+    "jersey_bcd": 29,
+    "jersey_byte_hex": "29",
+    "unknown1_hex": "93",
+    "attr7_hex": "93332218633321",
+    "roster_index": 8
+   },
+   {
+    "addr": 11108,
+    "name": "Pelle Eklund",
+    "jersey_bcd": 6,
+    "jersey_byte_hex": "06",
+    "unknown1_hex": "55",
+    "attr7_hex": "55343325934041",
+    "roster_index": 9
+   },
+   {
+    "addr": 11130,
+    "name": "Brent Gilchrist\u0000",
+    "jersey_bcd": 41,
+    "jersey_byte_hex": "41",
+    "unknown1_hex": "64",
+    "attr7_hex": "64332339732532",
+    "roster_index": 10
+   },
+   {
+    "addr": 11156,
+    "name": "Mike McPhee\u0000",
+    "jersey_bcd": 17,
+    "jersey_byte_hex": "17",
+    "unknown1_hex": "94",
+    "attr7_hex": "9433434b734422",
+    "roster_index": 11
+   },
+   {
+    "addr": 11178,
+    "name": "Alan May",
+    "jersey_bcd": 23,
+    "jersey_byte_hex": "23",
+    "unknown1_hex": "93",
+    "attr7_hex": "93223338513425",
+    "roster_index": 12
+   },
+   {
+    "addr": 11196,
+    "name": "Shane Churla",
+    "jersey_bcd": 27,
+    "jersey_byte_hex": "27",
+    "unknown1_hex": "92",
+    "attr7_hex": "92222148522125",
+    "roster_index": 13
+   },
+   {
+    "addr": 11218,
+    "name": "Mike Craig",
+    "jersey_bcd": 20,
+    "jersey_byte_hex": "20",
+    "unknown1_hex": "63",
+    "attr7_hex": "63332336733323",
+    "roster_index": 14
+   },
+   {
+    "addr": 11238,
+    "name": "Mike Needham",
+    "jersey_bcd": 30,
+    "jersey_byte_hex": "30",
+    "unknown1_hex": "62",
+    "attr7_hex": "62222228432421",
+    "roster_index": 15
+   },
+   {
+    "addr": 11260,
+    "name": "Russ Courtnall",
+    "jersey_bcd": 26,
+    "jersey_byte_hex": "26",
+    "unknown1_hex": "65",
+    "attr7_hex": "6564342c934342",
+    "roster_index": 16
+   },
+   {
+    "addr": 11284,
+    "name": "Paul Broten\u0000",
+    "jersey_bcd": 21,
+    "jersey_byte_hex": "21",
+    "unknown1_hex": "72",
+    "attr7_hex": "72224126623314",
+    "roster_index": 17
+   },
+   {
+    "addr": 11306,
+    "name": "Doug Zmolek\u0000",
+    "jersey_bcd": 5,
+    "jersey_byte_hex": "05",
+    "unknown1_hex": "84",
+    "attr7_hex": "84323235713235",
+    "roster_index": 18
+   },
+   {
+    "addr": 11328,
+    "name": "Mark Tinordi",
+    "jersey_bcd": 24,
+    "jersey_byte_hex": "24",
+    "unknown1_hex": "93",
+    "attr7_hex": "93334457734325",
+    "roster_index": 19
+   },
+   {
+    "addr": 11350,
+    "name": "Derian Hatcher",
+    "jersey_bcd": 2,
+    "jersey_byte_hex": "02",
+    "unknown1_hex": "93",
+    "attr7_hex": "9322424b724224",
+    "roster_index": 20
+   },
+   {
+    "addr": 11374,
+    "name": "Craig Ludwig",
+    "jersey_bcd": 3,
+    "jersey_byte_hex": "03",
+    "unknown1_hex": "c2",
+    "attr7_hex": "c221423b403324",
+    "roster_index": 21
+   },
+   {
+    "addr": 11396,
+    "name": "Richard Matvichuk\u0000",
+    "jersey_bcd": 4,
+    "jersey_byte_hex": "04",
+    "unknown1_hex": "73",
+    "attr7_hex": "73313339313522",
+    "roster_index": 22
+   },
+   {
+    "addr": 11424,
+    "name": "Grant Ledyard\u0000",
+    "jersey_bcd": 12,
+    "jersey_byte_hex": "12",
+    "unknown1_hex": "94",
+    "attr7_hex": "94333139602232",
+    "roster_index": 23
+   },
+   {
+    "addr": 11448,
+    "name": "Paul Cavallini",
+    "jersey_bcd": 14,
+    "jersey_byte_hex": "14",
+    "unknown1_hex": "a3",
+    "attr7_hex": "a3324339623532",
+    "roster_index": 24
+   }
+  ]
+ },
+ {
+  "addr": "0x2d4a",
+  "city": "Montreal",
+  "abbr": "MTL",
+  "mascot": "Canadiens",
+  "lines": [
+   [
+    1,
+    18,
+    17,
+    9,
+    3,
+    14,
+    4,
+    0
+   ],
+   [
+    1,
+    24,
+    17,
+    9,
+    3,
+    14,
+    4,
+    0
+   ],
+   [
+    1,
+    18,
+    23,
+    8,
+    4,
+    13,
+    3,
+    0
+   ],
+   [
+    1,
+    21,
+    19,
+    10,
+    5,
+    15,
+    3,
+    0
+   ],
+   [
+    1,
+    18,
+    17,
+    9,
+    3,
+    14,
+    4,
+    0
+   ],
+   [
+    1,
+    21,
+    19,
+    8,
+    6,
+    13,
+    3,
+    0
+   ],
+   [
+    1,
+    24,
+    17,
+    10,
+    5,
+    3,
+    9,
+    0
+   ],
+   [
+    1,
+    18,
+    23,
+    4,
+    3,
+    9,
+    14,
+    0
+   ]
+  ],
+  "roster": [
+   {
+    "addr": 11658,
+    "name": "Patrick Roy\u0000",
+    "jersey_bcd": 33,
+    "jersey_byte_hex": "33",
+    "unknown1_hex": "66",
+    "attr7_hex": "66435500005666",
+    "roster_index": 1
+   },
+   {
+    "addr": 11680,
+    "name": "Ron Tugnutt\u0000",
+    "jersey_bcd": 1,
+    "jersey_byte_hex": "01",
+    "unknown1_hex": "22",
+    "attr7_hex": "22323100001122",
+    "roster_index": 2
+   },
+   {
+    "addr": 11702,
+    "name": "Kirk Muller\u0000",
+    "jersey_bcd": 11,
+    "jersey_byte_hex": "11",
+    "unknown1_hex": "94",
+    "attr7_hex": "9444444ba34144",
+    "roster_index": 3
+   },
+   {
+    "addr": 11724,
+    "name": "John Leclair",
+    "jersey_bcd": 17,
+    "jersey_byte_hex": "17",
+    "unknown1_hex": "b3",
+    "attr7_hex": "b3433539623122",
+    "roster_index": 4
+   },
+   {
+    "addr": 11746,
+    "name": "Guy Carbonneau",
+    "jersey_bcd": 21,
+    "jersey_byte_hex": "21",
+    "unknown1_hex": "64",
+    "attr7_hex": "64325248614241",
+    "roster_index": 5
+   },
+   {
+    "addr": 11770,
+    "name": "Paul DiPietro\u0000",
+    "jersey_bcd": 15,
+    "jersey_byte_hex": "15",
+    "unknown1_hex": "63",
+    "attr7_hex": "63332328623221",
+    "roster_index": 6
+   },
+   {
+    "addr": 11794,
+    "name": "Ron Wilson",
+    "jersey_bcd": 8,
+    "jersey_byte_hex": "08",
+    "unknown1_hex": "63",
+    "attr7_hex": "63224127324222",
+    "roster_index": 7
+   },
+   {
+    "addr": 11814,
+    "name": "Gilbert Dionne",
+    "jersey_bcd": 45,
+    "jersey_byte_hex": "45",
+    "unknown1_hex": "83",
+    "attr7_hex": "83242239943232",
+    "roster_index": 8
+   },
+   {
+    "addr": 11838,
+    "name": "Vincent Damphousse",
+    "jersey_bcd": 25,
+    "jersey_byte_hex": "25",
+    "unknown1_hex": "64",
+    "attr7_hex": "6445241dc54242",
+    "roster_index": 9
+   },
+   {
+    "addr": 11866,
+    "name": "Benoit Brunet\u0000",
+    "jersey_bcd": 22,
+    "jersey_byte_hex": "22",
+    "unknown1_hex": "62",
+    "attr7_hex": "62232223232222",
+    "roster_index": 10
+   },
+   {
+    "addr": 11890,
+    "name": "Mario Roberge\u0000",
+    "jersey_bcd": 32,
+    "jersey_byte_hex": "32",
+    "unknown1_hex": "61",
+    "attr7_hex": "61111237421314",
+    "roster_index": 11
+   },
+   {
+    "addr": 11914,
+    "name": "Pierre Sevigny",
+    "jersey_bcd": 20,
+    "jersey_byte_hex": "20",
+    "unknown1_hex": "72",
+    "attr7_hex": "72221217721223",
+    "roster_index": 12
+   },
+   {
+    "addr": 11938,
+    "name": "Mike Keane",
+    "jersey_bcd": 12,
+    "jersey_byte_hex": "12",
+    "unknown1_hex": "53",
+    "attr7_hex": "5343424a624033",
+    "roster_index": 13
+   },
+   {
+    "addr": 11958,
+    "name": "Brian Bellows\u0000",
+    "jersey_bcd": 23,
+    "jersey_byte_hex": "23",
+    "unknown1_hex": "84",
+    "attr7_hex": "84442429944342",
+    "roster_index": 14
+   },
+   {
+    "addr": 11982,
+    "name": "Oleg Petrov\u0000",
+    "jersey_bcd": 6,
+    "jersey_byte_hex": "06",
+    "unknown1_hex": "43",
+    "attr7_hex": "43233217623330",
+    "roster_index": 15
+   },
+   {
+    "addr": 12004,
+    "name": "Ed Ronan",
+    "jersey_bcd": 31,
+    "jersey_byte_hex": "31",
+    "unknown1_hex": "82",
+    "attr7_hex": "82221232221421",
+    "roster_index": 16
+   },
+   {
+    "addr": 12022,
+    "name": "Eric Desjardins\u0000",
+    "jersey_bcd": 28,
+    "jersey_byte_hex": "28",
+    "unknown1_hex": "94",
+    "attr7_hex": "9433544c724333",
+    "roster_index": 17
+   },
+   {
+    "addr": 12048,
+    "name": "Matt Schneider",
+    "jersey_bcd": 27,
+    "jersey_byte_hex": "27",
+    "unknown1_hex": "74",
+    "attr7_hex": "74444427624343",
+    "roster_index": 18
+   },
+   {
+    "addr": 12072,
+    "name": "Patrice Brisebois\u0000",
+    "jersey_bcd": 43,
+    "jersey_byte_hex": "43",
+    "unknown1_hex": "53",
+    "attr7_hex": "53233326633322",
+    "roster_index": 19
+   },
+   {
+    "addr": 12100,
+    "name": "Kevin Haller",
+    "jersey_bcd": 14,
+    "jersey_byte_hex": "14",
+    "unknown1_hex": "63",
+    "attr7_hex": "63223227724523",
+    "roster_index": 20
+   },
+   {
+    "addr": 12122,
+    "name": "Bryan Fogarty\u0000",
+    "jersey_bcd": 44,
+    "jersey_byte_hex": "44",
+    "unknown1_hex": "81",
+    "attr7_hex": "81121127601011",
+    "roster_index": 21
+   },
+   {
+    "addr": 12146,
+    "name": "J.J. Daigneault\u0000",
+    "jersey_bcd": 48,
+    "jersey_byte_hex": "48",
+    "unknown1_hex": "64",
+    "attr7_hex": "64323317624221",
+    "roster_index": 22
+   },
+   {
+    "addr": 12172,
+    "name": "Lyle Odelein",
+    "jersey_bcd": 24,
+    "jersey_byte_hex": "24",
+    "unknown1_hex": "93",
+    "attr7_hex": "9322434b523425",
+    "roster_index": 23
+   },
+   {
+    "addr": 12194,
+    "name": "Peter Popovic\u0000",
+    "jersey_bcd": 34,
+    "jersey_byte_hex": "34",
+    "unknown1_hex": "a2",
+    "attr7_hex": "a2212336612211",
+    "roster_index": 24
+   }
+  ]
+ },
+ {
+  "addr": "0x303a",
+  "city": "New Jersey",
+  "abbr": "Devils",
+  "mascot": "Brendan Byrne Arena",
+  "lines": [
+   [
+    1,
+    21,
+    18,
+    16,
+    5,
+    15,
+    4,
+    0
+   ],
+   [
+    1,
+    21,
+    18,
+    16,
+    4,
+    15,
+    5,
+    0
+   ],
+   [
+    1,
+    20,
+    22,
+    8,
+    5,
+    14,
+    4,
+    0
+   ],
+   [
+    1,
+    19,
+    23,
+    11,
+    6,
+    13,
+    4,
+    0
+   ],
+   [
+    1,
+    21,
+    18,
+    16,
+    4,
+    15,
+    5,
+    0
+   ],
+   [
+    1,
+    20,
+    23,
+    8,
+    5,
+    14,
+    4,
+    0
+   ],
+   [
+    1,
+    21,
+    18,
+    16,
+    4,
+    15,
+    5,
+    0
+   ],
+   [
+    1,
+    20,
+    22,
+    11,
+    6,
+    15,
+    4,
+    0
+   ]
+  ],
+  "roster": [
+   {
+    "addr": 12410,
+    "name": "Chris Terreri\u0000",
+    "jersey_bcd": 31,
+    "jersey_byte_hex": "31",
+    "unknown1_hex": "24",
+    "attr7_hex": "24444300004433",
+    "roster_index": 1
+   },
+   {
+    "addr": 12434,
+    "name": "Martin Brodeur",
+    "jersey_bcd": 30,
+    "jersey_byte_hex": "30",
+    "unknown1_hex": "75",
+    "attr7_hex": "75334400005555",
+    "roster_index": 2
+   },
+   {
+    "addr": 12458,
+    "name": "Alexnder Semak",
+    "jersey_bcd": 20,
+    "jersey_byte_hex": "20",
+    "unknown1_hex": "63",
+    "attr7_hex": "63233326933232",
+    "roster_index": 3
+   },
+   {
+    "addr": 12482,
+    "name": "Bernie Nicholls\u0000",
+    "jersey_bcd": 9,
+    "jersey_byte_hex": "09",
+    "unknown1_hex": "63",
+    "attr7_hex": "63244328934143",
+    "roster_index": 4
+   },
+   {
+    "addr": 12508,
+    "name": "Corey Millen",
+    "jersey_bcd": 10,
+    "jersey_byte_hex": "10",
+    "unknown1_hex": "43",
+    "attr7_hex": "43542214943233",
+    "roster_index": 5
+   },
+   {
+    "addr": 12530,
+    "name": "Bob Carpenter\u0000",
+    "jersey_bcd": 19,
+    "jersey_byte_hex": "19",
+    "unknown1_hex": "73",
+    "attr7_hex": "73224229313333",
+    "roster_index": 6
+   },
+   {
+    "addr": 12554,
+    "name": "Jim Dowd",
+    "jersey_bcd": 11,
+    "jersey_byte_hex": "11",
+    "unknown1_hex": "73",
+    "attr7_hex": "73432218623132",
+    "roster_index": 7
+   },
+   {
+    "addr": 12572,
+    "name": "Valeri Zelepukin",
+    "jersey_bcd": 25,
+    "jersey_byte_hex": "25",
+    "unknown1_hex": "64",
+    "attr7_hex": "6444431b943232",
+    "roster_index": 8
+   },
+   {
+    "addr": 12598,
+    "name": "Bobby Holik\u0000",
+    "jersey_bcd": 16,
+    "jersey_byte_hex": "16",
+    "unknown1_hex": "a2",
+    "attr7_hex": "a2322438623323",
+    "roster_index": 9
+   },
+   {
+    "addr": 12620,
+    "name": "Randy McKay\u0000",
+    "jersey_bcd": 21,
+    "jersey_byte_hex": "21",
+    "unknown1_hex": "63",
+    "attr7_hex": "6322334a833425",
+    "roster_index": 10
+   },
+   {
+    "addr": 12642,
+    "name": "Tom Chorske\u0000",
+    "jersey_bcd": 17,
+    "jersey_byte_hex": "17",
+    "unknown1_hex": "94",
+    "attr7_hex": "9443323a633322",
+    "roster_index": 11
+   },
+   {
+    "addr": 12664,
+    "name": "Mike Peluso\u0000",
+    "jersey_bcd": 8,
+    "jersey_byte_hex": "08",
+    "unknown1_hex": "91",
+    "attr7_hex": "91222249214415",
+    "roster_index": 12
+   },
+   {
+    "addr": 12686,
+    "name": "Claude Lemieux",
+    "jersey_bcd": 22,
+    "jersey_byte_hex": "22",
+    "unknown1_hex": "b4",
+    "attr7_hex": "b4433448724334",
+    "roster_index": 13
+   },
+   {
+    "addr": 12710,
+    "name": "Bill Guerin\u0000",
+    "jersey_bcd": 12,
+    "jersey_byte_hex": "12",
+    "unknown1_hex": "94",
+    "attr7_hex": "9433354a743524",
+    "roster_index": 14
+   },
+   {
+    "addr": 12732,
+    "name": "John MacLean",
+    "jersey_bcd": 15,
+    "jersey_byte_hex": "15",
+    "unknown1_hex": "93",
+    "attr7_hex": "93254438734524",
+    "roster_index": 15
+   },
+   {
+    "addr": 12754,
+    "name": "Stephane Richer\u0000",
+    "jersey_bcd": 44,
+    "jersey_byte_hex": "44",
+    "unknown1_hex": "94",
+    "attr7_hex": "9444352ac44432",
+    "roster_index": 16
+   },
+   {
+    "addr": 12780,
+    "name": "Jason Smith\u0000",
+    "jersey_bcd": 26,
+    "jersey_byte_hex": "26",
+    "unknown1_hex": "83",
+    "attr7_hex": "83313238713232",
+    "roster_index": 17
+   },
+   {
+    "addr": 12802,
+    "name": "Scott Stevens\u0000",
+    "jersey_bcd": 4,
+    "jersey_byte_hex": "04",
+    "unknown1_hex": "b4",
+    "attr7_hex": "b444645d735145",
+    "roster_index": 18
+   },
+   {
+    "addr": 12826,
+    "name": "Vachslav Fetisov",
+    "jersey_bcd": 2,
+    "jersey_byte_hex": "02",
+    "unknown1_hex": "b4",
+    "attr7_hex": "b4213229313133",
+    "roster_index": 19
+   },
+   {
+    "addr": 12852,
+    "name": "Bruce Driver",
+    "jersey_bcd": 23,
+    "jersey_byte_hex": "23",
+    "unknown1_hex": "64",
+    "attr7_hex": "6433423b624232",
+    "roster_index": 20
+   },
+   {
+    "addr": 12874,
+    "name": "Scott Niedrmayer",
+    "jersey_bcd": 27,
+    "jersey_byte_hex": "27",
+    "unknown1_hex": "93",
+    "attr7_hex": "93333339923142",
+    "roster_index": 21
+   },
+   {
+    "addr": 12900,
+    "name": "Ken Daneyko\u0000",
+    "jersey_bcd": 3,
+    "jersey_byte_hex": "03",
+    "unknown1_hex": "a3",
+    "attr7_hex": "a321515d404414",
+    "roster_index": 22
+   },
+   {
+    "addr": 12922,
+    "name": "Tommy Albelin\u0000",
+    "jersey_bcd": 6,
+    "jersey_byte_hex": "06",
+    "unknown1_hex": "73",
+    "attr7_hex": "73223229603232",
+    "roster_index": 23
+   },
+   {
+    "addr": 12946,
+    "name": "Jaroslav Modry",
+    "jersey_bcd": 5,
+    "jersey_byte_hex": "05",
+    "unknown1_hex": "83",
+    "attr7_hex": "83313229613221",
+    "roster_index": 24
+   }
+  ]
+ },
+ {
+  "addr": "0x332c",
+  "city": "New York",
+  "abbr": "NYI",
+  "mascot": "Islanders",
+  "lines": [
+   [
+    1,
+    18,
+    19,
+    8,
+    3,
+    13,
+    10,
+    0
+   ],
+   [
+    1,
+    19,
+    20,
+    10,
+    3,
+    13,
+    8,
+    0
+   ],
+   [
+    1,
+    18,
+    24,
+    8,
+    4,
+    14,
+    3,
+    0
+   ],
+   [
+    1,
+    21,
+    22,
+    9,
+    6,
+    15,
+    3,
+    0
+   ],
+   [
+    1,
+    18,
+    20,
+    10,
+    3,
+    13,
+    8,
+    0
+   ],
+   [
+    1,
+    21,
+    22,
+    8,
+    4,
+    14,
+    3,
+    0
+   ],
+   [
+    1,
+    19,
+    20,
+    8,
+    3,
+    10,
+    13,
+    0
+   ],
+   [
+    1,
+    18,
+    24,
+    9,
+    4,
+    3,
+    13,
+    0
+   ]
+  ],
+  "roster": [
+   {
+    "addr": 13164,
+    "name": "Ron Hextall\u0000",
+    "jersey_bcd": 72,
+    "jersey_byte_hex": "72",
+    "unknown1_hex": "73",
+    "attr7_hex": "73444300002233",
+    "roster_index": 1
+   },
+   {
+    "addr": 13186,
+    "name": "Jamie McLennan",
+    "jersey_bcd": 29,
+    "jersey_byte_hex": "29",
+    "unknown1_hex": "73",
+    "attr7_hex": "73322200002222",
+    "roster_index": 2
+   },
+   {
+    "addr": 13210,
+    "name": "Pierre Turgeon",
+    "jersey_bcd": 77,
+    "jersey_byte_hex": "77",
+    "unknown1_hex": "94",
+    "attr7_hex": "94453409954140",
+    "roster_index": 3
+   },
+   {
+    "addr": 13234,
+    "name": "Ray Ferraro\u0000",
+    "jersey_bcd": 20,
+    "jersey_byte_hex": "20",
+    "unknown1_hex": "63",
+    "attr7_hex": "63333429934433",
+    "roster_index": 4
+   },
+   {
+    "addr": 13256,
+    "name": "Keith Acton\u0000",
+    "jersey_bcd": 24,
+    "jersey_byte_hex": "24",
+    "unknown1_hex": "42",
+    "attr7_hex": "42224339724233",
+    "roster_index": 5
+   },
+   {
+    "addr": 13278,
+    "name": "Travis Green",
+    "jersey_bcd": 39,
+    "jersey_byte_hex": "39",
+    "unknown1_hex": "83",
+    "attr7_hex": "8323243a623422",
+    "roster_index": 6
+   },
+   {
+    "addr": 13300,
+    "name": "Claude Loiselle\u0000",
+    "jersey_bcd": 10,
+    "jersey_byte_hex": "10",
+    "unknown1_hex": "83",
+    "attr7_hex": "83221133631524",
+    "roster_index": 7
+   },
+   {
+    "addr": 13326,
+    "name": "Benoit Hogue",
+    "jersey_bcd": 33,
+    "jersey_byte_hex": "33",
+    "unknown1_hex": "74",
+    "attr7_hex": "74543319644143",
+    "roster_index": 8
+   },
+   {
+    "addr": 13348,
+    "name": "Marty McInnis\u0000",
+    "jersey_bcd": 18,
+    "jersey_byte_hex": "18",
+    "unknown1_hex": "43",
+    "attr7_hex": "4333422a643022",
+    "roster_index": 9
+   },
+   {
+    "addr": 13372,
+    "name": "Derek King",
+    "jersey_bcd": 27,
+    "jersey_byte_hex": "27",
+    "unknown1_hex": "93",
+    "attr7_hex": "93241409654421",
+    "roster_index": 10
+   },
+   {
+    "addr": 13392,
+    "name": "David Maley\u0000",
+    "jersey_bcd": 8,
+    "jersey_byte_hex": "08",
+    "unknown1_hex": "81",
+    "attr7_hex": "81111237501414",
+    "roster_index": 11
+   },
+   {
+    "addr": 13414,
+    "name": "Dave Volek",
+    "jersey_bcd": 25,
+    "jersey_byte_hex": "25",
+    "unknown1_hex": "64",
+    "attr7_hex": "64432212624532",
+    "roster_index": 12
+   },
+   {
+    "addr": 13434,
+    "name": "Steve Thomas",
+    "jersey_bcd": 32,
+    "jersey_byte_hex": "32",
+    "unknown1_hex": "64",
+    "attr7_hex": "64443449744234",
+    "roster_index": 13
+   },
+   {
+    "addr": 13456,
+    "name": "Brad Dalgarno\u0000",
+    "jersey_bcd": 15,
+    "jersey_byte_hex": "15",
+    "unknown1_hex": "b2",
+    "attr7_hex": "b2223136642123",
+    "roster_index": 14
+   },
+   {
+    "addr": 13480,
+    "name": "Patrick Flatley\u0000",
+    "jersey_bcd": 26,
+    "jersey_byte_hex": "26",
+    "unknown1_hex": "83",
+    "attr7_hex": "83234242424144",
+    "roster_index": 15
+   },
+   {
+    "addr": 13506,
+    "name": "Mick Vukota\u0000",
+    "jersey_bcd": 12,
+    "jersey_byte_hex": "12",
+    "unknown1_hex": "82",
+    "attr7_hex": "8220113a512415",
+    "roster_index": 16
+   },
+   {
+    "addr": 13528,
+    "name": "Yan Kaminsky",
+    "jersey_bcd": 17,
+    "jersey_byte_hex": "17",
+    "unknown1_hex": "63",
+    "attr7_hex": "63221215622421",
+    "roster_index": 17
+   },
+   {
+    "addr": 13550,
+    "name": "Vladimir Malakhov\u0000",
+    "jersey_bcd": 23,
+    "jersey_byte_hex": "23",
+    "unknown1_hex": "a4",
+    "attr7_hex": "a4343429624333",
+    "roster_index": 18
+   },
+   {
+    "addr": 13578,
+    "name": "Darius Kasparitis\u0000",
+    "jersey_bcd": 11,
+    "jersey_byte_hex": "11",
+    "unknown1_hex": "74",
+    "attr7_hex": "74323349612234",
+    "roster_index": 19
+   },
+   {
+    "addr": 13606,
+    "name": "Uwe Krupp\u0000",
+    "jersey_bcd": 4,
+    "jersey_byte_hex": "04",
+    "unknown1_hex": "e3",
+    "attr7_hex": "e3233426624132",
+    "roster_index": 20
+   },
+   {
+    "addr": 13626,
+    "name": "Tom Kurvers\u0000",
+    "jersey_bcd": 28,
+    "jersey_byte_hex": "28",
+    "unknown1_hex": "83",
+    "attr7_hex": "83342429614132",
+    "roster_index": 21
+   },
+   {
+    "addr": 13648,
+    "name": "Scott Lachance",
+    "jersey_bcd": 7,
+    "jersey_byte_hex": "07",
+    "unknown1_hex": "82",
+    "attr7_hex": "82224339624133",
+    "roster_index": 22
+   },
+   {
+    "addr": 13672,
+    "name": "Dennis Vaske",
+    "jersey_bcd": 37,
+    "jersey_byte_hex": "37",
+    "unknown1_hex": "a1",
+    "attr7_hex": "a1121227411113",
+    "roster_index": 23
+   },
+   {
+    "addr": 13694,
+    "name": "Richard Pilon\u0000",
+    "jersey_bcd": 47,
+    "jersey_byte_hex": "47",
+    "unknown1_hex": "94",
+    "attr7_hex": "94202335712515",
+    "roster_index": 24
+   }
+  ]
+ },
+ {
+  "addr": "0x3618",
+  "city": "New York",
+  "abbr": "NYR",
+  "mascot": "Rangers",
+  "lines": [
+   [
+    1,
+    18,
+    20,
+    8,
+    3,
+    15,
+    13,
+    0
+   ],
+   [
+    1,
+    18,
+    21,
+    8,
+    3,
+    13,
+    15,
+    0
+   ],
+   [
+    1,
+    22,
+    20,
+    14,
+    6,
+    15,
+    3,
+    0
+   ],
+   [
+    1,
+    24,
+    19,
+    10,
+    4,
+    17,
+    3,
+    0
+   ],
+   [
+    1,
+    18,
+    20,
+    8,
+    3,
+    13,
+    15,
+    0
+   ],
+   [
+    1,
+    22,
+    19,
+    10,
+    6,
+    15,
+    3,
+    0
+   ],
+   [
+    1,
+    18,
+    21,
+    8,
+    3,
+    15,
+    13,
+    0
+   ],
+   [
+    1,
+    22,
+    20,
+    10,
+    5,
+    3,
+    8,
+    0
+   ]
+  ],
+  "roster": [
+   {
+    "addr": 13912,
+    "name": "Mike Richter",
+    "jersey_bcd": 35,
+    "jersey_byte_hex": "35",
+    "unknown1_hex": "75",
+    "attr7_hex": "75434400005555",
+    "roster_index": 1
+   },
+   {
+    "addr": 13934,
+    "name": "Glenn Healy\u0000",
+    "jersey_bcd": 30,
+    "jersey_byte_hex": "30",
+    "unknown1_hex": "53",
+    "attr7_hex": "53443300003322",
+    "roster_index": 2
+   },
+   {
+    "addr": 13956,
+    "name": "Mark Messier",
+    "jersey_bcd": 11,
+    "jersey_byte_hex": "11",
+    "unknown1_hex": "95",
+    "attr7_hex": "95443349934253",
+    "roster_index": 3
+   },
+   {
+    "addr": 13978,
+    "name": "Sergei Nemchinov",
+    "jersey_bcd": 13,
+    "jersey_byte_hex": "13",
+    "unknown1_hex": "64",
+    "attr7_hex": "6433534d646232",
+    "roster_index": 4
+   },
+   {
+    "addr": 14004,
+    "name": "Craig MacTavish\u0000",
+    "jersey_bcd": 14,
+    "jersey_byte_hex": "14",
+    "unknown1_hex": "84",
+    "attr7_hex": "8433524b625223",
+    "roster_index": 5
+   },
+   {
+    "addr": 14030,
+    "name": "Alexei Kovalev",
+    "jersey_bcd": 27,
+    "jersey_byte_hex": "27",
+    "unknown1_hex": "76",
+    "attr7_hex": "7654252bc43433",
+    "roster_index": 6
+   },
+   {
+    "addr": 14054,
+    "name": "Ed Olczyk\u0000",
+    "jersey_bcd": 12,
+    "jersey_byte_hex": "12",
+    "unknown1_hex": "93",
+    "attr7_hex": "9333342a633442",
+    "roster_index": 7
+   },
+   {
+    "addr": 14074,
+    "name": "Adam Graves\u0000",
+    "jersey_bcd": 9,
+    "jersey_byte_hex": "09",
+    "unknown1_hex": "94",
+    "attr7_hex": "9444335d734535",
+    "roster_index": 8
+   },
+   {
+    "addr": 14096,
+    "name": "Nick Kypreos",
+    "jersey_bcd": 19,
+    "jersey_byte_hex": "19",
+    "unknown1_hex": "82",
+    "attr7_hex": "8222223b543415",
+    "roster_index": 9
+   },
+   {
+    "addr": 14118,
+    "name": "Esa Tikkanen",
+    "jersey_bcd": 10,
+    "jersey_byte_hex": "10",
+    "unknown1_hex": "95",
+    "attr7_hex": "9543454a924444",
+    "roster_index": 10
+   },
+   {
+    "addr": 14140,
+    "name": "Greg Gilbert",
+    "jersey_bcd": 17,
+    "jersey_byte_hex": "17",
+    "unknown1_hex": "72",
+    "attr7_hex": "72224237633112",
+    "roster_index": 11
+   },
+   {
+    "addr": 14162,
+    "name": "Mike Hudson\u0000",
+    "jersey_bcd": 15,
+    "jersey_byte_hex": "15",
+    "unknown1_hex": "73",
+    "attr7_hex": "73323349724223",
+    "roster_index": 12
+   },
+   {
+    "addr": 14184,
+    "name": "Glenn Anderson",
+    "jersey_bcd": 36,
+    "jersey_byte_hex": "36",
+    "unknown1_hex": "74",
+    "attr7_hex": "7444332b634143",
+    "roster_index": 13
+   },
+   {
+    "addr": 14208,
+    "name": "Stephane Matteau",
+    "jersey_bcd": 32,
+    "jersey_byte_hex": "32",
+    "unknown1_hex": "83",
+    "attr7_hex": "8333423b633233",
+    "roster_index": 14
+   },
+   {
+    "addr": 14234,
+    "name": "Steve Larmer",
+    "jersey_bcd": 28,
+    "jersey_byte_hex": "28",
+    "unknown1_hex": "74",
+    "attr7_hex": "7444644b646342",
+    "roster_index": 15
+   },
+   {
+    "addr": 14256,
+    "name": "Joey Kocur",
+    "jersey_bcd": 26,
+    "jersey_byte_hex": "26",
+    "unknown1_hex": "82",
+    "attr7_hex": "82213238512424",
+    "roster_index": 16
+   },
+   {
+    "addr": 14276,
+    "name": "Brian Noonan",
+    "jersey_bcd": 16,
+    "jersey_byte_hex": "16",
+    "unknown1_hex": "73",
+    "attr7_hex": "7334443a644533",
+    "roster_index": 17
+   },
+   {
+    "addr": 14298,
+    "name": "Brian Leetch",
+    "jersey_bcd": 2,
+    "jersey_byte_hex": "02",
+    "unknown1_hex": "66",
+    "attr7_hex": "6635442dc25252",
+    "roster_index": 18
+   },
+   {
+    "addr": 14320,
+    "name": "Alex Karpotsev",
+    "jersey_bcd": 25,
+    "jersey_byte_hex": "25",
+    "unknown1_hex": "63",
+    "attr7_hex": "63323238623232",
+    "roster_index": 19
+   },
+   {
+    "addr": 14344,
+    "name": "Sergei Zubov",
+    "jersey_bcd": 21,
+    "jersey_byte_hex": "21",
+    "unknown1_hex": "74",
+    "attr7_hex": "7445443d923242",
+    "roster_index": 20
+   },
+   {
+    "addr": 14366,
+    "name": "Jeff Beukeboom",
+    "jersey_bcd": 23,
+    "jersey_byte_hex": "23",
+    "unknown1_hex": "b2",
+    "attr7_hex": "b222424a713024",
+    "roster_index": 21
+   },
+   {
+    "addr": 14390,
+    "name": "Kevin Lowe",
+    "jersey_bcd": 4,
+    "jersey_byte_hex": "04",
+    "unknown1_hex": "83",
+    "attr7_hex": "83324239613133",
+    "roster_index": 22
+   },
+   {
+    "addr": 14410,
+    "name": "Doug Lidster",
+    "jersey_bcd": 6,
+    "jersey_byte_hex": "06",
+    "unknown1_hex": "93",
+    "attr7_hex": "9332333a614142",
+    "roster_index": 23
+   },
+   {
+    "addr": 14432,
+    "name": "Jay Wells\u0000",
+    "jersey_bcd": 24,
+    "jersey_byte_hex": "24",
+    "unknown1_hex": "a2",
+    "attr7_hex": "a221324b402124",
+    "roster_index": 24
+   }
+  ]
+ },
+ {
+  "addr": "0x38fa",
+  "city": "Ottawa",
+  "abbr": "OTW",
+  "mascot": "Senators",
+  "lines": [
+   [
+    1,
+    19,
+    20,
+    6,
+    4,
+    3,
+    12,
+    0
+   ],
+   [
+    1,
+    19,
+    21,
+    6,
+    4,
+    12,
+    3,
+    0
+   ],
+   [
+    1,
+    23,
+    20,
+    7,
+    3,
+    14,
+    4,
+    0
+   ],
+   [
+    1,
+    22,
+    24,
+    11,
+    5,
+    13,
+    4,
+    0
+   ],
+   [
+    1,
+    19,
+    23,
+    6,
+    4,
+    3,
+    12,
+    0
+   ],
+   [
+    1,
+    22,
+    20,
+    7,
+    5,
+    14,
+    12,
+    0
+   ],
+   [
+    1,
+    19,
+    21,
+    11,
+    5,
+    4,
+    12,
+    0
+   ],
+   [
+    1,
+    24,
+    20,
+    12,
+    4,
+    3,
+    6,
+    0
+   ]
+  ],
+  "roster": [
+   {
+    "addr": 14650,
+    "name": "Craig Billington",
+    "jersey_bcd": 1,
+    "jersey_byte_hex": "01",
+    "unknown1_hex": "43",
+    "attr7_hex": "43422100002222",
+    "roster_index": 1
+   },
+   {
+    "addr": 14676,
+    "name": "Mark LaForest\u0000",
+    "jersey_bcd": 35,
+    "jersey_byte_hex": "35",
+    "unknown1_hex": "82",
+    "attr7_hex": "82212100001111",
+    "roster_index": 2
+   },
+   {
+    "addr": 14700,
+    "name": "Alexnder Daigle\u0000",
+    "jersey_bcd": 91,
+    "jersey_byte_hex": "91",
+    "unknown1_hex": "54",
+    "attr7_hex": "5443142da33242",
+    "roster_index": 3
+   },
+   {
+    "addr": 14726,
+    "name": "Alexei Yashin\u0000",
+    "jersey_bcd": 19,
+    "jersey_byte_hex": "19",
+    "unknown1_hex": "74",
+    "attr7_hex": "7444141ac43242",
+    "roster_index": 4
+   },
+   {
+    "addr": 14750,
+    "name": "Troy Murray\u0000",
+    "jersey_bcd": 33,
+    "jersey_byte_hex": "33",
+    "unknown1_hex": "84",
+    "attr7_hex": "84324244713533",
+    "roster_index": 5
+   },
+   {
+    "addr": 14772,
+    "name": "Sylvain Turgeon\u0000",
+    "jersey_bcd": 61,
+    "jersey_byte_hex": "61",
+    "unknown1_hex": "94",
+    "attr7_hex": "94442405333523",
+    "roster_index": 6
+   },
+   {
+    "addr": 14798,
+    "name": "David Archibald\u0000",
+    "jersey_bcd": 15,
+    "jersey_byte_hex": "15",
+    "unknown1_hex": "73",
+    "attr7_hex": "73233317633522",
+    "roster_index": 7
+   },
+   {
+    "addr": 14824,
+    "name": "Darcy Loewen",
+    "jersey_bcd": 10,
+    "jersey_byte_hex": "10",
+    "unknown1_hex": "62",
+    "attr7_hex": "62212225312424",
+    "roster_index": 8
+   },
+   {
+    "addr": 14846,
+    "name": "Troy Mallette\u0000",
+    "jersey_bcd": 18,
+    "jersey_byte_hex": "18",
+    "unknown1_hex": "72",
+    "attr7_hex": "72222229532414",
+    "roster_index": 9
+   },
+   {
+    "addr": 14870,
+    "name": "Brad Lauer",
+    "jersey_bcd": 16,
+    "jersey_byte_hex": "16",
+    "unknown1_hex": "82",
+    "attr7_hex": "82221227622432",
+    "roster_index": 10
+   },
+   {
+    "addr": 14890,
+    "name": "Phil Bourque",
+    "jersey_bcd": 27,
+    "jersey_byte_hex": "27",
+    "unknown1_hex": "83",
+    "attr7_hex": "83423239725322",
+    "roster_index": 11
+   },
+   {
+    "addr": 14912,
+    "name": "Dave McLlwain\u0000",
+    "jersey_bcd": 17,
+    "jersey_byte_hex": "17",
+    "unknown1_hex": "73",
+    "attr7_hex": "73233236633532",
+    "roster_index": 12
+   },
+   {
+    "addr": 14936,
+    "name": "Andrew McBain\u0000",
+    "jersey_bcd": 20,
+    "jersey_byte_hex": "20",
+    "unknown1_hex": "92",
+    "attr7_hex": "92232324622122",
+    "roster_index": 13
+   },
+   {
+    "addr": 14960,
+    "name": "Evgeny Davydov",
+    "jersey_bcd": 11,
+    "jersey_byte_hex": "11",
+    "unknown1_hex": "65",
+    "attr7_hex": "65432418633531",
+    "roster_index": 14
+   },
+   {
+    "addr": 14984,
+    "name": "Scott Levins",
+    "jersey_bcd": 26,
+    "jersey_byte_hex": "26",
+    "unknown1_hex": "92",
+    "attr7_hex": "92221226323222",
+    "roster_index": 15
+   },
+   {
+    "addr": 15006,
+    "name": "Rob Burakowsky",
+    "jersey_bcd": 24,
+    "jersey_byte_hex": "24",
+    "unknown1_hex": "61",
+    "attr7_hex": "61120202322210",
+    "roster_index": 16
+   },
+   {
+    "addr": 15030,
+    "name": "Dennis Vial\u0000",
+    "jersey_bcd": 21,
+    "jersey_byte_hex": "21",
+    "unknown1_hex": "92",
+    "attr7_hex": "92113249513414",
+    "roster_index": 17
+   },
+   {
+    "addr": 15052,
+    "name": "Steve Konroyd\u0000",
+    "jersey_bcd": 24,
+    "jersey_byte_hex": "24",
+    "unknown1_hex": "83",
+    "attr7_hex": "83223245313222",
+    "roster_index": 18
+   },
+   {
+    "addr": 15076,
+    "name": "Norm Maciver",
+    "jersey_bcd": 22,
+    "jersey_byte_hex": "22",
+    "unknown1_hex": "63",
+    "attr7_hex": "63342327924133",
+    "roster_index": 19
+   },
+   {
+    "addr": 15098,
+    "name": "Brad Shaw\u0000",
+    "jersey_bcd": 4,
+    "jersey_byte_hex": "04",
+    "unknown1_hex": "73",
+    "attr7_hex": "73232326615232",
+    "roster_index": 20
+   },
+   {
+    "addr": 15118,
+    "name": "Darren Rumble\u0000",
+    "jersey_bcd": 34,
+    "jersey_byte_hex": "34",
+    "unknown1_hex": "91",
+    "attr7_hex": "9122123b403423",
+    "roster_index": 21
+   },
+   {
+    "addr": 15142,
+    "name": "Kerry Huffman\u0000",
+    "jersey_bcd": 5,
+    "jersey_byte_hex": "05",
+    "unknown1_hex": "93",
+    "attr7_hex": "93322339613322",
+    "roster_index": 22
+   },
+   {
+    "addr": 15166,
+    "name": "Dimitri Filmanov",
+    "jersey_bcd": 55,
+    "jersey_byte_hex": "55",
+    "unknown1_hex": "93",
+    "attr7_hex": "93212226612221",
+    "roster_index": 23
+   },
+   {
+    "addr": 15192,
+    "name": "Gord Dineen\u0000",
+    "jersey_bcd": 6,
+    "jersey_byte_hex": "06",
+    "unknown1_hex": "81",
+    "attr7_hex": "8112212a302513",
+    "roster_index": 24
+   }
+  ]
+ },
+ {
+  "addr": "0x3bf0",
+  "city": "Philadelphia",
+  "abbr": "PHI",
+  "mascot": "Flyers",
+  "lines": [
+   [
+    1,
+    16,
+    17,
+    4,
+    3,
+    12,
+    8,
+    0
+   ],
+   [
+    1,
+    16,
+    17,
+    8,
+    3,
+    12,
+    4,
+    0
+   ],
+   [
+    1,
+    18,
+    19,
+    9,
+    4,
+    13,
+    3,
+    0
+   ],
+   [
+    1,
+    20,
+    22,
+    10,
+    5,
+    14,
+    3,
+    0
+   ],
+   [
+    1,
+    16,
+    17,
+    9,
+    3,
+    12,
+    4,
+    0
+   ],
+   [
+    1,
+    20,
+    19,
+    10,
+    4,
+    13,
+    3,
+    0
+   ],
+   [
+    1,
+    18,
+    19,
+    4,
+    3,
+    8,
+    12,
+    0
+   ],
+   [
+    1,
+    16,
+    17,
+    5,
+    6,
+    3,
+    4,
+    0
+   ]
+  ],
+  "roster": [
+   {
+    "addr": 15408,
+    "name": "Dominic Roussel\u0000",
+    "jersey_bcd": 33,
+    "jersey_byte_hex": "33",
+    "unknown1_hex": "63",
+    "attr7_hex": "63333300003322",
+    "roster_index": 1
+   },
+   {
+    "addr": 15434,
+    "name": "Tommy Soderstrom",
+    "jersey_bcd": 30,
+    "jersey_byte_hex": "30",
+    "unknown1_hex": "33",
+    "attr7_hex": "33334200002323",
+    "roster_index": 2
+   },
+   {
+    "addr": 15460,
+    "name": "Eric Lindros",
+    "jersey_bcd": 88,
+    "jersey_byte_hex": "88",
+    "unknown1_hex": "c4",
+    "attr7_hex": "c4344556a65344",
+    "roster_index": 3
+   },
+   {
+    "addr": 15482,
+    "name": "Rod BrindAmour",
+    "jersey_bcd": 17,
+    "jersey_byte_hex": "17",
+    "unknown1_hex": "94",
+    "attr7_hex": "9434443d944243",
+    "roster_index": 4
+   },
+   {
+    "addr": 15506,
+    "name": "Mark Lamb\u0000",
+    "jersey_bcd": 22,
+    "jersey_byte_hex": "22",
+    "unknown1_hex": "64",
+    "attr7_hex": "6432423d613333",
+    "roster_index": 5
+   },
+   {
+    "addr": 15526,
+    "name": "Dave Tippett",
+    "jersey_bcd": 14,
+    "jersey_byte_hex": "14",
+    "unknown1_hex": "62",
+    "attr7_hex": "62313229323122",
+    "roster_index": 6
+   },
+   {
+    "addr": 15548,
+    "name": "Rob DiMaio",
+    "jersey_bcd": 20,
+    "jersey_byte_hex": "20",
+    "unknown1_hex": "72",
+    "attr7_hex": "72323236624223",
+    "roster_index": 7
+   },
+   {
+    "addr": 15568,
+    "name": "Brent Fedyk\u0000",
+    "jersey_bcd": 18,
+    "jersey_byte_hex": "18",
+    "unknown1_hex": "83",
+    "attr7_hex": "83333328633122",
+    "roster_index": 8
+   },
+   {
+    "addr": 15590,
+    "name": "Mikael Renberg",
+    "jersey_bcd": 19,
+    "jersey_byte_hex": "19",
+    "unknown1_hex": "74",
+    "attr7_hex": "7435343d953242",
+    "roster_index": 9
+   },
+   {
+    "addr": 15614,
+    "name": "Josef Beranek\u0000",
+    "jersey_bcd": 42,
+    "jersey_byte_hex": "42",
+    "unknown1_hex": "63",
+    "attr7_hex": "63343319943433",
+    "roster_index": 10
+   },
+   {
+    "addr": 15638,
+    "name": "Andre Faust\u0000",
+    "jersey_bcd": 36,
+    "jersey_byte_hex": "36",
+    "unknown1_hex": "72",
+    "attr7_hex": "72222229643322",
+    "roster_index": 11
+   },
+   {
+    "addr": 15660,
+    "name": "Mark Recchi\u0000",
+    "jersey_bcd": 8,
+    "jersey_byte_hex": "08",
+    "unknown1_hex": "65",
+    "attr7_hex": "6545343d954343",
+    "roster_index": 12
+   },
+   {
+    "addr": 15682,
+    "name": "Kevin Dineen",
+    "jersey_bcd": 11,
+    "jersey_byte_hex": "11",
+    "unknown1_hex": "74",
+    "attr7_hex": "74434328734534",
+    "roster_index": 13
+   },
+   {
+    "addr": 15704,
+    "name": "Dave Brown",
+    "jersey_bcd": 21,
+    "jersey_byte_hex": "21",
+    "unknown1_hex": "91",
+    "attr7_hex": "91103126502514",
+    "roster_index": 14
+   },
+   {
+    "addr": 15724,
+    "name": "Allan Conroy",
+    "jersey_bcd": 15,
+    "jersey_byte_hex": "15",
+    "unknown1_hex": "52",
+    "attr7_hex": "52223228623222",
+    "roster_index": 15
+   },
+   {
+    "addr": 15746,
+    "name": "Garry Galley",
+    "jersey_bcd": 3,
+    "jersey_byte_hex": "03",
+    "unknown1_hex": "73",
+    "attr7_hex": "7333423ba13233",
+    "roster_index": 16
+   },
+   {
+    "addr": 15768,
+    "name": "Dimitri Yushkevich",
+    "jersey_bcd": 2,
+    "jersey_byte_hex": "02",
+    "unknown1_hex": "74",
+    "attr7_hex": "74434339715333",
+    "roster_index": 17
+   },
+   {
+    "addr": 15796,
+    "name": "Jason Bowen\u0000",
+    "jersey_bcd": 28,
+    "jersey_byte_hex": "28",
+    "unknown1_hex": "a3",
+    "attr7_hex": "a3313345723322",
+    "roster_index": 18
+   },
+   {
+    "addr": 15818,
+    "name": "Yves Racine\u0000",
+    "jersey_bcd": 29,
+    "jersey_byte_hex": "29",
+    "unknown1_hex": "64",
+    "attr7_hex": "64433437624232",
+    "roster_index": 19
+   },
+   {
+    "addr": 15840,
+    "name": "Rob Zettler\u0000",
+    "jersey_bcd": 26,
+    "jersey_byte_hex": "26",
+    "unknown1_hex": "73",
+    "attr7_hex": "73212229413434",
+    "roster_index": 20
+   },
+   {
+    "addr": 15862,
+    "name": "Jeff Finley\u0000",
+    "jersey_bcd": 25,
+    "jersey_byte_hex": "25",
+    "unknown1_hex": "92",
+    "attr7_hex": "92212227602422",
+    "roster_index": 21
+   },
+   {
+    "addr": 15884,
+    "name": "Stewart Malgunas",
+    "jersey_bcd": 23,
+    "jersey_byte_hex": "23",
+    "unknown1_hex": "52",
+    "attr7_hex": "52212139603422",
+    "roster_index": 22
+   },
+   {
+    "addr": 15910,
+    "name": "Rob Ramage",
+    "jersey_bcd": 5,
+    "jersey_byte_hex": "05",
+    "unknown1_hex": "92",
+    "attr7_hex": "92213346413424",
+    "roster_index": 23
+   },
+   {
+    "addr": 15930,
+    "name": "Ryan McGill\u0000",
+    "jersey_bcd": 27,
+    "jersey_byte_hex": "27",
+    "unknown1_hex": "82",
+    "attr7_hex": "82223238413414",
+    "roster_index": 24
+   }
+  ]
+ },
+ {
+  "addr": "0x3ece",
+  "city": "Pittsburgh",
+  "abbr": "PIT",
+  "mascot": "Penguins",
+  "lines": [
+   [
+    1,
+    18,
+    19,
+    7,
+    3,
+    13,
+    12,
+    0
+   ],
+   [
+    1,
+    18,
+    17,
+    7,
+    3,
+    12,
+    13,
+    0
+   ],
+   [
+    1,
+    20,
+    19,
+    8,
+    4,
+    13,
+    3,
+    0
+   ],
+   [
+    1,
+    21,
+    22,
+    9,
+    5,
+    14,
+    3,
+    0
+   ],
+   [
+    1,
+    18,
+    19,
+    7,
+    3,
+    13,
+    12,
+    0
+   ],
+   [
+    1,
+    20,
+    17,
+    14,
+    4,
+    12,
+    13,
+    0
+   ],
+   [
+    1,
+    18,
+    19,
+    13,
+    3,
+    12,
+    7,
+    0
+   ],
+   [
+    1,
+    20,
+    17,
+    7,
+    4,
+    3,
+    12,
+    0
+   ]
+  ],
+  "roster": [
+   {
+    "addr": 16142,
+    "name": "Tom Barrasso",
+    "jersey_bcd": 35,
+    "jersey_byte_hex": "35",
+    "unknown1_hex": "a4",
+    "attr7_hex": "a4455401004344",
+    "roster_index": 1
+   },
+   {
+    "addr": 16164,
+    "name": "Ken Wregget\u0000",
+    "jersey_bcd": 31,
+    "jersey_byte_hex": "31",
+    "unknown1_hex": "82",
+    "attr7_hex": "82333200003232",
+    "roster_index": 2
+   },
+   {
+    "addr": 16186,
+    "name": "Mario Lemieux\u0000",
+    "jersey_bcd": 66,
+    "jersey_byte_hex": "66",
+    "unknown1_hex": "a5",
+    "attr7_hex": "a5463524c66162",
+    "roster_index": 3
+   },
+   {
+    "addr": 16210,
+    "name": "Ron Francis\u0000",
+    "jersey_bcd": 10,
+    "jersey_byte_hex": "10",
+    "unknown1_hex": "94",
+    "attr7_hex": "9435534b935152",
+    "roster_index": 4
+   },
+   {
+    "addr": 16232,
+    "name": "Shawn McEachern\u0000",
+    "jersey_bcd": 15,
+    "jersey_byte_hex": "15",
+    "unknown1_hex": "73",
+    "attr7_hex": "7343341b634432",
+    "roster_index": 5
+   },
+   {
+    "addr": 16258,
+    "name": "Bryan Trottier",
+    "jersey_bcd": 19,
+    "jersey_byte_hex": "19",
+    "unknown1_hex": "83",
+    "attr7_hex": "83222223622122",
+    "roster_index": 6
+   },
+   {
+    "addr": 16282,
+    "name": "Kevin Stevens\u0000",
+    "jersey_bcd": 25,
+    "jersey_byte_hex": "25",
+    "unknown1_hex": "b3",
+    "attr7_hex": "b335253b755444",
+    "roster_index": 7
+   },
+   {
+    "addr": 16306,
+    "name": "Joe Mullen",
+    "jersey_bcd": 7,
+    "jersey_byte_hex": "07",
+    "unknown1_hex": "64",
+    "attr7_hex": "6434333a654431",
+    "roster_index": 8
+   },
+   {
+    "addr": 16326,
+    "name": "Martin Straka\u0000",
+    "jersey_bcd": 82,
+    "jersey_byte_hex": "82",
+    "unknown1_hex": "53",
+    "attr7_hex": "5344331d933241",
+    "roster_index": 9
+   },
+   {
+    "addr": 16350,
+    "name": "Jim McKenzie",
+    "jersey_bcd": 33,
+    "jersey_byte_hex": "33",
+    "unknown1_hex": "a1",
+    "attr7_hex": "a1111239513315",
+    "roster_index": 10
+   },
+   {
+    "addr": 16372,
+    "name": "Doug Brown",
+    "jersey_bcd": 24,
+    "jersey_byte_hex": "24",
+    "unknown1_hex": "63",
+    "attr7_hex": "63324238634333",
+    "roster_index": 11
+   },
+   {
+    "addr": 16392,
+    "name": "Rick Tocchet",
+    "jersey_bcd": 22,
+    "jersey_byte_hex": "22",
+    "unknown1_hex": "92",
+    "attr7_hex": "92343446743334",
+    "roster_index": 12
+   },
+   {
+    "addr": 16414,
+    "name": "Jaromir Jagr",
+    "jersey_bcd": 68,
+    "jersey_byte_hex": "68",
+    "unknown1_hex": "a5",
+    "attr7_hex": "a545344bc36152",
+    "roster_index": 13
+   },
+   {
+    "addr": 16436,
+    "name": "Tomas Sandstrom\u0000",
+    "jersey_bcd": 17,
+    "jersey_byte_hex": "17",
+    "unknown1_hex": "94",
+    "attr7_hex": "94453527634434",
+    "roster_index": 14
+   },
+   {
+    "addr": 16462,
+    "name": "Markus Naslund",
+    "jersey_bcd": 29,
+    "jersey_byte_hex": "29",
+    "unknown1_hex": "64",
+    "attr7_hex": "64322329622221",
+    "roster_index": 15
+   },
+   {
+    "addr": 16486,
+    "name": "Chris Tamer\u0000",
+    "jersey_bcd": 2,
+    "jersey_byte_hex": "02",
+    "unknown1_hex": "74",
+    "attr7_hex": "74322239722321",
+    "roster_index": 16
+   },
+   {
+    "addr": 16508,
+    "name": "Kjell Samuelsson",
+    "jersey_bcd": 28,
+    "jersey_byte_hex": "28",
+    "unknown1_hex": "e2",
+    "attr7_hex": "e2213446414523",
+    "roster_index": 17
+   },
+   {
+    "addr": 16534,
+    "name": "Ulf Samuelsson",
+    "jersey_bcd": 5,
+    "jersey_byte_hex": "05",
+    "unknown1_hex": "84",
+    "attr7_hex": "8442435b704136",
+    "roster_index": 18
+   },
+   {
+    "addr": 16558,
+    "name": "Larry Murphy",
+    "jersey_bcd": 55,
+    "jersey_byte_hex": "55",
+    "unknown1_hex": "a4",
+    "attr7_hex": "a435543c925152",
+    "roster_index": 19
+   },
+   {
+    "addr": 16580,
+    "name": "Peter Taglianeti",
+    "jersey_bcd": 32,
+    "jersey_byte_hex": "32",
+    "unknown1_hex": "91",
+    "attr7_hex": "91213344404424",
+    "roster_index": 20
+   },
+   {
+    "addr": 16606,
+    "name": "Mike Ramsey\u0000",
+    "jersey_bcd": 6,
+    "jersey_byte_hex": "06",
+    "unknown1_hex": "83",
+    "attr7_hex": "83103247413123",
+    "roster_index": 21
+   },
+   {
+    "addr": 16628,
+    "name": "Greg Brown",
+    "jersey_bcd": 34,
+    "jersey_byte_hex": "34",
+    "unknown1_hex": "73",
+    "attr7_hex": "73332228623222",
+    "roster_index": 22
+   },
+   {
+    "addr": 16648,
+    "name": "Greg Hawgood",
+    "jersey_bcd": 4,
+    "jersey_byte_hex": "04",
+    "unknown1_hex": "73",
+    "attr7_hex": "73332329623132",
+    "roster_index": 23
+   },
+   {
+    "addr": 16670,
+    "name": "Grant Jennings",
+    "jersey_bcd": 3,
+    "jersey_byte_hex": "03",
+    "unknown1_hex": "92",
+    "attr7_hex": "92213239702414",
+    "roster_index": 24
+   }
+  ]
+ },
+ {
+  "addr": "0x41be",
+  "city": "Quebec",
+  "abbr": "QUE",
+  "mascot": "Nordiques",
+  "lines": [
+   [
+    1,
+    20,
+    19,
+    9,
+    3,
+    5,
+    15,
+    0
+   ],
+   [
+    1,
+    20,
+    18,
+    9,
+    5,
+    15,
+    3,
+    0
+   ],
+   [
+    1,
+    19,
+    22,
+    8,
+    3,
+    16,
+    5,
+    0
+   ],
+   [
+    1,
+    23,
+    24,
+    12,
+    4,
+    17,
+    5,
+    0
+   ],
+   [
+    1,
+    19,
+    22,
+    9,
+    3,
+    5,
+    15,
+    0
+   ],
+   [
+    1,
+    20,
+    24,
+    8,
+    4,
+    15,
+    3,
+    0
+   ],
+   [
+    1,
+    20,
+    18,
+    7,
+    4,
+    3,
+    5,
+    0
+   ],
+   [
+    1,
+    19,
+    22,
+    6,
+    5,
+    3,
+    9,
+    0
+   ]
+  ],
+  "roster": [
+   {
+    "addr": 16894,
+    "name": "Stephane Fiset",
+    "jersey_bcd": 35,
+    "jersey_byte_hex": "35",
+    "unknown1_hex": "53",
+    "attr7_hex": "53333200003222",
+    "roster_index": 1
+   },
+   {
+    "addr": 16918,
+    "name": "Jocelyn Thibault",
+    "jersey_bcd": 41,
+    "jersey_byte_hex": "41",
+    "unknown1_hex": "53",
+    "attr7_hex": "53322200002222",
+    "roster_index": 2
+   },
+   {
+    "addr": 16944,
+    "name": "Joe Sakic\u0000",
+    "jersey_bcd": 19,
+    "jersey_byte_hex": "19",
+    "unknown1_hex": "64",
+    "attr7_hex": "64354329c55262",
+    "roster_index": 3
+   },
+   {
+    "addr": 16964,
+    "name": "Mike Ricci",
+    "jersey_bcd": 9,
+    "jersey_byte_hex": "09",
+    "unknown1_hex": "74",
+    "attr7_hex": "74343339753245",
+    "roster_index": 4
+   },
+   {
+    "addr": 16984,
+    "name": "Mats Sundin\u0000",
+    "jersey_bcd": 13,
+    "jersey_byte_hex": "13",
+    "unknown1_hex": "74",
+    "attr7_hex": "7445441c954143",
+    "roster_index": 5
+   },
+   {
+    "addr": 17006,
+    "name": "Ron Sutter",
+    "jersey_bcd": 22,
+    "jersey_byte_hex": "22",
+    "unknown1_hex": "63",
+    "attr7_hex": "63334244734244",
+    "roster_index": 6
+   },
+   {
+    "addr": 17026,
+    "name": "Claude Lapointe\u0000",
+    "jersey_bcd": 47,
+    "jersey_byte_hex": "47",
+    "unknown1_hex": "53",
+    "attr7_hex": "5343423b623124",
+    "roster_index": 7
+   },
+   {
+    "addr": 17052,
+    "name": "Martin Rucinsky\u0000",
+    "jersey_bcd": 25,
+    "jersey_byte_hex": "25",
+    "unknown1_hex": "53",
+    "attr7_hex": "53232317633132",
+    "roster_index": 8
+   },
+   {
+    "addr": 17078,
+    "name": "Valeri Kamensky\u0000",
+    "jersey_bcd": 31,
+    "jersey_byte_hex": "31",
+    "unknown1_hex": "84",
+    "attr7_hex": "84442526944152",
+    "roster_index": 9
+   },
+   {
+    "addr": 17104,
+    "name": "Chris Simon\u0000",
+    "jersey_bcd": 12,
+    "jersey_byte_hex": "12",
+    "unknown1_hex": "d2",
+    "attr7_hex": "d2112137510525",
+    "roster_index": 10
+   },
+   {
+    "addr": 17126,
+    "name": "Tony Twist",
+    "jersey_bcd": 15,
+    "jersey_byte_hex": "15",
+    "unknown1_hex": "a1",
+    "attr7_hex": "a1110139201414",
+    "roster_index": 11
+   },
+   {
+    "addr": 17146,
+    "name": "Iain Fraser\u0000",
+    "jersey_bcd": 38,
+    "jersey_byte_hex": "38",
+    "unknown1_hex": "73",
+    "attr7_hex": "73333327633222",
+    "roster_index": 12
+   },
+   {
+    "addr": 17168,
+    "name": "Chris Lindberg",
+    "jersey_bcd": 17,
+    "jersey_byte_hex": "17",
+    "unknown1_hex": "73",
+    "attr7_hex": "73423227332321",
+    "roster_index": 13
+   },
+   {
+    "addr": 17192,
+    "name": "Bob Bassen",
+    "jersey_bcd": 28,
+    "jersey_byte_hex": "28",
+    "unknown1_hex": "44",
+    "attr7_hex": "4432223b333323",
+    "roster_index": 14
+   },
+   {
+    "addr": 17212,
+    "name": "Owen Nolan",
+    "jersey_bcd": 11,
+    "jersey_byte_hex": "11",
+    "unknown1_hex": "83",
+    "attr7_hex": "83442526254334",
+    "roster_index": 15
+   },
+   {
+    "addr": 17232,
+    "name": "Andrei Kovalenko",
+    "jersey_bcd": 51,
+    "jersey_byte_hex": "51",
+    "unknown1_hex": "33",
+    "attr7_hex": "33443336944232",
+    "roster_index": 16
+   },
+   {
+    "addr": 17258,
+    "name": "Scott Young\u0000",
+    "jersey_bcd": 48,
+    "jersey_byte_hex": "48",
+    "unknown1_hex": "73",
+    "attr7_hex": "73534518633431",
+    "roster_index": 17
+   },
+   {
+    "addr": 17280,
+    "name": "Garth Butcher\u0000",
+    "jersey_bcd": 55,
+    "jersey_byte_hex": "55",
+    "unknown1_hex": "92",
+    "attr7_hex": "92314256814335",
+    "roster_index": 18
+   },
+   {
+    "addr": 17304,
+    "name": "Curtis Leschyshyn\u0000",
+    "jersey_bcd": 7,
+    "jersey_byte_hex": "07",
+    "unknown1_hex": "93",
+    "attr7_hex": "93434237645132",
+    "roster_index": 19
+   },
+   {
+    "addr": 17332,
+    "name": "Alexei Gusarov",
+    "jersey_bcd": 5,
+    "jersey_byte_hex": "05",
+    "unknown1_hex": "63",
+    "attr7_hex": "63333337634132",
+    "roster_index": 20
+   },
+   {
+    "addr": 17356,
+    "name": "Brad Werenka",
+    "jersey_bcd": 27,
+    "jersey_byte_hex": "27",
+    "unknown1_hex": "93",
+    "attr7_hex": "93332219632522",
+    "roster_index": 21
+   },
+   {
+    "addr": 17378,
+    "name": "Dave Karpa",
+    "jersey_bcd": 59,
+    "jersey_byte_hex": "59",
+    "unknown1_hex": "82",
+    "attr7_hex": "82223236423324",
+    "roster_index": 22
+   },
+   {
+    "addr": 17398,
+    "name": "Steven Finn\u0000",
+    "jersey_bcd": 29,
+    "jersey_byte_hex": "29",
+    "unknown1_hex": "82",
+    "attr7_hex": "8222333b723424",
+    "roster_index": 23
+   },
+   {
+    "addr": 17420,
+    "name": "Tommy Sjodin",
+    "jersey_bcd": 2,
+    "jersey_byte_hex": "02",
+    "unknown1_hex": "64",
+    "attr7_hex": "64332428923331",
+    "roster_index": 24
+   }
+  ]
+ },
+ {
+  "addr": "0x44a4",
+  "city": "San Jose",
+  "abbr": "Sharks",
+  "mascot": "San Jose Arena",
+  "lines": [
+   [
+    1,
+    17,
+    19,
+    14,
+    3,
+    16,
+    10,
+    0
+   ],
+   [
+    1,
+    17,
+    19,
+    10,
+    3,
+    16,
+    14,
+    0
+   ],
+   [
+    1,
+    18,
+    20,
+    8,
+    4,
+    14,
+    3,
+    0
+   ],
+   [
+    1,
+    21,
+    23,
+    9,
+    5,
+    15,
+    3,
+    0
+   ],
+   [
+    1,
+    17,
+    19,
+    10,
+    3,
+    16,
+    14,
+    0
+   ],
+   [
+    1,
+    18,
+    20,
+    14,
+    4,
+    15,
+    3,
+    0
+   ],
+   [
+    1,
+    21,
+    23,
+    9,
+    5,
+    3,
+    14,
+    0
+   ],
+   [
+    1,
+    18,
+    19,
+    8,
+    3,
+    16,
+    10,
+    0
+   ]
+  ],
+  "roster": [
+   {
+    "addr": 17636,
+    "name": "Arturs Irbe\u0000",
+    "jersey_bcd": 32,
+    "jersey_byte_hex": "32",
+    "unknown1_hex": "54",
+    "attr7_hex": "54444300004444",
+    "roster_index": 1
+   },
+   {
+    "addr": 17658,
+    "name": "Jim Waite\u0000",
+    "jersey_bcd": 29,
+    "jersey_byte_hex": "29",
+    "unknown1_hex": "62",
+    "attr7_hex": "62322200002222",
+    "roster_index": 2
+   },
+   {
+    "addr": 17678,
+    "name": "Igor Larionov\u0000",
+    "jersey_bcd": 7,
+    "jersey_byte_hex": "07",
+    "unknown1_hex": "45",
+    "attr7_hex": "45343317953441",
+    "roster_index": 3
+   },
+   {
+    "addr": 17702,
+    "name": "Todd Elik\u0000",
+    "jersey_bcd": 27,
+    "jersey_byte_hex": "27",
+    "unknown1_hex": "73",
+    "attr7_hex": "73433329633223",
+    "roster_index": 4
+   },
+   {
+    "addr": 17722,
+    "name": "Jamie Baker\u0000",
+    "jersey_bcd": 13,
+    "jersey_byte_hex": "13",
+    "unknown1_hex": "73",
+    "attr7_hex": "73334339634232",
+    "roster_index": 5
+   },
+   {
+    "addr": 17744,
+    "name": "Dale Craigwell",
+    "jersey_bcd": 33,
+    "jersey_byte_hex": "33",
+    "unknown1_hex": "63",
+    "attr7_hex": "63323239323221",
+    "roster_index": 6
+   },
+   {
+    "addr": 17768,
+    "name": "Vachslav Butsayev\u0000",
+    "jersey_bcd": 9,
+    "jersey_byte_hex": "09",
+    "unknown1_hex": "63",
+    "attr7_hex": "63232329622123",
+    "roster_index": 7
+   },
+   {
+    "addr": 17796,
+    "name": "Bob Errey\u0000",
+    "jersey_bcd": 12,
+    "jersey_byte_hex": "12",
+    "unknown1_hex": "65",
+    "attr7_hex": "65424247624523",
+    "roster_index": 8
+   },
+   {
+    "addr": 17816,
+    "name": "Gaetan Duchesne\u0000",
+    "jersey_bcd": 11,
+    "jersey_byte_hex": "11",
+    "unknown1_hex": "93",
+    "attr7_hex": "9342423d634521",
+    "roster_index": 9
+   },
+   {
+    "addr": 17842,
+    "name": "Johan Garpenlov\u0000",
+    "jersey_bcd": 10,
+    "jersey_byte_hex": "10",
+    "unknown1_hex": "63",
+    "attr7_hex": "6333321b643231",
+    "roster_index": 10
+   },
+   {
+    "addr": 17868,
+    "name": "Ray Whitney\u0000",
+    "jersey_bcd": 14,
+    "jersey_byte_hex": "14",
+    "unknown1_hex": "42",
+    "attr7_hex": "42232318643231",
+    "roster_index": 11
+   },
+   {
+    "addr": 17890,
+    "name": "Jeff Odgers\u0000",
+    "jersey_bcd": 36,
+    "jersey_byte_hex": "36",
+    "unknown1_hex": "91",
+    "attr7_hex": "9122222a533415",
+    "roster_index": 12
+   },
+   {
+    "addr": 17912,
+    "name": "Rob Gaudreau",
+    "jersey_bcd": 37,
+    "jersey_byte_hex": "37",
+    "unknown1_hex": "63",
+    "attr7_hex": "6333323c634431",
+    "roster_index": 13
+   },
+   {
+    "addr": 17934,
+    "name": "Ulf Dahlen",
+    "jersey_bcd": 22,
+    "jersey_byte_hex": "22",
+    "unknown1_hex": "84",
+    "attr7_hex": "8434343b945340",
+    "roster_index": 14
+   },
+   {
+    "addr": 17954,
+    "name": "Pat Falloon\u0000",
+    "jersey_bcd": 17,
+    "jersey_byte_hex": "17",
+    "unknown1_hex": "74",
+    "attr7_hex": "7444231a634530",
+    "roster_index": 15
+   },
+   {
+    "addr": 17976,
+    "name": "Sergei Makarov",
+    "jersey_bcd": 24,
+    "jersey_byte_hex": "24",
+    "unknown1_hex": "65",
+    "attr7_hex": "6544331b953252",
+    "roster_index": 16
+   },
+   {
+    "addr": 18000,
+    "name": "Jeff Norton\u0000",
+    "jersey_bcd": 8,
+    "jersey_byte_hex": "08",
+    "unknown1_hex": "85",
+    "attr7_hex": "85443217624132",
+    "roster_index": 17
+   },
+   {
+    "addr": 18022,
+    "name": "Vlastmil Kroupa\u0000",
+    "jersey_bcd": 26,
+    "jersey_byte_hex": "26",
+    "unknown1_hex": "63",
+    "attr7_hex": "63332219623221",
+    "roster_index": 18
+   },
+   {
+    "addr": 18048,
+    "name": "Sandis Ozolinsh\u0000",
+    "jersey_bcd": 6,
+    "jersey_byte_hex": "06",
+    "unknown1_hex": "73",
+    "attr7_hex": "7344342b944242",
+    "roster_index": 19
+   },
+   {
+    "addr": 18074,
+    "name": "Tom Pederson",
+    "jersey_bcd": 41,
+    "jersey_byte_hex": "41",
+    "unknown1_hex": "41",
+    "attr7_hex": "41233228622332",
+    "roster_index": 20
+   },
+   {
+    "addr": 18096,
+    "name": "Shawn Cronin",
+    "jersey_bcd": 44,
+    "jersey_byte_hex": "44",
+    "unknown1_hex": "a1",
+    "attr7_hex": "a1101127221514",
+    "roster_index": 21
+   },
+   {
+    "addr": 18118,
+    "name": "Mike Rathje\u0000",
+    "jersey_bcd": 40,
+    "jersey_byte_hex": "40",
+    "unknown1_hex": "83",
+    "attr7_hex": "83213239713323",
+    "roster_index": 22
+   },
+   {
+    "addr": 18140,
+    "name": "Jay More",
+    "jersey_bcd": 4,
+    "jersey_byte_hex": "04",
+    "unknown1_hex": "73",
+    "attr7_hex": "73213346423534",
+    "roster_index": 23
+   }
+  ]
+ },
+ {
+  "addr": "0x4768",
+  "city": "St. Louis",
+  "abbr": "STL",
+  "mascot": "Blues",
+  "lines": [
+   [
+    1,
+    22,
+    18,
+    8,
+    3,
+    11,
+    5,
+    0
+   ],
+   [
+    1,
+    24,
+    18,
+    8,
+    3,
+    11,
+    5,
+    0
+   ],
+   [
+    1,
+    22,
+    21,
+    9,
+    5,
+    12,
+    11,
+    0
+   ],
+   [
+    1,
+    20,
+    23,
+    7,
+    4,
+    13,
+    11,
+    0
+   ],
+   [
+    1,
+    22,
+    18,
+    8,
+    3,
+    11,
+    5,
+    0
+   ],
+   [
+    1,
+    24,
+    19,
+    5,
+    4,
+    12,
+    11,
+    0
+   ],
+   [
+    1,
+    24,
+    18,
+    8,
+    12,
+    11,
+    3,
+    0
+   ],
+   [
+    1,
+    20,
+    21,
+    13,
+    11,
+    3,
+    8,
+    0
+   ]
+  ],
+  "roster": [
+   {
+    "addr": 18344,
+    "name": "Curtis Joseph\u0000",
+    "jersey_bcd": 31,
+    "jersey_byte_hex": "31",
+    "unknown1_hex": "65",
+    "attr7_hex": "65456400004444",
+    "roster_index": 1
+   },
+   {
+    "addr": 18368,
+    "name": "Jim Hrivnak\u0000",
+    "jersey_bcd": 29,
+    "jersey_byte_hex": "29",
+    "unknown1_hex": "62",
+    "attr7_hex": "62322200002222",
+    "roster_index": 2
+   },
+   {
+    "addr": 18390,
+    "name": "Craig Janney",
+    "jersey_bcd": 15,
+    "jersey_byte_hex": "15",
+    "unknown1_hex": "74",
+    "attr7_hex": "74354327c44060",
+    "roster_index": 3
+   },
+   {
+    "addr": 18412,
+    "name": "Peter Stastny\u0000",
+    "jersey_bcd": 26,
+    "jersey_byte_hex": "26",
+    "unknown1_hex": "94",
+    "attr7_hex": "94343337943241",
+    "roster_index": 4
+   },
+   {
+    "addr": 18436,
+    "name": "Petr Nedved\u0000",
+    "jersey_bcd": 93,
+    "jersey_byte_hex": "93",
+    "unknown1_hex": "53",
+    "attr7_hex": "53343319c54342",
+    "roster_index": 5
+   },
+   {
+    "addr": 18458,
+    "name": "Jim Montgomery",
+    "jersey_bcd": 10,
+    "jersey_byte_hex": "10",
+    "unknown1_hex": "73",
+    "attr7_hex": "7323222a623232",
+    "roster_index": 6
+   },
+   {
+    "addr": 18482,
+    "name": "Basil McRae\u0000",
+    "jersey_bcd": 17,
+    "jersey_byte_hex": "17",
+    "unknown1_hex": "92",
+    "attr7_hex": "92212237513415",
+    "roster_index": 7
+   },
+   {
+    "addr": 18504,
+    "name": "Brendan Shanahan",
+    "jersey_bcd": 19,
+    "jersey_byte_hex": "19",
+    "unknown1_hex": "a3",
+    "attr7_hex": "a335453aa54244",
+    "roster_index": 8
+   },
+   {
+    "addr": 18530,
+    "name": "Vitali Prokhorov",
+    "jersey_bcd": 25,
+    "jersey_byte_hex": "25",
+    "unknown1_hex": "73",
+    "attr7_hex": "73331217632431",
+    "roster_index": 9
+   },
+   {
+    "addr": 18556,
+    "name": "Dave Mackey\u0000",
+    "jersey_bcd": 23,
+    "jersey_byte_hex": "23",
+    "unknown1_hex": "92",
+    "attr7_hex": "92222327322323",
+    "roster_index": 10
+   },
+   {
+    "addr": 18578,
+    "name": "Brett Hull",
+    "jersey_bcd": 16,
+    "jersey_byte_hex": "16",
+    "unknown1_hex": "94",
+    "attr7_hex": "9445363a944432",
+    "roster_index": 11
+   },
+   {
+    "addr": 18598,
+    "name": "Kevin Miller",
+    "jersey_bcd": 14,
+    "jersey_byte_hex": "14",
+    "unknown1_hex": "74",
+    "attr7_hex": "74344338634333",
+    "roster_index": 12
+   },
+   {
+    "addr": 18620,
+    "name": "Philippe Bozon",
+    "jersey_bcd": 36,
+    "jersey_byte_hex": "36",
+    "unknown1_hex": "62",
+    "attr7_hex": "62223219612523",
+    "roster_index": 13
+   },
+   {
+    "addr": 18644,
+    "name": "Vitali Karamnov\u0000",
+    "jersey_bcd": 12,
+    "jersey_byte_hex": "12",
+    "unknown1_hex": "72",
+    "attr7_hex": "72222227623321",
+    "roster_index": 14
+   },
+   {
+    "addr": 18670,
+    "name": "Igor Korolev",
+    "jersey_bcd": 38,
+    "jersey_byte_hex": "38",
+    "unknown1_hex": "72",
+    "attr7_hex": "72223229613021",
+    "roster_index": 15
+   },
+   {
+    "addr": 18692,
+    "name": "Kelly Chase\u0000",
+    "jersey_bcd": 39,
+    "jersey_byte_hex": "39",
+    "unknown1_hex": "81",
+    "attr7_hex": "81111128512415",
+    "roster_index": 16
+   },
+   {
+    "addr": 18714,
+    "name": "Denny Felsner\u0000",
+    "jersey_bcd": 9,
+    "jersey_byte_hex": "09",
+    "unknown1_hex": "82",
+    "attr7_hex": "82222229332422",
+    "roster_index": 17
+   },
+   {
+    "addr": 18738,
+    "name": "Phil Housley",
+    "jersey_bcd": 6,
+    "jersey_byte_hex": "06",
+    "unknown1_hex": "66",
+    "attr7_hex": "66553327c24062",
+    "roster_index": 18
+   },
+   {
+    "addr": 18760,
+    "name": "Doug Crossman\u0000",
+    "jersey_bcd": 32,
+    "jersey_byte_hex": "32",
+    "unknown1_hex": "72",
+    "attr7_hex": "72232227624031",
+    "roster_index": 19
+   },
+   {
+    "addr": 18784,
+    "name": "Murray Baron",
+    "jersey_bcd": 34,
+    "jersey_byte_hex": "34",
+    "unknown1_hex": "a3",
+    "attr7_hex": "a3312229712513",
+    "roster_index": 20
+   },
+   {
+    "addr": 18806,
+    "name": "Rick Zombo",
+    "jersey_bcd": 4,
+    "jersey_byte_hex": "04",
+    "unknown1_hex": "83",
+    "attr7_hex": "83313338604022",
+    "roster_index": 21
+   },
+   {
+    "addr": 18826,
+    "name": "Steve Duchesne",
+    "jersey_bcd": 28,
+    "jersey_byte_hex": "28",
+    "unknown1_hex": "84",
+    "attr7_hex": "8444441b924242",
+    "roster_index": 22
+   },
+   {
+    "addr": 18850,
+    "name": "Tom Tilley",
+    "jersey_bcd": 20,
+    "jersey_byte_hex": "20",
+    "unknown1_hex": "72",
+    "attr7_hex": "72212128322421",
+    "roster_index": 23
+   },
+   {
+    "addr": 18870,
+    "name": "Alexei Kasatonov",
+    "jersey_bcd": 7,
+    "jersey_byte_hex": "07",
+    "unknown1_hex": "a4",
+    "attr7_hex": "a4323337613142",
+    "roster_index": 24
+   }
+  ]
+ },
+ {
+  "addr": "0x4a50",
+  "city": "Tampa Bay",
+  "abbr": "Lightning",
+  "mascot": "Thunderdome",
+  "lines": [
+   [
+    1,
+    18,
+    17,
+    3,
+    4,
+    14,
+    10,
+    0
+   ],
+   [
+    1,
+    18,
+    16,
+    10,
+    4,
+    14,
+    3,
+    0
+   ],
+   [
+    1,
+    17,
+    19,
+    8,
+    3,
+    13,
+    4,
+    0
+   ],
+   [
+    1,
+    21,
+    20,
+    11,
+    5,
+    12,
+    4,
+    0
+   ],
+   [
+    1,
+    17,
+    16,
+    3,
+    4,
+    14,
+    10,
+    0
+   ],
+   [
+    1,
+    18,
+    19,
+    9,
+    5,
+    12,
+    4,
+    0
+   ],
+   [
+    1,
+    18,
+    19,
+    8,
+    5,
+    4,
+    10,
+    0
+   ],
+   [
+    1,
+    17,
+    16,
+    10,
+    3,
+    4,
+    14,
+    0
+   ]
+  ],
+  "roster": [
+   {
+    "addr": 19088,
+    "name": "Daren Puppa\u0000",
+    "jersey_bcd": 93,
+    "jersey_byte_hex": "93",
+    "unknown1_hex": "94",
+    "attr7_hex": "94445301003344",
+    "roster_index": 1
+   },
+   {
+    "addr": 19110,
+    "name": "Wendell Young\u0000",
+    "jersey_bcd": 1,
+    "jersey_byte_hex": "01",
+    "unknown1_hex": "63",
+    "attr7_hex": "63322300002222",
+    "roster_index": 2
+   },
+   {
+    "addr": 19134,
+    "name": "Chris Gratton\u0000",
+    "jersey_bcd": 77,
+    "jersey_byte_hex": "77",
+    "unknown1_hex": "92",
+    "attr7_hex": "9233243d723334",
+    "roster_index": 3
+   },
+   {
+    "addr": 19158,
+    "name": "Brian Bradley\u0000",
+    "jersey_bcd": 19,
+    "jersey_byte_hex": "19",
+    "unknown1_hex": "44",
+    "attr7_hex": "4444342a644243",
+    "roster_index": 4
+   },
+   {
+    "addr": 19182,
+    "name": "Denis Savard",
+    "jersey_bcd": 9,
+    "jersey_byte_hex": "09",
+    "unknown1_hex": "55",
+    "attr7_hex": "55343328c33043",
+    "roster_index": 5
+   },
+   {
+    "addr": 19204,
+    "name": "Marc Bureau\u0000",
+    "jersey_bcd": 28,
+    "jersey_byte_hex": "28",
+    "unknown1_hex": "72",
+    "attr7_hex": "72223228623323",
+    "roster_index": 6
+   },
+   {
+    "addr": 19226,
+    "name": "Gerard Gallant",
+    "jersey_bcd": 17,
+    "jersey_byte_hex": "17",
+    "unknown1_hex": "62",
+    "attr7_hex": "62223247423134",
+    "roster_index": 7
+   },
+   {
+    "addr": 19250,
+    "name": "Danton Cole\u0000",
+    "jersey_bcd": 24,
+    "jersey_byte_hex": "24",
+    "unknown1_hex": "73",
+    "attr7_hex": "7333332a634421",
+    "roster_index": 8
+   },
+   {
+    "addr": 19272,
+    "name": "Adam Creighton",
+    "jersey_bcd": 10,
+    "jersey_byte_hex": "10",
+    "unknown1_hex": "a3",
+    "attr7_hex": "a3232229623432",
+    "roster_index": 9
+   },
+   {
+    "addr": 19296,
+    "name": "Mikael Andersson",
+    "jersey_bcd": 34,
+    "jersey_byte_hex": "34",
+    "unknown1_hex": "62",
+    "attr7_hex": "62423229624531",
+    "roster_index": 10
+   },
+   {
+    "addr": 19322,
+    "name": "Rob Zamuner\u0000",
+    "jersey_bcd": 7,
+    "jersey_byte_hex": "07",
+    "unknown1_hex": "92",
+    "attr7_hex": "92223237624323",
+    "roster_index": 11
+   },
+   {
+    "addr": 19344,
+    "name": "Pat Elynuik\u0000",
+    "jersey_bcd": 15,
+    "jersey_byte_hex": "15",
+    "unknown1_hex": "62",
+    "attr7_hex": "62331316653321",
+    "roster_index": 12
+   },
+   {
+    "addr": 19366,
+    "name": "John Tucker\u0000",
+    "jersey_bcd": 14,
+    "jersey_byte_hex": "14",
+    "unknown1_hex": "92",
+    "attr7_hex": "92334336634233",
+    "roster_index": 13
+   },
+   {
+    "addr": 19388,
+    "name": "Petr Klima",
+    "jersey_bcd": 85,
+    "jersey_byte_hex": "85",
+    "unknown1_hex": "75",
+    "attr7_hex": "75541418954533",
+    "roster_index": 14
+   },
+   {
+    "addr": 19408,
+    "name": "Jim Cummins\u0000",
+    "jersey_bcd": 12,
+    "jersey_byte_hex": "12",
+    "unknown1_hex": "91",
+    "attr7_hex": "91111128212415",
+    "roster_index": 15
+   },
+   {
+    "addr": 19430,
+    "name": "Chris Joseph",
+    "jersey_bcd": 23,
+    "jersey_byte_hex": "23",
+    "unknown1_hex": "a3",
+    "attr7_hex": "a3331338723234",
+    "roster_index": 16
+   },
+   {
+    "addr": 19452,
+    "name": "Roman Hamrlik\u0000",
+    "jersey_bcd": 44,
+    "jersey_byte_hex": "44",
+    "unknown1_hex": "73",
+    "attr7_hex": "73222337613423",
+    "roster_index": 17
+   },
+   {
+    "addr": 19476,
+    "name": "Shawn Chambers",
+    "jersey_bcd": 22,
+    "jersey_byte_hex": "22",
+    "unknown1_hex": "92",
+    "attr7_hex": "92233227623222",
+    "roster_index": 18
+   },
+   {
+    "addr": 19500,
+    "name": "Marc Bergevin\u0000",
+    "jersey_bcd": 25,
+    "jersey_byte_hex": "25",
+    "unknown1_hex": "62",
+    "attr7_hex": "6232321b603322",
+    "roster_index": 19
+   },
+   {
+    "addr": 19524,
+    "name": "Rudy Poeschek\u0000",
+    "jersey_bcd": 20,
+    "jersey_byte_hex": "20",
+    "unknown1_hex": "a2",
+    "attr7_hex": "a2212238513324",
+    "roster_index": 20
+   },
+   {
+    "addr": 19548,
+    "name": "Enrico Ciccone",
+    "jersey_bcd": 39,
+    "jersey_byte_hex": "39",
+    "unknown1_hex": "92",
+    "attr7_hex": "92112129213415",
+    "roster_index": 21
+   },
+   {
+    "addr": 19572,
+    "name": "Eric Charron",
+    "jersey_bcd": 3,
+    "jersey_byte_hex": "03",
+    "unknown1_hex": "82",
+    "attr7_hex": "82112129112414",
+    "roster_index": 22
+   }
+  ]
+ },
+ {
+  "addr": "0x4d08",
+  "city": "Toronto",
+  "abbr": "TOR",
+  "mascot": "Maple Leafs",
+  "lines": [
+   [
+    1,
+    21,
+    18,
+    9,
+    4,
+    10,
+    15,
+    0
+   ],
+   [
+    1,
+    17,
+    18,
+    9,
+    4,
+    15,
+    10,
+    0
+   ],
+   [
+    1,
+    21,
+    19,
+    10,
+    3,
+    16,
+    4,
+    0
+   ],
+   [
+    1,
+    23,
+    22,
+    11,
+    7,
+    14,
+    4,
+    0
+   ],
+   [
+    1,
+    17,
+    18,
+    10,
+    4,
+    14,
+    9,
+    0
+   ],
+   [
+    1,
+    21,
+    19,
+    9,
+    3,
+    15,
+    4,
+    0
+   ],
+   [
+    1,
+    21,
+    19,
+    10,
+    4,
+    9,
+    15,
+    0
+   ],
+   [
+    1,
+    17,
+    18,
+    15,
+    7,
+    4,
+    9,
+    0
+   ]
+  ],
+  "roster": [
+   {
+    "addr": 19784,
+    "name": "Felix Potvin",
+    "jersey_bcd": 29,
+    "jersey_byte_hex": "29",
+    "unknown1_hex": "64",
+    "attr7_hex": "64466400005454",
+    "roster_index": 1
+   },
+   {
+    "addr": 19806,
+    "name": "Damian Rhodes\u0000",
+    "jersey_bcd": 1,
+    "jersey_byte_hex": "01",
+    "unknown1_hex": "52",
+    "attr7_hex": "52322300003322",
+    "roster_index": 2
+   },
+   {
+    "addr": 19830,
+    "name": "Mike Eastwood\u0000",
+    "jersey_bcd": 32,
+    "jersey_byte_hex": "32",
+    "unknown1_hex": "73",
+    "attr7_hex": "73433228623222",
+    "roster_index": 3
+   },
+   {
+    "addr": 19854,
+    "name": "Doug Gilmour",
+    "jersey_bcd": 93,
+    "jersey_byte_hex": "93",
+    "unknown1_hex": "45",
+    "attr7_hex": "4545544bc46043",
+    "roster_index": 4
+   },
+   {
+    "addr": 19876,
+    "name": "John Cullen\u0000",
+    "jersey_bcd": 19,
+    "jersey_byte_hex": "19",
+    "unknown1_hex": "74",
+    "attr7_hex": "74333326644143",
+    "roster_index": 5
+   },
+   {
+    "addr": 19898,
+    "name": "Mike Krushelski\u0000",
+    "jersey_bcd": 26,
+    "jersey_byte_hex": "26",
+    "unknown1_hex": "93",
+    "attr7_hex": "93334237634322",
+    "roster_index": 6
+   },
+   {
+    "addr": 19924,
+    "name": "Peter Zezel\u0000",
+    "jersey_bcd": 25,
+    "jersey_byte_hex": "25",
+    "unknown1_hex": "93",
+    "attr7_hex": "93324347734141",
+    "roster_index": 7
+   },
+   {
+    "addr": 19946,
+    "name": "Ken Baumgartnr",
+    "jersey_bcd": 22,
+    "jersey_byte_hex": "22",
+    "unknown1_hex": "92",
+    "attr7_hex": "92202237212325",
+    "roster_index": 8
+   },
+   {
+    "addr": 19970,
+    "name": "Wendel Clark",
+    "jersey_bcd": 17,
+    "jersey_byte_hex": "17",
+    "unknown1_hex": "83",
+    "attr7_hex": "83343647744444",
+    "roster_index": 9
+   },
+   {
+    "addr": 19992,
+    "name": "Dave Andreychuk\u0000",
+    "jersey_bcd": 14,
+    "jersey_byte_hex": "14",
+    "unknown1_hex": "b3",
+    "attr7_hex": "b325343a955432",
+    "roster_index": 10
+   },
+   {
+    "addr": 20018,
+    "name": "Bill Berg\u0000",
+    "jersey_bcd": 10,
+    "jersey_byte_hex": "10",
+    "unknown1_hex": "73",
+    "attr7_hex": "7322324b734424",
+    "roster_index": 11
+   },
+   {
+    "addr": 20038,
+    "name": "Kent Mandrville\u0000",
+    "jersey_bcd": 18,
+    "jersey_byte_hex": "18",
+    "unknown1_hex": "83",
+    "attr7_hex": "83323229623321",
+    "roster_index": 12
+   },
+   {
+    "addr": 20064,
+    "name": "Mark Osborne",
+    "jersey_bcd": 21,
+    "jersey_byte_hex": "21",
+    "unknown1_hex": "92",
+    "attr7_hex": "92224239724423",
+    "roster_index": 13
+   },
+   {
+    "addr": 20086,
+    "name": "Nikolai Borshevsky",
+    "jersey_bcd": 16,
+    "jersey_byte_hex": "16",
+    "unknown1_hex": "64",
+    "attr7_hex": "64442325944241",
+    "roster_index": 14
+   },
+   {
+    "addr": 20114,
+    "name": "Mike Gartner",
+    "jersey_bcd": 22,
+    "jersey_byte_hex": "22",
+    "unknown1_hex": "75",
+    "attr7_hex": "7554252c635552",
+    "roster_index": 15
+   },
+   {
+    "addr": 20136,
+    "name": "Rob Pearson\u0000",
+    "jersey_bcd": 12,
+    "jersey_byte_hex": "12",
+    "unknown1_hex": "62",
+    "attr7_hex": "62233324734525",
+    "roster_index": 16
+   },
+   {
+    "addr": 20158,
+    "name": "Todd Gill\u0000",
+    "jersey_bcd": 23,
+    "jersey_byte_hex": "23",
+    "unknown1_hex": "63",
+    "attr7_hex": "63333235624123",
+    "roster_index": 17
+   },
+   {
+    "addr": 20178,
+    "name": "Dave Ellett\u0000",
+    "jersey_bcd": 4,
+    "jersey_byte_hex": "04",
+    "unknown1_hex": "95",
+    "attr7_hex": "95434539914242",
+    "roster_index": 18
+   },
+   {
+    "addr": 20200,
+    "name": "Dmitri Mironov",
+    "jersey_bcd": 15,
+    "jersey_byte_hex": "15",
+    "unknown1_hex": "73",
+    "attr7_hex": "73333318623132",
+    "roster_index": 19
+   },
+   {
+    "addr": 20224,
+    "name": "Drake Berehowsky",
+    "jersey_bcd": 55,
+    "jersey_byte_hex": "55",
+    "unknown1_hex": "a2",
+    "attr7_hex": "a2223238423123",
+    "roster_index": 20
+   },
+   {
+    "addr": 20250,
+    "name": "Jamie Macoun",
+    "jersey_bcd": 34,
+    "jersey_byte_hex": "34",
+    "unknown1_hex": "83",
+    "attr7_hex": "8332444b714442",
+    "roster_index": 21
+   },
+   {
+    "addr": 20272,
+    "name": "Bob Rouse\u0000",
+    "jersey_bcd": 3,
+    "jersey_byte_hex": "03",
+    "unknown1_hex": "a3",
+    "attr7_hex": "a3314248714424",
+    "roster_index": 22
+   },
+   {
+    "addr": 20292,
+    "name": "Sylvain Lefebvre",
+    "jersey_bcd": 2,
+    "jersey_byte_hex": "02",
+    "unknown1_hex": "92",
+    "attr7_hex": "9221313d704433",
+    "roster_index": 23
+   },
+   {
+    "addr": 20318,
+    "name": "Matt Martin\u0000",
+    "jersey_bcd": 33,
+    "jersey_byte_hex": "33",
+    "unknown1_hex": "72",
+    "attr7_hex": "72222229623232",
+    "roster_index": 24
+   }
+  ]
+ },
+ {
+  "addr": "0x4ffa",
+  "city": "Vancouver",
+  "abbr": "VAN",
+  "mascot": "Canucks",
+  "lines": [
+   [
+    1,
+    18,
+    19,
+    7,
+    3,
+    13,
+    14,
+    0
+   ],
+   [
+    1,
+    24,
+    19,
+    7,
+    3,
+    13,
+    14,
+    0
+   ],
+   [
+    1,
+    18,
+    23,
+    9,
+    5,
+    14,
+    13,
+    0
+   ],
+   [
+    1,
+    21,
+    22,
+    8,
+    4,
+    11,
+    13,
+    0
+   ],
+   [
+    1,
+    18,
+    19,
+    7,
+    3,
+    13,
+    14,
+    0
+   ],
+   [
+    1,
+    17,
+    23,
+    9,
+    4,
+    14,
+    13,
+    0
+   ],
+   [
+    1,
+    24,
+    19,
+    13,
+    5,
+    14,
+    9,
+    0
+   ],
+   [
+    1,
+    18,
+    22,
+    14,
+    6,
+    9,
+    7,
+    0
+   ]
+  ],
+  "roster": [
+   {
+    "addr": 20538,
+    "name": "Kirk McLean\u0000",
+    "jersey_bcd": 1,
+    "jersey_byte_hex": "01",
+    "unknown1_hex": "64",
+    "attr7_hex": "64444400004444",
+    "roster_index": 1
+   },
+   {
+    "addr": 20560,
+    "name": "Kay Whitmore",
+    "jersey_bcd": 35,
+    "jersey_byte_hex": "35",
+    "unknown1_hex": "53",
+    "attr7_hex": "53345200002323",
+    "roster_index": 2
+   },
+   {
+    "addr": 20582,
+    "name": "Cliff Ronning\u0000",
+    "jersey_bcd": 7,
+    "jersey_byte_hex": "07",
+    "unknown1_hex": "55",
+    "attr7_hex": "55543219c35141",
+    "roster_index": 3
+   },
+   {
+    "addr": 20606,
+    "name": "Jimmy Carson",
+    "jersey_bcd": 17,
+    "jersey_byte_hex": "17",
+    "unknown1_hex": "94",
+    "attr7_hex": "94442319644331",
+    "roster_index": 4
+   },
+   {
+    "addr": 20628,
+    "name": "Murray Craven\u0000",
+    "jersey_bcd": 32,
+    "jersey_byte_hex": "32",
+    "unknown1_hex": "63",
+    "attr7_hex": "63333339643131",
+    "roster_index": 5
+   },
+   {
+    "addr": 20652,
+    "name": "John McIntyre\u0000",
+    "jersey_bcd": 15,
+    "jersey_byte_hex": "15",
+    "unknown1_hex": "72",
+    "attr7_hex": "72213237714222",
+    "roster_index": 6
+   },
+   {
+    "addr": 20676,
+    "name": "Geoff Courtnall\u0000",
+    "jersey_bcd": 14,
+    "jersey_byte_hex": "14",
+    "unknown1_hex": "75",
+    "attr7_hex": "7554441b623344",
+    "roster_index": 7
+   },
+   {
+    "addr": 20702,
+    "name": "Gino Odjick\u0000",
+    "jersey_bcd": 29,
+    "jersey_byte_hex": "29",
+    "unknown1_hex": "a3",
+    "attr7_hex": "a3223349823326",
+    "roster_index": 8
+   },
+   {
+    "addr": 20724,
+    "name": "Greg Adams",
+    "jersey_bcd": 8,
+    "jersey_byte_hex": "08",
+    "unknown1_hex": "74",
+    "attr7_hex": "74443335644132",
+    "roster_index": 9
+   },
+   {
+    "addr": 20744,
+    "name": "Shawn Antoski\u0000",
+    "jersey_bcd": 18,
+    "jersey_byte_hex": "18",
+    "unknown1_hex": "c1",
+    "attr7_hex": "c1111239212325",
+    "roster_index": 10
+   },
+   {
+    "addr": 20768,
+    "name": "Sergio Momesso",
+    "jersey_bcd": 27,
+    "jersey_byte_hex": "27",
+    "unknown1_hex": "a4",
+    "attr7_hex": "a4333457724424",
+    "roster_index": 11
+   },
+   {
+    "addr": 20792,
+    "name": "Tim Hunter",
+    "jersey_bcd": 26,
+    "jersey_byte_hex": "26",
+    "unknown1_hex": "92",
+    "attr7_hex": "92212236522325",
+    "roster_index": 12
+   },
+   {
+    "addr": 20812,
+    "name": "Pavel Bure",
+    "jersey_bcd": 10,
+    "jersey_byte_hex": "10",
+    "unknown1_hex": "56",
+    "attr7_hex": "56662529c54542",
+    "roster_index": 13
+   },
+   {
+    "addr": 20832,
+    "name": "Trevor Linden\u0000",
+    "jersey_bcd": 16,
+    "jersey_byte_hex": "16",
+    "unknown1_hex": "93",
+    "attr7_hex": "9334443ca44342",
+    "roster_index": 14
+   },
+   {
+    "addr": 20856,
+    "name": "Martin Gelinas",
+    "jersey_bcd": 23,
+    "jersey_byte_hex": "23",
+    "unknown1_hex": "83",
+    "attr7_hex": "83322327632432",
+    "roster_index": 15
+   },
+   {
+    "addr": 20880,
+    "name": "Jose Charboneau\u0000",
+    "jersey_bcd": 20,
+    "jersey_byte_hex": "20",
+    "unknown1_hex": "82",
+    "attr7_hex": "82322328742423",
+    "roster_index": 16
+   },
+   {
+    "addr": 20906,
+    "name": "Bret Hedican",
+    "jersey_bcd": 3,
+    "jersey_byte_hex": "03",
+    "unknown1_hex": "82",
+    "attr7_hex": "82222227603322",
+    "roster_index": 17
+   },
+   {
+    "addr": 20928,
+    "name": "Jyrki Lumme\u0000",
+    "jersey_bcd": 21,
+    "jersey_byte_hex": "21",
+    "unknown1_hex": "74",
+    "attr7_hex": "7434431b914142",
+    "roster_index": 18
+   },
+   {
+    "addr": 20950,
+    "name": "Jeff Brown",
+    "jersey_bcd": 22,
+    "jersey_byte_hex": "22",
+    "unknown1_hex": "94",
+    "attr7_hex": "94344526935152",
+    "roster_index": 19
+   },
+   {
+    "addr": 20970,
+    "name": "Adrien Plavsic",
+    "jersey_bcd": 6,
+    "jersey_byte_hex": "06",
+    "unknown1_hex": "72",
+    "attr7_hex": "72223237623123",
+    "roster_index": 20
+   },
+   {
+    "addr": 20994,
+    "name": "Jiri Slegr",
+    "jersey_bcd": 24,
+    "jersey_byte_hex": "24",
+    "unknown1_hex": "94",
+    "attr7_hex": "94433329614134",
+    "roster_index": 21
+   },
+   {
+    "addr": 21014,
+    "name": "Dave Babych\u0000",
+    "jersey_bcd": 44,
+    "jersey_byte_hex": "44",
+    "unknown1_hex": "a2",
+    "attr7_hex": "a2234329604232",
+    "roster_index": 22
+   },
+   {
+    "addr": 21036,
+    "name": "Dana Murzyn\u0000",
+    "jersey_bcd": 5,
+    "jersey_byte_hex": "05",
+    "unknown1_hex": "92",
+    "attr7_hex": "9222343b614423",
+    "roster_index": 23
+   },
+   {
+    "addr": 21058,
+    "name": "Gerald Diduck\u0000",
+    "jersey_bcd": 4,
+    "jersey_byte_hex": "04",
+    "unknown1_hex": "94",
+    "attr7_hex": "94413248713234",
+    "roster_index": 24
+   }
+  ]
+ },
+ {
+  "addr": "0x52e0",
+  "city": "Winnipeg",
+  "abbr": "WPG",
+  "mascot": "Jets",
+  "lines": [
+   [
+    1,
+    22,
+    19,
+    8,
+    3,
+    13,
+    4,
+    0
+   ],
+   [
+    1,
+    22,
+    19,
+    8,
+    3,
+    13,
+    4,
+    0
+   ],
+   [
+    1,
+    20,
+    21,
+    11,
+    4,
+    15,
+    13,
+    0
+   ],
+   [
+    1,
+    17,
+    23,
+    9,
+    5,
+    16,
+    13,
+    0
+   ],
+   [
+    1,
+    22,
+    19,
+    8,
+    3,
+    13,
+    4,
+    0
+   ],
+   [
+    1,
+    20,
+    21,
+    5,
+    4,
+    15,
+    13,
+    0
+   ],
+   [
+    1,
+    20,
+    21,
+    8,
+    15,
+    3,
+    13,
+    0
+   ],
+   [
+    1,
+    22,
+    19,
+    9,
+    5,
+    3,
+    13,
+    0
+   ]
+  ],
+  "roster": [
+   {
+    "addr": 21280,
+    "name": "Tim Cheveldae\u0000",
+    "jersey_bcd": 29,
+    "jersey_byte_hex": "29",
+    "unknown1_hex": "63",
+    "attr7_hex": "63444300003333",
+    "roster_index": 1
+   },
+   {
+    "addr": 21304,
+    "name": "Mike O'Neill",
+    "jersey_bcd": 1,
+    "jersey_byte_hex": "01",
+    "unknown1_hex": "42",
+    "attr7_hex": "42222200002212",
+    "roster_index": 2
+   },
+   {
+    "addr": 21326,
+    "name": "Alexei Zhamnov",
+    "jersey_bcd": 10,
+    "jersey_byte_hex": "10",
+    "unknown1_hex": "75",
+    "attr7_hex": "75344327934142",
+    "roster_index": 3
+   },
+   {
+    "addr": 21350,
+    "name": "Thomas Steen",
+    "jersey_bcd": 25,
+    "jersey_byte_hex": "25",
+    "unknown1_hex": "83",
+    "attr7_hex": "83333337943053",
+    "roster_index": 4
+   },
+   {
+    "addr": 21372,
+    "name": "Dallas Drake",
+    "jersey_bcd": 18,
+    "jersey_byte_hex": "18",
+    "unknown1_hex": "44",
+    "attr7_hex": "44434329934134",
+    "roster_index": 5
+   },
+   {
+    "addr": 21394,
+    "name": "Mike Eagles\u0000",
+    "jersey_bcd": 36,
+    "jersey_byte_hex": "36",
+    "unknown1_hex": "73",
+    "attr7_hex": "73314249625123",
+    "roster_index": 6
+   },
+   {
+    "addr": 21416,
+    "name": "Randy Gilhen",
+    "jersey_bcd": 15,
+    "jersey_byte_hex": "15",
+    "unknown1_hex": "72",
+    "attr7_hex": "72214237614422",
+    "roster_index": 7
+   },
+   {
+    "addr": 21438,
+    "name": "Keith Tkachuk\u0000",
+    "jersey_bcd": 7,
+    "jersey_byte_hex": "07",
+    "unknown1_hex": "93",
+    "attr7_hex": "9334444da44434",
+    "roster_index": 8
+   },
+   {
+    "addr": 21462,
+    "name": "Kris King\u0000",
+    "jersey_bcd": 17,
+    "jersey_byte_hex": "17",
+    "unknown1_hex": "a3",
+    "attr7_hex": "a332424b924324",
+    "roster_index": 9
+   },
+   {
+    "addr": 21482,
+    "name": "Russ Romaniuk\u0000",
+    "jersey_bcd": 21,
+    "jersey_byte_hex": "21",
+    "unknown1_hex": "63",
+    "attr7_hex": "63212239632522",
+    "roster_index": 10
+   },
+   {
+    "addr": 21506,
+    "name": "Darrin Shannon",
+    "jersey_bcd": 34,
+    "jersey_byte_hex": "34",
+    "unknown1_hex": "93",
+    "attr7_hex": "9323333b734232",
+    "roster_index": 11
+   },
+   {
+    "addr": 21530,
+    "name": "John LeBlanc",
+    "jersey_bcd": 37,
+    "jersey_byte_hex": "37",
+    "unknown1_hex": "72",
+    "attr7_hex": "72221329632422",
+    "roster_index": 12
+   },
+   {
+    "addr": 21552,
+    "name": "Teemu Selanne\u0000",
+    "jersey_bcd": 13,
+    "jersey_byte_hex": "13",
+    "unknown1_hex": "65",
+    "attr7_hex": "65652438c55442",
+    "roster_index": 13
+   },
+   {
+    "addr": 21576,
+    "name": "Luciano Borsato\u0000",
+    "jersey_bcd": 38,
+    "jersey_byte_hex": "38",
+    "unknown1_hex": "43",
+    "attr7_hex": "43323228633231",
+    "roster_index": 14
+   },
+   {
+    "addr": 21602,
+    "name": "Nelson Emerson",
+    "jersey_bcd": 19,
+    "jersey_byte_hex": "19",
+    "unknown1_hex": "44",
+    "attr7_hex": "4444342a944242",
+    "roster_index": 15
+   },
+   {
+    "addr": 21626,
+    "name": "Tie Domi",
+    "jersey_bcd": 20,
+    "jersey_byte_hex": "20",
+    "unknown1_hex": "93",
+    "attr7_hex": "9322333a834126",
+    "roster_index": 16
+   },
+   {
+    "addr": 21644,
+    "name": "Wayne McBean",
+    "jersey_bcd": 6,
+    "jersey_byte_hex": "06",
+    "unknown1_hex": "72",
+    "attr7_hex": "72221329313322",
+    "roster_index": 17
+   },
+   {
+    "addr": 21666,
+    "name": "Darryl Shannon",
+    "jersey_bcd": 24,
+    "jersey_byte_hex": "24",
+    "unknown1_hex": "92",
+    "attr7_hex": "92101239303322",
+    "roster_index": 18
+   },
+   {
+    "addr": 21690,
+    "name": "Teppo Numminen",
+    "jersey_bcd": 27,
+    "jersey_byte_hex": "27",
+    "unknown1_hex": "74",
+    "attr7_hex": "74333336624132",
+    "roster_index": 19
+   },
+   {
+    "addr": 21714,
+    "name": "Stephane Quintal",
+    "jersey_bcd": 4,
+    "jersey_byte_hex": "04",
+    "unknown1_hex": "b2",
+    "attr7_hex": "b221324a714433",
+    "roster_index": 20
+   },
+   {
+    "addr": 21740,
+    "name": "Igor Ulanov\u0000",
+    "jersey_bcd": 5,
+    "jersey_byte_hex": "05",
+    "unknown1_hex": "93",
+    "attr7_hex": "93224248604024",
+    "roster_index": 21
+   },
+   {
+    "addr": 21762,
+    "name": "Dave Manson\u0000",
+    "jersey_bcd": 3,
+    "jersey_byte_hex": "03",
+    "unknown1_hex": "94",
+    "attr7_hex": "94432549815434",
+    "roster_index": 22
+   },
+   {
+    "addr": 21784,
+    "name": "Dean Kennedy",
+    "jersey_bcd": 26,
+    "jersey_byte_hex": "26",
+    "unknown1_hex": "92",
+    "attr7_hex": "92213238404423",
+    "roster_index": 23
+   }
+  ]
+ },
+ {
+  "addr": "0x55a8",
+  "city": "Washington",
+  "abbr": "WSH",
+  "mascot": "Capitals",
+  "lines": [
+   [
+    1,
+    20,
+    18,
+    10,
+    4,
+    5,
+    13,
+    0
+   ],
+   [
+    1,
+    21,
+    18,
+    10,
+    5,
+    13,
+    4,
+    0
+   ],
+   [
+    1,
+    20,
+    22,
+    12,
+    4,
+    17,
+    5,
+    0
+   ],
+   [
+    1,
+    23,
+    19,
+    9,
+    6,
+    7,
+    5,
+    0
+   ],
+   [
+    1,
+    21,
+    18,
+    7,
+    5,
+    13,
+    4,
+    0
+   ],
+   [
+    1,
+    20,
+    22,
+    10,
+    4,
+    6,
+    5,
+    0
+   ],
+   [
+    1,
+    24,
+    18,
+    9,
+    4,
+    5,
+    10,
+    0
+   ],
+   [
+    1,
+    21,
+    20,
+    12,
+    6,
+    5,
+    10,
+    0
+   ]
+  ],
+  "roster": [
+   {
+    "addr": 21992,
+    "name": "Don Beaupre\u0000",
+    "jersey_bcd": 33,
+    "jersey_byte_hex": "33",
+    "unknown1_hex": "43",
+    "attr7_hex": "43433300004343",
+    "roster_index": 1
+   },
+   {
+    "addr": 22014,
+    "name": "Rick Tabaracci",
+    "jersey_bcd": 31,
+    "jersey_byte_hex": "31",
+    "unknown1_hex": "63",
+    "attr7_hex": "63311200003332",
+    "roster_index": 2
+   },
+   {
+    "addr": 22038,
+    "name": "Byron Dafoe\u0000",
+    "jersey_bcd": 35,
+    "jersey_byte_hex": "35",
+    "unknown1_hex": "42",
+    "attr7_hex": "42210200002222",
+    "roster_index": 3
+   },
+   {
+    "addr": 22060,
+    "name": "Mike Ridley\u0000",
+    "jersey_bcd": 17,
+    "jersey_byte_hex": "17",
+    "unknown1_hex": "94",
+    "attr7_hex": "9444332b954042",
+    "roster_index": 4
+   },
+   {
+    "addr": 22082,
+    "name": "Joe Juneau",
+    "jersey_bcd": 90,
+    "jersey_byte_hex": "90",
+    "unknown1_hex": "54",
+    "attr7_hex": "54553428c34051",
+    "roster_index": 5
+   },
+   {
+    "addr": 22102,
+    "name": "Dale Hunter\u0000",
+    "jersey_bcd": 32,
+    "jersey_byte_hex": "32",
+    "unknown1_hex": "82",
+    "attr7_hex": "82244349744146",
+    "roster_index": 6
+   },
+   {
+    "addr": 22124,
+    "name": "Michal Pivonka",
+    "jersey_bcd": 20,
+    "jersey_byte_hex": "20",
+    "unknown1_hex": "83",
+    "attr7_hex": "83443337933042",
+    "roster_index": 7
+   },
+   {
+    "addr": 22148,
+    "name": "Dave Poulin\u0000",
+    "jersey_bcd": 9,
+    "jersey_byte_hex": "09",
+    "unknown1_hex": "73",
+    "attr7_hex": "73224237623132",
+    "roster_index": 8
+   },
+   {
+    "addr": 22170,
+    "name": "Kelly Miller",
+    "jersey_bcd": 10,
+    "jersey_byte_hex": "10",
+    "unknown1_hex": "84",
+    "attr7_hex": "8443332d634142",
+    "roster_index": 9
+   },
+   {
+    "addr": 22192,
+    "name": "Dimitri Khristich\u0000",
+    "jersey_bcd": 8,
+    "jersey_byte_hex": "08",
+    "unknown1_hex": "73",
+    "attr7_hex": "73343338964242",
+    "roster_index": 10
+   },
+   {
+    "addr": 22220,
+    "name": "Craig Berube",
+    "jersey_bcd": 27,
+    "jersey_byte_hex": "27",
+    "unknown1_hex": "92",
+    "attr7_hex": "9222123b522415",
+    "roster_index": 11
+   },
+   {
+    "addr": 22242,
+    "name": "Randy Burridge",
+    "jersey_bcd": 18,
+    "jersey_byte_hex": "18",
+    "unknown1_hex": "73",
+    "attr7_hex": "73233339653333",
+    "roster_index": 12
+   },
+   {
+    "addr": 22266,
+    "name": "Peter Bondra",
+    "jersey_bcd": 12,
+    "jersey_byte_hex": "12",
+    "unknown1_hex": "64",
+    "attr7_hex": "64643317944432",
+    "roster_index": 13
+   },
+   {
+    "addr": 22288,
+    "name": "Steve Konowlchuk",
+    "jersey_bcd": 22,
+    "jersey_byte_hex": "22",
+    "unknown1_hex": "62",
+    "attr7_hex": "62222239622322",
+    "roster_index": 14
+   },
+   {
+    "addr": 22314,
+    "name": "Todd Krygier",
+    "jersey_bcd": 21,
+    "jersey_byte_hex": "21",
+    "unknown1_hex": "62",
+    "attr7_hex": "62423229423512",
+    "roster_index": 15
+   },
+   {
+    "addr": 22336,
+    "name": "Keith Jones\u0000",
+    "jersey_bcd": 26,
+    "jersey_byte_hex": "26",
+    "unknown1_hex": "72",
+    "attr7_hex": "72333248733235",
+    "roster_index": 16
+   },
+   {
+    "addr": 22358,
+    "name": "Pat Peake\u0000",
+    "jersey_bcd": 14,
+    "jersey_byte_hex": "14",
+    "unknown1_hex": "84",
+    "attr7_hex": "84332314633421",
+    "roster_index": 17
+   },
+   {
+    "addr": 22378,
+    "name": "Kevin Hatcher\u0000",
+    "jersey_bcd": 4,
+    "jersey_byte_hex": "04",
+    "unknown1_hex": "b3",
+    "attr7_hex": "b3344558724444",
+    "roster_index": 18
+   },
+   {
+    "addr": 22402,
+    "name": "Joe Reekie",
+    "jersey_bcd": 29,
+    "jersey_byte_hex": "29",
+    "unknown1_hex": "a3",
+    "attr7_hex": "a322323d723323",
+    "roster_index": 19
+   },
+   {
+    "addr": 22422,
+    "name": "Sylvain Cote",
+    "jersey_bcd": 3,
+    "jersey_byte_hex": "03",
+    "unknown1_hex": "63",
+    "attr7_hex": "6333433c724333",
+    "roster_index": 20
+   },
+   {
+    "addr": 22444,
+    "name": "Calle Johansson\u0000",
+    "jersey_bcd": 6,
+    "jersey_byte_hex": "06",
+    "unknown1_hex": "94",
+    "attr7_hex": "9443432d624142",
+    "roster_index": 21
+   },
+   {
+    "addr": 22470,
+    "name": "Jim Johnson\u0000",
+    "jersey_bcd": 2,
+    "jersey_byte_hex": "02",
+    "unknown1_hex": "73",
+    "attr7_hex": "73214337724233",
+    "roster_index": 22
+   },
+   {
+    "addr": 22492,
+    "name": "Shawn Anderson",
+    "jersey_bcd": 36,
+    "jersey_byte_hex": "36",
+    "unknown1_hex": "92",
+    "attr7_hex": "92212239612321",
+    "roster_index": 23
+   },
+   {
+    "addr": 22516,
+    "name": "Jon Slaney",
+    "jersey_bcd": 28,
+    "jersey_byte_hex": "28",
+    "unknown1_hex": "73",
+    "attr7_hex": "73322329632521",
+    "roster_index": 24
+   }
+  ]
+ }
+]

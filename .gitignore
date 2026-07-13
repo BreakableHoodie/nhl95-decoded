@@ -1,0 +1,19 @@
+# Copyrighted ROM -- never commit. Get your own legal copy to reproduce this work.
+*.gen
+*.bin
+*.md5
+
+# Ghidra project -- regenerated from the ROM (see README), embeds analyzed ROM bytes
+ghidra_project/
+
+# Raw third-party scrapes -- someone else's data, not ours to redistribute wholesale.
+# Our derived/transformed analysis of them (comparison CSVs, FINDINGS.md) is kept.
+docs/external_sources/nhl95com_full_stats.csv
+docs/external_sources/gamefaqs_28196_roster_ratings.txt
+
+# OS / editor / tool cruft
+.DS_Store
+.playwright-mcp/
+.claude/
+__pycache__/
+*.pyc

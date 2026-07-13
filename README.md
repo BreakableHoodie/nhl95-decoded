@@ -1,0 +1,83 @@
+# NHL 95 (Genesis) — Decoded
+
+A reverse-engineering deep-dive into `NHL 95 (USA, Europe).gen`, the 1994
+Sega Genesis classic — full static (Ghidra) + live (BlastEm debugger)
+analysis of its data formats and game logic.
+
+**Read the full write-up: [`docs/FINDINGS.md`](docs/FINDINGS.md).**
+
+## Why should you care?
+
+This started from one real bug report and grew into answers to questions
+the NHL 95 community has argued about for 30 years:
+
+- **Is "hot/cold streaks" real, or just flavor text?** It's real — fully
+  traced end to end, from the exact RNG algorithm (a 32-bit LCG seeded once
+  per boot off the Genesis's V-counter hardware) through to which player
+  gets picked hot/cold each game, confirmed live against the actual
+  on-screen announcement. See [§5](docs/FINDINGS.md#5-hotcold-streaks--confirmed-real-mechanism-partially-traced).
+- **What's the actual formula behind a player's Overall Rating?** Solved
+  and live-validated: a fixed linear combination of 12 specific nibbles out
+  of the game's 7-byte player attribute block, matching the ROM's own live
+  output almost exactly (mean error under 2 points across every player
+  checked). Every named stat (Agility, Shot Power, Checking, etc.) is
+  mapped the same way. See [§6](docs/FINDINGS.md#6-player-rating-bytes--jersey-number-solved-overall-rating-identity-confirmed-exact-storageformula-still-open).
+- **A duplicate-player "clone bug" some players hit in the Line Editor** —
+  root-caused to a specific self-patching code path, not a mystery glitch.
+  See [§3](docs/FINDINGS.md#3-bug-smolinski-line-editor-clone-root-caused-live-confirmed).
+- **The full 7-line system** (Sc1/Sc2/Chk/PP1/PP2/PK1/PK2), confirmed
+  byte-for-byte against a live penalty kill, including *why* the Line
+  Editor sometimes shows one line and sometimes shows all seven.
+
+Along the way, this also turned up genuine data-quality bugs in a
+well-known community stats resource (nhl-95.com) — including an entire
+team's Overall Rating column being wrong — verified directly against the
+ROM rather than assumed. See §6's "live validation" writeup for the full
+story and the corrected numbers.
+
+## What's in this repo
+
+- **`docs/FINDINGS.md`** — the living document. Every finding, with the
+  reasoning and evidence behind it, root-cause first.
+- **`docs/full_roster_database.json`** — every player's name, jersey
+  number, and attribute bytes, extracted from the ROM.
+- **`docs/external_sources/`** — our derived comparison data (ROM-predicted
+  vs. third-party stats), used to validate the formulas above. Raw
+  third-party scrapes are excluded — see below.
+- **`tools/`** — the actual scripts and live-debugger tooling used to do
+  this work: a Ghidra data-dump script, a persistent BlastEm
+  debugger-console daemon (`nhl95_daemon.py`/`nhl95ctl.py`) for scripted
+  live tracing over SSH, and the statistical correlation scripts behind
+  the rating-formula work.
+
+**Not included, on purpose:** the ROM file itself (Sega's copyrighted
+binary), the Ghidra project database (it embeds analyzed ROM bytes), and
+two raw third-party data scrapes used only for cross-validation. None of
+those are ours to redistribute. If you want to reproduce this work, get
+your own legally-obtained copy of the ROM (US/Europe, no header, 2MB,
+product ID T-50856) and re-run the Ghidra import described in `CLAUDE.md`.
+
+## Method, if you're doing similar work
+
+Two techniques here generalize well beyond this one ROM:
+
+1. **External-dataset correlation to crack an opaque data format.** Rather
+   than trying to derive the Overall Rating formula from disassembly alone,
+   fitting the ROM's raw attribute bytes against an independent,
+   already-published stat list (from a game FAQ) turned an opaque 7-byte
+   block into a fully solved, live-validated formula in one session.
+2. **Live-vs-static verification as the actual bar for "solved."** Several
+   findings here were fit or hypothesized statistically first, then proven
+   (or revised) by reading real values off the running emulator via a
+   scripted debugger console — see `docs/FINDINGS.md` for more than one
+   case where the live check caught a wrong hypothesis before it got
+   written down as fact.
+
+## Credits
+
+This project's live validation work found real errors in nhl-95.com's
+data and corrected them where cross-checked against the ROM — but the
+site (Jon Morris) and the GameFAQs community FAQ this project also drew on
+were both valuable, good-faith starting points that made the correlation
+work possible in the first place. Sega Retro's NHL 95 page was an
+independently useful developer/manual-sourced reference throughout.

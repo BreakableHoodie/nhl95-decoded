@@ -414,13 +414,33 @@ root-cause first, then check whether the same failure mode is systemic (§3,
 
 ## Current status
 
-See `docs/FINDINGS.md` §7 for the live open-questions list. Items 2 (line-index
-mapping) and 5 (special-teams line-switching) are closed — confirmed live and
-cross-checked two independent ways. The active open item is 1/6: the exact
-Overall Rating formula/storage — identity confirmed (matches the Team Roster
-and Scouting Report "Overall Rating" stat exactly) but the storage/computation
-mechanism sits behind a bytecode-interpreter wall hit twice independently
-(Scouting Report and Team Roster call sites); needs either full
-interpreter-dispatch tracing or VDP/tile-level analysis as its own scoped
-session. AI decision-making, faceoffs, and fighting are untouched and would be
-a new, separately-scoped investigation, not a continuation of item 5.
+See `docs/FINDINGS.md` §7 for the live open-questions list. Items 2
+(line-index mapping), 5 (special-teams line-switching), and 6 (nibble→named-
+stat mapping) are closed — confirmed live and cross-checked multiple
+independent ways. Item 6's formulas (Overall Rating + all 11 named stats)
+are now live-validated directly against the running ROM (not just against
+third-party data): Overall Rating mean|residual| ≈1.8 live, named stats
+single digits after a multivariate refit (`tools/fit_multivariate_named_stats.py`).
+A full audit of the tournament app's production database (all 26 teams, 618
+skaters) found no second Rangers-style systematic bug anywhere — that fix
+was a one-off, not a pattern — so no further production writes are
+currently recommended.
+
+The remaining open piece of item 1/6 is narrower than before: the *exact*
+storage/computation mechanism (identity and formula are both solved) still
+sits behind a bytecode-interpreter wall hit twice independently (Scouting
+Report and Team Roster call sites); needs either full interpreter-dispatch
+tracing or VDP/tile-level analysis as its own scoped session — low priority
+now that the formula itself is solved and live-validated. Two live-read
+residuals (Ronning's Speed, Courtnall's Agility, both ~+10) remain
+unexplained and are a plausible but *unconfirmed* hot/cold-modifier effect —
+confirming would mean single-stepping `team_struct+0x1A4` for that specific
+boot/matchup, the same way Messier/Leetch's modifier bytes were read in §5.
+AI decision-making, faceoffs, and fighting are untouched and would be a new,
+separately-scoped investigation, not a continuation of item 5.
+
+The project is now public: https://github.com/BreakableHoodie/nhl95-decoded
+(ROM, Ghidra project, and raw third-party scrapes are gitignored — never
+commit those). Docs are split into `docs/OVERVIEW.md` (plain-English) and
+`docs/FINDINGS.md` (technical deep-dive), both served via GitHub Pages at
+https://breakablehoodie.github.io/nhl95-decoded/.

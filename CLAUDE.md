@@ -437,10 +437,16 @@ unexplained and are a plausible but *unconfirmed* hot/cold-modifier effect —
 confirming would mean single-stepping `team_struct+0x1A4` for that specific
 boot/matchup, the same way Messier/Leetch's modifier bytes were read in §5.
 AI decision-making and faceoffs are untouched and would be a new,
-separately-scoped investigation, not a continuation of item 5. (Fighting is
-**not** a mechanic in this game — that was a wrong assumption in an earlier
-version of this note, corrected by the repo owner; don't re-add it as an
-investigation target.)
+separately-scoped investigation, not a continuation of item 5. (There is
+**no interactive fighting minigame** in this game — an earlier version of
+this note wrongly implied there was, corrected by the repo owner. "Fighting"
+does still appear twice in the ROM's own text data, though: as a real
+penalty type (alongside Holding, Checking, etc. — a player can be sent to
+the box for it without any interactive fight sequence) and as a
+team-strength rating category alongside Defense/Checking/Goalkeeping/Power
+Play Adv. Don't re-add "investigate the fighting minigame" as a target —
+there isn't one — but the penalty-type and team-rating angles are fair game
+if picked up under the existing injury/penalty-adjacent leads.)
 
 The project is now public: https://github.com/BreakableHoodie/nhl95-decoded
 (ROM, Ghidra project, and raw third-party scrapes are gitignored — never

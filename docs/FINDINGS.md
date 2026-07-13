@@ -1228,8 +1228,12 @@ loop (`0x0083E88`). See §5.
    AI decision-making and faceoffs remain untouched. This item is closed
    for its original scope (special-teams line-switching); anything further
    here would be a new, separately-scoped investigation. (This game does
-   not have a fighting mechanic — an earlier version of this note wrongly
-   implied otherwise; corrected.)
+   not have an interactive fighting minigame — an earlier version of this
+   note wrongly implied otherwise; corrected. "Fighting" does appear twice
+   in the ROM's own text data, though: as a real penalty type alongside
+   Holding/Checking/etc., and as a team-strength rating category alongside
+   Defense/Checking/Goalkeeping/Power Play Adv. — see item 8's injury
+   writeup and `tools/rom_scan.py` for how this was found.)
 
    **Follow-up session: X11 keyboard delivery to BlastEm's window went dead
    (a VM-environment regression, not a ROM finding — see the CLAUDE.md
@@ -1474,8 +1478,15 @@ loop (`0x0083E88`). See §5.
    — and two previously-unexplained nibbles are identified.** While
    scanning the ROM for the "Face Off" UI string (see item 7 below), found
    and decoded a new, general string-record format used throughout this
-   ROM's UI-widget bytecode: `[0x0000][u16 length][text][u16 suffix]`. At
-   ROM `0x085832` this format reveals the **exact source table for the Team
+   ROM's UI-widget bytecode: `[0x00][tag][0x00][length][text][u16 suffix]`
+   (the `tag` byte was assumed constant at first pass and turned out not to
+   be — it varies, `0x00`/`0x02`/`0x04`/`0x06`/`0x0A` all appear across the
+   rating tables, most commonly `0x0A`; not yet explained, possibly a
+   per-widget-type opcode. Caught by testing the reusable version of this
+   parser, `tools/rom_scan.py`, against the known-good manual dump before
+   trusting it — an earlier, hardcoded-tag version silently missed most of
+   the table's entries). At ROM `0x085832` this format reveals the **exact
+   source table for the Team
    Roster screen's stat-category cycle** (`Overall`/`Energy`/`Agility`/
    `Speed`/`Handed`/`Off. Awareness`/`Def. Awareness`/`Shot Power`/`Shot
    Accuracy`/`Pass Accuracy`/`Stick Handling`/`Weight`/`Endurance`/

@@ -1055,9 +1055,9 @@ lead) multiplies by something close to these same small integers.
 ## 7. Open questions / candidate next steps
 
 **Live-tracked as GitHub issues, not just here**: every open item below (plus
-a few new ones — goalie-stat cross-validation, fighting, AI/difficulty,
-Dallas/Season mode, and mapping more of the UI string-table system) has a
-corresponding issue at
+a few new ones — goalie-stat cross-validation, AI/difficulty, Dallas/Season
+mode, and mapping more of the UI string-table system) has a corresponding
+issue at
 [github.com/BreakableHoodie/nhl95-decoded/issues](https://github.com/BreakableHoodie/nhl95-decoded/issues),
 labeled `investigation`. This section stays the narrative record of *why*;
 the issues are the actionable backlog.
@@ -1225,9 +1225,11 @@ loop (`0x0083E88`). See §5.
      exact match) — confirming the entire line-index mapping end-to-end, on
      a second team, by direct observation.
 
-   AI decision-making, faceoffs, and fighting remain untouched. This item is
-   closed for its original scope (special-teams line-switching); anything
-   further here would be a new, separately-scoped investigation.
+   AI decision-making and faceoffs remain untouched. This item is closed
+   for its original scope (special-teams line-switching); anything further
+   here would be a new, separately-scoped investigation. (This game does
+   not have a fighting mechanic — an earlier version of this note wrongly
+   implied otherwise; corrected.)
 
    **Follow-up session: X11 keyboard delivery to BlastEm's window went dead
    (a VM-environment regression, not a ROM finding — see the CLAUDE.md

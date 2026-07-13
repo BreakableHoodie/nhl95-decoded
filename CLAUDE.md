@@ -436,8 +436,11 @@ residuals (Ronning's Speed, Courtnall's Agility, both ~+10) remain
 unexplained and are a plausible but *unconfirmed* hot/cold-modifier effect —
 confirming would mean single-stepping `team_struct+0x1A4` for that specific
 boot/matchup, the same way Messier/Leetch's modifier bytes were read in §5.
-AI decision-making, faceoffs, and fighting are untouched and would be a new,
-separately-scoped investigation, not a continuation of item 5.
+AI decision-making and faceoffs are untouched and would be a new,
+separately-scoped investigation, not a continuation of item 5. (Fighting is
+**not** a mechanic in this game — that was a wrong assumption in an earlier
+version of this note, corrected by the repo owner; don't re-add it as an
+investigation target.)
 
 The project is now public: https://github.com/BreakableHoodie/nhl95-decoded
 (ROM, Ghidra project, and raw third-party scrapes are gitignored — never

@@ -38,4 +38,4 @@ the NHL 95 community has argued about for 30 years:
   confirmed byte-for-byte against a live penalty kill — including *why*
   the Line Editor sometimes shows one line and sometimes shows all seven.
 
-**[Plain English →](OVERVIEW.md)** · **[Full technical write-up →](FINDINGS.md)** · [Source on GitHub](https://github.com/BreakableHoodie/nhl95-decoded)
+**[Plain English →](OVERVIEW.md)** · **[Full technical write-up →](FINDINGS.md)** · **[Search →](search.html)** · [Source on GitHub](https://github.com/BreakableHoodie/nhl95-decoded)

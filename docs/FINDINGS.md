@@ -1461,15 +1461,21 @@ loop (`0x0083E88`). See §5.
    jump-table interpreter already confirmed driving the Scouting Report and
    Team Roster screens, reached via computed dispatch rather than a direct
    call or literal address. **Recommended next step for whoever picks this
-   up**: live-breakpoint approach, not more static searching (static
-   searching has now failed on this exact pattern twice) — trigger a real
-   faceoff in a live game (CPU vs CPU with both controllers parked under
-   `CPU`, per the existing recipe, is an easy way to get faceoffs happening
-   without manual input) and watch for writes to VRAM/the tile area
-   backing that text, or trace backward from wherever `Faceoffs Won` gets
-   incremented, which is a stats-counter and thus a much easier live target
-   to catch than the fleeting pre-faceoff UI moment. If solved, the natural
-   follow-on question (mirroring hot/cold's "so what, who cares" framing)
+   up, with a real tooling constraint already checked**: BlastEm's 68k
+   debugger has **no memory watchpoint / break-on-write capability at
+   all** — confirmed by reading the full command switch in `debug.c` on the
+   VM; only PC-address execution breakpoints (`b`/`c`/`n`/`s`) exist, plus
+   `vs`/`vr` for VDP sprite-table/register dumps and nothing else
+   VRAM-related. So "just watch for the write" (the obvious first idea)
+   isn't directly executable with current tooling — the realistic path is
+   the same laborious one that cracked hot/cold: trigger a real faceoff
+   live (CPU vs CPU with both controllers parked under `CPU` is an easy way
+   to get faceoffs happening with zero manual input), set a PC breakpoint
+   somewhere plausible and well before the event, and single-step forward
+   through real execution to find the actual code by hand, the way
+   `0x0083E88`'s RNG loop was eventually found. Budget this as its own
+   multi-step session, not a quick add-on. If solved, the natural follow-on
+   question (mirroring hot/cold's "so what, who cares" framing)
    is whether faceoff win probability is driven by a specific player
    attribute — Agility and Off. Awareness are the most plausible
    candidates given their real-hockey analogues, but this is speculation

@@ -1054,6 +1054,14 @@ lead) multiplies by something close to these same small integers.
 
 ## 7. Open questions / candidate next steps
 
+**Live-tracked as GitHub issues, not just here**: every open item below (plus
+a few new ones — goalie-stat cross-validation, fighting, AI/difficulty,
+Dallas/Season mode, and mapping more of the UI string-table system) has a
+corresponding issue at
+[github.com/BreakableHoodie/nhl95-decoded/issues](https://github.com/BreakableHoodie/nhl95-decoded/issues),
+labeled `investigation`. This section stays the narrative record of *why*;
+the issues are the actionable backlog.
+
 Roughly in priority order (see chat for discussion):
 
 ~~Map the multiple `0x0A0042`/`0x0A0672`/`0x0A0692` passes~~ — **done**: it's the

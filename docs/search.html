@@ -94,6 +94,7 @@
         continue;
       }
       if (BLOCK_TAGS[node.tagName]) {
+        if (currentAnchor === 'contents') continue;
         var text = textOf(node);
         if (text.length < 8) continue;
         index.push({

@@ -85,9 +85,9 @@ Two techniques here generalize well beyond this one ROM:
 
 ## Credits
 
-This project's live validation work found real errors in nhl-95.com's
-data and corrected them where cross-checked against the ROM — but the
-site (Jon Morris) and the GameFAQs community FAQ this project also drew on
-were both valuable, good-faith starting points that made the correlation
-work possible in the first place. Sega Retro's NHL 95 page was an
-independently useful developer/manual-sourced reference throughout.
+This project drew on several existing community resources to get started,
+and is grateful for all of them: nhl-95.com's ratings data and the
+GameFAQs community FAQ this project also used were both valuable,
+good-faith starting points that made the correlation work in `FINDINGS.md`
+possible in the first place. Sega Retro's NHL 95 page was an independently
+useful developer/manual-sourced reference throughout.

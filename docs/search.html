@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Search — NHL 95 Decoded</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #ffffff; --fg: #1a1a1a; --muted: #666; --border: #ddd;
+    --mark: #fff3a3; --link: #0969da; --card: #f6f8fa;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0d1117; --fg: #e6edf3; --muted: #9198a1; --border: #30363d;
+      --mark: #5a4a00; --link: #4493f8; --card: #161b22; }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 2rem 1rem 4rem; background: var(--bg); color: var(--fg);
+    font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; }
+  h1 { font-size: 1.5rem; margin-bottom: 0.25rem; }
+  .sub { color: var(--muted); margin-bottom: 1.5rem; font-size: 0.95rem; }
+  .sub a { color: var(--link); }
+  input[type=search] {
+    width: 100%; font-size: 1.1rem; padding: 0.7rem 0.9rem;
+    border: 1px solid var(--border); border-radius: 8px;
+    background: var(--card); color: var(--fg);
+  }
+  input[type=search]:focus { outline: 2px solid var(--link); }
+  .status { color: var(--muted); font-size: 0.9rem; margin: 0.75rem 0; min-height: 1.2em; }
+  .results { display: flex; flex-direction: column; gap: 0.75rem; }
+  .result {
+    border: 1px solid var(--border); border-radius: 8px; padding: 0.8rem 1rem;
+    background: var(--card);
+  }
+  .result a.title { font-weight: 600; text-decoration: none; color: var(--link); font-size: 1.02rem; }
+  .result a.title:hover { text-decoration: underline; }
+  .result .page { color: var(--muted); font-size: 0.8rem; margin-left: 0.5rem; }
+  .result .snippet { margin-top: 0.35rem; color: var(--fg); font-size: 0.92rem; }
+  .result .snippet mark { background: var(--mark); color: inherit; border-radius: 2px; }
+  nav { margin-bottom: 1.5rem; font-size: 0.9rem; }
+  nav a { color: var(--link); margin-right: 1rem; text-decoration: none; }
+  nav a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="OVERVIEW.html">Plain English</a>
+    <a href="FINDINGS.html">Full write-up</a>
+  </nav>
+  <h1>Search the findings</h1>
+  <div class="sub">Searches both <a href="OVERVIEW.html">OVERVIEW.md</a> and
+    <a href="FINDINGS.html">FINDINGS.md</a> in your browser — nothing leaves this page.</div>
+  <input type="search" id="q" placeholder="Try: hot cold, overall rating, faceoff, jersey..." autofocus>
+  <div class="status" id="status">Loading documents…</div>
+  <div class="results" id="results"></div>
+</div>
+
+<script>
+(function () {
+  var PAGES = [
+    { file: 'OVERVIEW.html', label: 'Plain English' },
+    { file: 'FINDINGS.html', label: 'Full write-up' },
+  ];
+  var index = [];
+  var statusEl = document.getElementById('status');
+  var resultsEl = document.getElementById('results');
+  var qEl = document.getElementById('q');
+
+  var BLOCK_TAGS = { P: 1, LI: 1, TD: 1, TH: 1, PRE: 1, BLOCKQUOTE: 1 };
+  var HEADING_TAGS = { H1: 1, H2: 1, H3: 1, H4: 1 };
+
+  function textOf(el) {
+    return el.textContent.replace(/\s+/g, ' ').trim();
+  }
+
+  function buildIndexFromDoc(doc, page) {
+    var pageTitle = (doc.querySelector('h1') || {}).textContent || page.file;
+    pageTitle = pageTitle.trim();
+    var currentAnchor = '';
+    var currentSection = pageTitle;
+    var body = doc.body;
+    if (!body) return;
+    var walker = document.createTreeWalker(body, NodeFilter.SHOW_ELEMENT, null);
+    var node;
+    while ((node = walker.nextNode())) {
+      if (HEADING_TAGS[node.tagName]) {
+        if (node.id) currentAnchor = node.id;
+        currentSection = textOf(node);
+        continue;
+      }
+      if (BLOCK_TAGS[node.tagName]) {
+        var text = textOf(node);
+        if (text.length < 8) continue;
+        index.push({
+          page: page.file,
+          pageLabel: page.label,
+          pageTitle: pageTitle,
+          section: currentSection,
+          anchor: currentAnchor,
+          text: text,
+        });
+      }
+    }
+  }
+
+  function loadAll() {
+    var loaded = 0;
+    PAGES.forEach(function (page) {
+      fetch(page.file)
+        .then(function (r) { return r.text(); })
+        .then(function (html) {
+          var doc = new DOMParser().parseFromString(html, 'text/html');
+          buildIndexFromDoc(doc, page);
+        })
+        .catch(function (err) {
+          console.error('Failed to load', page.file, err);
+        })
+        .finally(function () {
+          loaded++;
+          if (loaded === PAGES.length) {
+            statusEl.textContent = index.length
+              ? 'Ready — ' + index.length + ' sections indexed. Start typing above.'
+              : 'Could not load documents (are you viewing this over file://? Search needs a real server, e.g. the published Pages site.)';
+          }
+        });
+    });
+  }
+
+  function highlight(text, terms) {
+    var escaped = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    terms.forEach(function (t) {
+      if (!t) return;
+      var re = new RegExp('(' + t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'ig');
+      escaped = escaped.replace(re, '<mark>$1</mark>');
+    });
+    return escaped;
+  }
+
+  function snippetAround(text, terms) {
+    var lower = text.toLowerCase();
+    var pos = -1;
+    for (var i = 0; i < terms.length; i++) {
+      var p = lower.indexOf(terms[i]);
+      if (p !== -1 && (pos === -1 || p < pos)) pos = p;
+    }
+    if (pos === -1) return text.slice(0, 180);
+    var start = Math.max(0, pos - 60);
+    var end = Math.min(text.length, pos + 160);
+    var out = (start > 0 ? '…' : '') + text.slice(start, end) + (end < text.length ? '…' : '');
+    return out;
+  }
+
+  function search(query) {
+    resultsEl.innerHTML = '';
+    var terms = query.toLowerCase().split(/\s+/).filter(Boolean);
+    if (!terms.length) {
+      statusEl.textContent = index.length + ' sections indexed. Start typing above.';
+      return;
+    }
+    var matches = index.filter(function (entry) {
+      var hay = entry.text.toLowerCase();
+      return terms.every(function (t) { return hay.indexOf(t) !== -1; });
+    }).slice(0, 40);
+
+    statusEl.textContent = matches.length
+      ? matches.length + ' result' + (matches.length === 1 ? '' : 's')
+      : 'No results for "' + query + '"';
+
+    var frag = document.createDocumentFragment();
+    matches.forEach(function (m) {
+      var div = document.createElement('div');
+      div.className = 'result';
+      var href = m.file || m.page;
+      href = m.page + (m.anchor ? '#' + m.anchor : '');
+      var snippet = snippetAround(m.text, terms);
+      div.innerHTML =
+        '<a class="title" href="' + href + '">' + (m.section || m.pageTitle) + '</a>' +
+        '<span class="page">' + m.pageLabel + '</span>' +
+        '<div class="snippet">' + highlight(snippet, terms) + '</div>';
+      frag.appendChild(div);
+    });
+    resultsEl.appendChild(frag);
+  }
+
+  var debounceTimer;
+  qEl.addEventListener('input', function () {
+    clearTimeout(debounceTimer);
+    var v = qEl.value;
+    debounceTimer = setTimeout(function () { search(v); }, 120);
+  });
+
+  loadAll();
+})();
+</script>
+</body>
+</html>

@@ -578,7 +578,7 @@ you're changing.)
 
 ---
 
-## 6. Player rating bytes — jersey number solved, "Overall Rating" identity confirmed, exact storage/formula still open
+## 6. Player rating bytes — jersey number solved, Overall Rating formula solved and ROM-confirmed (exact weights + opcode still open)
 
 Cross-referenced the displayed position "advantage" numbers against known players'
 raw attribute bytes, live: on the Scouting Report screen, Vancouver's Cliff Ronning
@@ -1054,19 +1054,21 @@ loop (`0x0083E88`). See §5.
 1. ~~Identify what the displayed number *is*~~ — **done**: it's the player's
    **Overall Rating** stat, confirmed by an exact live match (Messier: 79 on both
    the Scouting Report and the Team Roster screen, same game session). See §6.
-   **Exact storage/computation: still open, now with a much clearer picture of
-   why.** Five hypotheses ruled out with real evidence (live WRAM struct scan,
-   raw ROM player-record scan, nibble-sum arithmetic, the `A0≈0x3618` ROM
-   pointer path, and — newest — direct memory reads at every register pointer
-   live at the correct render call site, `0x0008562C`). That call site is
-   confirmed to be one handler inside a genuine bytecode/jump-table interpreter
-   (reached via `jmp (a0)`, not a normal call), the same architecture already
-   found driving the Scouting Report screen — this is now a *repeated* result
-   across two independent screens, not a one-off. **Recommend treating this as
-   its own scoped follow-up** (either properly tracing the interpreter's
-   dispatch loop, or the VDP/tile-level approach) rather than continuing
-   ad-hoc live tracing, which has now been tried from many angles across two
-   sessions with consistent, well-evidenced negative results.
+   **Exact nibble-set: now ROM-confirmed** (not just statistically inferred) —
+   see §6 item 6's "major breakthrough" write-up: a decoded ROM bytecode
+   table's `Overall`-widget parameter is bit-for-bit the OR of exactly the
+   nibbles the independently-fit weight formula uses. **Still open**: the
+   precise integer weights and the actual 68k opcode that consumes this
+   bitmask. Five hypotheses already ruled out with real evidence (live WRAM
+   struct scan, raw ROM player-record scan, nibble-sum arithmetic, the
+   `A0≈0x3618` ROM pointer path, and direct memory reads at every register
+   pointer live at the render call site, `0x0008562C`) — that call site is
+   confirmed to be one handler inside a genuine bytecode/jump-table
+   interpreter (reached via `jmp (a0)`, not a normal call), the same
+   architecture already found driving the Scouting Report screen. The
+   newly-confirmed bitmask is now a concrete, verified input to look for
+   when tracing that handler — a substantially narrower target than "trace
+   an unknown interpreter" was before. See GitHub issue #2.
 2. ~~Confirm line 0 = Sc1, the line-label set, and the full line-index mapping~~ —
    **done, all 7 lines mapped.** Live Line Editor
    (checked immediately after a fresh Controller Setup, zero game-clock elapsed)
@@ -1441,6 +1443,91 @@ loop (`0x0083E88`). See §5.
    individually-verified correction to make the way the Rangers bug had.
    **Net result: no further production database changes are recommended at
    this time** — the Rangers fix already applied was the one genuine bug.
+
+   **Major breakthrough, found purely statically: the exact nibble-selection
+   for Overall Rating is now ROM-confirmed, not just statistically inferred
+   — and two previously-unexplained nibbles are identified.** While
+   scanning the ROM for the "Face Off" UI string (see item 7 below), found
+   and decoded a new, general string-record format used throughout this
+   ROM's UI-widget bytecode: `[0x0000][u16 length][text][u16 suffix]`. At
+   ROM `0x085832` this format reveals the **exact source table for the Team
+   Roster screen's stat-category cycle** (`Overall`/`Energy`/`Agility`/
+   `Speed`/`Handed`/`Off. Awareness`/`Def. Awareness`/`Shot Power`/`Shot
+   Accuracy`/`Pass Accuracy`/`Stick Handling`/`Weight`/`Endurance`/
+   `Aggressiveness`/`Checking`, immediately followed at `0x085994` by a
+   second, goalie-specific version substituting `Glove Hand`/`Puck
+   Control`/`Stick Right`/`Stick Left`/`Glove Right`/`Glove Left` for the
+   skater-only entries) — an exact, byte-for-byte match to the live Team
+   Roster category cycle read earlier this session.
+
+   The 2-byte suffix on every entry except `Overall` and `Energy` is a
+   **single set bit** (`0x1000`, `0x0800`, `0x0040`, `0x0400`, ... down to
+   `0x0001`) — i.e. a one-hot nibble-selector, not a screen coordinate.
+   Decoding it as `bit = 13 - nibble_index` and cross-checking against
+   every nibble→stat mapping already established *statistically* earlier
+   this section produced a **perfect, zero-discrepancy match across all 13
+   mapped stats**:
+
+   | stat | suffix | bit | nibble (predicted `13-bit`) | matches stats work? |
+   |---|---|---|---|---|
+   | Agility | 0x1000 | 12 | 1 | yes |
+   | Speed | 0x0800 | 11 | 2 | yes |
+   | Off. Awareness | 0x0400 | 10 | 3 | yes |
+   | Def. Awareness | 0x0200 | 9 | 4 | yes |
+   | Shot Power | 0x0100 | 8 | 5 | yes |
+   | Checking | 0x0080 | 7 | 6 | yes |
+   | Handed | 0x0040 | 6 | 7 | **new** |
+   | Stick Handling | 0x0020 | 5 | 8 | yes |
+   | Shot Accuracy | 0x0010 | 4 | 9 | yes |
+   | Endurance | 0x0008 | 3 | 10 | yes |
+   | *(unused — see below)* | — | 2 | 11 | n/a |
+   | Pass Accuracy | 0x0002 | 1 | 12 | yes |
+   | Aggressiveness | 0x0001 | 0 | 13 | yes |
+   | Weight | 0x2000 | 13 | 0 | **new** |
+
+   This closes both nibbles that showed "no signal" in the statistical
+   named-stat correlation: **nibble 0 is Weight** (a physical attribute,
+   not a 0-99 performance stat — exactly why it never correlated against
+   any named performance stat), and **nibble 7 is Handed** (Left/Right
+   shot, categorical, not continuous — same reason). Nibble 11 remains
+   genuinely unmapped even in this direct ROM table — consistent, not
+   contradictory, across three fully independent methods now (statistical
+   correlation, the live production-DB audit, and this bytecode table).
+   One new lead worth flagging: the *goalie* Overall-widget suffix (decoded
+   below) includes bit 2 (nibble 11) where the skater one doesn't — plausible
+   but unconfirmed hint that nibble 11 might be a goalie-specific attribute
+   invisible to any skater-only analysis, not investigated further this
+   session.
+
+   **The real prize: `Overall`'s own suffix is not a single bit — it's the
+   bitwise OR of every nibble's bit that the independently-fit integer
+   `OR_WEIGHTS` formula (derived via linear regression against the 2011
+   GameFAQs data, see the "GameFAQs correlation" write-up earlier in this
+   section, with zero awareness this bytecode table existed) assigned a
+   nonzero weight to.** Computed directly, not by hand:
+   `OR_WEIGHTS = {1:2, 2:2, 3:3, 4:1, 5:1, 6:1, 8:1, 9:2, 10:1, 11:0, 12:1,
+   13:0}` → OR of `1<<(13-n)` for every `n` with nonzero weight = `0x1FBA`
+   — **the exact skater `Overall` suffix found in the ROM, bit for bit.**
+   The goalie table's `Overall` suffix (`0x130F`) decodes to nibbles
+   `{1,4,5,10,11,12,13}`, a plausible but not yet independently-verified
+   goalie-specific input set (no separate goalie weight vector was fit this
+   session to cross-check against).
+
+   **What this proves and what it still doesn't**: the *set of nibbles*
+   Overall Rating depends on (10 of them, excluding 11 and 13) is now
+   ROM-confirmed with zero ambiguity — not inferred from a third-party
+   FAQ's noise, but read directly out of the game's own UI-widget bytecode.
+   That is real, hard proof this project didn't have before this session.
+   What's still open: the *exact integer weights* (is it really `2,2,3,1,
+   1,1,1,2,1,1` or some other combination that happens to fit the FAQ data
+   almost as well?) and the actual 68k arithmetic that consumes this
+   bitmask to produce a number — this bitmask is very likely an argument to
+   the same bytecode-interpreter handler family already found blocking
+   deeper tracing (§7 item 1's `0x0008562C`/`0x000854B6` wall), telling that
+   handler *which* nibbles to sum, not *how* to weight them. Fully cracking
+   the weights would mean tracing that handler with this bitmask now known
+   as a concrete, verified input to look for — a much narrower target than
+   "trace an unknown interpreter" was before this.
 
 7. **New lead, not yet investigated: faceoffs.** Explicitly out of scope for
    any work so far (see "Current status" in `CLAUDE.md`) — this is a

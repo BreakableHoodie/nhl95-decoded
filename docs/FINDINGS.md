@@ -1441,3 +1441,36 @@ loop (`0x0083E88`). See §5.
    individually-verified correction to make the way the Rangers bug had.
    **Net result: no further production database changes are recommended at
    this time** — the Rangers fix already applied was the one genuine bug.
+
+7. **New lead, not yet investigated: faceoffs.** Explicitly out of scope for
+   any work so far (see "Current status" in `CLAUDE.md`) — this is a
+   starting point for a future, separately-scoped session, not a
+   continuation of anything above. Raw string search on the ROM found the
+   in-game UI text directly: `Face Off` at ROM `0x89CC6` and `0x89CD4`
+   (likely two render contexts, e.g. period-start vs. whistle-stoppage —
+   not yet distinguished), and `Faceoffs Won` (a stats-tracking label) at
+   `0x924AA` and `0x9255C`. Static analysis comes up empty on both fronts
+   tried so far: Ghidra finds **zero cross-references** to any of the four
+   addresses (recursive-descent disassembly doesn't reach
+   computed/indirect-jump call sites — see the CLAUDE.md gotcha), and a
+   raw big-endian longword search for each address as a literal pointer
+   also finds **zero hits** anywhere in the ROM (ruling out a simple
+   flat string-pointer table). Both results are exactly the pattern already
+   seen for Overall Rating's render path (§6 item 1) — strong circumstantial
+   evidence the faceoff UI text renders through the *same* bytecode/
+   jump-table interpreter already confirmed driving the Scouting Report and
+   Team Roster screens, reached via computed dispatch rather than a direct
+   call or literal address. **Recommended next step for whoever picks this
+   up**: live-breakpoint approach, not more static searching (static
+   searching has now failed on this exact pattern twice) — trigger a real
+   faceoff in a live game (CPU vs CPU with both controllers parked under
+   `CPU`, per the existing recipe, is an easy way to get faceoffs happening
+   without manual input) and watch for writes to VRAM/the tile area
+   backing that text, or trace backward from wherever `Faceoffs Won` gets
+   incremented, which is a stats-counter and thus a much easier live target
+   to catch than the fleeting pre-faceoff UI moment. If solved, the natural
+   follow-on question (mirroring hot/cold's "so what, who cares" framing)
+   is whether faceoff win probability is driven by a specific player
+   attribute — Agility and Off. Awareness are the most plausible
+   candidates given their real-hockey analogues, but this is speculation
+   pending an actual trace, not a finding.

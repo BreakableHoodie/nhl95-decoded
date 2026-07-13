@@ -1419,6 +1419,28 @@ loop (`0x0083E88`). See §5.
    the same way Messier/Leetch's modifier bytes were read in §5, and is the
    natural next step if tightening those two stats further ever matters.
 
+   **Later follow-up, same session: attempted a shortcut, got a genuinely
+   mixed result — documented honestly rather than forced into a
+   confirmation.** Since this exact BlastEm process never restarted, the
+   RNG state behind the Ronning/Courtnall readings above was still live.
+   Rather than the full single-stepped `0x0083E88` trace, tried reading
+   `team_struct+0x1A4+roster_index` directly using two candidate team-struct
+   base addresses captured earlier in this same session's register dumps
+   (`0xFFFFC5EE` and `0xFFFFC288` — neither independently re-confirmed as
+   Vancouver's struct specifically for *this* call site, a real caveat).
+   Both candidates agree on the qualitative pattern: **Courtnall's modifier
+   byte is positive** (`+5` or `+2` depending on which base), consistent
+   with his elevated Agility residual — but **Ronning's is negative**
+   (`-2` or `-7`), the *opposite* direction from his elevated Speed
+   residual. That does not cleanly confirm the hot/cold hypothesis for
+   both players; if anything it argues against it for Ronning specifically,
+   and suggests either (a) his residual has a different, unrelated cause
+   (ordinary fit noise, since 12/13 tested pairs already fit within single
+   digits and one outlier is not implausible on its own), or (b) the
+   modifier doesn't apply as a simple uniform per-player addition to every
+   stat the way this shortcut assumed. Genuinely inconclusive — not chased
+   further with the full proper trace this session, see GitHub issue #1.
+
    `build_rom_verified_stats.py` now uses these multivariate models for
    every named stat (Overall Rating's formula was already multivariate).
    Rebuilding the full 26-team comparison with them moved the aggregate

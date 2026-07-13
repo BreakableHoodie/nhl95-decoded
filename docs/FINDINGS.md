@@ -1646,18 +1646,34 @@ loop (`0x0083E88`). See §5.
    candidates given their real-hockey analogues, but this is speculation
    pending an actual trace, not a finding.
 
-8. **New lead, not yet investigated: injuries.** Suggested by the repo
-   owner; confirmed real (not assumed — see item 5's fighting correction
-   above for why that check matters) via the same raw-string technique:
-   `Injury to:`, `Out for period`, `Out for game`, and a third `Out for
-   0[8]`-prefixed fragment all appear in the ROM (`0x09F2D5`-`0x09F33C`).
-   Unlike the faceoff strings, these sit inside real, readable code —
-   three near-identical blocks of `jsr $0007C810` (the known self-patching
-   primitive family) followed by `0xBF`-delimited fields mixing literal
-   text with what looks like a value-insertion slot, a **third distinct
-   text-rendering pattern** in this ROM (different from both the simple
-   string-table format earlier in this section and the intro's token-based
-   message interpreter at `0x0A00F0`). Strongly suggests a real templated
-   message ("Injury to: [player], Out for [duration]"), not one fixed
-   string per injury type. Full byte dump and analysis in GitHub issue #9;
-   not pursued further this session.
+8. **New lead, not yet investigated (mechanism), but text template fully
+   decoded: injuries.** Suggested by the repo owner; confirmed real (not
+   assumed — see item 5's fighting correction above for why that check
+   matters) via the same raw-string technique: `Injury to:`, `Out for
+   period`, `Out for game` all appear in the ROM (`0x09F2D5`-`0x09F33C`).
+   Unlike the faceoff strings, these sit inside real, readable code — a
+   **third distinct text-rendering pattern** in this ROM (different from
+   both the simple string-table format earlier in this section and the
+   intro's token-based message interpreter at `0x0A00F0`), built from the
+   same self-patching primitive family already known from the CLAUDE.md
+   gotchas (`0x7C6D4`/`0x7C810`/`0x7C822`/`0x7CCD2` all appear in this one
+   block) plus the already-known digit-print routine (`0x0007D154`, same
+   one used for Overall Rating).
+
+   **Corrected a false lead from an earlier pass**: what first looked like
+   literal text `"Out for 08"` was a `strings`-scan artifact — the `0` and
+   `8` are the first two bytes of real code (`dc 6a 32 3c 00 01 4e b9 ...`)
+   that happen to be coincidentally printable ASCII, not part of the
+   string at all. The actual fixed text is just `"Out for "` (trailing
+   space), followed by genuine templating logic: `jsr $0007D154` inserts
+   the real duration number, then `CMPI.W #1,D1` / `BGT` branches between
+   two `jsr $0007C810` calls with different inline text — `" game"`
+   (singular) vs. `" games"` (plural) — correct English pluralization, not
+   a fixed string per injury type. Full template: **"Injury to: [player],
+   Out for [N] game(s)"**.
+
+   Still open: what triggers an injury, and where the duration value
+   itself is computed/stored — both need live tracing, not more static
+   analysis (the same "no memory watchpoints" constraint documented for
+   faceoffs in item 7 applies here too). Full byte dumps and the correction
+   above in GitHub issue #9; not pursued further this session.

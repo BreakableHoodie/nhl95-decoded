@@ -1554,6 +1554,48 @@ loop (`0x0083E88`). See §5.
    as a concrete, verified input to look for — a much narrower target than
    "trace an unknown interpreter" was before this.
 
+   **Nibble 11 resolved, live — it's a goalie-only stat.** All prior named-
+   stat correlation work explicitly excluded goalies (no external data
+   existed for goalie named stats — checked this session: the nhl-95.com
+   CSV has every named-stat column blank for all 54 goalie rows, only
+   `ST Overall` is populated, and the GameFAQs FAQ text has no goalie
+   attribute mentions beyond a single Rating number either — so a
+   statistical correlation the way skaters got one simply isn't possible
+   here). Instead, went straight to live verification: switched the Team
+   Roster screen to its Goalies view for Vancouver (McLean, Whitmore) and
+   read stats directly, cross-checking against the goalie-specific bytecode
+   table decoded above.
+
+   - **Agility** (nibble 1, shared bit with skaters): McLean nibble=4 →
+     live 70 (predicted ~71 from the skater formula); Whitmore nibble=3 →
+     live 50. Same direction, same rough scale as skaters — the mapping
+     transfers as expected.
+   - **Def. Awareness** (nibble 4, shared bit with skaters): McLean
+     nibble=4 → live 78; Whitmore nibble=5 → live 97. Correct direction
+     (higher nibble, higher stat).
+   - **Glove Hand** (nibble 7 — the *other* previously-unexplained nibble,
+     already identified as skaters' `Handed`): both goalies show
+     categorical "Righty", not a number — confirms nibble 7 is a
+     handedness field for goalies too, exactly consistent with its skater
+     identity.
+   - **Stick Left, the nibble-11 stat**: McLean nibble=4 → live **75**;
+     Whitmore nibble=3 → live **57**. Clean, monotonic, and consistent with
+     every other confirmed mapping this session (higher nibble, higher
+     stat) — a 2-point line gives scale≈18/nibble, offset≈3, not
+     independently statistically validated the way the ≥550-player skater
+     fits were, but the *direction and identity* are as solid as any single
+     live read in this document gets.
+
+   **Net result**: nibble 11 is **not** unused or vestigial — it's a
+   goalie-specific attribute (`Stick Left`, one of the six goalie-only
+   stats: Glove Hand, Puck Control, Stick Right, Stick Left, Glove Right,
+   Glove Left) that simply never appears in any skater-only analysis
+   because skaters don't have it. Every one of the 14 nibbles in the
+   7-byte attribute block now has a confirmed identity: 12 performance
+   stats (shared or position-specific), 1 physical attribute (Weight,
+   nibble 0), and 1 categorical handedness field (nibble 7). Nothing in
+   this block is unexplained anymore.
+
 7. **New lead, not yet investigated: faceoffs.** Explicitly out of scope for
    any work so far (see "Current status" in `CLAUDE.md`) — this is a
    starting point for a future, separately-scoped session, not a
@@ -1592,3 +1634,19 @@ loop (`0x0083E88`). See §5.
    attribute — Agility and Off. Awareness are the most plausible
    candidates given their real-hockey analogues, but this is speculation
    pending an actual trace, not a finding.
+
+8. **New lead, not yet investigated: injuries.** Suggested by the repo
+   owner; confirmed real (not assumed — see item 5's fighting correction
+   above for why that check matters) via the same raw-string technique:
+   `Injury to:`, `Out for period`, `Out for game`, and a third `Out for
+   0[8]`-prefixed fragment all appear in the ROM (`0x09F2D5`-`0x09F33C`).
+   Unlike the faceoff strings, these sit inside real, readable code —
+   three near-identical blocks of `jsr $0007C810` (the known self-patching
+   primitive family) followed by `0xBF`-delimited fields mixing literal
+   text with what looks like a value-insertion slot, a **third distinct
+   text-rendering pattern** in this ROM (different from both the simple
+   string-table format earlier in this section and the intro's token-based
+   message interpreter at `0x0A00F0`). Strongly suggests a real templated
+   message ("Injury to: [player], Out for [duration]"), not one fixed
+   string per injury type. Full byte dump and analysis in GitHub issue #9;
+   not pursued further this session.

@@ -4,6 +4,9 @@ A reverse-engineering deep-dive into `NHL 95 (USA, Europe).gen`, the 1994
 Sega Genesis classic — full static (Ghidra) + live (BlastEm debugger)
 analysis of its data formats and game logic.
 
+**Browsable site: https://breakablehoodie.github.io/nhl95-decoded/** — the
+same docs below, plus a [search page](https://breakablehoodie.github.io/nhl95-decoded/search.html).
+
 **New here? Start with [`docs/OVERVIEW.md`](docs/OVERVIEW.md) — what we
 found, in plain English, no assembly required.**
 **Want the proof? [`docs/FINDINGS.md`](docs/FINDINGS.md) is the full

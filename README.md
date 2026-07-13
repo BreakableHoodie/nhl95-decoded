@@ -24,14 +24,14 @@ the NHL 95 community has argued about for 30 years:
   gets picked hot/cold each game, confirmed live against the actual
   on-screen announcement. See [§5](docs/FINDINGS.md#5-hotcold-streaks--confirmed-real-mechanism-partially-traced).
 - **What's the actual formula behind a player's Overall Rating?** Solved
-  two independent ways: statistically (a fixed linear combination of 12
+  two independent ways: statistically (a fixed linear combination of 10
   specific nibbles out of the game's 7-byte attribute block, live-validated
   to within ~2 points of the ROM's own output), and then confirmed a second
   time by decoding the ROM's own UI-widget bytecode directly — the exact
   set of nibbles the formula uses is bit-for-bit identical to a parameter
   found sitting in the ROM itself, not just inferred from outside data.
   Every named stat (Agility, Shot Power, Checking, etc.) is mapped the same
-  way. See [§6](docs/FINDINGS.md#6-player-rating-bytes--jersey-number-solved-overall-rating-formula-solved-and-rom-confirmed-exact-weights--opcode-still-open).
+  way, for both skaters and goalies. See [§6](docs/FINDINGS.md#6-player-rating-bytes--jersey-number-solved-overall-rating-formula-solved-and-rom-confirmed-exact-weights--opcode-still-open).
 - **The bug report that started this whole project**: Boston's Bryan
   Smolinski shows up cloned at two positions at once in the Line Editor.
   Root-caused to a specific stale-data condition — and checking all 208
@@ -55,8 +55,9 @@ the NHL 95 community has argued about for 30 years:
 - **`docs/full_roster_database.json`** — every player's name, jersey
   number, and attribute bytes, extracted from the ROM.
 - **`docs/external_sources/`** — our derived comparison data (ROM-predicted
-  vs. third-party stats), used to validate the formulas above. Raw
-  third-party scrapes are excluded — see below.
+  vs. third-party stats) and the fitted formula models themselves, used to
+  validate the formulas above. Raw third-party scrapes are excluded — see
+  below.
 - **`tools/`** — the actual scripts and live-debugger tooling used to do
   this work: a Ghidra data-dump script, a persistent BlastEm
   debugger-console daemon (`nhl95_daemon.py`/`nhl95ctl.py`) for scripted

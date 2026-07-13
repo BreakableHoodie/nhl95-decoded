@@ -25,6 +25,21 @@ has argued about for years without ever opening the ROM to check.
 
 ---
 
+## Contents
+
+- [1. Toolchain / methodology](#1-toolchain--methodology)
+- [2. ROM data layout](#2-rom-data-layout-offsets-are-rom-file-offsets-unless-stated-as-ram)
+  - [2.1 Per-team master record](#21-per-team-master-record)
+  - [2.2 Player name records](#22-player-name-records--fully-solved-name--jersey-number)
+  - [2.3 Per-line position table](#23-per-line-position-table-8-bytesline-8-linesteam)
+- [3. Bug: Smolinski line-editor clone](#3-bug-smolinski-line-editor-clone-root-caused-live-confirmed)
+- [4. Anomaly scan of the player database](#4-anomaly-scan-of-the-player-database-rosterjersey-data)
+- [5. Hot/cold streaks](#5-hotcold-streaks--confirmed-real-mechanism-partially-traced)
+- [6. Player rating bytes / Overall Rating formula](#6-player-rating-bytes--jersey-number-solved-overall-rating-formula-solved-and-rom-confirmed-exact-weights--opcode-still-open)
+- [7. Open questions / candidate next steps](#7-open-questions--candidate-next-steps)
+
+---
+
 ## 1. Toolchain / methodology
 
 - **Static analysis**: Ghidra project at `ghidra_project/NHL95.gpr`, imported as raw

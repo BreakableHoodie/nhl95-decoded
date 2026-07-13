@@ -7,6 +7,12 @@ byte-level proof behind any of this, the technical write-up is
 [`FINDINGS.md`](FINDINGS.md); every claim here has a matching, evidenced
 section over there.
 
+- ["Hot and cold streaks" are 100% real](#hot-and-cold-streaks-are-100-real--heres-exactly-how-they-work)
+- [We cracked the exact formula behind every player's rating](#we-cracked-the-exact-formula-behind-every-players-rating)
+- [The Line Editor "clone" bug — root cause found](#the-line-editor-clone-bug--root-cause-found-and-its-just-one-player)
+- [The full 7-line system](#the-full-7-line-system-confirmed-against-a-real-penalty-kill)
+- [Want the details?](#want-the-details)
+
 ## "Hot and cold streaks" are 100% real — here's exactly how they work
 
 Old strategy guides always mentioned that players go on hot or cold

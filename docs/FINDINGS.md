@@ -2287,9 +2287,9 @@ loop (`0x0083E88`). See §5.
       setting), clamped to the range `2..6`, then run through the same
       `$0007C63A` "roll bounded by D0" helper and `+1`'d — producing a
       final duration of roughly **1 to 5 games**. This is the exact
-      number that ends up in the already-decoded `"Injury to: [player],
-      Out for [N] game(s)"` template (item 8 above/§ elsewhere in this
-      list). `$FFFFBF10` bit 1 is set here (closing the loop with step 2's
+      number that ends up in the `"Injury to: [player], Out for
+      [N] game(s)"` template decoded earlier in this same item.
+      `$FFFFBF10` bit 1 is set here (closing the loop with step 2's
       debounce), and `jsr $0009F1EA` is called with the computed duration
       in `D0`, a team-level field (`team_struct+0x28`) in `D7`, and a
       player-index-derived value in `D1` — almost certainly the actual

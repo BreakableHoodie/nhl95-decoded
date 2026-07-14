@@ -31,7 +31,7 @@ Usage (run ON the VM):
 Client:
     python3 nhl95ctl.py <command...>
 """
-import sys, os, socket, subprocess, pty, select, time, signal, fcntl, struct
+import sys, os, socket, subprocess, pty, select, time, signal, fcntl
 
 HOME = os.path.expanduser("~")
 SOCK_PATH = os.path.join(HOME, ".nhl95ctl.sock")
@@ -111,9 +111,6 @@ class BlastemSession:
                 if not more:
                     return out.decode(errors="replace")
                 out += more
-                continue
-            if out and time.time() > deadline - (timeout * 0.5):
-                # got *something* but never a clean prompt -- avoid hanging forever
                 continue
         return out.decode(errors="replace")
 
@@ -217,8 +214,10 @@ class BlastemSession:
 
     def cmd_screenshot(self, args):
         path = args[0] if args else "/tmp/nhl95ctl_shot.png"
-        subprocess.run(["scrot", "-o", path], env={**os.environ, "DISPLAY": ":1"},
-                        check=False)
+        result = subprocess.run(["scrot", "-o", path], env={**os.environ, "DISPLAY": ":1"},
+                                 check=False, capture_output=True, text=True)
+        if result.returncode != 0 or not os.path.exists(path):
+            return f"ERR screenshot failed (scrot rc={result.returncode}): {result.stderr.strip()}"
         return f"OK {path}"
 
     def cmd_status(self, args):

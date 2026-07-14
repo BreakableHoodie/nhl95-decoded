@@ -17,7 +17,6 @@ progress and both controllers parked under CPU.
 
 Usage (run ON the VM, or via SSH from the repo):
     python3 nhl95_monitor.py watch --seconds 300 --interval 1.0 --out log.csv
-    python3 nhl95_monitor.py watch --frames 3000 --interval-frames 15 --out log.csv
 
 WATCH_ADDRESSES below is the known-address table -- extend it as more
 addresses get confirmed (see FINDINGS.md for what's independently verified
@@ -68,7 +67,6 @@ import argparse
 import csv
 import re
 import socket
-import sys
 import time
 import os
 
@@ -150,9 +148,16 @@ def watch(seconds, interval, out_path):
         writer.writerow(["t_seconds", "field", "old", "new"])
         f.flush()
         while time.time() - t0 < seconds:
-            _raw(f"runframes {frames_per_tick}", timeout=max(10.0, frames_per_tick * 0.3))
-            now = poll_once()
             t = round(time.time() - t0, 1)
+            try:
+                _raw(f"runframes {frames_per_tick}", timeout=max(10.0, frames_per_tick * 0.3))
+                now = poll_once()
+            except OSError as e:
+                # A transient daemon/SSH hiccup shouldn't kill an hours-long
+                # unattended run -- log it and retry on the next tick instead
+                # of losing everything logged so far.
+                print(f"[{t:7.1f}s] WARN poll failed ({e!r}), retrying next tick")
+                continue
             for k, v in now.items():
                 if last.get(k) != v:
                     writer.writerow([t, k, last.get(k), v])

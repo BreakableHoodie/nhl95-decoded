@@ -603,8 +603,25 @@ graphic, previously completely undocumented. Trade Players' roster-
 comparison screen — a bonus find: it shows every player's exact Overall
 Rating as plain readable text for two full rosters at once, flagged on
 issue #2 as a possibly-faster route into that still-open exact-opcode
-question. Also confirmed the manual's injury-status text (`P`=out for
-period, `G`=out for game, `4G`=four-game injury) matches the ROM's
-`Inj. P`/`Inj. G`/`Inj.1G`-`Inj.9G` table from earlier the same session,
-word for word — a strong independent confirmation, not just a plausible
-guess anymore.
+question (checked statically — zero xrefs to this screen's text either,
+same computed-dispatch wall as everything else, so no shortcut after
+all, but worth ruling out). Also confirmed the manual's injury-status
+text (`P`=out for period, `G`=out for game, `4G`=four-game injury)
+matches the ROM's `Inj. P`/`Inj. G`/`Inj.1G`-`Inj.9G` table from earlier
+the same session, word for word — a strong independent confirmation, not
+just a plausible guess anymore.
+
+**Three more issues closed the same session, all via live play rather
+than static tracing**: #8 (UI string-table scan — every lead from that
+scan, including the two "lower-confidence" ones, ended up fully decoded
+once a third string-record format was found — see the entry above),
+#13 (the full pre-game/pause menu is now mapped exactly: `OPTIONS` tab
+items vs. `STATS` tab items vs. mode-specific additions like `SHOOTOUT
+SETUP`/`PLAYOFF STATS`), and #14 (Shootout mode's full cycle traced end
+to end, including a directly-observed puck-in-flight shot animation
+against Chicago's Ed Belfour — fittingly saved both times, since the
+Trade Players screen already confirmed his Overall Rating at 98, the
+best of any goalie seen this session). Remaining open issues (#1, #2,
+#3, #6, #9, #10, #12) mostly need live bytecode tracing on the self-
+patching-primitive family or an expensive full-season playthrough —
+genuinely scoped future work, not quick continuations.

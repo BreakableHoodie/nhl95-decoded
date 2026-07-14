@@ -1322,6 +1322,87 @@ found, systematically catch *every* `jsr $7C810` in one widget's render pass
 "spent" somewhere in that set, just not the one instance traced this
 session.
 
+**Later session: tried a different screen entirely (Team Roster, not
+Scouting Report) and found the value finalized even earlier than
+expected — plus a promising static lead that direct live testing
+disproved, documented honestly rather than published as a confirmed
+result.** Team Roster's Overall-Rating render was already known to reach
+`0x0007D154` (digit-print) from a call site at `0x0008562C` (see the
+"Follow-up session" above — Richter's `77` caught there). Disassembling
+the surrounding bytes (`tools/ghidra/DumpRange.java`) shows this call site
+sits inside a short handler starting at `0x8561C`:
+
+```
+0008561C  movem.l (SP)+,{D0 D7}     ; restores D0 (and D7) from the stack
+00085620  beq.w 0x0008562A
+00085624  jsr 0x0007D258.l          ; primitive 5
+0008562A  moveq #4,D1
+0008562C  jsr 0x0007D154.l          ; digit-print (confirmed formatter)
+00085632  jsr 0x0007C6E6.l          ; primitive 2
+00085638  jsr 0x0007C810.l          ; primitive 3
+```
+
+Breakpointed `0x00085638` during a genuine Team Roster redraw (Vancouver,
+Offense, `Overall` category — cycled away to `Status` and back to force a
+fresh render) and read `D0` at each hit: **`0x41`=65, `0x3E`=62, `0x2D`=45,
+`0x47`=71 — an exact, in-order match for Carson/Craven/McIntyre/Courtnall's
+displayed ratings**, all 4 checked hits correct (the 5th, presumably
+Ronning's `76`, fired too but wasn't individually read). This is
+decisive: **`D0` already holds the finished rating by the very first
+instruction of this handler** (`movem.l (SP)+,{D0,D7}`, a stack
+*restore*, not a computation) — meaning the real arithmetic completes
+*before* the computed-jump dispatch (`0x000854B6: jmp (a0)`) even reaches
+this handler, most plausibly pushed onto the stack by whatever code calls
+into the dispatch in the first place. That's a genuinely different, and
+narrower, target than anything chased so far in this section.
+
+**A clean-looking static lead, ruled out by direct live testing.**
+Immediately preceding this handler in ROM (`0x000855E4`-`0x000855FA`) sits
+unambiguous, non-self-patching 68k code that looks exactly like the tail
+end of a ratings formula:
+
+```
+000855E4  add.w D0w,D0w                    ; D0 *= 2 (word-array index)
+000855E6  move.w (0x34,A2,D0w*0x1),D0w     ; D0 = word at [A2+0x34+D0]
+000855EA  ext.l D0
+000855EC  divu.w #0x28,D0                   ; D0 /= 40
+000855F0  cmp.w #0x64,D0w                   ; compare to 100
+000855F4  ble.w 0x0008562A                  ; <=100: fall through
+000855F8  moveq #0x64,D0                    ; >100: clamp to 100
+000855FA  bra.w 0x0008562A
+```
+
+A per-player word lookup (`A2` being the already-confirmed team-struct
+base), scaled down by 40, clamped at 100 — precisely the shape a "sum
+weighted nibbles into a bigger integer, then compress to a 0-99 display
+range" formula would take, and a clean, direct explanation for the
+clamp/saturation effect independently suspected from live stat readings
+elsewhere in this document (see the issue #1 writeup in §5 — Courtnall's
+Agility landing at 98 instead of a predicted 89.7). **It looked like the
+answer. It isn't, or at least isn't reached from here**: breakpointed
+`0x000855E4` directly and triggered two independent, genuine Team Roster
+redraws (`Status`→`Overall` cycles) — it never fired, despite the roster
+correctly redrawing with the right ratings both times. This block is real
+ROM code, but not on the execution path for *this* render; either it
+belongs to a different caller/widget (a plausible guess: the Scouting
+Report's numeric widget, this section's original context, never actually
+tested against this specific address) or is reached by some other
+category/state this session didn't hit. Recorded here specifically so a
+future session doesn't re-spend time on the same plausible-looking
+address without checking it live first — exactly the "static analysis
+can look right and still be wrong" trap this project has been caught by
+before (see the `GLOSSARY.md` entry on the distinction).
+
+**Net effect**: the search space is narrower than ever — the real
+computation is now known to complete *before* a specific, reachable
+dispatch point (`0x000854B6`) rather than somewhere inside a five-primitive
+chain — but the exact instruction is still unfound. **Recommended next
+step**: trace backward from the dispatch itself (breakpoint
+`0x000854B6`, then work outward to *its* caller) looking for whatever
+code pushes the final rating onto the stack before the dispatch fires —
+that stack push, not anything inside the handler, is where the real
+arithmetic lives.
+
 **Breakthrough via a completely different method: external data correlation,
 not more live tracing.** The user pointed at a GameFAQs guide
 (`docs/external_sources/gamefaqs_28196_roster_ratings.txt`, saved locally —
@@ -1441,7 +1522,26 @@ loop (`0x0083E88`). See §5.
    architecture already found driving the Scouting Report screen. The
    newly-confirmed bitmask is now a concrete, verified input to look for
    when tracing that handler — a substantially narrower target than "trace
-   an unknown interpreter" was before. See GitHub issue #2.
+   an unknown interpreter" was before.
+
+   **Later session: narrowed further, live-confirmed the value is already
+   final before the render handler even starts, and ruled out one
+   plausible-looking static lead by testing it directly.** Breakpointed
+   `0x0008562C`'s handler entry (`0x8561C`) during a real Team Roster
+   redraw and confirmed `D0` already equals the exact displayed rating
+   for 4 of 5 players checked (Carson/Craven/McIntyre/Courtnall, all exact
+   matches) at the handler's very first instruction — a stack *restore*,
+   not a computation, meaning the real arithmetic finishes before the
+   `0x000854B6: jmp (a0)` dispatch is even reached. A clean, unambiguous
+   `divu.w #0x28` (÷40) + clamp-at-100 block sitting right before this
+   handler in ROM (`0x000855E4`) looked like exactly the missing formula
+   tail — direct ROM evidence for the clamp/saturation effect already
+   suspected from live stat readings (§5/issue #1) — but breakpointing it
+   directly across two genuine redraws found it never fires from this
+   render path; not confirmed, and explicitly not claimed as solved. See
+   §6's "Later session" write-up for the full trace and the concretely
+   scoped next step (trace backward from the dispatch's own caller). See
+   GitHub issue #2.
 2. ~~Confirm line 0 = Sc1, the line-label set, and the full line-index mapping~~ —
    **done, all 7 lines mapped.** Live Line Editor
    (checked immediately after a fresh Controller Setup, zero game-clock elapsed)

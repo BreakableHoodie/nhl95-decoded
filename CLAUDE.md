@@ -728,3 +728,21 @@ from there lands straight in a real bracket with no awards screen shown
 champion first), but confirming it live would mean actually winning the
 single-game/5-min-period bracket, a genuinely open-ended follow-up not
 attempted. Full writeup in `docs/FINDINGS.md` §7 item 12.
+
+**Issue #2 (Overall Rating's exact opcode) got real progress this
+session too, though it's still open.** Live-confirmed that by the time
+the Team Roster's render handler (`0x8561C`, reached via the known
+`jmp (a0)` dispatch) executes its very first instruction, `D0` already
+holds the exact final rating — 4/5 players checked, all exact matches
+(Carson/Craven/McIntyre/Courtnall). That instruction is a stack restore,
+not a computation, so the real arithmetic finishes *before* the dispatch
+is even reached — a narrower, different target than the five-primitive
+chain traced in earlier sessions. A clean `divu.w #0x28` (÷40) +
+clamp-at-100 block sitting right next to this handler looked like the
+missing formula tail (and would have been nice direct ROM proof of the
+clamp/saturation effect from this session's issue #1 work) — but
+breakpointing it directly across two genuine redraws found it never
+fires from this render path. Documented as a ruled-out lead, not a
+finding — the exact "static analysis looked right, live testing said
+no" trap this project keeps a running list of. Full writeup in
+`docs/FINDINGS.md` §6.

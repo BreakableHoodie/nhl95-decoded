@@ -1987,6 +1987,21 @@ loop (`0x0083E88`). See §5.
     (the "C" patch shown next to a captain's name) — consistent with
     hockey UI convention, not confirmed live.
 
+    **Independently confirmed against the official manual**, found later
+    the same session (the repo owner linked the US Genesis manual,
+    `segaretro.org`'s scanned PDF): page 21, under the Team Roster
+    `Status` column documentation, states verbatim — *"If a player is
+    injured, 'Injury' appears as his status. A 'P' after injury indicates
+    'out for the period', while a 'G' indicates 'out for the game'. '4G'
+    indicates a four-game injury."* An exact match for the ROM's own
+    `Inj. P`/`Inj. G`/`Inj.1G`-`Inj.9G` table, upgrading this from a
+    plausible inference to a manual-confirmed identification. The manual
+    doesn't mention the `" C  "` entry specifically, so the captain-marker
+    guess remains unconfirmed. (The manual PDF itself isn't checked into
+    this repo — copyrighted EA/Sega material, same as the other raw
+    third-party sources in `.gitignore` — but it's now a citable source
+    for claims like this one.)
+
     **Months table, fully decoded** (ROM `0x08F1E6`-`0x08F228`): `October`,
     `November`, `December`, `January`, `February`, `March`, `April` — 7
     entries, stopping cleanly at April rather than trailing off

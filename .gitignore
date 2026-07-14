@@ -10,6 +10,7 @@ ghidra_project/
 # Our derived/transformed analysis of them (comparison CSVs, FINDINGS.md) is kept.
 docs/external_sources/nhl95com_full_stats.csv
 docs/external_sources/gamefaqs_28196_roster_ratings.txt
+docs/external_sources/nhl95_md_us_manual.pdf
 
 # OS / editor / tool cruft
 .DS_Store

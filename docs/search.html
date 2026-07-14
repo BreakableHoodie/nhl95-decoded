@@ -2,6 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<script>
+  (function () {
+    var saved = localStorage.getItem('nhl95-theme');
+    if (saved === 'light' || saved === 'dark') document.documentElement.setAttribute('data-theme', saved);
+  })();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Search — NHL 95 Decoded</title>
 <meta name="description" content="Search NHL 95 Decoded's findings and glossary, entirely in your browser.">
@@ -40,6 +46,11 @@
   <a class="nav-link" href="GLOSSARY.html">Glossary</a>
   <a class="nav-link current" href="search.html">Search</a>
   <span class="spacer"></span>
+  <div class="theme-switch" role="group" aria-label="Color theme">
+    <button type="button" data-theme-choice="light" title="Light theme">☀</button>
+    <button type="button" data-theme-choice="dark" title="Dark theme">☾</button>
+    <button type="button" data-theme-choice="auto" title="Match system theme">Auto</button>
+  </div>
   <a class="gh-link" href="https://github.com/BreakableHoodie/nhl95-decoded">Source ↗</a>
 </nav>
 <div class="page-wrap search-wrap">
@@ -51,6 +62,30 @@
   <div class="results" id="results"></div>
 </div>
 
+<script>
+(function () {
+  var KEY = 'nhl95-theme';
+  function setActive(mode) {
+    document.querySelectorAll('.theme-switch button').forEach(function (b) {
+      b.classList.toggle('active', b.dataset.themeChoice === mode);
+    });
+  }
+  setActive(localStorage.getItem(KEY) || 'auto');
+  document.querySelectorAll('.theme-switch button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var mode = b.dataset.themeChoice;
+      if (mode === 'auto') {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.removeItem(KEY);
+      } else {
+        document.documentElement.setAttribute('data-theme', mode);
+        localStorage.setItem(KEY, mode);
+      }
+      setActive(mode);
+    });
+  });
+})();
+</script>
 <script>
 (function () {
   var PAGES = [

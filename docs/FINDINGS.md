@@ -2232,16 +2232,26 @@ the *exact* consuming opcode, or at minimum a much faster way to
 bulk-collect live Overall Rating ground truth for future statistical
 cross-checks. Not traced this session — a concrete lead, not a finding.
 
-### 8.5 Full pre-game/pause menu, reconciled against static find (issue #13)
+### 8.5 Full pre-game/pause menu — fully mapped and closed (issue #13, closed)
 
-Live-confirmed (using the already-running session from item 11's period
-work) that a **normal, non-tied Regular Game's** pause `OPTIONS` tab
-scrolls through exactly: `RESUME GAME`, `INSTANT REPLAY`, `EDIT LINES`,
-`CHANGE GOALIE`, `MANUAL GOALIE`, `TIMEOUT`, `ABORT GAME` (7 items,
-confirmed by scrolling to both ends of the list). `SHOOTOUT SETUP` does
-**not** appear here — it only appears when `Play Mode: Shootout` is
-active (confirmed in 8.2), consistent with the static scan's larger list
-(which also included `TEAM ROSTER`, `SCORING SUMMARY`, `PENALTY SUMMARY`,
-`RECORD HOLDERS`, `GAME STATS`, `PERIOD STATS`, `PLAYER STATS`, `PLAYOFF
-STATS`, `SEASON PLAYERS`, `SEASON TEAMS`) being a union across *several*
-different modes' menu states, not one master list always fully visible.
+Live-confirmed that a **normal, non-tied Regular Game's** pause
+`OPTIONS` tab scrolls through exactly: `RESUME GAME`, `INSTANT REPLAY`,
+`EDIT LINES`, `CHANGE GOALIE`, `MANUAL GOALIE`, `TIMEOUT`, `ABORT GAME`
+(7 items, confirmed by scrolling to both ends of the list). `SHOOTOUT
+SETUP` does **not** appear here — it only appears when `Play Mode:
+Shootout` is active (confirmed in 8.2).
+
+The remaining static-only items turned out to belong to a *different*
+tab entirely: the pause menu's **`STATS` tab** (separate from `OPTIONS`)
+holds `GAME STATS`, `PERIOD STATS`, `PLAYER STATS` in every mode, plus a
+4th item, `PLAYOFF STATS`, that only appears during a Playoffs-mode game
+— confirmed live the same way `SHOOTOUT SETUP` was, by starting a real
+Playoffs game and scrolling the `STATS` tab. This fully explains the
+static scan's longer list: it was a union of the `OPTIONS` tab, the
+`STATS` tab, and (by strong but not independently re-confirmed analogy)
+the `INFO` tab's `TEAM ROSTER`/`SCORING SUMMARY`/`RECORD HOLDERS` items,
+across several different modes' menu states — not one master list ever
+shown all at once. `SEASON PLAYERS`/`SEASON TEAMS` are presumed to be the
+same `STATS`-tab pattern as `PLAYOFF STATS`, just for Season mode instead
+of Playoffs — a reasonable inference from the now-confirmed pattern,
+not independently checked live.

@@ -116,6 +116,15 @@ patterns. Contrast with **live tracing** above. Both matter here: static
 analysis is faster and safer to iterate on, but this project found real
 cases where it produced a wrong answer that only live tracing caught.
 
+**Struct (structure)** — a block of related data fields stored together at
+fixed byte offsets, like a form with labeled boxes at known positions. If
+a "team stats struct" starts at address `X`, then `X+0x00` might always
+hold Shots and `X+0x0C` might always hold Score, for *any* team's struct —
+learn the shape once (the offsets) and it works everywhere the struct is
+reused. Several of this project's cleanest findings are exactly this: a
+struct's shape found by reading ROM data, then confirmed live by checking
+those offsets against two different teams' scoreboards at once.
+
 **VDP (Video Display Processor)** — the Genesis's dedicated graphics
 chip, separate from the main 68k CPU. Mentioned mainly in the context of
 things this project *hasn't* fully cracked yet, where reading what the

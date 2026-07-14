@@ -40,14 +40,18 @@ HOME/AWAY-by-real-team gotcha already documented in CLAUDE.md for the
 0x3618/0x4FFA ROM position tables) -- worth re-checking with a different
 matchup before fully trusting them as universal.
 
-Clock/period are still unconfirmed -- worth doing next (see GitHub issue
-tracker). A blind live memory search isn't the way: BlastEm's
-`s FILENAME` full-RAM-dump command (which would make a before/after diff
-trivial) turned out to only exist inside the Z80 sub-debugger, not the
-main 68k prompt -- sending it there gets silently misparsed as the
-unrelated `s` (step-into) command instead, one instruction at a time,
-which is both slow and not what you want. The same static-table approach
-that cracked Score/Shots is the natural next attempt.
+Clock is now confirmed too (see FINDINGS.md sec 7#11) -- not via the
+static-table approach (that led to a red herring, the "Period Stats"
+end-of-period summary block, not the live HUD), but by value-matching: a
+live screenshot showed a known clock value, every plausible encoding was
+computed (BCD, total-seconds, frames), and a wide WRAM word-scan over the
+existing debugger socket found the real address by brute force. Confirmed
+twice independently, byte-exact against fresh screenshots both times.
+Period (WRAM 0xFFFFC02A, byte) is a strong candidate -- stable at the
+expected value, and corroborated by a neighboring word (0xFFFFC026)
+reading exactly 1200 (this session's 20-minute Per. Length setting, in
+seconds) -- but still pending a live-observed 1->2 transition as of this
+writing to reach the same confirmation tier as Score/Shots/Clock.
 """
 import argparse
 import csv
@@ -84,6 +88,13 @@ WATCH_ADDRESSES = {
     "score_away": (0xFFFFC288 + 0x0C, 2),
     "faceoffs_won_away": (0xFFFFC288 + 0x0E, 2),
     "body_checks_away": (0xFFFFC288 + 0x10, 2),
+    # Match-timing struct, found by value-matching a live screenshot's
+    # clock against a wide WRAM scan (see FINDINGS.md sec 7#11) -- clock
+    # confirmed twice, period is a strong but not yet transition-confirmed
+    # candidate (see the docstring note above).
+    "clock_seconds": (0xFFFFC022, 2),
+    "period_length_seconds": (0xFFFFC026, 2),
+    "period": (0xFFFFC02A, 1),
 }
 
 

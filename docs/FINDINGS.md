@@ -2013,3 +2013,46 @@ loop (`0x0083E88`). See §5.
     unconfirmed.
 
     See GitHub issue #8 for the full scan output.
+
+11. **Clock RAM address — solved, live-confirmed twice; period address —
+    a strong, corroborated candidate.** The remaining half of issue #11
+    (§7#9 solved Score/Shots; this closes Clock, and most of the way to
+    Period). Static analysis had already flagged the "Period Stats"
+    bytecode block near ROM `0x094FE0` as an end-of-period box-score
+    renderer, but that turned out to be the wrong target — it's a
+    *summary* display, not the live per-frame HUD clock. No amount of
+    xref-searching was going to find the real render call either (checked
+    — zero xrefs to any of these table addresses, same computed-dispatch
+    pattern as everything else in this ROM's UI system), so this one
+    needed a different approach than the rest of item 10: **value
+    matching** against a live screenshot instead of tracing code.
+
+    With a real CPU-vs-CPU game showing `1ST 16:49` on screen, computed
+    every plausible encoding of that value (BCD word, total-seconds word,
+    frame count) and wrote a small scanner
+    (`tools/nhl95_daemon.py`-adjacent, ad hoc for this search) that reads
+    a wide WRAM window word-by-word over the existing debugger socket,
+    checking each against the candidate list. One clean hit: **`0xFFFFC022`
+    (word) = `0x03F1` = 1009 decimal = 16×60+49 — exactly the displayed
+    clock, stored as total seconds remaining in the period.** Confirmed a
+    second time completely independently: after letting more game time
+    pass, `0xFFFFC022` read `0x03E5` (997 = 16:37) and later `0x0390` (912
+    = 15:12), both matching a fresh screenshot exactly, byte-for-byte,
+    with the score struct (§7#9) simultaneously confirmed still correct
+    on the same screenshots (`ASE` scored again mid-check, `VAN 2 - ASE
+    3` matched live memory too).
+
+    **Period**: `0xFFFFC02A` (byte) reads `0x01` throughout the 1st
+    period, stable and plausible, with strong circumstantial support from
+    the same WRAM neighborhood: `0xFFFFC026` (word) reads `0x04B0` = 1200
+    decimal = exactly 20.0 minutes in seconds — matching this game's
+    `Per. Length: 20 Minutes` setting exactly, independent corroboration
+    that this whole `0xFFFFC020`-`0xFFFFC02B` region really is the live
+    match-timing struct (clock, period length, and period number sitting
+    together), not a coincidental value match. See GitHub issue #11 for
+    whether a live-observed 1→2 transition ever confirmed it to the same
+    tier as Score/Shots/Clock.
+
+    `tools/nhl95_monitor.py`'s `WATCH_ADDRESSES` includes `clock_seconds`
+    (confirmed) and `period`/`period_length_seconds` (candidate) alongside
+    the existing Score/Shots entries.

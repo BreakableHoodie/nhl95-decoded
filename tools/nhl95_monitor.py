@@ -47,11 +47,18 @@ live screenshot showed a known clock value, every plausible encoding was
 computed (BCD, total-seconds, frames), and a wide WRAM word-scan over the
 existing debugger socket found the real address by brute force. Confirmed
 twice independently, byte-exact against fresh screenshots both times.
-Period (WRAM 0xFFFFC02A, byte) is a strong candidate -- stable at the
-expected value, and corroborated by a neighboring word (0xFFFFC026)
-reading exactly 1200 (this session's 20-minute Per. Length setting, in
-seconds) -- but still pending a live-observed 1->2 transition as of this
-writing to reach the same confirmation tier as Score/Shots/Clock.
+Period is confirmed too, but NOT at 0xFFFFC02A -- that byte looked like a
+clean 1-indexed period counter (rock-stable at 1 for an entire period)
+until a live-watched transition caught it jumping to 0x80, not 2. That
+mismatch was the signal to diff the whole surrounding struct
+(0xFFFFC000-0xFFFFC040) between a period-1 and period-2 reading instead
+of trusting the one plausible-looking candidate -- 0xFFFFC021 (byte) went
+cleanly 0x00 -> 0x01, a 0-indexed period counter sitting right next to
+the clock field, exactly where it structurally belongs. Whatever
+0xFFFFC02A actually is, it isn't the period number. 0xFFFFC026 (word) =
+1200 (this session's 20-minute Per. Length, in seconds) stayed constant
+across the transition, confirming it's period *length*, not number.
+See FINDINGS.md sec 7#11 for the full false-lead-then-fix story.
 """
 import argparse
 import csv
@@ -89,12 +96,14 @@ WATCH_ADDRESSES = {
     "faceoffs_won_away": (0xFFFFC288 + 0x0E, 2),
     "body_checks_away": (0xFFFFC288 + 0x10, 2),
     # Match-timing struct, found by value-matching a live screenshot's
-    # clock against a wide WRAM scan (see FINDINGS.md sec 7#11) -- clock
-    # confirmed twice, period is a strong but not yet transition-confirmed
-    # candidate (see the docstring note above).
+    # clock against a wide WRAM scan (see FINDINGS.md sec 7#11). Both
+    # clock and period are live-confirmed against real transitions --
+    # period is 0-indexed at 0xFFFFC021, NOT 0xFFFFC02A (a false lead,
+    # see the docstring note above for why that one looked plausible at
+    # first).
     "clock_seconds": (0xFFFFC022, 2),
     "period_length_seconds": (0xFFFFC026, 2),
-    "period": (0xFFFFC02A, 1),
+    "period": (0xFFFFC021, 1),
 }
 
 

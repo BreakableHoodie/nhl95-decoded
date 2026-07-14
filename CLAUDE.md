@@ -517,11 +517,11 @@ pluralization logic, found at ROM `0x09F2D5`+) and a "Team Stats"
 comparison table (`0x092410`+: Score/Shots/Shooting Pct/Power
 Play/Faceoffs Won/etc.).
 
-**Issue #11 (score/shots/clock/period RAM addresses) is now solved for
-Score, Shots, and Clock; Period is a strong, corroborated candidate.**
-The Team Stats table above turned out to double as a real offset table —
-its suffix field is a byte offset into a per-team stats struct, not just
-a label (`Shots`=`+0x00`, `Score`=`+0x0C`, `Faceoffs Won`=`+0x0E`, `Body
+**Issue #11 (score/shots/clock/period RAM addresses) is now fully solved
+— Score, Shots, Clock, and Period all live-confirmed.** The Team Stats
+table above turned out to double as a real offset table — its suffix
+field is a byte offset into a per-team stats struct, not just a label
+(`Shots`=`+0x00`, `Score`=`+0x0C`, `Faceoffs Won`=`+0x0E`, `Body
 Checks`=`+0x10`, `Power Play`=`+0x02`/`+0x04`, `Penalties`=`+0x06`/`+0x08`,
 `Passing`=`+0x14`). Struct bases confirmed live — `0xFFFFC5EE` (home/VAN)
 and `0xFFFFC288` (away/ASE) — byte-exact against the on-screen scoreboard
@@ -530,11 +530,19 @@ total seconds remaining) was cracked differently — the obvious static
 lead (a "Period Stats" bytecode block) turned out to be an end-of-period
 summary renderer, not the live HUD, so it needed value-matching against a
 live screenshot instead, confirmed twice independently, byte-exact both
-times. Period (`0xFFFFC02A`, byte) is stable at the expected value and
-corroborated by a neighboring word reading exactly 1200 (this session's
-20-minute Per. Length, in seconds) but pending a live-observed transition
-for full confirmation — see `docs/FINDINGS.md` §7#9/§7#11 and GitHub
-issue #11 for the current state. Not yet confirmed whether the struct
+times. **Period had a real false lead worth remembering**: the first
+candidate (`0xFFFFC02A`) looked perfect — rock-stable at `1` for an
+entire period — but a live-watched transition caught it jumping to `0x80`
+instead of a clean `2`, which was the signal to stop trusting a single
+stable-looking byte and diff the *whole* surrounding struct between a
+period-1 and period-2 reading instead. That found the real field:
+`0xFFFFC021` (byte) went cleanly `0x00`→`0x01`, 0-indexed, sitting right
+next to the clock — confirmed against a real 1→2 transition, with a
+second live run (2→3) chasing the same confirmation tier as Score/Shots.
+`0xFFFFC026` (word, constant `1200` = this session's 20-minute Per.
+Length in seconds) is period *length*, not number — see
+`docs/FINDINGS.md` §7#9/§7#11 and GitHub issue #11 for the full story.
+Not yet confirmed whether the struct
 addresses are universal home/away slots or session-specific — same
 caution as the `0x3618`/`0x4FFA` home/away gotcha below.
 

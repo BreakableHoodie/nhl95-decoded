@@ -2042,17 +2042,30 @@ loop (`0x0083E88`). See §5.
     on the same screenshots (`ASE` scored again mid-check, `VAN 2 - ASE
     3` matched live memory too).
 
-    **Period**: `0xFFFFC02A` (byte) reads `0x01` throughout the 1st
-    period, stable and plausible, with strong circumstantial support from
-    the same WRAM neighborhood: `0xFFFFC026` (word) reads `0x04B0` = 1200
-    decimal = exactly 20.0 minutes in seconds — matching this game's
-    `Per. Length: 20 Minutes` setting exactly, independent corroboration
-    that this whole `0xFFFFC020`-`0xFFFFC02B` region really is the live
-    match-timing struct (clock, period length, and period number sitting
-    together), not a coincidental value match. See GitHub issue #11 for
-    whether a live-observed 1→2 transition ever confirmed it to the same
-    tier as Score/Shots/Clock.
+    **Period — solved, live-confirmed against a real transition, but not
+    at the address first suspected.** The first candidate tried,
+    `0xFFFFC02A` (byte), read `0x01` rock-stable for the entire 1st
+    period — a promising sign — but a batch live run set up specifically
+    to watch it through a real period boundary caught it changing to
+    `0x80` at the transition, not the clean `0x02` a simple 1-indexed
+    counter would predict. That was the signal to stop trusting the
+    single candidate and instead diff the *whole* surrounding struct
+    (`0xFFFFC000`-`0xFFFFC040`) between a period-1 and a period-2 reading.
+    One field stood out immediately: **`0xFFFFC021` (byte) went cleanly
+    `0x00` → `0x01`** — a 0-indexed period counter (0 = 1st, 1 = 2nd),
+    sitting right next to the confirmed clock field (`0xFFFFC022`) in the
+    same small match-timing struct, exactly where a period counter would
+    structurally belong. Whatever `0xFFFFC02A` actually is, it isn't the
+    period number — a real false lead caught by verifying instead of
+    accepting the first plausible-looking stable byte. `0xFFFFC026`
+    (word) = `0x04B0` = 1200 decimal = 20.0 minutes stayed unchanged
+    across the transition, confirming it's period *length* (constant),
+    not period number, exactly as suspected.
+
+    Pushed for the same confirmation a second time (2nd → 3rd period) to
+    reach the same tier as Score/Shots/Clock rather than resting on one
+    transition — see GitHub issue #11 for whether that landed too.
 
     `tools/nhl95_monitor.py`'s `WATCH_ADDRESSES` includes `clock_seconds`
-    (confirmed) and `period`/`period_length_seconds` (candidate) alongside
+    and `period` (both confirmed) and `period_length_seconds` alongside
     the existing Score/Shots entries.

@@ -426,6 +426,50 @@ remains completely untested, not just unconfirmed. Still an open item for
 whoever picks it up next, but the "normal play" outcome is now on
 solid ground rather than a single anecdote.
 
+**Third independent reproduction, genuine CPU-vs-CPU, and this time with a
+real goal.** Both prior reproductions used an idle-but-human-assigned
+controller (a controller icon parked on a team column but never actually
+pressed) — worth distrusting as a full substitute for real play, since an
+idle "human" puck-carrier may just coast rather than shoot. This attempt
+instead parked *both* controller icons under the Controller Setup screen's
+`CPU` column (Boston vs. Edmonton), reproduced the same Sc1 LW→RW
+Smolinski substitution, and let the game run autonomously for real. Boston
+scored **8:05 into the 1st period, and the Scoring Summary screen credited
+it cleanly**: `BOS 20 B. Smolinski`, assisted by `43 A. Iafrate` and
+`30 J. Casey` — a normal, correctly-attributed goal scored by the
+cloned player himself, not a UI glitch or a phantom entry. Immediately
+after, the Team Roster read **`Status: Ice`, `Reg: 12`** — identical to
+both earlier reproductions. This is the strongest data point yet for the
+"plays completely normally" outcome: not just present and skating, but
+actively participating in the scoring play and getting properly credited
+for it. The other two friend-reported behaviors (bench arrival mid-play,
+corner celebration after a goal) *still* weren't caught, despite this being
+the first reproduction to actually produce a goal — no unusual celebration
+was visible in the post-goal replay/faceoff transition. Three independent
+reproductions across two sessions, two different away opponents (Vancouver,
+Edmonton), and now one real goal all agree on the same outcome, which makes
+"normal play, including scoring" the well-supported default behavior of
+this bug; the other two reported outcomes remain unconfirmed and are either
+rarer/state-dependent or specific to conditions not yet hit. Closing issue
+#10 on that basis.
+
+**Bonus mechanic found while chasing this reproduction: the pause menu's
+`EDIT LINES` always opens the away team's (`Team 2`'s) Line Editor,
+regardless of which controller — or whether any controller at all — is
+assigned to that team.** With both controllers parked under CPU (no
+controller-to-team association exists at all in that configuration),
+`EDIT LINES` still opened cleanly for whichever team was set as `Team 2` on
+the pre-Controller-Setup settings screen. Confirmed by deliberately
+swapping which team occupied the `Team 2` slot (first Vancouver, then
+Boston) and watching the Line Editor's own team header change to match —
+not tied to the controller that paused, a home/away photo side, or any
+other candidate. This is the practical reason earlier sessions could only
+ever reach the away team's lines from that menu (e.g. the Vancouver
+Line Editor opened during the penalty-kill investigation above): it isn't
+a controller-focus quirk, it's a fixed away-team default. To edit the
+*home* team's lines from this menu, set it as `Team 2` on the settings
+screen before starting the game.
+
 ---
 
 ## 4. Anomaly scan of the player database (roster/jersey data)

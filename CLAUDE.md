@@ -658,3 +658,32 @@ individually rather than batching multiple presses — done this way, 9
 consecutive steps came back perfectly clean. Trust single-step
 navigation only when done this carefully; don't batch multiple presses
 on this class of menu.
+
+**Issue #10 (Smolinski clone's live gameplay behavior) is now closed, on
+the strength of a third independent reproduction — this one with a real
+goal.** The first two reproductions used an idle-but-human-assigned
+controller (parked on a team column but never pressed), which risked
+under-testing "real" play. This session redid it with **both** controller
+icons parked under Controller Setup's `CPU` column (genuine AI-vs-AI,
+Boston vs. Edmonton), reproduced the same Sc1 LW→RW Smolinski
+substitution, and let it run unattended. Boston scored 8:05 into the 1st
+— the Scoring Summary screen credited it cleanly to `20 B. Smolinski`,
+assisted by Iafrate and Casey, a normal, correctly-attributed goal, not a
+glitch. Team Roster immediately after still read `Status: Ice`, `Reg: 12`
+— identical to both earlier reproductions. Three independent
+reproductions, two different away opponents, one real goal, all agreeing
+on "plays completely normally, including scoring" — that's now the
+well-supported default outcome. The other two friend-reported behaviors
+(bench arrival mid-play, corner celebration) still weren't caught despite
+this being the first attempt to actually produce a goal; they're left
+documented as unconfirmed rather than chased further. Full writeup in
+`docs/FINDINGS.md` §3.
+
+**Bonus mechanic discovered along the way, not previously documented**:
+the pause menu's `EDIT LINES` always opens the **away team's** (`Team 2`'s)
+Line Editor — not the paused controller's team, not a home/away photo
+side. Confirmed by swapping which team occupied the `Team 2` slot on the
+pre-Controller-Setup settings screen (first Vancouver, then Boston) and
+watching the Line Editor's own header track it exactly, even with *no*
+controller assigned to either team (both on CPU). To edit the home team's
+lines from this menu, set it as `Team 2` before starting the game.

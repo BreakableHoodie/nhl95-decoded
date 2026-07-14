@@ -1396,12 +1396,51 @@ before (see the `GLOSSARY.md` entry on the distinction).
 **Net effect**: the search space is narrower than ever — the real
 computation is now known to complete *before* a specific, reachable
 dispatch point (`0x000854B6`) rather than somewhere inside a five-primitive
-chain — but the exact instruction is still unfound. **Recommended next
-step**: trace backward from the dispatch itself (breakpoint
-`0x000854B6`, then work outward to *its* caller) looking for whatever
-code pushes the final rating onto the stack before the dispatch fires —
-that stack push, not anything inside the handler, is where the real
-arithmetic lives.
+chain — but the exact instruction is still unfound.
+
+**Same-session follow-up: found the dispatch is a real jump table, but
+"trace its caller" turned out to be the wrong framing — `jmp` doesn't
+push a return address, so there's no caller to walk back to.**
+Disassembling immediately before `0x000854B6` shows the actual mechanism:
+
+```
+000854AE  lea (0xE,PC),A0            ; A0 = table base = 0x000854C0
+000854B2  adda.w (0x0,A0,D4w*0x1),A0 ; A0 += word at [A0 + D4]  (byte-offset index, not *2)
+000854B6  jmp (A0)
+```
+
+A real PC-relative jump table, indexed by `D4` — **not `D0`**, which this
+session had been reading instead (an easy mistake: both are live and
+plausible-looking at the breakpoint). Read the table directly from the
+ROM file (no live tracing needed, it's static data): the first several
+entries resolve to a tight, plausible cluster of nearby addresses
+(`0x0855E6`, `0x085648`, `0x08566A`, `0x085600`, `0x085606`, ...,
+`0x0854CA` — the last matching this session's own live D0=3 observation
+exactly, strong circumstantial confirmation the table itself is real and
+correctly located) — but several other entries in the same 16-word span
+resolve to wildly distant, implausible addresses (`0x082500`, `0x0884F2`,
+`0x08BEC0`, ...), each 20,000+ bytes away from the tight cluster. That's
+not a data-corruption signal so much as a scope-of-the-table one: either
+the real table is shorter than 16 entries (with genuine unrelated code or
+a second table starting partway through what this session read as one
+block), or `D4`'s value isn't a simple sequential 0-14 category index the
+way `D0`'s was assumed to be — this session did not confirm which.
+
+**Honest assessment and a concretely scoped stopping point.** This is
+the *third* distinct sub-thread this project has chased on this exact
+question (the five-primitive Scouting-Report chain in earlier sessions;
+the Team-Roster handler-entry point and the ruled-out clamp lead earlier
+this session; now this dispatch table) — each one real, each one
+narrowing the target, none yet reaching the actual arithmetic. Per this
+project's own "escalate after repeated attempts at the same layer" rule,
+this is a natural pause point rather than a fourth guess. **Concretely
+scoped for whoever picks this up next**: breakpoint `0x000854B2`
+specifically (right where `D4` is consumed) during a Team-Roster-Overall
+redraw, read `D4` directly (not `D0`) to get the *real* index for the
+`Overall` category, then re-derive the table entry for that exact index
+from the static read above — that pins down whether the table really has
+noisy/out-of-range entries or whether this session simply mis-identified
+which index register mattered.
 
 **Breakthrough via a completely different method: external data correlation,
 not more live tracing.** The user pointed at a GameFAQs guide

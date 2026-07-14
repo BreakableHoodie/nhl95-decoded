@@ -1978,8 +1978,8 @@ loop (`0x0083E88`). See §5.
     **Injury-status abbreviation table**, fully decoded (ROM `0x085556`-
     `0x0855E4`): `Bench`, `Inj. P`, `Inj. G`, a blank 4-space entry,
     **` C  `**, `Inj. G` again, then `Inj.1G` through `Inj.9G`. Very
-    plausibly the Team
-    Roster `Status` column's injured-player display (a natural companion
+    plausibly the Team Roster `Status` column's injured-player display
+    (a natural companion
     to the `Injury to: [player], Out for [N] game(s)` announcement text
     from item 8) — issue #9 previously had no lead at all on this UI
     surface. The lone `" C  "` entry sitting in the middle, distinct from

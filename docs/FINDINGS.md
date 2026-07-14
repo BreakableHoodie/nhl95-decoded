@@ -453,6 +453,31 @@ this bug; the other two reported outcomes remain unconfirmed and are either
 rarer/state-dependent or specific to conditions not yet hit. Closing issue
 #10 on that basis.
 
+Boston went on to win the game 3-2, and the final Scoring Summary made the
+point even harder to argue with — **the cloned Smolinski scored twice**,
+not once:
+
+```
+Per  Time  Tm   Goal/Assist              P/S
+ 1   8:05  BOS  20 B. Smolinski
+                43 A. Iafrate
+                30 J. Casey
+ 1   8:44  EDM  39 D. Weight
+                9 S. Corson
+ 2   0:26  EDM  8 Z. Ciger
+                39 D. Weight
+                21 I. Kravchuk
+ 3   5:02  BOS  20 B. Smolinski
+ 3   7:04  BOS  43 A. Iafrate
+```
+
+Both Smolinski goals are clean, normal, individually-attributed entries —
+one assisted, one solo — sitting alongside three other perfectly ordinary
+goals from other players in the same box score. No full injury occurred
+anywhere in this game either (see GitHub issue #9 for that side quest,
+narrowed rather than closed — a single ~30-minute game apparently isn't
+enough real estate to reliably trigger one).
+
 **Bonus mechanic found while chasing this reproduction: the pause menu's
 `EDIT LINES` always opens the away team's (`Team 2`'s) Line Editor,
 regardless of which controller — or whether any controller at all — is

@@ -399,6 +399,21 @@ after a change, right as he takes possession) and ideally a direct read of
 the live on-ice-slot table, not a single pass. Left open in issue #10 with
 this fuller context.
 
+**Second independent reproduction, a later session: same outcome again.**
+Boston vs. Vancouver, same substitution (Smolinski LW→RW on Sc1 via the
+Line Editor), a fresh boot rather than a reused save state. Played roughly
+a minute of real game time (idle/autonomous — neither controller was
+actively driven) without a goal, then paused and read the Team Roster:
+**`Status: Ice`, `Reg` reading `12`** — identical to the first
+reproduction. Two independent data points now support "plays normally" as
+a real, repeatable outcome, not a fluke of the first attempt's specific
+timing. The other two reported behaviors (bench arrival mid-play, corner
+celebration after a goal) still weren't caught — this attempt didn't
+produce a goal at all, so the "corner celebration" hypothesis specifically
+remains completely untested, not just unconfirmed. Still an open item for
+whoever picks it up next, but the "normal play" outcome is now on
+solid ground rather than a single anecdote.
+
 ---
 
 ## 4. Anomaly scan of the player database (roster/jersey data)

@@ -295,6 +295,39 @@ compare/branch, and confirmed via direct RAM reads (`p/x 0xADDR.b`) that offset+
 player's index, and offset+5 (RW) receives Smolinski — exactly matching the on-screen
 clone.
 
+**Follow-up, suggested by a reader: what does live gameplay actually do with him
+once the clone exists?** Reproduced the bug fresh this session (Boston vs. Vancouver,
+Sc1, substituted Smolinski from LW onto RW via the in-game Line Editor's "Select
+Player" sub-menu — confirmed it doesn't exclude a player already on the line, which
+is exactly the precondition for this bug) and started a real game with the corrupted
+line active.
+
+Paused mid-shift and checked the live Team Roster screen's `Status` column — the
+same live indicator already used elsewhere in this document (§6) to distinguish
+`Bench` from an active player. **Direct result: Smolinski shows `Status: Ice`**, the
+same as any normally-playing teammate — not benched, not stuck in any special state
+visible through this indicator. But his `Reg` (regular-line) column reads **`12`**
+instead of the normal single line number — a real, live-visible artifact of the
+same underlying corruption, consistent with the line-appearance-counting logic
+(the same kind of counting already documented in §7 item 2) tallying him twice
+because his roster index legitimately occupies two slots on the one line.
+
+**What this does and doesn't prove.** Directly confirmed: he is not silently
+dropped from the ice, and there's no visible "broken/error" status — the game's
+own bookkeeping treats him as a legitimately active player, just double-counted.
+Not independently confirmed at the sprite/pixel level (would need either a
+direct read of the live 5-skater on-ice slot table, or a frame-perfect visual
+identification of two identically-dressed, unlabeled sprites during play, neither
+attempted this session) — but the evidence available is most consistent with the
+straightforward mechanical explanation: the game's per-shift lineup logic walks
+the line's 5 position slots (LD/RD/LW/C/RW) and instantiates an on-ice player for
+each, and since two of those slots resolve to the same roster index, it most likely
+places two independent, normally-AI/player-controlled copies of Smolinski on the
+ice at once — one at LW, one at RW — rather than benching one or leaving a
+position empty. Nothing observed supports a "frozen in a corner" or "stuck on
+bench" outcome; both would be visible as `Status: Bench` or a stalled game clock,
+neither of which occurred.
+
 ---
 
 ## 4. Anomaly scan of the player database (roster/jersey data)

@@ -2294,7 +2294,7 @@ loop (`0x0083E88`). See §5.
       in `D0`, a team-level field (`team_struct+0x28`) in `D7`, and a
       player-index-derived value in `D1` — almost certainly the actual
       "write injured status to the roster + trigger the on-screen
-      announcement" routine. `0x9F1EA` itself is not yet traced.
+      announcement" routine.
 
    **Why this matters beyond just this one item**: this is the first time
    this project has found a *compound probability gate* (two independent
@@ -2314,7 +2314,53 @@ loop (`0x0083E88`). See §5.
    against real values, then correlate against the next `Injury to:`
    text that actually renders.
 
-9. **Score/Shots RAM addresses — solved, live-confirmed against two real
+   **Same static-analysis session, one more push: `0x9F1EA` itself — the
+   "apply + announce" routine — is now fully decoded too**, done while
+   the VM was tied up running the live breakpoint hunt above (didn't need
+   it — this was pure ROM reading). The full body (`0x9F1EA`-`0x9F230`,
+   ends cleanly at `rts`) is a compact, self-consistent write routine:
+
+   - `bset.b #0x1,($FFFFBF0E).w` — a **fourth** distinct flag address in
+     this mechanism (alongside `$FFFFBF10`, `$FFFFBF08`, `$FFFFD1A7`,
+     `$FFFFBF02`), set unconditionally the instant an injury is applied —
+     the strongest candidate yet for "trigger the on-screen `Injury to:`
+     announcement," since everything upstream of this point is pure
+     eligibility-checking with no rendering.
+   - `move.w D0w,($FFFFDC6A).w` — the computed duration (`D0`, the ~1-5
+     games value from step 8) gets stored to a single, clean WRAM word,
+     `$FFFFDC6A`. Plausibly "duration of the most recent injury," read
+     back by whatever digit-print call renders the `[N]` in `"Out for
+     [N] game(s)"`.
+   - The real payload: `D7` (`team_struct+0x28`) is multiplied by `0x1C`
+     (28) to index into a table based at a *computed* address (`A0`,
+     built from a `movea.l #0x0020BCB8,A0` + `adda.l D7,A0`). The player
+     index (`D1`) is then split: `D2 = (D1 >> 1) × 2` word-aligns it (two
+     players share one 16-bit word), and `D1` bit 0 picks which half —
+     **even player index → duration written into the high nibble, odd →
+     low nibble**, with the other nibble of the existing word explicitly
+     preserved (`andi.w #0xF`/`#0xF0` before the merge). This is the
+     *exact same* "pack two small values into one byte/word via nibbles"
+     philosophy this project already found governs all 14 named player
+     attributes (§6) — now confirmed to extend to live injury-duration
+     status too, not just static roster data. Net picture: a **per-team,
+     per-player nibble table** (28-byte team stride, 2 players per word,
+     4 bits per player) that's the actual durable "this player is hurt
+     for N games" record, distinct from the transient `-3`/`-4`
+     sentinel written earlier in the *eligibility-check* routine (§ item
+     8 step 4-5) — a two-tier design: a short-lived in-struct flag during
+     the roll, and this separate lasting table for the real outcome.
+   - **One piece flagged honestly as unresolved, not guessed at**: the
+     `0x0020BCB8` table base is ~48KB past the end of this 2MB ROM
+     (`0x200000`). A naive power-of-2 address mask (`0x20BCB8 &
+     0x1FFFFF` = `0xBCB8`) is the obvious mirroring guess, but the bytes
+     sitting at that mirrored offset disassemble as plausible 68k *code*,
+     not a data table — so simple mirroring doesn't hold up, and Genesis
+     open-bus/unmapped-region read behavior is a genuine hardware quirk
+     that static analysis alone can't resolve. Rather than force a
+     confident answer, this is left open pending a live read of `A0`
+     right after the `adda.l D7,A0` at `0x9F202` — a small, cheap,
+     precisely-scoped follow-up once the VM is free again, not a blocker
+     on anything else in this writeup.
    goals.** Built for `tools/nhl95_monitor.py` (the unattended CPU-vs-CPU
    instrumentation tool — see §1), which needed to know where the score
    lives so it can catch scoring events without a human watching the

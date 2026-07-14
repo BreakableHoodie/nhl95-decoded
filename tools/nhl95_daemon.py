@@ -28,15 +28,39 @@ Usage (run ON the VM):
                                              # rather than a fixed ~4min wait
     python3 nhl95_daemon.py stop
     python3 nhl95_daemon.py status
+
+    # Multi-instance (run several emulators in parallel, e.g. to hunt a
+    # rare live event N-times faster, or so one instance blocking on a
+    # long single-stepped waitbp doesn't tie up all VM interaction):
+    # add --id NAME to any action to use a separate socket/pid/log/window
+    # instead of the default unsuffixed one. Every instance shares the
+    # same X display (:1) and is told apart for screenshot purposes by
+    # its blastem child's own PID via `xdotool search --pid`, not by
+    # window position -- so instances don't need separate Xvfb displays.
+    python3 nhl95_daemon.py start --id 2 --state STATEFILE
+    python3 nhl95ctl.py --id 2 <command...>   # nhl95ctl.py, not this file
+
 Client:
     python3 nhl95ctl.py <command...>
 """
 import sys, os, socket, subprocess, pty, select, time, signal, fcntl
 
 HOME = os.path.expanduser("~")
-SOCK_PATH = os.path.join(HOME, ".nhl95ctl.sock")
-PID_PATH = os.path.join(HOME, ".nhl95ctl.pid")
-LOG_PATH = os.path.join(HOME, ".nhl95ctl.log")
+
+
+def _paths(instance_id):
+    """Socket/pid/log paths for a given instance id ('' = default, matches
+    every pre-multi-instance invocation byte-for-byte so existing running
+    daemons and all documented recipes are unaffected)."""
+    suffix = f"-{instance_id}" if instance_id else ""
+    return (
+        os.path.join(HOME, f".nhl95ctl{suffix}.sock"),
+        os.path.join(HOME, f".nhl95ctl{suffix}.pid"),
+        os.path.join(HOME, f".nhl95ctl{suffix}.log"),
+    )
+
+
+SOCK_PATH, PID_PATH, LOG_PATH = _paths("")
 ROM = os.path.join(HOME, "NHL 95 (USA, Europe).gen")
 BLASTEM_DIR = os.path.join(HOME, "blastem-src")
 BLASTEM_BIN = os.path.join(BLASTEM_DIR, "blastem")
@@ -214,10 +238,27 @@ class BlastemSession:
 
     def cmd_screenshot(self, args):
         path = args[0] if args else "/tmp/nhl95ctl_shot.png"
-        result = subprocess.run(["scrot", "-o", path], env={**os.environ, "DISPLAY": ":1"},
-                                 check=False, capture_output=True, text=True)
+        env = {**os.environ, "DISPLAY": ":1"}
+        # Multiple blastem instances can share display :1 (see the
+        # multi-instance note in this file's docstring), so a plain
+        # whole-screen `scrot` would capture whichever window is on top,
+        # not necessarily this instance's. Find *this* session's own
+        # window by its blastem child's PID and capture just that one;
+        # fall back to the old whole-screen behavior (correct for the
+        # single-instance case) if the window lookup ever comes up empty.
+        win_result = subprocess.run(
+            ["xdotool", "search", "--pid", str(self.proc.pid)],
+            env=env, capture_output=True, text=True, check=False,
+        )
+        win_ids = [w for w in win_result.stdout.split() if w]
+        if win_ids:
+            result = subprocess.run(["import", "-window", win_ids[0], path],
+                                     env=env, check=False, capture_output=True, text=True)
+        else:
+            result = subprocess.run(["scrot", "-o", path], env=env,
+                                     check=False, capture_output=True, text=True)
         if result.returncode != 0 or not os.path.exists(path):
-            return f"ERR screenshot failed (scrot rc={result.returncode}): {result.stderr.strip()}"
+            return f"ERR screenshot failed (rc={result.returncode}): {result.stderr.strip()}"
         return f"OK {path}"
 
     def cmd_status(self, args):
@@ -304,10 +345,13 @@ def serve(statefile):
 
 
 def main():
+    global SOCK_PATH, PID_PATH, LOG_PATH
     if len(sys.argv) < 2:
         print(__doc__)
         sys.exit(1)
     action = sys.argv[1]
+    if "--id" in sys.argv:
+        SOCK_PATH, PID_PATH, LOG_PATH = _paths(sys.argv[sys.argv.index("--id") + 1])
     if action == "start":
         statefile = os.path.join(HOME, "controller_setup.state")
         if "--fresh" in sys.argv:

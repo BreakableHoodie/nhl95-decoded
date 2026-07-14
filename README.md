@@ -11,7 +11,9 @@ same docs below, plus a [search page](https://breakablehoodie.github.io/nhl95-de
 found, in plain English, no assembly required.**
 **Want the proof? [`docs/FINDINGS.md`](docs/FINDINGS.md) is the full
 technical write-up** — every claim backed by ROM addresses, disassembly,
-and live-debugger evidence.
+and live-debugger evidence. **Unfamiliar term anywhere (what's a
+"nibble"?)? [`docs/GLOSSARY.md`](docs/GLOSSARY.md)** explains every piece
+of jargon in plain English.
 
 ## Why should you care?
 

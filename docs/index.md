@@ -11,6 +11,7 @@ Sega Genesis classic.
 found, no assembly required.
 **Want the proof? [Read the full technical write-up →](FINDINGS.md)** —
 every claim backed by ROM addresses and live-debugger evidence.
+**Don't know what a "nibble" is? [Check the glossary →](GLOSSARY.md)**
 
 ## Why should you care?
 
@@ -38,4 +39,4 @@ the NHL 95 community has argued about for 30 years:
   confirmed byte-for-byte against a live penalty kill — including *why*
   the Line Editor sometimes shows one line and sometimes shows all seven.
 
-**[Plain English →](OVERVIEW.md)** · **[Full technical write-up →](FINDINGS.md)** · **[Search →](search.html)** · [Source on GitHub](https://github.com/BreakableHoodie/nhl95-decoded)
+**[Plain English →](OVERVIEW.md)** · **[Full technical write-up →](FINDINGS.md)** · **[Glossary →](GLOSSARY.md)** · **[Search →](search.html)** · [Source on GitHub](https://github.com/BreakableHoodie/nhl95-decoded)

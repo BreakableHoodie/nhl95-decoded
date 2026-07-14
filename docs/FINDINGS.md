@@ -45,7 +45,10 @@ corrections in §7 for two honest, recent examples), not tidied away. If
 you just want the current answer, §5 and §6 both open with a **quick
 reference** (a diagram, a table) before the narrative — read that, skip
 the rest unless you want the evidence trail. [`OVERVIEW.md`](OVERVIEW.md)
-skips the trail entirely if that's all you want.
+skips the trail entirely if that's all you want, and
+[`GLOSSARY.md`](GLOSSARY.md) explains every technical term (nibble, ROM,
+breakpoint, and so on) in plain English if any of the vocabulary here is
+unfamiliar.
 
 ---
 

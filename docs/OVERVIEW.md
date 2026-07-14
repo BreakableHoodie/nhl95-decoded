@@ -5,7 +5,10 @@ addresses, or emulator jargon — just what's actually true about how the
 game works, and why it matters if you've ever played it. If you want the
 byte-level proof behind any of this, the technical write-up is
 [`FINDINGS.md`](FINDINGS.md); every claim here has a matching, evidenced
-section over there.
+section over there. Run into an unfamiliar word anywhere (including on
+this page)? Check the [`GLOSSARY.md`](GLOSSARY.md) — plain-English
+definitions for every technical term used, including things like "nibble"
+that even this page uses without explaining.
 
 - ["Hot and cold streaks" are 100% real](#hot-and-cold-streaks-are-100-real--heres-exactly-how-they-work)
 - [We cracked the exact formula behind every player's rating](#we-cracked-the-exact-formula-behind-every-players-rating)

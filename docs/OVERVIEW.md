@@ -11,6 +11,7 @@ definitions for every technical term used, including things like "nibble"
 that even this page uses without explaining.
 
 - ["Hot and cold streaks" are 100% real](#hot-and-cold-streaks-are-100-real--heres-exactly-how-they-work)
+- [Injuries are real — and rarer than you'd think](#injuries-are-real--and-rarer-than-youd-think)
 - [We cracked the exact formula behind every player's rating](#we-cracked-the-exact-formula-behind-every-players-rating)
 - [The Line Editor "clone" bug — root cause found](#the-line-editor-clone-bug--root-cause-found-and-its-just-one-player)
 - [The full 7-line system](#the-full-7-line-system-confirmed-against-a-real-penalty-kill)
@@ -46,6 +47,44 @@ thing:**
   what the game actually displayed live, and the gap matched that
   player's random adjustment almost exactly. So a "cold" player really is
   worse that game, not just narrated as worse.
+
+## Injuries are real — and rarer than you'd think
+
+Old strategy guides mention players getting hurt, but nobody had ever
+documented how it actually works — or even confirmed it was a real,
+coded mechanic rather than just flavor text. We found the exact code,
+and the honest answer to "why have I never seen it happen" is: **it's
+not one dice roll, it's two, and both have to go the player's way.**
+
+- After a hit, the game first rolls to decide whether the hit was even
+  hard enough to risk an injury at all.
+- If that succeeds, a few settings have to be in the right state (one
+  of them is almost certainly whether you've turned `Injuries` on in
+  Season mode's setup screen at all).
+- Then — and this is the part that explains a lot — there's a
+  **second, completely independent coin flip.** Even a hit that clears
+  every check above only actually produces an injury about half the
+  time.
+- Only after *both* rolls succeed does the game decide how long the
+  player is out for, which isn't a fixed number per injury type — it's
+  randomly computed on the spot, working out to roughly 1 to 5 games.
+
+So if you've played this game for years and never seen a real in-game
+injury, that's not bad luck or a broken feature — it's two independent
+low-probability events stacked on top of each other, exactly as
+designed. We confirmed this the hard way: watched two complete games
+end to end (one of them with the `Injuries` setting explicitly turned
+on) and neither produced a single injury, which used to look like a
+dead end until we found the code and realized that outcome is actually
+expected, not surprising.
+
+One nice bonus: once an injury *does* happen, the game remembers "how
+long is this player out for" using the exact same space-saving trick
+it uses for player ratings elsewhere — squeezing two players' status
+into a single number instead of giving each player their own full
+byte. A neat, very on-brand piece of 1994 cartridge engineering, turning
+up in a completely different corner of the game than where we first
+found it.
 
 ## We cracked the exact formula behind every player's rating
 

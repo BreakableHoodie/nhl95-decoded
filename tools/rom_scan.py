@@ -125,7 +125,7 @@ def parse_plain_records(rom, start, end):
     return records
 
 
-def parse_stride_records(rom, start, end, max_length=20):
+def parse_stride_records(rom, start, end, max_length=32):
     """Decodes a third string-record format, found while re-examining the
     injury-status and months tables (FINDINGS.md section 7#10) after they
     didn't cleanly fit either format above: `[0x00][length][text, SPACE-

@@ -1993,13 +1993,23 @@ loop (`0x0083E88`). See §5.
     (regular-season months for a 1994 game, not the full calendar year) —
     plausibly a Season-mode calendar/schedule table.
 
-    **Lower-confidence lead, not fully resolved — flagging rather than
-    dropping:** a **goalie-specific stats/box-score table** at ROM
-    `0x092AD0`-`0x092B76`: `Saves`, `Shots`, `Save %`, `Goalie Saves`,
-    `Assists`, `Shots On Goal`. Likely a second, goalie-specific
-    counterpart to the per-team `Score`/`Shots` struct from item 9, but
-    the suffix values here (`0x0006`, `0x0016`) look more like they could
-    be column-header layout flags than struct offsets, and it didn't
-    obviously fit the stride-only format above either — not verified live.
+    **Goalie stat-cycle table, also fully resolved** (ROM `0x092AD0`-
+    `0x092B94`, same stride format as above once the parser's length cap
+    was widened past 20): a compact header row `Saves Shots Save %  `,
+    single/short column abbreviations `G`, `A`, `Pts`, `SOG`, `PIM`, then
+    the same bracketed `[ Category ]` widget style already known from the
+    skater/goalie *attribute* cycle (§6's `[Energy]`/`[Agility]`/...) —
+    but for a goalie's *offensive* stat cycle instead: `[ Goals ]`,
+    `[ Assists ]`, `[ Points ]`, `[ Shots On Goal ]`, `[ Penalty
+    Minutes ]` (plus a `    Goalie Saves   ]` entry immediately before
+    them, oddly missing its opening bracket in the ROM data itself — not a
+    parsing artifact, the four leading bytes there really are spaces, not
+    `[`). Confirms this game tracks goals/assists/points for goalies as a
+    real stat cycle, not just saves/save % — a fun, hockey-nerdy detail
+    (goalie goals and assists are rare but real in the NHL) that wasn't
+    previously known to exist in this ROM's data. Not yet found live on
+    any explored screen; the Team Roster's existing goalie attribute cycle
+    (§6) is a plausible place a second, stat-focused cycle could live,
+    unconfirmed.
 
     See GitHub issue #8 for the full scan output.

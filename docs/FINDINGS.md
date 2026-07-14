@@ -103,18 +103,26 @@ in-game Team 1/Team 2 exhibition selector cycles in *exactly* ROM storage order
 with one single, striking exception: **Dallas is completely absent from the
 selectable list** — cycling hits `... Hartford → Los Angeles → Montreal ...`,
 skipping ROM index 10 entirely, despite Dallas having a full, valid roster stored
-in the ROM (playable in no menu we've found so far). The two All-Star rosters
+in the ROM. The two All-Star rosters
 (stored *before* the real teams in ROM) appear at the *end* of the menu cycle
 instead — the full loop is `Anaheim → Boston → ... → Washington → All Stars East
 → All Stars West → (wraps to) Anaheim`. Real-world context: the Dallas Stars were
 a brand-new 1993-94 relocation from Minnesota, active for barely one season before
 this ROM shipped — the simplest explanation is Dallas was added to the roster data
 late and never got wired into the exhibition team-count/loop, leaving it as a
-fully-modeled but functionally unreachable team in the shipped game (at least via
-this menu — Season mode is untested). This resolves the "implies a separate
-menu→index lookup table" framing from earlier in this section: there isn't a
-scrambled lookup table to find — the menu walks ROM order directly, it's just
-missing one entry and has two extras appended at the wrap point.
+fully-modeled team that's unreachable *specifically through this one menu*. This
+resolves the "implies a separate menu→index lookup table" framing from earlier in
+this section: there isn't a scrambled lookup table to find — the menu walks ROM
+order directly, it's just missing one entry and has two extras appended at the
+wrap point.
+
+**Dallas *is* playable — confirmed live, via Season mode.** A true fresh boot
+(`nhl95_daemon.py start --fresh`) → Play Mode → New Season → Season Setup → Games
+Today schedule browser shows a real "Detroit at Dallas" fixture, selectable with
+`A` (Human/Computer toggle) exactly like every other matchup. So the omission is
+specific to the Exhibition menu's team-loop, not a general "Dallas is unreachable"
+situation — whoever built the Season mode schedule generator wired Dallas in
+correctly. See GitHub issue #7 for the full trace.
 
 Each team record is laid out as:
 
@@ -1181,8 +1189,8 @@ lead) multiplies by something close to these same small integers.
 ## 7. Open questions / candidate next steps
 
 **Live-tracked as GitHub issues, not just here**: every open item below (plus
-a few new ones — goalie-stat cross-validation, AI/difficulty, Dallas/Season
-mode, and mapping more of the UI string-table system) has a corresponding
+a few new ones — goalie-stat cross-validation, AI/difficulty, and mapping
+more of the UI string-table system) has a corresponding
 issue at
 [github.com/BreakableHoodie/nhl95-decoded/issues](https://github.com/BreakableHoodie/nhl95-decoded/issues),
 labeled `investigation`. This section stays the narrative record of *why*;
@@ -1309,7 +1317,10 @@ loop (`0x0083E88`). See §5.
    All-Star rosters are appended at the wrap point instead of appearing where
    they're stored. See §2.1 for the full writeup and the likely explanation
    (Dallas was a brand-new 1993-94 relocation, probably added to the data too
-   late to get wired into the menu's team count/loop).
+   late to get wired into the menu's team count/loop). **Follow-up, live-
+   confirmed: Dallas is playable after all, just not through this specific
+   menu** — Season mode's schedule browser has a real, selectable "Detroit at
+   Dallas" fixture. See §2.1 and GitHub issue #7 (closed).
 4. ~~Check whether jersey number is used as a lookup key anywhere~~ — **checked,
    reasonably confident negative result, not exhaustively proven.** See §4: every
    subsystem mapped this session keys on roster index, never jersey number;

@@ -63,8 +63,11 @@ the NHL 95 community has argued about for 30 years:
 - **`tools/`** — the actual scripts and live-debugger tooling used to do
   this work: a Ghidra data-dump script, a persistent BlastEm
   debugger-console daemon (`nhl95_daemon.py`/`nhl95ctl.py`) for scripted
-  live tracing over SSH, and the statistical correlation scripts behind
-  the rating-formula work.
+  live tracing over SSH, an unattended-game instrumentation script
+  (`nhl95_monitor.py`) that polls RAM during CPU-vs-CPU games and logs
+  state changes to CSV instead of hand-driving screenshots, a static ROM
+  string/pattern scanner (`rom_scan.py`), and the statistical correlation
+  scripts behind the rating-formula work.
 
 **Not included, on purpose:** the ROM file itself (Sega's copyrighted
 binary), the Ghidra project database (it embeds analyzed ROM bytes), and

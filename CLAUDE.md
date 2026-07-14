@@ -115,7 +115,21 @@ root-cause first, then check whether the same failure mode is systemic (§3,
   making it look like this settings screen doesn't exist in the normal flow.
   It does — just don't press anything between the credits ending and taking
   a screenshot. Launch with `blastem -s ~/STATE_FILE -d ...` to skip the
-  ~4-minute mandatory credits scroll on every run. To capture a *new* named
+  ~4-minute mandatory credits scroll on every run — or if you specifically
+  need a *true* fresh boot (no savestate can substitute, e.g. testing
+  Season mode's team list or getting a fresh §5 hot/cold RNG seed):
+  **confirmed live this session that the credits are skippable in roughly
+  1-2 minutes, not the full ~4, via a single Start press once you're past
+  the opening EA Sports/production-company logos** (not immediately at
+  power-on — an early press there does nothing useful, and repeatedly
+  mashing Start early risks looking "stuck" on a long static-looking
+  transition frame that's actually still progressing normally, not
+  broken — confirmed by comparing a mashed-Start attempt against a
+  pure-idle attempt landing on the *exact same* frame, and by checking
+  the debugger showed the CPU still executing normally throughout, not
+  hung). Use `nhl95_daemon.py start --fresh` (added this session) for
+  this, then a single `press start` once the screen has been static for
+  a while, not several rapid ones. To capture a *new* named
   savestate: launch with no `-s` flag for a true fresh boot, navigate to the
   desired screen, press the in-game save-state key (bound to backtick, see
   below) — it writes to `~/.local/share/blastem/NHL 95 (USA,

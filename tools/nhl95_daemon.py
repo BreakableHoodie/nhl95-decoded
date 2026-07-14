@@ -14,6 +14,18 @@ so a dropped SSH session never kills the emulator.
 
 Usage (run ON the VM):
     python3 nhl95_daemon.py start [--state STATEFILE]
+    python3 nhl95_daemon.py start --fresh   # true power-on boot, no -s flag,
+                                             # for anything that needs the
+                                             # title screen / credits / a
+                                             # genuinely fresh SRAM (e.g.
+                                             # testing Season mode's team
+                                             # list, or re-rolling the §5
+                                             # hot/cold RNG seed) -- costs
+                                             # the full credits scroll, but
+                                             # see the CLAUDE.md gotcha:
+                                             # that may be skippable early
+                                             # with a well-timed Start press
+                                             # rather than a fixed ~4min wait
     python3 nhl95_daemon.py stop
     python3 nhl95_daemon.py status
 Client:
@@ -51,7 +63,11 @@ class BlastemSession:
         env = os.environ.copy()
         env["SDL_AUDIODRIVER"] = "dummy"
         env["DISPLAY"] = ":1"
-        cmd = [BLASTEM_BIN, "-s", statefile, "-d", ROM]
+        # statefile=None means a true fresh boot (no -s flag at all) --
+        # needed for anything that requires the actual title screen /
+        # credits / fresh SRAM, which no savestate can substitute for
+        # since they're all captured *after* that point.
+        cmd = [BLASTEM_BIN, "-s", statefile, "-d", ROM] if statefile else [BLASTEM_BIN, "-d", ROM]
         self.proc = subprocess.Popen(
             cmd, cwd=BLASTEM_DIR, stdin=slave, stdout=slave, stderr=slave,
             env=env, preexec_fn=os.setsid, close_fds=True,
@@ -295,7 +311,9 @@ def main():
     action = sys.argv[1]
     if action == "start":
         statefile = os.path.join(HOME, "controller_setup.state")
-        if "--state" in sys.argv:
+        if "--fresh" in sys.argv:
+            statefile = None
+        elif "--state" in sys.argv:
             statefile = sys.argv[sys.argv.index("--state") + 1]
         if os.path.exists(PID_PATH):
             print("Already running? (remove", PID_PATH, "if stale)")

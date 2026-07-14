@@ -711,3 +711,20 @@ Courtnall's case (predicted+modifier 89.7 vs. live 98) missed by 8, but
 effect this document had already flagged as suspected-but-unconfirmed
 from CSV-comparison outliers, now with a live example. Full writeup in
 `docs/FINDINGS.md` §5.
+
+**Issue #12 (Season-mode end-of-season awards table) is also closed,
+same session — fully decoded statically.** Found while widening the scan
+window around a lead item 10 (issue #8) had only partially seen. Needed a
+fourth string-record format: no suffix field, `[0x00][u16 length][text]`
+with a *2-byte* length (the existing `parse_stride_records` helper only
+handles a 1-byte length and silently finds nothing on tables like this
+one). The complete table is 9 real 1994-95 NHL trophies (Hart, Norris,
+Vezina, Art Ross, Jennings, Pearson, Selke, Presidents, Conn Smythe) each
+correctly paired with its real award criteria. Live-reachability was
+checked but stayed inconclusive: Season mode's `End Season After Today`
+shortcut really does skip the 84-game grind, but going `On To Playoffs`
+from there lands straight in a real bracket with no awards screen shown
+— doesn't rule the table out (Conn Smythe needs an actual playoff
+champion first), but confirming it live would mean actually winning the
+single-game/5-min-period bracket, a genuinely open-ended follow-up not
+attempted. Full writeup in `docs/FINDINGS.md` §7 item 12.

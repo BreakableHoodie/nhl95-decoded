@@ -2302,6 +2302,63 @@ loop (`0x0083E88`). See §5.
     `period`, and `period_length_seconds`, all confirmed, alongside the
     existing Score/Shots entries.
 
+12. **Season-mode end-of-season awards table (issue #12) — fully decoded
+    statically, live-reachability partially checked.** Flagged as a lead
+    during item 10's scan (found near an unrelated table, only partially
+    visible in that scan's window) but not chased at the time. Widening the
+    scan window (ROM `0x09C600`-`0x09CC00`) and re-parsing found the
+    complete table — but it needed a **fourth string-record format**, not
+    the "plain" `[u16 length][text][u16 suffix]` shape the original quick
+    check guessed: this table has **no suffix field at all**, just
+    `[0x00][u16 length][text, even-padded]` with `length` counting the
+    2-byte header plus text (`stride = length`). That's structurally the
+    *same* no-suffix convention already known from the injury-status and
+    months tables (item 10), just with a 2-byte length field there instead
+    of the 1-byte one those tables used — a real gotcha: naively reusing
+    `parse_stride_records` (which hard-codes a 1-byte length check) finds
+    nothing here, because its strict same-position, no-byte-skipping scan
+    never lands on a valid header when the header shape itself is
+    different. A one-off 2-byte-length variant of the same scan found the
+    complete table cleanly.
+
+    **Nine real trophies, in ROM order** (`0x09C81E`-`0x09C8DC`): `HART
+    MEMORIAL TROPHY`, `JAMES NORRIS TROPHY`, `VEZINA TROPHY`, `ART ROSS
+    TROPHY`, `WILLIAM JENNINGS TROPHY`, `LESTER B. PEARSON AWARD`, `FRANK
+    SELKE AWARD`, `PRESIDENTS TROPHY`, `CONN SMYTHE AWARD` — the complete,
+    real 1994-95 NHL awards slate, not a fictionalized subset. Immediately
+    followed by their award-criteria description strings, in the same
+    order (`0x09C8DC`-`0x09C9DE`): `Most Valuable Player`, `Best
+    Defenseman`, `Best Goalkeeper`, `Most Points`, `Goalie with Fewest
+    Goals Against`, `NHLPA Most Valuable Player`, `Best Defensive
+    Forward`, `Team with Best Regular Season Record`, `Most Valuable
+    Player` + `In Playoffs` (Conn Smythe's two-part qualifier) — matching
+    each trophy to its real-world criteria exactly (Norris↔defenseman,
+    Vezina↔goalkeeper, Art Ross↔points, Jennings↔goals against,
+    Selke↔defensive forward, Presidents↔regular-season record, Conn
+    Smythe↔playoff MVP). A few blank/space-only records are interleaved
+    (visible in the raw parse) — plausibly layout spacers for the
+    presentation screen, not missing data.
+
+    **Live-reachability: checked, inconclusive rather than confirmed.**
+    Season mode's `SEASON OPTIONS` hub has an `End Season After Today`
+    item that looked like a promising shortcut to test this without an
+    84-game playthrough — and it does work as a shortcut in the sense that
+    selecting it (then `Play Games`) genuinely ends the regular season
+    instantly and swaps the whole `SEASON OPTIONS` menu for a shorter
+    post-season one topped by `On To Playoffs`, no 84-game grind needed.
+    But confirming that and stepping `On To Playoffs` went **straight into
+    a real Playoffs Day 1 bracket** (St. Louis/Dallas, Chicago/Anaheim,
+    Vancouver/Edmonton) with no awards presentation shown in between. This
+    doesn't rule out the table being live-reachable — the presentation may
+    only fire after actually completing the *playoffs* too (Conn Smythe
+    specifically needs a playoff MVP, which can't be known before a
+    champion exists), or `End Season After Today`'s fast-forward path may
+    itself skip a ceremony that a natural 84-game completion would trigger
+    — but running the single-game, 5-minute-period playoff bracket to a
+    real Cup winner to check is a genuinely open-ended follow-up, not
+    attempted this session. Recorded as a real, useful negative data point
+    rather than left unchecked.
+
 ---
 
 ## 8. Game modes — mapped via live exploration and the official manual

@@ -38,6 +38,15 @@ has argued about for years without ever opening the ROM to check.
 - [6. Player rating bytes / Overall Rating formula](#6-player-rating-bytes--jersey-number-solved-overall-rating-formula-solved-and-rom-confirmed-exact-weights--opcode-still-open)
 - [7. Open questions / candidate next steps](#7-open-questions--candidate-next-steps)
 
+**How to read this**: sections are long because they're a *history*, not
+just a result — an earlier hypothesis getting corrected two paragraphs
+later is kept in on purpose (see the fighting-mechanic and "Out for 08"
+corrections in §7 for two honest, recent examples), not tidied away. If
+you just want the current answer, §5 and §6 both open with a **quick
+reference** (a diagram, a table) before the narrative — read that, skip
+the rest unless you want the evidence trail. [`OVERVIEW.md`](OVERVIEW.md)
+skips the trail entirely if that's all you want.
+
 ---
 
 ## 1. Toolchain / methodology
@@ -339,6 +348,45 @@ on.
 
 ## 5. Hot/cold streaks — confirmed real, mechanism partially traced
 
+**Quick reference — the whole chain, end to end** (narrative and evidence
+for each step below):
+
+```
+ Console boot
+     │
+     ▼
+ VDP H/V-beam counter read (0x00085D34)  ──▶  seeds a 32-bit LCG
+     │                                          at WRAM 0xFFFFCC6A
+     │                                          (locked in ONCE per
+     │                                          boot — not re-rolled by
+     │                                          replaying/reloading)
+     ▼
+ 0x0083E88: loop 416x, each iteration
+     RNG(18) - 9   (range -9..+8, signed)
+     │
+     ▼
+ one byte written per player into
+ team_struct + 0x1A4 + player_index
+ (16 bytes/team, the "modifier table")
+     │
+     ▼
+ 0x0A0042/0x0A0672/0x0A0692: sum 13 of the
+ 16 modifier bytes per player (skip 2 fixed
+ offsets — matches "except weight and
+ fighting" from a community guide)
+     │
+     ▼
+ bubble-sort all candidates' [index, sum]
+ descending
+     │
+     ├─▶ highest sum  = this game's "hot" player
+     └─▶ lowest sum   = this game's "cold" player
+              │
+              ▼
+     name written to 0xFFFFBB62-0xFFFFBB6A,
+     shown on the Scouting Report screen
+```
+
 The community strategy guides (nhl94.com forum guide, segathon.com) both describe a
 "players vary ±10% per game" hot/cold mechanic but explicitly say they can't confirm
 whether it's real or "just fluff." We can now confirm **it's real** — there is
@@ -594,6 +642,37 @@ you're changing.)
 ---
 
 ## 6. Player rating bytes — jersey number solved, Overall Rating formula solved and ROM-confirmed (exact weights + opcode still open)
+
+**Quick reference — every nibble of the 14-nibble attribute block, final
+state.** The rest of this section is the narrative of how each row below
+was found (several were wrong on the first pass and corrected on a later
+one — kept in for transparency, see the "Live validation" and "Major
+breakthrough" subsections below for the full story). If you just want the
+answer:
+
+| nibble | stat (skaters) | stat (goalies) | in Overall Rating? | how confirmed |
+|---|---|---|---|---|
+| 0 | Weight (physical, not 0-99) | Weight | no | ROM bytecode table |
+| 1 | Agility | Agility | **yes** | statistical + ROM bytecode |
+| 2 | Top Speed | Speed | **yes** | statistical + ROM bytecode |
+| 3 | Off. Awareness | *(n/a)* | **yes** | statistical + ROM bytecode |
+| 4 | Def. Awareness | Def. Awareness | **yes** | statistical + ROM bytecode + live (goalies) |
+| 5 | Shot Power | Puck Control | **yes** | statistical + ROM bytecode + live (goalies) |
+| 6 | Checking | *(n/a)* | **yes** | statistical + ROM bytecode |
+| 7 | Handed (categorical) | Glove Hand (categorical) | no | ROM bytecode + live (goalies) |
+| 8 | Stick Handling | *(n/a)* | **yes** | statistical + ROM bytecode |
+| 9 | Shot Accuracy | *(n/a)* | **yes** | statistical + ROM bytecode |
+| 10 | Endurance | Stick Right | **yes** | statistical + ROM bytecode |
+| 11 | *(unused for skaters)* | Stick Left | no (skaters) | live only — goalie-only stat |
+| 12 | Pass Accuracy | Glove Right | **yes** | statistical + ROM bytecode |
+| 13 | Aggressiveness | Glove Left | no | statistical + ROM bytecode |
+
+*"In Overall Rating?" reflects the skater formula (`OR_WEIGHTS` in
+`tools/build_rom_verified_stats.py`) — the goalie Overall formula uses a
+different, only partially-confirmed subset, see the "Nibble 11 resolved"
+and "Major breakthrough" subsections.*
+
+---
 
 Cross-referenced the displayed position "advantage" numbers against known players'
 raw attribute bytes, live: on the Scouting Report screen, Vancouver's Cliff Ronning

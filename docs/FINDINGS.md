@@ -99,7 +99,10 @@ Two more tables of the exact same shape sit immediately before the real teams, a
 (confirmed selectable in-game), each mixing star players from many different real
 teams (e.g. `0x834` includes Roy, Messier, Lindros, Bourque, Jagr all in one roster).
 
-**Menu→ROM order, fully mapped live (see §7#3 for the investigation).** The
+**Menu→ROM order, fully mapped live (see §7#3 for the investigation) —
+⚠️ superseded, see the "Fully resolved" paragraph a few paragraphs down:
+the menu order is alphabetical, not ROM order, and Dallas was never
+missing. Kept below for the record, not as a current claim.** The
 in-game Team 1/Team 2 exhibition selector cycles in *exactly* ROM storage order
 with one single, striking exception: **Dallas is completely absent from the
 selectable list** — cycling hits `... Hartford → Los Angeles → Montreal ...`,
@@ -141,37 +144,46 @@ strong a confirmation as this project produces: not a static guess, not a
 single ambiguous screenshot, but a full live playthrough into a real game
 state with correct, internally-consistent data at every step.
 
-**Honest complication, not swept under the rug**: this session's own
-attempt to retrace *exactly where* Dallas sits in the cycle repeatedly
-produced inconsistent step counts — the same menu field seemed to
-sometimes advance by one list position per input and sometimes by two or
-more, likely a genuine input-timing sensitivity in how `tools/nhl95ctl.py
-press` (frame-held, then released) interacts with this specific menu's own
-auto-repeat logic, not a ROM behavior. The observed team sequence around
-Dallas this session (`..., Buffalo, Calgary, Chicago, Dallas, Hartford,
-Florida, Edmonton, ...`) does **not** match the ROM storage order documented
-above (which has Dallas between Los Angeles and Montreal, with Detroit
-between Chicago and Edmonton) — meaning either this screen's team order
-isn't the simple ROM-index walk the original investigation concluded, or
-enough steps were silently skipped during this session's retracing that the
-apparent sequence is unreliable, or (least likely, given the very clean,
-independently-reproduced single-step Chicago→Dallas transition) something
-about the menu's behavior has changed based on entry path (this session
-reached the screen via the `team_select.state` savestate with `Play Mode`
-left at its default `Regular Game`, not via a fresh boot through the
-title/credits flow the way the original investigation did it).
+**Fully resolved, same session: the menu order is alphabetical, not ROM
+storage order — the original "walks ROM order directly" mechanism claim
+was itself the mistake.** A careful re-walk, checking a fresh, fully
+settled screenshot after every single input (no batching, no assumptions)
+produced nine consecutive, unambiguous transitions: `Anaheim → Boston →
+Buffalo → Calgary → Chicago → Dallas → Detroit → Edmonton → Florida` —
+**exact alphabetical order**, with Dallas sitting exactly where
+alphabetical sorting puts it (`Chicago` < `Dallas` < `Detroit`). This is
+not the ROM storage order documented above (which has Dallas between Los
+Angeles and Montreal) — it's a completely different, separately-sorted
+traversal, meaning there **is** a real menu→team lookup table after all,
+just an alphabetically-sorted one rather than a "scrambled" one, and it
+correctly includes all 26 teams plus both All-Star rosters (which sort
+after `Washington` at the end, exactly as originally observed).
 
-**Net effect on this project's claims**: the header claim "Dallas is
-completely absent from the selectable list" above is now contradicted by a
-live, reproduced, full-game-start observation and should not be trusted at
-face value — but *why* the two sessions disagree isn't resolved, and this
-write-up deliberately isn't rewriting or deleting the original paragraph,
-just flagging it as disputed pending a calmer re-investigation (ideally
-using the debugger-level single-frame controller injection already
-documented in CLAUDE.md's Environment section, rather than the `press`
-convenience wrapper, which this session's experience suggests is not
-reliable for precise single-step menu navigation on this particular
-screen). GitHub issue #7 reopened with this finding.
+**What actually went wrong in the original investigation**: almost
+certainly the same input-timing issue this session hit repeatedly and
+eventually diagnosed (see CLAUDE.md's new gotcha) — a single button input
+occasionally advancing the on-screen list by two positions instead of one,
+because of how fast the debugger can pump frames relative to this menu's
+own edge-detection/auto-repeat logic. A single silently-doubled step
+right around Chicago/Dallas/Detroit — entirely plausible given how easy
+this was to reproduce this session — would look *exactly* like "Dallas is
+missing, Detroit follows Chicago directly," which is precisely the
+original claim. The original investigator had no reason to suspect this;
+this project only discovered the failure mode by accident, days later,
+while chasing an unrelated team (Boston).
+
+**Bottom line**: the header paragraph above (with its "Dallas is
+completely absent," "menu walks ROM order directly," and "brand-new
+1993-94 relocation... never wired into the loop" theory) is **superseded,
+not just disputed** — Dallas was never missing, and the underlying
+mechanism theory was wrong in a way that happened to still sound
+plausible. Left the original paragraph in place above rather than
+deleting it, since the wrong turn and why it looked convincing at the
+time (a real hockey fact — Dallas *was* a brand-new relocation — lent
+false support to an incorrect mechanism) is itself a useful lesson for
+this project: a good real-world explanation for *why* a bug would exist is
+not evidence that it *does* exist. GitHub issue #7 closed with this
+resolution.
 
 Each team record is laid out as:
 
@@ -1381,15 +1393,20 @@ loop (`0x0083E88`). See §5.
    All-Star rosters are appended at the wrap point instead of appearing where
    they're stored. See §2.1 for the full writeup and the likely explanation
    (Dallas was a brand-new 1993-94 relocation, probably added to the data too
-   late to get wired into the menu's team count/loop). **Follow-up, live-
-   confirmed: Dallas is playable after all, just not through this specific
-   menu** — Season mode's schedule browser has a real, selectable "Detroit at
-   Dallas" fixture. **Second follow-up, a later and different session:
-   this "completely absent" claim itself doesn't reproduce** — Dallas was
-   selected directly from the Team 1 field and played all the way through
-   Controller Setup and a real Scouting Report screen (`Dallas Stars,
-   Overall 21`). Not reconciled with the original finding; see §2.1's
-   "Contradicting follow-up" and GitHub issue #7 (reopened).
+   late to get wired into the menu's team count/loop). **Fully superseded,
+   a later session: the whole premise was wrong.** Dallas is directly
+   selectable from the Exhibition Team 1 field — played all the way
+   through Controller Setup and a real Scouting Report screen (`Dallas
+   Stars, Overall 21`) — and a careful, single-step-verified re-walk of
+   the menu found the real mechanism: **the selector cycles in
+   alphabetical order** (`Anaheim → Boston → Buffalo → Calgary → Chicago →
+   Dallas → Detroit → Edmonton → Florida`, nine clean verified steps),
+   not ROM storage order as originally concluded. The original "missing"
+   finding was very likely a single silently-doubled input step during
+   that investigation (the same input-timing failure mode this project
+   only diagnosed by accident, much later — see CLAUDE.md), which would
+   have looked exactly like Dallas being skipped. See §2.1 for the full
+   writeup and GitHub issue #7 (closed).
 4. ~~Check whether jersey number is used as a lookup key anywhere~~ — **checked,
    reasonably confident negative result, not exhaustively proven.** See §4: every
    subsystem mapped this session keys on roster index, never jersey number;

@@ -4,55 +4,45 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Search — NHL 95 Decoded</title>
+<meta name="description" content="Search NHL 95 Decoded's findings and glossary, entirely in your browser.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏒</text></svg>">
+<link rel="stylesheet" href="assets/css/site.css">
 <style>
-  :root {
-    color-scheme: light dark;
-    --bg: #ffffff; --fg: #1a1a1a; --muted: #666; --border: #ddd;
-    --mark: #fff3a3; --link: #0969da; --card: #f6f8fa;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root { --bg: #0d1117; --fg: #e6edf3; --muted: #9198a1; --border: #30363d;
-      --mark: #5a4a00; --link: #4493f8; --card: #161b22; }
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; padding: 2rem 1rem 4rem; background: var(--bg); color: var(--fg);
-    font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-  }
-  .wrap { max-width: 720px; margin: 0 auto; }
-  h1 { font-size: 1.5rem; margin-bottom: 0.25rem; }
+  .search-wrap { max-width: 720px; }
+  h1 { border-bottom: none; margin-bottom: 0.25rem; }
   .sub { color: var(--muted); margin-bottom: 1.5rem; font-size: 0.95rem; }
   .sub a { color: var(--link); }
   input[type=search] {
     width: 100%; font-size: 1.1rem; padding: 0.7rem 0.9rem;
     border: 1px solid var(--border); border-radius: 8px;
-    background: var(--card); color: var(--fg);
+    background: var(--card); color: var(--fg); font-family: inherit;
   }
   input[type=search]:focus { outline: 2px solid var(--link); }
   .status { color: var(--muted); font-size: 0.9rem; margin: 0.75rem 0; min-height: 1.2em; }
   .results { display: flex; flex-direction: column; gap: 0.75rem; }
   .result {
     border: 1px solid var(--border); border-radius: 8px; padding: 0.8rem 1rem;
-    background: var(--card);
+    background: var(--card); box-shadow: var(--shadow);
   }
   .result a.title { font-weight: 600; text-decoration: none; color: var(--link); font-size: 1.02rem; }
   .result a.title:hover { text-decoration: underline; }
   .result .page { color: var(--muted); font-size: 0.8rem; margin-left: 0.5rem; }
   .result .snippet { margin-top: 0.35rem; color: var(--fg); font-size: 0.92rem; }
   .result .snippet mark { background: var(--mark); color: inherit; border-radius: 2px; }
-  nav { margin-bottom: 1.5rem; font-size: 0.9rem; }
-  nav a { color: var(--link); margin-right: 1rem; text-decoration: none; }
-  nav a:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="OVERVIEW.html">Plain English</a>
-    <a href="FINDINGS.html">Full write-up</a>
-    <a href="GLOSSARY.html">Glossary</a>
-  </nav>
+<nav class="site-nav">
+  <a class="brand" href="index.html">🏒 nhl95-decoded</a>
+  <a class="nav-link" href="index.html">Home</a>
+  <a class="nav-link" href="OVERVIEW.html">Plain English</a>
+  <a class="nav-link" href="FINDINGS.html">Full write-up</a>
+  <a class="nav-link" href="GLOSSARY.html">Glossary</a>
+  <a class="nav-link current" href="search.html">Search</a>
+  <span class="spacer"></span>
+  <a class="gh-link" href="https://github.com/BreakableHoodie/nhl95-decoded">Source ↗</a>
+</nav>
+<div class="page-wrap search-wrap">
   <h1>Search the findings</h1>
   <div class="sub">Searches both <a href="OVERVIEW.html">OVERVIEW.md</a> and
     <a href="FINDINGS.html">FINDINGS.md</a> in your browser — nothing leaves this page.</div>

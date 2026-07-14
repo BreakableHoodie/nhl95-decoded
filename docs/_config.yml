@@ -1,0 +1,24 @@
+title: NHL 95 (Genesis) — Decoded
+description: >-
+  Reverse-engineering NHL 95 (Genesis): hot/cold streaks, the Overall
+  Rating formula, and more, all live-validated.
+url: "https://breakablehoodie.github.io"
+baseurl: "/nhl95-decoded"
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter_opts:
+    disable: true
+
+# No remote theme -- this site's own _layouts/default.html and
+# assets/css/site.css fully own the design. A site-local _layouts
+# directory always takes precedence over any gem-based theme in Jekyll's
+# build order, but leaving `theme:` unset avoids relying on that at all.
+
+defaults:
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: default

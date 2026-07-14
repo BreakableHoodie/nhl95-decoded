@@ -2174,9 +2174,19 @@ Confirmed live, end to end:
   labeled `Round 1`) rather than each team taking a full round before the
   other goes.
 
-Not fully played through to a decisive goal/save this session (skated the
-shooter wide of the net rather than landing a clean shot) — the structural
-confirmation was the priority, not a specific shot outcome.
+**Follow-up: the no-goal resolution cycle is now confirmed too.** A
+second attempt (Chicago's Murphy vs. Detroit's Essensa, `Goalies: Auto
+Control` this time) skated in and took a shot with `C`; the attempt
+resolved with a referee cutaway (the same face-off-style ref window seen
+elsewhere in this ROM) and the score stayed `0-0` on both the HUD and the
+next shooter's setup card — confirming the miss/save → referee signal →
+next-shooter transition works exactly like a real shootout round, without
+needing to distinguish "missed the net" from "goalie made the save" (both
+plausibly route through the same no-goal path). Still didn't land an
+actual goal to see the scoring-side animation/HUD update — a real, if
+narrow, remaining gap, but the mode's full structural cycle (setup →
+per-attempt card → shot → resolution → next shooter → eventual
+`SHOOTOUT WON BY`) is now traced end to end either way.
 
 ### 8.3 Season and Playoffs — the full manual-documented flow, live-confirmed screen by screen
 

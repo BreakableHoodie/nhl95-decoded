@@ -625,3 +625,25 @@ best of any goalie seen this session). Remaining open issues (#1, #2,
 #3, #6, #9, #10, #12) mostly need live bytecode tracing on the self-
 patching-primitive family or an expensive full-season playthrough —
 genuinely scoped future work, not quick continuations.
+
+**Unplanned but significant: issue #7 (Dallas exhibition-menu access)
+reopened — the closed "Dallas is completely absent from the selectable
+list" finding does not reproduce.** Discovered while hunting for Boston
+for an issue #10 (Smolinski) reproduction attempt: cycling `Team 1`
+landed cleanly on Dallas, and it played all the way through Controller
+Setup and a real Scouting Report screen (`Dallas Stars, Overall 21`) —
+a full live game-start, not a static guess. Documented honestly as an
+unreconciled contradiction rather than overwriting the original
+paragraph: this session's own attempt to map the exact team order
+produced inconsistent step counts, a real timing sensitivity in how
+`tools/nhl95ctl.py press` (frame-held-then-released) interacts with
+this menu's auto-repeat — confirmed by watching the raw `se d0`/`c`
+sequences it sends, where the *same* single-frame press sometimes
+advanced the list by one team and sometimes by two or more. **New
+gotcha for future sessions**: don't trust `press LEFT/RIGHT N` for
+precise single-step menu navigation on team-selector-style fields;
+use the debugger-level single-frame controller injection (breakpoint
+at `0x7A58A` + `se d0` + one `c`) already documented above for anything
+that needs a guaranteed single step. The original Boston-hunting task
+(issue #10) was not completed this session — got fully sidetracked by
+this higher-value, unplanned discovery, which is the right trade.

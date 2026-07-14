@@ -1869,7 +1869,17 @@ loop (`0x0083E88`). See §5.
    | **Score** | **`0x0C`** | — |
    | Faceoffs Won | `0x0E` | — |
    | Body Checks | `0x10` | — |
+   | Passing | `0x14` | `0x12` |
    | Shooting Pct | *(computed, no offset — suffix/extra both `0xFFFF`)* | |
+
+   (Missed `Passing` in the first pass through this table — caught while
+   re-running the smarter scanner for item 10 below, which lists the whole
+   table's entries automatically instead of relying on a manual transcription.
+   The table also repeats a second time immediately after `Attack Zone`
+   (`Score`/`Shots`/`Shooting Pct`/`Breakaways`/.../`Passing` again, missing
+   `Power Play`/`PP Minutes`/`PP Shots`/`SH Goals` this time) — not
+   investigated further, but flagging so nobody assumes the table is
+   single-instance.)
 
    (`PP Minutes`/`PP Shots`/`SH Goals`/`Breakaways`/`One-Timers`/`Penalty
    Shots` use much larger offsets, `0x0354`-`0x0364` — almost certainly a
@@ -1954,29 +1964,42 @@ loop (`0x0083E88`). See §5.
     selection criteria exactly, a clean, high-confidence identification
     even without live confirmation.
 
-    **Lower-confidence leads, not fully resolved — flagging rather than
-    dropping:**
-    - A **goalie-specific stats/box-score table** at ROM `0x092AD0`-
-      `0x092B76`: `Saves`, `Shots`, `Save %`, `Goalie Saves`, `Assists`,
-      `Shots On Goal`. Likely a second, goalie-specific counterpart to the
-      per-team `Score`/`Shots` struct from item 9, but the suffix values
-      here (`0x0006`, `0x0016`) look more like they could be column-header
-      layout flags than struct offsets — not verified live.
-    - An **injury-status abbreviation table** at ROM `0x085550`-`0x0855F0`:
-      `Bench`, `Inj. P`, `Inj. G`, `Inj.1G` through `Inj.9G` — very
-      plausibly the Team Roster `Status` column's injured-player display
-      (a natural companion to the `Injury to: [player], Out for [N]
-      game(s)` announcement text from item 8), but this table's exact byte
-      framing didn't cleanly fit either format already decoded elsewhere in
-      this ROM (unlike the penalty/team-strength tables above, which slotted
-      right into the known `[length][text][suffix]` shape) — the apparent
-      "suffix" bytes here sometimes double as the *next* entry's header
-      instead of being an independent field. Left unresolved rather than
-      forcing a fit; a real find (issue #9 previously had no lead on this
-      UI surface at all) even without a fully cracked format.
-    - A **partial months table** near ROM `0x08F1E6`: `October`, `December`,
-      `February` cleanly, `April` with a malformed-looking trailing suffix —
-      plausibly a Season-mode calendar table, entries not uniformly spaced,
-      not chased further.
+    **A third table format, found while chasing down the two tables below
+    — no separate suffix field at all.** Both looked malformed at first
+    against the `[header][text][suffix]` shape already known from the
+    penalty/team-strength/stats tables — the apparent "suffix" bytes kept
+    reading as the *next* entry's own header. That's exactly what they
+    are: this table family has **no suffix**, and the header's length byte
+    counts the *entire* record including itself (`stride = length`, not
+    `2 + length`), with text space-padded (not null-padded, unlike the
+    months table below) to exactly fill the record. Once decoded with the
+    right stride formula both tables resolved completely and cleanly:
+
+    **Injury-status abbreviation table**, fully decoded (ROM `0x085556`-
+    `0x0855E4`): `Bench`, `Inj. P`, `Inj. G`, a blank 4-space entry,
+    **` C  `**, `Inj. G` again, then `Inj.1G` through `Inj.9G`. Very
+    plausibly the Team
+    Roster `Status` column's injured-player display (a natural companion
+    to the `Injury to: [player], Out for [N] game(s)` announcement text
+    from item 8) — issue #9 previously had no lead at all on this UI
+    surface. The lone `" C  "` entry sitting in the middle, distinct from
+    every `Inj.*`/`Bench` status, is a plausible **team captain marker**
+    (the "C" patch shown next to a captain's name) — consistent with
+    hockey UI convention, not confirmed live.
+
+    **Months table, fully decoded** (ROM `0x08F1E6`-`0x08F228`): `October`,
+    `November`, `December`, `January`, `February`, `March`, `April` — 7
+    entries, stopping cleanly at April rather than trailing off
+    (regular-season months for a 1994 game, not the full calendar year) —
+    plausibly a Season-mode calendar/schedule table.
+
+    **Lower-confidence lead, not fully resolved — flagging rather than
+    dropping:** a **goalie-specific stats/box-score table** at ROM
+    `0x092AD0`-`0x092B76`: `Saves`, `Shots`, `Save %`, `Goalie Saves`,
+    `Assists`, `Shots On Goal`. Likely a second, goalie-specific
+    counterpart to the per-team `Score`/`Shots` struct from item 9, but
+    the suffix values here (`0x0006`, `0x0016`) look more like they could
+    be column-header layout flags than struct offsets, and it didn't
+    obviously fit the stride-only format above either — not verified live.
 
     See GitHub issue #8 for the full scan output.

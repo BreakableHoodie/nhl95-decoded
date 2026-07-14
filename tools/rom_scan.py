@@ -125,6 +125,35 @@ def parse_plain_records(rom, start, end):
     return records
 
 
+def parse_stride_records(rom, start, end, max_length=20):
+    """Decodes a third string-record format, found while re-examining the
+    injury-status and months tables (FINDINGS.md section 7#10) after they
+    didn't cleanly fit either format above: `[0x00][length][text, SPACE-
+    or NULL-padded]`, no suffix field at all. The key difference from
+    parse_plain_records: `length` here counts the record's *own 2-byte
+    header too* (stride = length, not 2 + length) -- getting this backwards
+    is exactly what made these two tables look malformed at first (the
+    next record's header kept getting misread as a trailing suffix field
+    on the previous one). Stops at the first non-matching byte rather than
+    skipping ahead by 1, since this format's tables pack records back-to-
+    back with no gap -- a real mismatch means the table ended, not noise
+    to scan past (unlike scan_for_tables' byte-at-a-time approach, which
+    expects gaps and noise)."""
+    records = []
+    i = start
+    while i < end:
+        if not (rom[i] == 0 and 4 <= rom[i + 1] <= max_length):
+            break
+        length = rom[i + 1]
+        text = rom[i + 2:i + length]
+        stripped = text.rstrip(b"\x00")
+        if not stripped or not all(32 <= c < 127 for c in stripped):
+            break  # a genuinely blank/space-only record (e.g. the injury table's "    ") is still valid
+        records.append({"addr": i, "length": length, "text": text.decode("ascii", errors="replace")})
+        i += length
+    return records
+
+
 def _plausible_suffix(v):
     """Loose filter for scan_for_tables: keep suffixes that look like real
     structured data (a sentinel, a one-hot bitmask, or a small offset/tag)
@@ -224,6 +253,10 @@ def _main():
             addrs = f"0x{run[0]['addr']:06X}-0x{run[-1]['addr']:06X}"
             texts = [r["text"] for r in run]
             print(f"{addrs}  ({len(run)} entries, fmt={run[0]['fmt']}): {texts}")
+    elif cmd == "stride-records":
+        start, end = int(sys.argv[2], 16), int(sys.argv[3], 16)
+        for r in parse_stride_records(rom, start, end):
+            print(f"0x{r['addr']:06X}  len={r['length']:3d}  {r['text']!r}")
     else:
         print(__doc__)
 

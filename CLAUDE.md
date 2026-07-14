@@ -580,3 +580,31 @@ scratchpad scripts for future static work — installed via Homebrew +
 `r2pm -Uci r2mcp`, no GUI needed (unlike Ghidra's own MCP options, which
 need a live GUI session this environment can't drive). Requires a fresh
 Claude Code session to pick up (MCP servers load at session start).
+
+**The three "not chased yet" leads above are now substantially chased —
+see `docs/FINDINGS.md` §8 for the full game-modes writeup.** The repo
+owner named the main-menu Shootout mode directly and asked for a fuller
+pass across every game mode (trades, season, playoffs included). Live-
+cycled the full `Play Mode` field: 11 directly selectable modes
+(`Regular Game`/`Practice Mode`/`New Playoffs`/`New Playoffs/Best of 7`/
+`New Season`/`Trade Players`/`Create Player`/`Sign Free Agents`/`Release
+Players`/`Shootout`/`Game With Trades`), plus two more (`Continue
+Playoffs`, `Continue Season`) that only appear conditionally, per the
+official US manual (a PDF the repo owner linked from `segaretro.org` —
+gitignored, copyrighted, not redistributed, but now a citable source).
+Shootout is confirmed real and substantial: its own roster/goalie setup
+screen, a clockless HUD, a per-attempt "SHOOTOUT MODE/Round N" screen
+matching the ROM text byte-for-byte, and a real shot clock — closing most
+of issue #14 (full scoring-resolution mechanics still open). Season mode's
+full flow confirmed screen-by-screen (`SEASON SETUP` → `GAMES TODAY` → a
+10-item `SEASON OPTIONS` hub, including a real 84-game NHL standings
+table). Playoffs' full 16-team bracket screen with a rendered Stanley Cup
+graphic, previously completely undocumented. Trade Players' roster-
+comparison screen — a bonus find: it shows every player's exact Overall
+Rating as plain readable text for two full rosters at once, flagged on
+issue #2 as a possibly-faster route into that still-open exact-opcode
+question. Also confirmed the manual's injury-status text (`P`=out for
+period, `G`=out for game, `4G`=four-game injury) matches the ROM's
+`Inj. P`/`Inj. G`/`Inj.1G`-`Inj.9G` table from earlier the same session,
+word for word — a strong independent confirmation, not just a plausible
+guess anymore.

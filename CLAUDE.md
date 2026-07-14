@@ -517,21 +517,52 @@ pluralization logic, found at ROM `0x09F2D5`+) and a "Team Stats"
 comparison table (`0x092410`+: Score/Shots/Shooting Pct/Power
 Play/Faceoffs Won/etc.).
 
-**Issue #11 (score/shots RAM addresses) is now solved for Score/Shots,
-still open for clock/period.** The Team Stats table above turned out to
-double as a real offset table — its suffix field is a byte offset into a
-per-team stats struct, not just a label (`Shots`=`+0x00`, `Score`=`+0x0C`,
-`Faceoffs Won`=`+0x0E`, `Body Checks`=`+0x10`, `Power Play`=`+0x02`/`+0x04`,
-`Penalties`=`+0x06`/`+0x08`). Struct bases confirmed live this session —
-`0xFFFFC5EE` (home/VAN) and `0xFFFFC288` (away/ASE) — byte-exact against
-the on-screen scoreboard across two real goals in one CPU-vs-CPU game
-(final check: live memory read `VAN 2 / ASE 2` matched the screenshot
-exactly). `tools/nhl95_monitor.py`'s `WATCH_ADDRESSES` updated accordingly;
-full writeup in `docs/FINDINGS.md` §7#9. Not yet confirmed whether these
-two struct addresses are universal home/away slots or session-specific —
-same caution as the `0x3618`/`0x4FFA` home/away gotcha below. Clock/period
-remain unfound; the same static-table technique is the natural next
-attempt.
+**Issue #11 (score/shots/clock/period RAM addresses) is now solved for
+Score, Shots, and Clock; Period is a strong, corroborated candidate.**
+The Team Stats table above turned out to double as a real offset table —
+its suffix field is a byte offset into a per-team stats struct, not just
+a label (`Shots`=`+0x00`, `Score`=`+0x0C`, `Faceoffs Won`=`+0x0E`, `Body
+Checks`=`+0x10`, `Power Play`=`+0x02`/`+0x04`, `Penalties`=`+0x06`/`+0x08`,
+`Passing`=`+0x14`). Struct bases confirmed live — `0xFFFFC5EE` (home/VAN)
+and `0xFFFFC288` (away/ASE) — byte-exact against the on-screen scoreboard
+across two real goals in one CPU-vs-CPU game. Clock (`0xFFFFC022`, word,
+total seconds remaining) was cracked differently — the obvious static
+lead (a "Period Stats" bytecode block) turned out to be an end-of-period
+summary renderer, not the live HUD, so it needed value-matching against a
+live screenshot instead, confirmed twice independently, byte-exact both
+times. Period (`0xFFFFC02A`, byte) is stable at the expected value and
+corroborated by a neighboring word reading exactly 1200 (this session's
+20-minute Per. Length, in seconds) but pending a live-observed transition
+for full confirmation — see `docs/FINDINGS.md` §7#9/§7#11 and GitHub
+issue #11 for the current state. Not yet confirmed whether the struct
+addresses are universal home/away slots or session-specific — same
+caution as the `0x3618`/`0x4FFA` home/away gotcha below.
+
+**A smarter static scan (issue #8) found a full night's worth of
+previously-undocumented ROM tables**, all in `docs/FINDINGS.md` §7#10:
+a complete penalty-type catalog and team-strength rating category list
+(both folded into the fighting-mechanic note above), an injury-status
+abbreviation table (`Bench`/`Inj. P`/`Inj.1G`-`Inj.9G`, plus a lone `" C  "`
+entry that's plausibly a team-captain marker), a 7-month Season-mode
+calendar table, and a goalie-specific offensive stat cycle (Goals/
+Assists/Points/Shots On Goal/Penalty Minutes — confirms goalies track
+offensive stats in this game, not just saves). Cracking the last two
+required recognizing a *third* string-record format in this ROM (no
+suffix field at all; the header's length byte counts the whole record
+including itself) — documented in `tools/rom_scan.py` as
+`parse_stride_records`. Three more leads filed but not chased yet: a
+Season-mode end-of-year awards table (issue #12, real NHL trophy
+categories — MVP/Norris-style/Vezina-style/etc.), a fuller pre-game/pause
+menu item list (issue #13, including several items never explored live —
+`SCORING SUMMARY`, `PLAYOFF STATS`, `TIMEOUT`, `ABORT GAME`), and —
+the most exciting of the three — **a previously-completely-unknown
+shootout mode** (issue #14: real code around `SHOOTOUT MODE`/`Round `/
+`SHOOTOUT WON BY [team]` at ROM `0x09DFD5`, not just a stray menu label).
+
+**The Pages site now has a working light/dark/auto theme toggle** (nav on
+every page, persisted via `localStorage`, no flash-of-wrong-theme) — the
+CSS already had the variables wired up from the earlier redesign, but
+nothing let a visitor override the OS setting until this session.
 
 **Radare2 MCP is now set up** (`claude mcp add radare2 -- r2pm -r r2mcp`,
 local scope) as a possible faster alternative to one-off Ghidra

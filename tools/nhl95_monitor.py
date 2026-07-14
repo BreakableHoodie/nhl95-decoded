@@ -24,16 +24,30 @@ addresses get confirmed (see FINDINGS.md for what's independently verified
 vs. still a guess). Every entry is read as an unsigned byte via `p/x`
 unless width=2 is given (word read).
 
-Score/clock/period addresses are not yet in this table -- worth doing
-next (see GitHub issue tracker), but a blind live memory search isn't the
-way: BlastEm's `s FILENAME` full-RAM-dump command (which would make a
-before/after diff trivial) turned out to only exist inside the Z80
-sub-debugger, not the main 68k prompt -- sending it there gets silently
-misparsed as the unrelated `s` (step-into) command instead, one
-instruction at a time, which is both slow and not what you want. A static
-approach (find the score-display code via xref/string search the way
-other UI elements were cracked in FINDINGS.md sec 6) is more likely to
-pay off than more live polling.
+Score/Shots/Faceoffs Won/Body Checks are now confirmed live (see
+FINDINGS.md sec 7#9 and GitHub issue #11) -- the static approach flagged
+below as "more likely to pay off" is exactly what cracked it: a ROM
+stats-label table at 0x092410 (parsed with tools/rom_scan.py) turned out
+to encode each stat's *byte offset* into a per-team stats struct as a
+suffix field, not just a display label. Two 16-byte-ish struct bases were
+then confirmed live, byte-for-byte against the on-screen scoreboard
+across two real goals: WRAM 0xFFFFC5EE (home/VAN this session) and
+0xFFFFC288 (away/ASE this session) -- see WATCH_ADDRESSES below. These
+are almost certainly *slots* in a fixed-size per-team array rather than
+truly fixed addresses -- not yet confirmed whether they stay the same
+across different matchups/home-away assignments (analogous to the
+HOME/AWAY-by-real-team gotcha already documented in CLAUDE.md for the
+0x3618/0x4FFA ROM position tables) -- worth re-checking with a different
+matchup before fully trusting them as universal.
+
+Clock/period are still unconfirmed -- worth doing next (see GitHub issue
+tracker). A blind live memory search isn't the way: BlastEm's
+`s FILENAME` full-RAM-dump command (which would make a before/after diff
+trivial) turned out to only exist inside the Z80 sub-debugger, not the
+main 68k prompt -- sending it there gets silently misparsed as the
+unrelated `s` (step-into) command instead, one instruction at a time,
+which is both slow and not what you want. The same static-table approach
+that cracked Score/Shots is the natural next attempt.
 """
 import argparse
 import csv
@@ -54,6 +68,22 @@ WATCH_ADDRESSES = {
     "cold_home": (0xFFFFBB64, 2),
     "hot_away": (0xFFFFBB66, 2),
     "cold_away": (0xFFFFBB68, 2),
+    # Per-team stats struct, confirmed live 2026-07-13 against two real
+    # goals (byte-exact match with the on-screen VAN/ASE scoreboard) --
+    # see FINDINGS.md sec 7#9 and GitHub issue #11. Offsets come straight
+    # from the ROM 0x092410 stats-label table's suffix field (decoded via
+    # tools/rom_scan.py); struct bases were the two addresses this
+    # session happened to be seeded with -- treat "home"/"away" as
+    # this-session labels, not confirmed-universal addresses (see the
+    # docstring note above about the HOME/AWAY gotcha).
+    "shots_home": (0xFFFFC5EE + 0x00, 2),
+    "score_home": (0xFFFFC5EE + 0x0C, 2),
+    "faceoffs_won_home": (0xFFFFC5EE + 0x0E, 2),
+    "body_checks_home": (0xFFFFC5EE + 0x10, 2),
+    "shots_away": (0xFFFFC288 + 0x00, 2),
+    "score_away": (0xFFFFC288 + 0x0C, 2),
+    "faceoffs_won_away": (0xFFFFC288 + 0x0E, 2),
+    "body_checks_away": (0xFFFFC288 + 0x10, 2),
 }
 
 

@@ -1836,3 +1836,71 @@ loop (`0x0083E88`). See §5.
    analysis (the same "no memory watchpoints" constraint documented for
    faceoffs in item 7 applies here too). Full byte dumps and the correction
    above in GitHub issue #9; not pursued further this session.
+
+9. **Score/Shots RAM addresses — solved, live-confirmed against two real
+   goals.** Built for `tools/nhl95_monitor.py` (the unattended CPU-vs-CPU
+   instrumentation tool — see §1), which needed to know where the score
+   lives so it can catch scoring events without a human watching the
+   screen. A first attempt cast a wide net around two candidate addresses
+   left over from an unrelated earlier session and watched ~16 real
+   minutes of CPU-vs-CPU play with no goal scored — inconclusive, not
+   negative, but not efficient either (see GitHub issue #11's opening
+   comment).
+
+   The static side of this was already half-solved and just hadn't been
+   pushed far enough: the per-game stats screen's label table at ROM
+   `0x092410` (`Score`, `Shots`, `Shooting Pct`, `Power Play`, ... — first
+   surfaced while chasing item 1's Overall Rating bitmask, see §6) uses the
+   same `[u16 length][text, even-padded][u16 suffix]` string-record
+   pattern already decoded there, but this table's suffix field turned out
+   to mean something different: not a nibble-selector bitmask, but a
+   **byte offset into a per-team stats struct** — confirmed by the values
+   themselves forming a clean, non-overlapping layout once decoded in full
+   (`tools/rom_scan.py parse_string_records` plus a small standalone
+   parser for this table's `[length][text][suffix][extra]` framing, extra
+   being a second offset for two-part stats):
+
+   | stat | offset | extra |
+   |---|---|---|
+   | Shots | `0x00` | — |
+   | Power Play (goals / opportunities) | `0x02` | `0x04` |
+   | Penalties | `0x06` | `0x08` |
+   | Attack Zone | `0x0A` | — |
+   | **Score** | **`0x0C`** | — |
+   | Faceoffs Won | `0x0E` | — |
+   | Body Checks | `0x10` | — |
+   | Shooting Pct | *(computed, no offset — suffix/extra both `0xFFFF`)* | |
+
+   (`PP Minutes`/`PP Shots`/`SH Goals`/`Breakaways`/`One-Timers`/`Penalty
+   Shots` use much larger offsets, `0x0354`-`0x0364` — almost certainly a
+   *different*, later structure, plausibly a per-event "which player did
+   this" reference table for the end-game box score/three-stars rather
+   than a simple per-team counter. Not investigated further; flagging so
+   nobody assumes it's the same struct.)
+
+   With real offsets in hand, the only unknown left was the struct's
+   *base* address — and the fastest live test isn't waiting for a goal,
+   it's waiting for a **shot**, which happens within seconds rather than
+   minutes. Read the two candidate bases left over from the first attempt
+   (`0xFFFFC288`, `0xFFFFC5EE`) right after the opening faceoff (both
+   `+0x00` = 0, plausible pre-shot) — then, remarkably, a real goal
+   happened almost immediately (Courtnall from Ronning, `VAN 1 - ASE 0` at
+   19:51 in the 1st): `0xFFFFC5EE+0x0C` read exactly **1**, byte-for-byte
+   matching the on-screen score. Continued play produced a second VAN goal
+   and the away team's first shots; final cross-check against a
+   screenshot showing **`VAN 2 - ASE 2`** matched `0xFFFFC5EE+0x0C = 2`
+   and `0xFFFFC288+0x0C = 2` exactly, and the Faceoffs-Won/Body-Checks
+   offsets read plausible small numbers on both sides too. Full struct
+   confirmed, not just the Score field.
+
+   **Confidence: high on the offsets (directly decoded from ROM, not
+   guessed), high on the values for this session (multiple exact matches
+   against the on-screen scoreboard across two real goals).** Lower on
+   whether `0xFFFFC288`/`0xFFFFC5EE` are *universal* home/away struct
+   addresses versus this-session-specific slots in a small fixed array —
+   this project has already been burned once by assuming a "home/away"
+   label was positionally fixed rather than tied to the real home team
+   (see the CLAUDE.md gotcha about ROM `0x3618`/`0x4FFA`); worth
+   re-verifying with a different matchup/boot before fully trusting these
+   two specific addresses as permanent. `tools/nhl95_monitor.py`'s
+   `WATCH_ADDRESSES` now uses the confirmed offsets. See GitHub issue #11.

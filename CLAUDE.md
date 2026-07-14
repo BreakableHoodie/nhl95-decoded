@@ -509,9 +509,23 @@ game mechanics that were *not* previously documented anywhere in this
 project: injuries (`Injury to: [player], Out for [N] game(s)`, with real
 pluralization logic, found at ROM `0x09F2D5`+) and a "Team Stats"
 comparison table (`0x092410`+: Score/Shots/Shooting Pct/Power
-Play/Faceoffs Won/etc.) that's the likely source for score/clock/shot
-addresses `nhl95_monitor.py` still needs (issue #11, in progress as of
-this note via an unattended live memory-diff watch).
+Play/Faceoffs Won/etc.).
+
+**Issue #11 (score/shots RAM addresses) is now solved for Score/Shots,
+still open for clock/period.** The Team Stats table above turned out to
+double as a real offset table — its suffix field is a byte offset into a
+per-team stats struct, not just a label (`Shots`=`+0x00`, `Score`=`+0x0C`,
+`Faceoffs Won`=`+0x0E`, `Body Checks`=`+0x10`, `Power Play`=`+0x02`/`+0x04`,
+`Penalties`=`+0x06`/`+0x08`). Struct bases confirmed live this session —
+`0xFFFFC5EE` (home/VAN) and `0xFFFFC288` (away/ASE) — byte-exact against
+the on-screen scoreboard across two real goals in one CPU-vs-CPU game
+(final check: live memory read `VAN 2 / ASE 2` matched the screenshot
+exactly). `tools/nhl95_monitor.py`'s `WATCH_ADDRESSES` updated accordingly;
+full writeup in `docs/FINDINGS.md` §7#9. Not yet confirmed whether these
+two struct addresses are universal home/away slots or session-specific —
+same caution as the `0x3618`/`0x4FFA` home/away gotcha below. Clock/period
+remain unfound; the same static-table technique is the natural next
+attempt.
 
 **Radare2 MCP is now set up** (`claude mcp add radare2 -- r2pm -r r2mcp`,
 local scope) as a possible faster alternative to one-off Ghidra

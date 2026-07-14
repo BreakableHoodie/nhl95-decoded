@@ -15,6 +15,7 @@ that even this page uses without explaining.
 - [The Line Editor "clone" bug — root cause found](#the-line-editor-clone-bug--root-cause-found-and-its-just-one-player)
 - [The full 7-line system](#the-full-7-line-system-confirmed-against-a-real-penalty-kill)
 - [Hidden Shootout mode, Playoff bracket, and real trades](#the-game-has-a-hidden-shootout-mode-a-full-playoff-bracket-and-real-trades)
+- [We were wrong about Dallas — and caught it ourselves](#we-were-wrong-about-dallas--and-caught-it-ourselves)
 - [Want the details?](#want-the-details)
 
 ## "Hot and cold streaks" are 100% real — here's exactly how they work
@@ -75,6 +76,18 @@ that's why — it's a genuine, reproducible 1994 shipping bug, but a real
 one-off, not a general glitch anyone could stumble into. Full technical
 root-cause, including the exact bad byte, is in `FINDINGS.md` §3.
 
+**So what actually happens if you play a game with him cloned like that?**
+We tried it three separate times, including one full hands-off CPU-vs-CPU
+game — and in that game, the cloned Smolinski actually **scored a real
+goal**, credited normally on the scoreboard with two real assists, exactly
+like any other player. Every attempt agreed: the clone doesn't break the
+game or freeze anything, it just quietly plays — and can even score —
+as if nothing were wrong. (A couple of players have separately reported
+seeing stranger things happen with this exact bug, like the clone
+appearing to wander in from the bench mid-play. We looked for that too and
+didn't catch it ourselves, so it's noted as unconfirmed rather than ruled
+out.)
+
 ## The full 7-line system, confirmed against a real penalty kill
 
 The game secretly tracks 7 named lines per team (two scoring lines, a
@@ -110,6 +123,25 @@ documented anywhere in this project before:
 None of this changes any of the findings above — it's the same ROM, the
 same rating formula, the same hot/cold streaks — but it's a reminder that
 this 1994 cartridge packed in a lot more than a single exhibition game.
+
+## We were wrong about Dallas — and caught it ourselves
+
+An earlier version of this research claimed the Dallas Stars were
+completely missing from the Exhibition mode's team-select list — a plausible
+enough story, since Dallas had only just relocated from Minnesota for the
+1993-94 season, right when this game was made. **That claim was wrong, and
+we've since corrected it.** Dallas is fully selectable and fully playable;
+we walked the entire team list one careful step at a time and confirmed it.
+The real story is more mundane: the list cycles in plain **alphabetical
+order**, and the original investigation almost certainly mis-counted a
+single step around the Chicago/Dallas/Detroit boundary, which looks
+identical to "Dallas got skipped" if you're not checking every step
+individually.
+
+We're leaving this correction visible rather than quietly editing the old
+claim away, because it's a useful reminder for any reverse-engineering
+project: a good real-world explanation for why a bug *would* exist isn't
+evidence that it *does* exist. Always double back and verify.
 
 ## Want the details?
 

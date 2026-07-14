@@ -2014,10 +2014,10 @@ loop (`0x0083E88`). See §5.
 
     See GitHub issue #8 for the full scan output.
 
-11. **Clock RAM address — solved, live-confirmed twice; period address —
-    a strong, corroborated candidate.** The remaining half of issue #11
-    (§7#9 solved Score/Shots; this closes Clock, and most of the way to
-    Period). Static analysis had already flagged the "Period Stats"
+11. **Clock and Period RAM addresses — both solved, both live-confirmed
+    against real transitions. Issue #11 fully closed** (§7#9 solved
+    Score/Shots; this closes the other half). Static analysis had already
+    flagged the "Period Stats"
     bytecode block near ROM `0x094FE0` as an end-of-period box-score
     renderer, but that turned out to be the wrong target — it's a
     *summary* display, not the live per-frame HUD clock. No amount of
@@ -2062,10 +2062,19 @@ loop (`0x0083E88`). See §5.
     across the transition, confirming it's period *length* (constant),
     not period number, exactly as suspected.
 
-    Pushed for the same confirmation a second time (2nd → 3rd period) to
-    reach the same tier as Score/Shots/Clock rather than resting on one
-    transition — see GitHub issue #11 for whether that landed too.
+    Pushed for a second, independent confirmation rather than resting on
+    one transition: a further live run watched a real 2nd→3rd boundary
+    too. Clock reset cleanly again (`0x0002`→`0x04B0`, i.e. 0:02→20:00
+    fresh), and `0xFFFFC021` went `0x01`→`0x02` — a second clean,
+    sequential, 0-indexed step, exactly as predicted. This one came with
+    an unplanned bonus confirmation: the captured screenshot happened to
+    land on the pause menu's `STATS` tab, which shows a literal `1st /
+    2nd / 3rd` period indicator with a dot per period — the dot had moved
+    to **`3rd`**, an entirely independent, human-readable confirmation of
+    the exact same fact the memory read reported, at the exact same
+    moment. Both Clock and Period are now confirmed against two
+    real transitions each, the same evidentiary tier as Score/Shots (§7#9).
 
-    `tools/nhl95_monitor.py`'s `WATCH_ADDRESSES` includes `clock_seconds`
-    and `period` (both confirmed) and `period_length_seconds` alongside
-    the existing Score/Shots entries.
+    `tools/nhl95_monitor.py`'s `WATCH_ADDRESSES` includes `clock_seconds`,
+    `period`, and `period_length_seconds`, all confirmed, alongside the
+    existing Score/Shots entries.

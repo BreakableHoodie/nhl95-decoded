@@ -58,7 +58,11 @@ the clock field, exactly where it structurally belongs. Whatever
 0xFFFFC02A actually is, it isn't the period number. 0xFFFFC026 (word) =
 1200 (this session's 20-minute Per. Length, in seconds) stayed constant
 across the transition, confirming it's period *length*, not number.
-See FINDINGS.md sec 7#11 for the full false-lead-then-fix story.
+Confirmed a second time against a real 2nd->3rd transition too (0x01 ->
+0x02), with a bonus independent check: the pause menu's STATS-tab period
+dots moved to "3rd" in the same screenshot, matching the memory read.
+Issue #11 (score/shots/clock/period) is now fully closed. See FINDINGS.md
+sec 7#11 for the full false-lead-then-fix story.
 """
 import argparse
 import csv

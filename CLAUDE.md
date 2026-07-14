@@ -537,11 +537,13 @@ instead of a clean `2`, which was the signal to stop trusting a single
 stable-looking byte and diff the *whole* surrounding struct between a
 period-1 and period-2 reading instead. That found the real field:
 `0xFFFFC021` (byte) went cleanly `0x00`→`0x01`, 0-indexed, sitting right
-next to the clock — confirmed against a real 1→2 transition, with a
-second live run (2→3) chasing the same confirmation tier as Score/Shots.
+next to the clock — confirmed against **two** real transitions (1→2 and
+2→3), the second one with a bonus independent check: the pause menu's
+`STATS`-tab period-dot indicator (`1st`/`2nd`/`3rd`) had moved to `3rd`
+in the same screenshot, matching the memory read exactly.
 `0xFFFFC026` (word, constant `1200` = this session's 20-minute Per.
 Length in seconds) is period *length*, not number — see
-`docs/FINDINGS.md` §7#9/§7#11 and GitHub issue #11 for the full story.
+`docs/FINDINGS.md` §7#9/§7#11 and GitHub issue #11 (closed) for the full story.
 Not yet confirmed whether the struct
 addresses are universal home/away slots or session-specific — same
 caution as the `0x3618`/`0x4FFA` home/away gotcha below.

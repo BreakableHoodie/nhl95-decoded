@@ -2182,11 +2182,28 @@ elsewhere in this ROM) and the score stayed `0-0` on both the HUD and the
 next shooter's setup card — confirming the miss/save → referee signal →
 next-shooter transition works exactly like a real shootout round, without
 needing to distinguish "missed the net" from "goalie made the save" (both
-plausibly route through the same no-goal path). Still didn't land an
-actual goal to see the scoring-side animation/HUD update — a real, if
-narrow, remaining gap, but the mode's full structural cycle (setup →
-per-attempt card → shot → resolution → next shooter → eventual
-`SHOOTOUT WON BY`) is now traced end to end either way.
+plausibly route through the same no-goal path).
+
+A third attempt (Detroit's real-life sniper Dino Ciccarelli vs. Chicago's
+Ed Belfour) produced a genuine, unambiguous **puck-in-flight shot
+animation** — the puck visibly airborne between the shooter and the
+goalie for several frames, a clearly different visual state from a pass
+or a whiff — followed by the same referee-cutaway no-goal resolution,
+with the goalie shown holding the puck (a possession indicator) right
+after. A fourth attempt against the same goalie produced the identical
+outcome. Both shots stopped by Belfour specifically is a fitting result
+rather than a frustrating one: the Trade Players screen (§8.4) already
+live-confirmed Belfour's Overall Rating at **98**, the highest of any
+goalie seen this session — the ROM's own data says he should be
+extremely hard to beat, and two real attempts sampled that exactly.
+
+Landing an actual goal to see the scoring-side animation/HUD update
+remains a real, narrow, unclosed gap — but it's now clearly a matter of
+shot execution (or facing a lesser goalie) rather than any uncertainty
+about the mode's mechanics. The full structural cycle (setup → per-
+attempt card → shot-in-flight → resolution → next shooter → eventual
+`SHOOTOUT WON BY`) is traced end to end, with a real shot animation now
+directly observed.
 
 ### 8.3 Season and Playoffs — the full manual-documented flow, live-confirmed screen by screen
 

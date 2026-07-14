@@ -1904,3 +1904,79 @@ loop (`0x0083E88`). See §5.
    re-verifying with a different matchup/boot before fully trusting these
    two specific addresses as permanent. `tools/nhl95_monitor.py`'s
    `WATCH_ADDRESSES` now uses the confirmed offsets. See GitHub issue #11.
+
+10. **Smarter UI-widget string-table scan (issue #8) — a complete penalty
+    catalog, the full team-strength rating category list, and more, found
+    purely statically.** Issue #8 asked for a smarter scan of the string-
+    record format decoded in §6/§7#9, anchored to the interpreter code
+    region (`0x080000`-`0x0A0000`) instead of the whole 2MB ROM, filtering
+    for plausible suffix values instead of trusting every printable-looking
+    hit. Built one (`tools/rom_scan.py`'s validators, generalized), and
+    required hits to cluster into runs of 3+ consecutive valid records —
+    isolated single hits are almost always coincidental graphics/tile
+    bytes; every genuine table found so far (rating widgets, Face Off,
+    stats labels) is several entries in a row. That one filter took the
+    scan from drowning in noise to 9 clean, real tables.
+
+    **Complete penalty-type catalog** (ROM `0x089CE0`-`0x089F26`, immediately
+    after the `Face Off` strings already known from item 7): **Charging,
+    Slashing, Tripping, Roughing, Hooking, Cross Check, Interference,
+    Holding, Fighting**, plus a `Fighting *` variant. Every entry uses the
+    same `suffix = 0x0004`, strongly suggesting it's a format/category tag
+    for "this is a penalty-name label" (the same role the varying `tag`
+    byte plays in the rating-widget table), not real per-penalty game data
+    like minutes — a plausible explanation for why it doesn't vary between
+    Charging and Fighting despite very different real-world penalty
+    lengths. Charging/Slashing/Tripping/Hooking/Cross Check/Interference
+    each appear in the ROM **exactly twice**, Roughing **three times** —
+    plausibly two-or-three separate render contexts (e.g. a penalty-box
+    popup vs. a penalty-summary list vs. a play-by-play line), the same
+    pattern already flagged for the doubled `Face Off` strings in item 7.
+    This fully supersedes the earlier one-off finding that "Fighting"
+    merely *exists* in the ROM as a penalty type (see the CLAUDE.md
+    fighting-mechanic correction) — it's now a complete, addressed catalog.
+
+    **Full team-strength rating category list** (ROM `0x09F9C4`-`0x09FA52`,
+    the source table for the Scouting Report's "Advantage: [category]"
+    cycling display — see the `sh7.png` screenshot from this session
+    showing "Advantage: Overall"): **Shooting, Passing, Checking,
+    Goalkeeping, Skating, Defense, Fighting, Power Play Adv., Overall** —
+    9 categories total, completing what CLAUDE.md's "Current status" note
+    could previously only partially name. Suffixes here are small
+    multi-bit values (`0x000A`, `0x000E`, `0x001A`, ...), not single bits —
+    plausible but unconfirmed hint that these team-strength ratings use
+    the *same* OR-of-nibble-bits scheme already fully solved for player
+    Overall Rating (§6), just composed from different (team-level, not
+    per-player) source bytes. Not traced further this session.
+
+    **"Three Stars" criteria table** (ROM `0x096216`-`0x09623A`): `ASSISTS`,
+    `SAVES`, `GOALS` — matches the standard real-hockey three-stars
+    selection criteria exactly, a clean, high-confidence identification
+    even without live confirmation.
+
+    **Lower-confidence leads, not fully resolved — flagging rather than
+    dropping:**
+    - A **goalie-specific stats/box-score table** at ROM `0x092AD0`-
+      `0x092B76`: `Saves`, `Shots`, `Save %`, `Goalie Saves`, `Assists`,
+      `Shots On Goal`. Likely a second, goalie-specific counterpart to the
+      per-team `Score`/`Shots` struct from item 9, but the suffix values
+      here (`0x0006`, `0x0016`) look more like they could be column-header
+      layout flags than struct offsets — not verified live.
+    - An **injury-status abbreviation table** at ROM `0x085550`-`0x0855F0`:
+      `Bench`, `Inj. P`, `Inj. G`, `Inj.1G` through `Inj.9G` — very
+      plausibly the Team Roster `Status` column's injured-player display
+      (a natural companion to the `Injury to: [player], Out for [N]
+      game(s)` announcement text from item 8), but this table's exact byte
+      framing didn't cleanly fit either format already decoded elsewhere in
+      this ROM (unlike the penalty/team-strength tables above, which slotted
+      right into the known `[length][text][suffix]` shape) — the apparent
+      "suffix" bytes here sometimes double as the *next* entry's header
+      instead of being an independent field. Left unresolved rather than
+      forcing a fit; a real find (issue #9 previously had no lead on this
+      UI surface at all) even without a fully cracked format.
+    - A **partial months table** near ROM `0x08F1E6`: `October`, `December`,
+      `February` cleanly, `April` with a malformed-looking trailing suffix —
+      plausibly a Season-mode calendar table, entries not uniformly spaced,
+      not chased further.
+
+    See GitHub issue #8 for the full scan output.

@@ -10,6 +10,7 @@ Import from a scratchpad script, or run directly for a quick scan:
     python3 tools/rom_scan.py strings "injur" "faceoff"
     python3 tools/rom_scan.py records 0x085832 0x086100
     python3 tools/rom_scan.py pointer-search 0x89cc6
+    python3 tools/rom_scan.py scan-tables 0x80000 0xa0000
 """
 import re
 import struct
@@ -95,6 +96,84 @@ def bitmask_to_nibbles(mask, num_nibbles=14):
     return [num_nibbles - 1 - bit for bit in range(num_nibbles) if mask & (1 << bit)]
 
 
+def parse_plain_records(rom, start, end):
+    """Decodes the second string-record format found while solving issue
+    #11 (the per-game stats table at ROM 0x092410): `[u16 length][text,
+    even-padded][u16 suffix]` -- no leading tag/zero-byte framing, unlike
+    parse_string_records' `[0x00][tag][0x00][length]` header. `length`
+    counts text(+pad)+suffix, same convention as the tagged format. The
+    suffix means different things in different tables (a struct byte
+    offset for the stats table, a fixed category tag for the penalty-type
+    and team-strength tables found via scan_for_tables below) -- don't
+    assume one meaning without checking, see FINDINGS.md section 7#8/#9/#10."""
+    records = []
+    i = start
+    while i < end - 4:
+        length = (rom[i] << 8) | rom[i + 1]
+        if 4 <= length <= 40 and i + 2 + length <= end:
+            text_area = rom[i + 2:i + length]  # text(+pad), excludes the 2-byte suffix
+            core = text_area.rstrip(b"\x00")
+            if core and all(32 <= c < 127 for c in core) and len(text_area) - len(core) <= 1:
+                suffix = int.from_bytes(rom[i + length:i + 2 + length], "big")
+                records.append({
+                    "addr": i, "length": length, "text": core.decode("ascii"),
+                    "suffix": f"{suffix:04x}", "suffix_int": suffix,
+                })
+                i += 2 + length
+                continue
+        i += 1
+    return records
+
+
+def _plausible_suffix(v):
+    """Loose filter for scan_for_tables: keep suffixes that look like real
+    structured data (a sentinel, a one-hot bitmask, or a small offset/tag)
+    rather than noise from graphics/tile bytes coincidentally decoding as
+    printable text. Generous by design -- the real noise filter is
+    cluster_runs' run-length requirement, not this."""
+    if v == 0xFFFF:
+        return True
+    if v != 0 and (v & (v - 1)) == 0:
+        return True
+    return v < 0x0800
+
+
+def scan_for_tables(rom, start, end, tagged_tag_range=(0, 40)):
+    """Combined tagged+plain scan used to find issue #8's new tables
+    (penalty catalog, team-strength categories, three-stars criteria --
+    see FINDINGS.md section 7#10). Returns raw hits from both formats,
+    sorted by address; feed to cluster_runs to drop isolated false
+    positives."""
+    hits = []
+    for rec in parse_string_records(rom, start, end):
+        if _plausible_suffix(rec["suffix_int"]):
+            rec = dict(rec, fmt="tagged")
+            hits.append(rec)
+    for rec in parse_plain_records(rom, start, end):
+        if _plausible_suffix(rec["suffix_int"]):
+            rec = dict(rec, fmt="plain")
+            hits.append(rec)
+    return sorted(hits, key=lambda r: r["addr"])
+
+
+def cluster_runs(hits, max_gap=24, min_run=3):
+    """Groups hits into runs where consecutive records sit within max_gap
+    bytes of each other, dropping runs shorter than min_run. Real tables
+    are always several entries in a row; isolated hits are almost always
+    coincidental ASCII-looking graphics/tile data -- this one filter is
+    what made scan_for_tables usable instead of drowning in noise."""
+    runs, cur = [], []
+    for h in hits:
+        if cur and h["addr"] - cur[-1]["addr"] > max_gap:
+            if len(cur) >= min_run:
+                runs.append(cur)
+            cur = []
+        cur.append(h)
+    if len(cur) >= min_run:
+        runs.append(cur)
+    return runs
+
+
 def find_raw_pointer(rom, addr, width=4):
     """Search for `addr` encoded as a literal big-endian pointer anywhere
     in the ROM. A clean miss here (as happened for both the Face Off
@@ -136,6 +215,15 @@ def _main():
         addr = int(sys.argv[2], 16)
         hits = find_raw_pointer(rom, addr)
         print(f"0x{addr:X} as raw pointer: {[hex(h) for h in hits] or 'no hits'}")
+    elif cmd == "scan-tables":
+        start, end = int(sys.argv[2], 16), int(sys.argv[3], 16)
+        hits = scan_for_tables(rom, start, end)
+        runs = cluster_runs(hits)
+        print(f"{len(hits)} raw candidate records, {len(runs)} runs of >=3 after clustering\n")
+        for run in runs:
+            addrs = f"0x{run[0]['addr']:06X}-0x{run[-1]['addr']:06X}"
+            texts = [r["text"] for r in run]
+            print(f"{addrs}  ({len(run)} entries, fmt={run[0]['fmt']}): {texts}")
     else:
         print(__doc__)
 

@@ -454,13 +454,19 @@ AI decision-making and faceoffs are untouched and would be a new,
 separately-scoped investigation, not a continuation of item 5. (There is
 **no interactive fighting minigame** in this game — an earlier version of
 this note wrongly implied there was, corrected by the repo owner. "Fighting"
-does still appear twice in the ROM's own text data, though: as a real
-penalty type (alongside Holding, Checking, etc. — a player can be sent to
-the box for it without any interactive fight sequence) and as a
-team-strength rating category alongside Defense/Checking/Goalkeeping/Power
-Play Adv. Don't re-add "investigate the fighting minigame" as a target —
-there isn't one — but the penalty-type and team-rating angles are fair game
-if picked up under the existing injury/penalty-adjacent leads.)
+does still appear in the ROM's own text data, though, now fully mapped: a
+smarter static scan (issue #8, see `docs/FINDINGS.md` §7#10) found the
+**complete penalty-type catalog** (Charging, Slashing, Tripping, Roughing,
+Hooking, Cross Check, Interference, Holding, Fighting, plus a `Fighting *`
+variant — a player can be sent to the box for any of these without any
+interactive fight sequence) and the **complete team-strength rating
+category list** (Shooting, Passing, Checking, Goalkeeping, Skating,
+Defense, Fighting, Power Play Adv., Overall — the source table for the
+Scouting Report's "Advantage: [category]" display). Don't re-add
+"investigate the fighting minigame" as a target — there isn't one — and
+don't re-scan for these tables, they're done; the same pass also flagged
+lower-confidence leads (a goalie-specific stats table, an injury-status
+abbreviation table, a partial months table) still open if picked up.)
 
 The project is now public: https://github.com/BreakableHoodie/nhl95-decoded
 (ROM, Ghidra project, and raw third-party scrapes are gitignored — never

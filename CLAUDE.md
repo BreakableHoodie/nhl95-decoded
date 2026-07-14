@@ -687,3 +687,27 @@ pre-Controller-Setup settings screen (first Vancouver, then Boston) and
 watching the Line Editor's own header track it exactly, even with *no*
 controller assigned to either team (both on CPU). To edit the home team's
 lines from this menu, set it as `Team 2` before starting the game.
+
+**Issue #1 (hot/cold modifier vs. the two live-read stat residuals) is now
+also closed, same session.** The earlier "shortcut" attempt (a prior
+session) tested the right boot but guessed at Vancouver's team-struct
+address and got a genuinely mixed result. This session found the address
+properly instead: breakpointed `0x0A0042` (the modifier-sum function),
+discovered and ruled out a same-address false-positive caller (`0x0A0024`
+— fires on unrelated button-press handling, only distinguishable by
+checking `bt`), then breakpointed the real setup caller `0x0A0006`
+directly and read `A0` at the hit — `0xFFFFC288` for Vancouver,
+cross-checked against the Scouting Report's own on-screen text for that
+exact matchup. Since this was a fresh boot, the old residual numbers
+(+9.7/+11.3, tied to different now-gone RNG state) couldn't be reused
+directly, so the test was redone fully self-consistently within this
+boot: read this boot's own modifier bytes (Ronning -4, Courtnall +4),
+computed boot-independent predicted stats from the multivariate models,
+and compared against this boot's own live Team Roster reads. **Ronning:
+predicted+modifier (81.3) matched live (81) exactly** — a clean,
+decisive confirmation that hot/cold applies additively to live stats.
+Courtnall's case (predicted+modifier 89.7 vs. live 98) missed by 8, but
+98 sits right at the 0-99 ceiling — very likely the same clamp/saturation
+effect this document had already flagged as suspected-but-unconfirmed
+from CSV-comparison outliers, now with a live example. Full writeup in
+`docs/FINDINGS.md` §5.

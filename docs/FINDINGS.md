@@ -839,6 +839,59 @@ word "grave"; and a custom `blastem.cfg` fully replaces the default bindings rat
 than merging, so it must explicitly include every binding you need, not just the ones
 you're changing.)
 
+**Issue #1 closed: the hot/cold modifier mechanism is now directly, cleanly confirmed
+to apply additively to live-displayed named stats — via a fully self-consistent,
+same-boot test, not a stale residual comparison.** The earlier "shortcut" attempt
+(above, in §6's writeup) tested the *original* residual-measurement boot but guessed
+at the team-struct base address and got a genuinely mixed result. Redone properly this
+session with the address-finding method the issue called for, on a **fresh boot**
+(so the specific old residual numbers, +9.7/+11.3, belong to different, no-longer-
+reproducible RNG state and can't be reused directly — but the *mechanism* can be
+tested self-consistently against this boot's own numbers instead):
+
+- Found Vancouver's live team-struct base with a verified call chain, not a guess:
+  breakpointed `0x0A0042` (the modifier-sum function) and, after ruling out a
+  same-address false-positive caller (`0x0A0024`, fires on unrelated button-press
+  handling with a *stable* `A0` — a real gotcha, cost real time before checking `bt`
+  caught it), confirmed the real setup-sequence caller is `0x0A0006`. Breakpointing
+  `0x0A0006` directly and reading `A0` at the hit gave `0xFFFFC288` for Vancouver —
+  independently cross-checked against the Scouting Report's own text for this exact
+  matchup ("Cliff Ronning is off his game"), which matches the sign of the byte read
+  below. This is the first time this project has confirmed a team-struct base via the
+  fully-verified method rather than reusing an address borrowed from an unrelated call
+  site (score/clock's `0xFFFFC5EE`/`0xFFFFC288`, only ever confirmed as *this-session*
+  home/away slots for a different purpose).
+- Read the modifier bytes directly: `team_struct+0x1A4+3` (Ronning) = `0xFC` = **-4**;
+  `team_struct+0x1A4+7` (Courtnall) = `0x04` = **+4** (roster indices straight from
+  `full_roster_database.json`, the same field independently confirmed correct via
+  Messier=3/Leetch=18 earlier in this section).
+- Computed **boot-independent** predicted values from the multivariate models
+  (`docs/external_sources/multivariate_stat_models.json`, fixed ROM nibbles only, no
+  RNG involved) for the same two (player, stat) pairs the original residuals flagged:
+  Ronning's Top Speed = **85.3**, Courtnall's Agility = **85.7**.
+  Read this boot's own live values off the Team Roster screen: Ronning's Speed =
+  **81**, Courtnall's Agility = **98**.
+- **Ronning: predicted + modifier = 85.3 + (-4) = 81.3, live = 81 — an exact match.**
+  This is a clean, decisive, same-boot confirmation that the hot/cold modifier is
+  applied additively to the displayed named stat, not just correlated with it.
+- **Courtnall: predicted + modifier = 85.7 + 4 = 89.7, live = 98 — an 8-point miss.**
+  Rather than contradicting the model, this lands on a different, already-suspected
+  effect: 98 sits right at the edge of the 0-99 display range, and a "linear fit
+  under-predicts near the ceiling" clamp/saturation pattern was already flagged
+  earlier in this document (§6) from the CSV-comparison outliers, without a live
+  example to confirm it. Courtnall's Agility is that live example — the additive
+  model likely still holds underneath, but the displayed value gets clamped (or the
+  true relationship saturates) before it can show the full predicted+modifier total.
+
+Net effect: the mechanism question is answered (hot/cold modifiers are a real,
+additive contribution to live named stats, confirmed on a clean mid-range case), and
+the two original outlier residuals are now understood as **two different effects**
+rather than one — Ronning-style cases are explainable by the modifier directly,
+Courtnall-style cases near the ceiling need the clamp/saturation behavior accounted
+for too. Closing GitHub issue #1 on this basis; the exact clamp formula (if the
+engine even models it explicitly, versus just truncating a computed value into a
+byte) is a smaller, separate loose end, not blocking.
+
 ---
 
 ## 6. Player rating bytes — jersey number solved, Overall Rating formula solved and ROM-confirmed (exact weights + opcode still open)

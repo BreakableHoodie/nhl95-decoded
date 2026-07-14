@@ -296,37 +296,48 @@ player's index, and offset+5 (RW) receives Smolinski — exactly matching the on
 clone.
 
 **Follow-up, suggested by a reader: what does live gameplay actually do with him
-once the clone exists?** Reproduced the bug fresh this session (Boston vs. Vancouver,
-Sc1, substituted Smolinski from LW onto RW via the in-game Line Editor's "Select
-Player" sub-menu — confirmed it doesn't exclude a player already on the line, which
-is exactly the precondition for this bug) and started a real game with the corrupted
-line active.
+once the clone exists?** The question came with real context that matters:
+the reader relayed a friend's *first-hand* account of having seen **three
+different outcomes** from this exact bug across past play sessions — normal
+play, appearing to join mid-shift from the bench, and standing idle near the
+opponent's net while the game continues around him. That's eyewitness
+testimony of real variance, not three guesses — which means a single
+reproduction proving one outcome doesn't settle the question; if anything it
+predicts the bug is *state-dependent*, not fixed.
 
-Paused mid-shift and checked the live Team Roster screen's `Status` column — the
-same live indicator already used elsewhere in this document (§6) to distinguish
-`Bench` from an active player. **Direct result: Smolinski shows `Status: Ice`**, the
-same as any normally-playing teammate — not benched, not stuck in any special state
-visible through this indicator. But his `Reg` (regular-line) column reads **`12`**
-instead of the normal single line number — a real, live-visible artifact of the
-same underlying corruption, consistent with the line-appearance-counting logic
-(the same kind of counting already documented in §7 item 2) tallying him twice
-because his roster index legitimately occupies two slots on the one line.
+Reproduced the bug fresh this session anyway, as a first data point (Boston
+vs. Vancouver, Sc1, substituted Smolinski from LW onto RW via the in-game
+Line Editor's "Select Player" sub-menu — confirmed it doesn't exclude a
+player already on the line, which is exactly the precondition for this bug)
+and started a real game with the corrupted line active. Paused mid-shift and
+checked the live Team Roster screen's `Status` column — the same live
+indicator already used elsewhere in this document (§6) to distinguish
+`Bench` from an active player. **Result for this one reproduction: Smolinski
+showed `Status: Ice`**, same as a normally-playing teammate, with `Reg`
+(regular-line) reading **`12`** instead of the normal single line number — a
+real, live-visible artifact of the corruption, consistent with the
+line-appearance-counting logic (the same kind already documented in §7 item
+2) tallying him twice because his roster index legitimately occupies two
+slots on the one line.
 
-**What this does and doesn't prove.** Directly confirmed: he is not silently
-dropped from the ice, and there's no visible "broken/error" status — the game's
-own bookkeeping treats him as a legitimately active player, just double-counted.
-Not independently confirmed at the sprite/pixel level (would need either a
-direct read of the live 5-skater on-ice slot table, or a frame-perfect visual
-identification of two identically-dressed, unlabeled sprites during play, neither
-attempted this session) — but the evidence available is most consistent with the
-straightforward mechanical explanation: the game's per-shift lineup logic walks
-the line's 5 position slots (LD/RD/LW/C/RW) and instantiates an on-ice player for
-each, and since two of those slots resolve to the same roster index, it most likely
-places two independent, normally-AI/player-controlled copies of Smolinski on the
-ice at once — one at LW, one at RW — rather than benching one or leaving a
-position empty. Nothing observed supports a "frozen in a corner" or "stuck on
-bench" outcome; both would be visible as `Status: Bench` or a stalled game clock,
-neither of which occurred.
+**What this does and doesn't prove.** This is one confirmed data point — the
+"normal play" outcome is real and reproducible, not just a hypothesis. It is
+*not* proof that the other two reported outcomes don't happen; given the
+friend's account, they very plausibly do, under conditions this single
+reproduction didn't hit (which stoppage/faceoff the corrupted line first gets
+used at, whether Smolinski has puck possession when a shift change fires,
+timing relative to a line change, etc. are all untested variables). The
+likely underlying mechanism — the game's per-shift lineup logic walking the
+line's 5 position slots (LD/RD/LW/C/RW) and instantiating a player for each,
+with two slots resolving to the same roster index — is consistent with *any*
+of the three outcomes depending on exactly how the engine's shift-change and
+possession-handling code reacts to seeing one roster index twice in the same
+lineup pass, not just the "two independent copies" explanation floated
+earlier. Properly answering "why three different outcomes" needs repeated
+reproductions across different in-game moments (start of a shift, mid-shift
+after a change, right as he takes possession) and ideally a direct read of
+the live on-ice-slot table, not a single pass. Left open in issue #10 with
+this fuller context.
 
 ---
 

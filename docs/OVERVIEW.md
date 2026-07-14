@@ -104,6 +104,18 @@ the players shown against our predicted line — it matched exactly,
 including that penalty-kill lines only ever show 4 players (no right wing),
 matching how the real rule works.
 
+```
+┌─────────────────────────────────────────┐
+│  Sc1 → Sc2        two scoring lines      │
+│  Chk              checking line          │
+│  PP1 → PP2        two power-play lines   │
+│  PK1 → PK2        two penalty-kill lines │
+│                   (4 players, no RW)     │
+└─────────────────────────────────────────┘
+        Sc1 is always active first,
+        at the start of every period.
+```
+
 ## The game has a hidden Shootout mode, a full Playoff bracket, and real trades
 
 Most of this project's earlier work focused on Exhibition games — pick

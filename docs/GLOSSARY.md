@@ -33,6 +33,14 @@ of this project's hardest problems (like exactly how Overall Rating gets
 computed) come down to this interpreter being much harder to trace
 statically than ordinary code.
 
+**Clamp / saturation** — when a game caps a computed value at some fixed
+ceiling or floor rather than letting it go arbitrarily high or low (e.g.
+"stop at 99, however big the real formula's answer is"). This project
+found live evidence of it near the top of the 0-99 stat range: a player's
+predicted stat plus their random hot/cold adjustment landed higher than
+the displayed number, consistent with the display quietly capping at the
+ceiling rather than the underlying formula being wrong.
+
 **Debugger** — a tool that lets you pause a running program, inspect its
 memory and registers, and step forward one instruction at a time. This
 project uses BlastEm's built-in debugger (see below) to watch the ROM's
@@ -109,6 +117,15 @@ back to that exact moment instantly instead of replaying from a fresh
 boot every time. This project keeps several savestates (like
 `controller_setup.state`) purely to skip the ~4-minute mandatory credits
 scroll during repeated testing.
+
+**SRAM (Save RAM)** — a small, separate block of memory backed by a
+battery in the cartridge itself, which is why save data survives being
+powered off — unlike ordinary **WRAM** (below), which loses everything the
+instant the console loses power. This project traced the hot/cold streak
+RNG's seed to something tied to this SRAM/backup-RAM area: removing the
+save file changed the boot sequence's exact timing enough to produce a
+genuinely different random seed, which is how the seeding mechanism was
+pinned down.
 
 **Static analysis** — studying the ROM's code and data without ever
 running it — reading raw bytes, disassembling instructions, searching for

@@ -113,7 +113,19 @@ pre {
 pre code { background: none; border: none; padding: 0; font-size: 0.85em; white-space: pre; }
 
 /* ---------- tables ---------- */
-.table-wrap { overflow-x: auto; margin: 1.2rem 0; border: 1px solid var(--border); border-radius: 8px; max-width: 100%; }
+.table-wrap {
+  overflow-x: auto; margin: 1.2rem 0; border: 1px solid var(--border); border-radius: 8px; max-width: 100%;
+  /* scroll-shadow hint: fades in at either edge only while there's more to scroll to */
+  background-image:
+    linear-gradient(to right, var(--bg), var(--bg) 70%, transparent),
+    linear-gradient(to left, var(--bg), var(--bg) 70%, transparent),
+    linear-gradient(to right, var(--border), transparent),
+    linear-gradient(to left, var(--border), transparent);
+  background-repeat: no-repeat;
+  background-size: 28px 100%, 28px 100%, 10px 100%, 10px 100%;
+  background-position: left, right, left, right;
+  background-attachment: local, local, scroll, scroll;
+}
 table { border-collapse: collapse; width: 100%; font-size: 0.92rem; }
 th, td { text-align: left; padding: 0.5rem 0.8rem; border-bottom: 1px solid var(--border); }
 th { background: var(--table-header); font-weight: 650; white-space: nowrap; }
@@ -134,5 +146,9 @@ img { max-width: 100%; }
   .page-wrap { padding: 1.25rem 1rem 3rem; }
   h1 { font-size: 1.5rem; }
   h2 { font-size: 1.2rem; }
-  .site-nav { padding: 0.6rem 0.8rem; }
+  .site-nav { padding: 0.5rem 0.7rem; gap: 0.15rem; row-gap: 0.3rem; }
+  .site-nav .brand { font-size: 0.92rem; margin-right: 0.4rem; }
+  .site-nav a.nav-link { font-size: 0.85rem; padding: 0.28rem 0.45rem; }
+  .theme-switch { margin-right: 0.3rem; }
+  .theme-switch button { padding: 0.25rem 0.4rem; font-size: 0.8rem; }
 }

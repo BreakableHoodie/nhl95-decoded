@@ -36,8 +36,13 @@ has argued about for years without ever opening the ROM to check.
 - [4. Anomaly scan of the player database](#4-anomaly-scan-of-the-player-database-rosterjersey-data)
 - [5. Hot/cold streaks](#5-hotcold-streaks--confirmed-real-mechanism-partially-traced)
 - [6. Player rating bytes / Overall Rating formula](#6-player-rating-bytes--jersey-number-solved-overall-rating-formula-solved-and-rom-confirmed-exact-weights--opcode-still-open)
-- [7. Open questions / candidate next steps](#7-open-questions--candidate-next-steps)
+- [7. Open questions / candidate next steps](#7-open-questions--candidate-next-steps) — 12 numbered items, roughly priority order; closed ones are struck through inline, no separate anchors (they're list items, not headings) — Ctrl+F the item number if jumping to one directly
 - [8. Game modes — mapped via live exploration and the official manual](#8-game-modes--mapped-via-live-exploration-and-the-official-manual)
+  - [8.1 The full `Play Mode` list](#81-the-full-play-mode-list)
+  - [8.2 Shootout](#82-shootout--real-live-confirmed-and-richer-than-the-static-find-suggested)
+  - [8.3 Season and Playoffs](#83-season-and-playoffs--the-full-manual-documented-flow-live-confirmed-screen-by-screen)
+  - [8.4 Trade Players](#84-trade-players--and-an-unplanned-lead-for-the-overall-rating-research-issue-2)
+  - [8.5 Full pre-game/pause menu](#85-full-pre-gamepause-menu--fully-mapped-and-closed-issue-13-closed)
 
 **How to read this**: sections are long because they're a *history*, not
 just a result — an earlier hypothesis getting corrected two paragraphs
@@ -99,90 +104,46 @@ Two more tables of the exact same shape sit immediately before the real teams, a
 (confirmed selectable in-game), each mixing star players from many different real
 teams (e.g. `0x834` includes Roy, Messier, Lindros, Bourque, Jagr all in one roster).
 
-**Menu→ROM order, fully mapped live (see §7#3 for the investigation) —
-⚠️ superseded, see the "Fully resolved" paragraph a few paragraphs down:
-the menu order is alphabetical, not ROM order, and Dallas was never
-missing. Kept below for the record, not as a current claim.** The
-in-game Team 1/Team 2 exhibition selector cycles in *exactly* ROM storage order
-with one single, striking exception: **Dallas is completely absent from the
-selectable list** — cycling hits `... Hartford → Los Angeles → Montreal ...`,
-skipping ROM index 10 entirely, despite Dallas having a full, valid roster stored
-in the ROM. The two All-Star rosters
-(stored *before* the real teams in ROM) appear at the *end* of the menu cycle
-instead — the full loop is `Anaheim → Boston → ... → Washington → All Stars East
-→ All Stars West → (wraps to) Anaheim`. Real-world context: the Dallas Stars were
-a brand-new 1993-94 relocation from Minnesota, active for barely one season before
-this ROM shipped — the simplest explanation is Dallas was added to the roster data
-late and never got wired into the exhibition team-count/loop, leaving it as a
-fully-modeled team that's unreachable *specifically through this one menu*. This
-resolves the "implies a separate menu→index lookup table" framing from earlier in
-this section: there isn't a scrambled lookup table to find — the menu walks ROM
-order directly, it's just missing one entry and has two extras appended at the
-wrap point.
+**Menu→ROM order — ⚠️ superseded, kept for the record, see the resolution
+right below.** The original theory here was that the in-game Team 1/Team 2
+exhibition selector cycles in *exactly* ROM storage order, with **Dallas
+completely absent from the selectable list** (skipping ROM index 10
+entirely) and both All-Star rosters appended at the wrap point instead of
+appearing where they're actually stored — attributed to Dallas being a
+brand-new 1993-94 relocation from Minnesota, plausibly added to the roster
+data too late to get wired into the menu's team-count/loop. This turned
+out to be wrong; see below.
 
-**Dallas *is* playable — confirmed live, via Season mode.** A true fresh boot
-(`nhl95_daemon.py start --fresh`) → Play Mode → New Season → Season Setup → Games
-Today schedule browser shows a real "Detroit at Dallas" fixture, selectable with
-`A` (Human/Computer toggle) exactly like every other matchup. So the omission is
-specific to the Exhibition menu's team-loop, not a general "Dallas is unreachable"
-situation — whoever built the Season mode schedule generator wired Dallas in
-correctly. See GitHub issue #7 for the full trace.
-
-**Contradicting follow-up, found later in a completely different session:
-Dallas *is* directly selectable from the Team 1 field on the Exhibition-style
-settings screen too — the "completely absent" claim above does not
-reproduce.** While hunting for Boston (for an unrelated Smolinski-bug
-reproduction, see §3), cycling `Team 1` right from `Chicago` landed cleanly
-on `Team 1: Dallas` with a correctly rendered Dallas Stars logo — confirmed
-not once but through the **full game-start sequence**: Controller Setup
-showed a `VANCOUVER / CPU / DALLAS` column layout exactly like any other
-matchup, and the Scouting Report screen that followed showed a real,
-plausible **`Dallas Stars — Overall 21`** (the lowest Overall Rating seen
-anywhere in this project, consistent with — not contradicting — Dallas
-being a genuinely weak, brand-new expansion-era roster). This is about as
-strong a confirmation as this project produces: not a static guess, not a
-single ambiguous screenshot, but a full live playthrough into a real game
-state with correct, internally-consistent data at every step.
-
-**Fully resolved, same session: the menu order is alphabetical, not ROM
-storage order — the original "walks ROM order directly" mechanism claim
-was itself the mistake.** A careful re-walk, checking a fresh, fully
-settled screenshot after every single input (no batching, no assumptions)
-produced nine consecutive, unambiguous transitions: `Anaheim → Boston →
-Buffalo → Calgary → Chicago → Dallas → Detroit → Edmonton → Florida` —
-**exact alphabetical order**, with Dallas sitting exactly where
-alphabetical sorting puts it (`Chicago` < `Dallas` < `Detroit`). This is
-not the ROM storage order documented above (which has Dallas between Los
-Angeles and Montreal) — it's a completely different, separately-sorted
-traversal, meaning there **is** a real menu→team lookup table after all,
-just an alphabetically-sorted one rather than a "scrambled" one, and it
-correctly includes all 26 teams plus both All-Star rosters (which sort
-after `Washington` at the end, exactly as originally observed).
+**Resolved: the menu order is alphabetical, not ROM order, and Dallas was
+never missing.** Two independent lines of evidence settled it. First,
+Dallas is directly selectable and fully playable: cycling `Team 1` right
+from `Chicago` in Exhibition mode landed cleanly on `Dallas`, and it played
+through a full Controller Setup → Scouting Report sequence with a real,
+internally-consistent `Dallas Stars — Overall 21`; separately, Season
+mode's `Games Today` schedule browser independently shows a genuine
+"Detroit at Dallas" fixture, selectable exactly like every other matchup.
+Second, a careful re-walk of the Exhibition menu — verifying a fresh,
+fully-settled screenshot after *every single input*, no batching — produced
+nine clean, unambiguous transitions: `Anaheim → Boston → Buffalo → Calgary
+→ Chicago → Dallas → Detroit → Edmonton → Florida`, exact alphabetical
+order, with Dallas sitting exactly where alphabetical sorting puts it. This
+is not the ROM storage order claimed above (which has Dallas between Los
+Angeles and Montreal) — it's a real, separate menu→team lookup table after
+all, just alphabetically sorted rather than "scrambled," including both
+All-Star rosters sorting after `Washington` at the wrap point, exactly as
+originally observed.
 
 **What actually went wrong in the original investigation**: almost
-certainly the same input-timing issue this session hit repeatedly and
-eventually diagnosed (see CLAUDE.md's new gotcha) — a single button input
+certainly the same input-timing failure mode this project only diagnosed
+by accident, much later (see CLAUDE.md's gotcha) — a single button input
 occasionally advancing the on-screen list by two positions instead of one,
-because of how fast the debugger can pump frames relative to this menu's
-own edge-detection/auto-repeat logic. A single silently-doubled step
-right around Chicago/Dallas/Detroit — entirely plausible given how easy
-this was to reproduce this session — would look *exactly* like "Dallas is
-missing, Detroit follows Chicago directly," which is precisely the
-original claim. The original investigator had no reason to suspect this;
-this project only discovered the failure mode by accident, days later,
-while chasing an unrelated team (Boston).
-
-**Bottom line**: the header paragraph above (with its "Dallas is
-completely absent," "menu walks ROM order directly," and "brand-new
-1993-94 relocation... never wired into the loop" theory) is **superseded,
-not just disputed** — Dallas was never missing, and the underlying
-mechanism theory was wrong in a way that happened to still sound
-plausible. Left the original paragraph in place above rather than
-deleting it, since the wrong turn and why it looked convincing at the
-time (a real hockey fact — Dallas *was* a brand-new relocation — lent
-false support to an incorrect mechanism) is itself a useful lesson for
-this project: a good real-world explanation for *why* a bug would exist is
-not evidence that it *does* exist. GitHub issue #7 closed with this
+from how fast the debugger can pump frames relative to this menu's own
+edge-detection/auto-repeat logic. A single silently-doubled step right
+around Chicago/Dallas/Detroit would look *exactly* like "Dallas is
+missing, Detroit follows Chicago directly" — the original claim,
+precisely. The lesson worth keeping: a good real-world explanation for
+*why* a bug would exist (Dallas really was a brand-new relocation) is not
+evidence that it *does* exist. GitHub issue #7 closed with this
 resolution.
 
 Each team record is laid out as:
@@ -842,7 +803,7 @@ you're changing.)
 **Issue #1 closed: the hot/cold modifier mechanism is now directly, cleanly confirmed
 to apply additively to live-displayed named stats — via a fully self-consistent,
 same-boot test, not a stale residual comparison.** The earlier "shortcut" attempt
-(above, in §6's writeup) tested the *original* residual-measurement boot but guessed
+(§7 item 6's writeup) tested the *original* residual-measurement boot but guessed
 at the team-struct base address and got a genuinely mixed result. Redone properly this
 session with the address-finding method the issue called for, on a **fresh boot**
 (so the specific old residual numbers, +9.7/+11.3, belong to different, no-longer-
@@ -871,6 +832,28 @@ tested self-consistently against this boot's own numbers instead):
   Ronning's Top Speed = **85.3**, Courtnall's Agility = **85.7**.
   Read this boot's own live values off the Team Roster screen: Ronning's Speed =
   **81**, Courtnall's Agility = **98**.
+
+**The addressing chain, visually:**
+
+```
+Vancouver's team_struct base: 0xFFFFC288
+(confirmed live via the 0x0A0006 -> 0x0A0042 call chain,
+cross-checked against the on-screen "Ronning is off his game")
+    │
+    │  + 0x1A4  (start of the modifier table)
+    ▼
+16-byte modifier table — one signed byte (-9..+8)
+per roster index, written once per boot by 0x0083E88
+    │
+    ├── + roster_index 3 (Ronning)
+    │       0xFFFFC42F = 0xFC = -4
+    │       (matches "Cliff Ronning is off his game" on screen)
+    │
+    └── + roster_index 7 (Courtnall)
+            0xFFFFC433 = 0x04 = +4
+            (matches Courtnall's positive Agility residual)
+```
+
 - **Ronning: predicted + modifier = 85.3 + (-4) = 81.3, live = 81 — an exact match.**
   This is a clean, decisive, same-boot confirmation that the hot/cold modifier is
   applied additively to the displayed named stat, not just correlated with it.
@@ -1242,6 +1225,41 @@ first, at a different call site, before the whole loop returns to
 primitive 1 for the *next* widget/team) — consistent with "once per digit"
 or "once per sub-element" rather than one call producing the whole number.
 
+**The chain traced so far, visually** (ruled-out steps vs. the still-open target):
+
+```
+skip-loop exit (D0 = category index, now spent)
+    │
+    ▼
+primitive 1 (0x7C6D4) ── RULED OUT, D0 untouched
+    │
+    ▼
+primitive 2 (0x7C6E6) ── RULED OUT, D0 untouched
+    │
+    ▼
+real 68k code (not a primitive): A2 = team struct,
+D0 = WRAM $FFFFD266 (a +7-stride offset into the
+per-player attribute block)
+    │
+    ▼
+primitive 3 (0x7C810) ── called ≥2x per widget,
+forwards to 0x7C822
+    │
+    ▼
+0x7C822 ── STILL OPEN, the real candidate. One call
+traced: parses padding, discards D0 without using it
+as an index — check its OTHER call site(s) next
+    │
+    ▼
+primitives 4 (0x7CF16) and 5 (0x7D258) ── not yet traced
+    │
+    ▼
+digit-print (0x7D154) ── confirmed pure formatter
+    │
+    ▼
+displayed rating (e.g. Messier: 79)
+```
+
 **Net effect**: primitives 1 and 2 are now ruled out with direct evidence
 (not just inference), narrowing the real candidate to **`0x0007C822`**
 (reached from inside primitive 3) plus the `$FFFFD266`/`+7`-stride offset
@@ -1506,29 +1524,12 @@ loop (`0x0083E88`). See §5.
    cross-checked appearances), is very likely a genuine bench/backup
    reference that simply isn't surfaced by the Team Roster or Line Editor UI,
    not a meaningfully different kind of data.
-3. ~~Map the menu→team-index lookup~~ — **done, and more interesting than
-   expected.** Live-cycled the full Team 1 selector from a fresh boot (title
-   screen → credits → exhibition options screen; new reusable savestate at
-   `~/team_select.state` on the VM for future sessions). The menu walks ROM
-   order directly — **Dallas is simply missing from the selectable list
-   entirely** (despite having a complete, valid roster in the ROM), and the two
-   All-Star rosters are appended at the wrap point instead of appearing where
-   they're stored. See §2.1 for the full writeup and the likely explanation
-   (Dallas was a brand-new 1993-94 relocation, probably added to the data too
-   late to get wired into the menu's team count/loop). **Fully superseded,
-   a later session: the whole premise was wrong.** Dallas is directly
-   selectable from the Exhibition Team 1 field — played all the way
-   through Controller Setup and a real Scouting Report screen (`Dallas
-   Stars, Overall 21`) — and a careful, single-step-verified re-walk of
-   the menu found the real mechanism: **the selector cycles in
-   alphabetical order** (`Anaheim → Boston → Buffalo → Calgary → Chicago →
-   Dallas → Detroit → Edmonton → Florida`, nine clean verified steps),
-   not ROM storage order as originally concluded. The original "missing"
-   finding was very likely a single silently-doubled input step during
-   that investigation (the same input-timing failure mode this project
-   only diagnosed by accident, much later — see CLAUDE.md), which would
-   have looked exactly like Dallas being skipped. See §2.1 for the full
-   writeup and GitHub issue #7 (closed).
+3. ~~Map the menu→team-index lookup~~ — **done. The menu cycles in
+   alphabetical order (not ROM order), and Dallas was never missing** — an
+   earlier pass through this item concluded the opposite (ROM order,
+   Dallas absent), which turned out to be wrong; see §2.1 for the full
+   evidence trail and the root cause of that original mistake. GitHub
+   issue #7 closed with this resolution.
 4. ~~Check whether jersey number is used as a lookup key anywhere~~ — **checked,
    reasonably confident negative result, not exhaustively proven.** See §4: every
    subsystem mapped this session keys on roster index, never jersey number;
@@ -2043,7 +2044,19 @@ loop (`0x0083E88`). See §5.
    itself is computed/stored — both need live tracing, not more static
    analysis (the same "no memory watchpoints" constraint documented for
    faceoffs in item 7 applies here too). Full byte dumps and the correction
-   above in GitHub issue #9; not pursued further this session.
+   above in GitHub issue #9.
+
+   **Follow-up session: tried the "let genuine CPU-vs-CPU play run and
+   catch the event" approach that worked for issue #10's goal — watched a
+   full 3-period game end to end (see §3's box score), zero injuries
+   occurred.** A useful negative data point, not a dead end: it suggests
+   injuries are a genuinely low-probability per-body-check event, not
+   something a single ~30-minute game reliably produces. Narrowed rather
+   than closed: the concrete next step is finding a live WRAM signal for
+   "an injury just happened" (the same kind of gap clock/period had before
+   value-matching cracked them, see item 11) and then using
+   `tools/nhl95_monitor.py` to poll across *many* auto-run games instead of
+   watching one — not pursued further this session, see issue #9.
 
 9. **Score/Shots RAM addresses — solved, live-confirmed against two real
    goals.** Built for `tools/nhl95_monitor.py` (the unattended CPU-vs-CPU
@@ -2485,7 +2498,11 @@ Calendar`, `Games Today`, `League Leaders`, `Team Stats`, `Player Stats`,
 real divisional structure (`WESTERN CONFERENCE` / `PACIFIC DIV.`:
 Anaheim, Calgary, Edmonton, Los Angeles, San Jose, Vancouver, all `0-0-0`
 on a fresh season) with `GR` (games remaining) reading **84** — matching
-the real 1993-94 NHL's 84-game regular-season length.
+the real 1993-94 NHL's 84-game regular-season length. `End Season After
+Today` is a genuine fast-forward shortcut, not a no-op — see §7 item 12
+for what selecting it actually does (skips straight to a post-season
+`SEASON OPTIONS` menu topped by `On To Playoffs`) and the awards-table
+live-reachability check that motivated trying it.
 
 **Playoffs** (`New Playoffs`): Controller Setup → a full 16-team
 **playoff bracket screen with a rendered Stanley Cup graphic** in the

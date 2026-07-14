@@ -626,24 +626,35 @@ best of any goalie seen this session). Remaining open issues (#1, #2,
 patching-primitive family or an expensive full-season playthrough —
 genuinely scoped future work, not quick continuations.
 
-**Unplanned but significant: issue #7 (Dallas exhibition-menu access)
-reopened — the closed "Dallas is completely absent from the selectable
-list" finding does not reproduce.** Discovered while hunting for Boston
-for an issue #10 (Smolinski) reproduction attempt: cycling `Team 1`
-landed cleanly on Dallas, and it played all the way through Controller
-Setup and a real Scouting Report screen (`Dallas Stars, Overall 21`) —
-a full live game-start, not a static guess. Documented honestly as an
-unreconciled contradiction rather than overwriting the original
-paragraph: this session's own attempt to map the exact team order
-produced inconsistent step counts, a real timing sensitivity in how
-`tools/nhl95ctl.py press` (frame-held-then-released) interacts with
-this menu's auto-repeat — confirmed by watching the raw `se d0`/`c`
-sequences it sends, where the *same* single-frame press sometimes
-advanced the list by one team and sometimes by two or more. **New
-gotcha for future sessions**: don't trust `press LEFT/RIGHT N` for
-precise single-step menu navigation on team-selector-style fields;
-use the debugger-level single-frame controller injection (breakpoint
-at `0x7A58A` + `se d0` + one `c`) already documented above for anything
-that needs a guaranteed single step. The original Boston-hunting task
-(issue #10) was not completed this session — got fully sidetracked by
-this higher-value, unplanned discovery, which is the right trade.
+**Unplanned but significant: issue #7 (Dallas exhibition-menu access) is
+now fully resolved and closed — the old "Dallas is completely absent
+from the selectable list" finding was itself wrong.** Discovered while
+hunting for Boston for an issue #10 (Smolinski) reproduction attempt:
+cycling `Team 1` landed cleanly on Dallas, and it played all the way
+through Controller Setup and a real Scouting Report screen (`Dallas
+Stars, Overall 21`). A careful follow-up re-walk — verifying a fresh,
+fully-settled screenshot after *every single* input, no batching —
+found the actual mechanism: the Exhibition selector cycles in
+**alphabetical order** (`Anaheim → Boston → Buffalo → Calgary → Chicago
+→ Dallas → Detroit → Edmonton → Florida`, nine clean verified steps),
+not ROM storage order as the original investigation concluded. Dallas
+sits exactly where alphabetical order puts it (`Chicago` < `Dallas` <
+`Detroit`) — it was never missing. The original finding was almost
+certainly a single silently-doubled input step around that exact
+Chicago/Dallas/Detroit boundary, which would look identical to "Dallas
+skipped, Detroit follows Chicago directly."
+
+**Real, reusable gotcha this produced**: `tools/nhl95ctl.py press
+LEFT/RIGHT N` is *not* reliable for precise single-step menu navigation
+on team-selector-style fields — the same single-frame-held-then-released
+input sometimes advances the on-screen list by one position and
+sometimes by two or more, a timing sensitivity in how fast the debugger
+can pump frames relative to this menu's own auto-repeat logic, not a
+daemon bug (confirmed by reading the actual `se d0`/`c` sequences it
+sends — the protocol-level behavior is clean). **The fix that worked**:
+after every single press, run a few idle settle frames
+(`runframes 8-10`) before screenshotting, and verify each step
+individually rather than batching multiple presses — done this way, 9
+consecutive steps came back perfectly clean. Trust single-step
+navigation only when done this carefully; don't batch multiple presses
+on this class of menu.

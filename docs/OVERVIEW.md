@@ -14,6 +14,7 @@ that even this page uses without explaining.
 - [We cracked the exact formula behind every player's rating](#we-cracked-the-exact-formula-behind-every-players-rating)
 - [The Line Editor "clone" bug — root cause found](#the-line-editor-clone-bug--root-cause-found-and-its-just-one-player)
 - [The full 7-line system](#the-full-7-line-system-confirmed-against-a-real-penalty-kill)
+- [Hidden Shootout mode, Playoff bracket, and real trades](#the-game-has-a-hidden-shootout-mode-a-full-playoff-bracket-and-real-trades)
 - [Want the details?](#want-the-details)
 
 ## "Hot and cold streaks" are 100% real — here's exactly how they work
@@ -83,6 +84,32 @@ confirmed the mapping live by watching an actual penalty kill and matching
 the players shown against our predicted line — it matched exactly,
 including that penalty-kill lines only ever show 4 players (no right wing),
 matching how the real rule works.
+
+## The game has a hidden Shootout mode, a full Playoff bracket, and real trades
+
+Most of this project's earlier work focused on Exhibition games — pick
+two teams, play one game. It turns out that's only a fraction of what's
+actually in the cartridge. Cycling through the game's main setup screen
+reveals **11 different modes**, several of which had never been
+documented anywhere in this project before:
+
+- **Shootout mode** — a genuine one-on-one skater-vs-goalie mode with its
+  own setup screen (pick your 5 shooters and goalie), its own scoreboard,
+  and a shot clock for each attempt. It's also how a real game breaks a
+  tie after overtime.
+- **Season mode** — play (or simulate) an entire 84-game NHL season, with
+  real division standings, league leaders, and a team schedule calendar.
+- **Playoffs mode** — a full 16-team bracket, complete with a drawn
+  Stanley Cup graphic in the middle of the screen, matching the real 1994
+  NHL playoff format.
+- **Trade Players** — swap players between any two teams' rosters, with
+  both full rosters and every player's overall rating shown side by side.
+  There's also **Create Player**, **Sign Free Agents**, and **Release
+  Players** for building out a custom roster.
+
+None of this changes any of the findings above — it's the same ROM, the
+same rating formula, the same hot/cold streaks — but it's a reminder that
+this 1994 cartridge packed in a lot more than a single exhibition game.
 
 ## Want the details?
 

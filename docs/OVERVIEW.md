@@ -40,6 +40,12 @@ thing:**
   wondered why hot/cold seemed to "not change" no matter how many times you
   replayed a game, this is why — and it also confirms it genuinely is
   random, just resolved earlier than most people would guess.
+- **And it isn't just a label — it actually changes the player's stats.**
+  We confirmed this directly: predicted a player's Speed rating from the
+  ROM's fixed data alone (no randomness involved), then compared it to
+  what the game actually displayed live, and the gap matched that
+  player's random adjustment almost exactly. So a "cold" player really is
+  worse that game, not just narrated as worse.
 
 ## We cracked the exact formula behind every player's rating
 

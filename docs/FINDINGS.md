@@ -2197,6 +2197,123 @@ loop (`0x0083E88`). See §5.
    `tools/nhl95_monitor.py` to poll across *many* auto-run games instead of
    watching one — not pursued further this session, see issue #9.
 
+   **Later session: tested the specific hypothesis that Exhibition mode's
+   zero-injury result was unfair, since Exhibition has no `Injuries` toggle
+   at all — only Season mode's own `SEASON SETUP` screen does (`Off` /
+   `Single game` / `Multi-game`).** Started a real `New Season`, confirmed
+   `Injuries` defaults to **`Multi-game`** already (no change needed),
+   then played a genuine CPU-vs-CPU Season game (Quebec @ Ottawa, both
+   controllers parked under `CPU`) end to end through a full scoreless
+   3-period regulation **and** sudden-death overtime (Ottawa's Yashin won
+   it 1-0, assisted by Rumble, at OT 2:11) — zero injuries, same outcome as
+   the Exhibition test. This is a second negative data point with the
+   *fairest possible* setting (Injuries explicitly on, not defaulted off),
+   which weakens rather than supports the "Exhibition just lacks the
+   toggle" hypothesis — the more likely explanation remains the
+   already-documented one: injuries are simply a low-probability
+   per-body-check event that two individual games, regardless of mode,
+   aren't guaranteed to produce. Reinforces rather than changes the
+   recommended next step above (WRAM signal + bulk unattended runs via
+   `tools/nhl95_monitor.py`), which is what this session moved on to next
+   — see the tooling note in GitHub issue #9.
+
+   **Bonus, incidental finding from this same game**: this is this
+   project's first live-confirmed sudden-death overtime, in Season mode
+   with a 5-minute-period `Per. Length` setting — the OT clock counted
+   down from a separate allotment (not a continuation of the 3rd period's
+   clock), confirming OT is its own timed period, not unlimited sudden
+   death. Not chased further (outside this item's scope), but worth a
+   pointer for whoever next asks "how does overtime actually work here."
+
+   **Same session, immediately after: the entire injury-trigger mechanism
+   was cracked statically, unprompted by any particular live event** — a
+   static-analysis detour that turned out to fully answer "what triggers
+   an injury," which the two live-play attempts above couldn't. Found by
+   force-disassembling the ROM immediately *before* the `Injury to:` text
+   block (`0x9F260`-`0x9F142`, via `tools/ghidra/DumpRange.java`) and
+   noticing a self-contained helper at `0x9F26A` with the unmistakable
+   percent-chance shape already established for hot/cold in §5
+   (`move.w #0x64,D0w` / `jsr $0007C63A` / `btst.l #0x1,D0`) sitting right
+   next to the announcement text. A raw byte-pattern search of the ROM for
+   `jsr $0009F26A` (`4E B9 00 09 F2 6A`) found **exactly one call site**,
+   at `0x9F0B0` — a single, dedicated caller, not a shared utility reused
+   elsewhere, which is exactly the kind of clean lead this project's past
+   wins (Team Stats struct, Overall Rating bitmask) have come from. The
+   full routine around that call site (`0x9F040`-`0x9F142`) decodes to a
+   complete, gated injury-eligibility check:
+
+   1. `(0x62,A2)` bit 6 picks which team's stats-struct base becomes `A0`
+      (`0xFFFFC288` away / `+0x366` = `0xFFFFC5EE` home — the exact two
+      addresses already confirmed in item 9 below) — this event is scoped
+      to one specific team/player, not global.
+   2. `($FFFFBF10).w` bit 1, if already set, skips the *entire* routine —
+      a **debounce latch**: this same body-check event won't be re-rolled
+      twice. It only gets set again at the very end (step 8), so it must
+      be cleared somewhere else per new hit (not yet traced).
+   3. A helper at `0x9F260` reads `(0x74,A2)` (byte) `>> 2` from whatever
+      struct `A2` points to for this event; a nonzero result also skips
+      the routine — read as "this player/hit is already in some
+      cooldown/other state, don't double-roll."
+   4. `cmp.w #0x3,D0w` / `beq` on the *previous* check's result value
+      branches around a `team_struct[D1]+0x68 = -3` write straight to the
+      **first real chance roll**: `jsr $0009F26A` (the percent helper
+      found above) — `beq` on its result means "roll failed, bail out."
+      This is the actual **"was this hit hard enough to risk an
+      injury"** check.
+   5. On a successful roll: `team_struct[D1]+0x68` gets overwritten again,
+      `-3` → `-4` — a small state-machine value in a per-player-or-line
+      slot array (index `D1` = `2 × (byte at (0x66,A2))`), plausibly a
+      hit-stun/recovery counter being repurposed as an injury-in-progress
+      marker. Not fully identified; flagged for a future session.
+   6. **Two more gate flags must both be set to continue**:
+      `($FFFFBF08).w` bit 3, then `($FFFFD1A7).w` bit 2 — strong
+      candidates for "Injuries setting is not Off" and a related
+      game-mode/period-context gate respectively, though which bit maps
+      to which `SEASON SETUP` menu state (`Off`/`Single game`/
+      `Multi-game`) is not yet live-confirmed.
+   7. **A second, independent 50% coin-flip**: `D0=100`, `jsr $0007C63A`,
+      `cmp.w #0x32,D0w` (50) / `blt` bails below 50 — so even a
+      hit that clears every gate above only actually produces an injury
+      **half the time**. Combined with step 4's own percent-roll, this is
+      a *compound* low-probability event (two independent rolls, not
+      one) — which on its own already explains why full live games keep
+      coming back scoreless-for-injuries: the two negative live results
+      above aren't surprising in hindsight, they're the expected outcome
+      of a deliberately rare, doubly-gated mechanic.
+   8. **Injury duration, computed live, not fixed per injury type**:
+      `D0 = ($FFFFD1A5) − ($FFFFD1A6)` (two live bytes, plausible
+      candidates for the current Season's min/max injury-length bounds,
+      themselves plausibly tied to the `Single game`/`Multi-game`
+      setting), clamped to the range `2..6`, then run through the same
+      `$0007C63A` "roll bounded by D0" helper and `+1`'d — producing a
+      final duration of roughly **1 to 5 games**. This is the exact
+      number that ends up in the already-decoded `"Injury to: [player],
+      Out for [N] game(s)"` template (item 8 above/§ elsewhere in this
+      list). `$FFFFBF10` bit 1 is set here (closing the loop with step 2's
+      debounce), and `jsr $0009F1EA` is called with the computed duration
+      in `D0`, a team-level field (`team_struct+0x28`) in `D7`, and a
+      player-index-derived value in `D1` — almost certainly the actual
+      "write injured status to the roster + trigger the on-screen
+      announcement" routine. `0x9F1EA` itself is not yet traced.
+
+   **Why this matters beyond just this one item**: this is the first time
+   this project has found a *compound probability gate* (two independent
+   rolls plus three flag checks) behind a rare event, rather than the
+   single-roll pattern established for hot/cold in §5 — a useful
+   reminder that "I ran one game and didn't see X" is weak evidence for
+   *any* rare mechanic in this ROM, not just injuries, until the actual
+   odds are known. **Concretely scoped next step**: breakpoint
+   `0x9F136` (the `jsr $0009F1EA` call site) fires if and only if an
+   injury has actually been fully approved — far rarer than the
+   `0x9F0B0`/`0x9F26A` first roll, but a clean, unambiguous "an injury
+   just happened" signal that the earlier screenshot-watching approach
+   never had. Pending live confirmation: set that breakpoint, run bulk
+   unattended CPU-vs-CPU games via `runframes`, and when it fires, read
+   `D0`/`D1`/`D7` and dump `($FFFFD1A5)`/`($FFFFD1A6)`/`($FFFFBF08)`/
+   `($FFFFD1A7)` to confirm the gate-flag and duration hypotheses above
+   against real values, then correlate against the next `Injury to:`
+   text that actually renders.
+
 9. **Score/Shots RAM addresses — solved, live-confirmed against two real
    goals.** Built for `tools/nhl95_monitor.py` (the unattended CPU-vs-CPU
    instrumentation tool — see §1), which needed to know where the score

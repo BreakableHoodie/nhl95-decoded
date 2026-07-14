@@ -746,3 +746,52 @@ fires from this render path. Documented as a ruled-out lead, not a
 finding — the exact "static analysis looked right, live testing said
 no" trap this project keeps a running list of. Full writeup in
 `docs/FINDINGS.md` §6.
+
+**Issue #9 (injuries) got its biggest breakthrough yet, and it came from
+static analysis, not more live-game watching.** Two more live full-game
+attempts this session — an Exhibition-mode game and a genuine Season-mode
+game with `Injuries` explicitly confirmed `Multi-game` (its actual
+default, no change needed) — both went a complete game (the Season one
+all the way through a scoreless 3-period regulation into sudden-death OT,
+Ottawa's Yashin winning it 1-0) with **zero** injuries, in both cases.
+Rather than run a third game hoping for better luck, force-disassembled
+the ROM immediately before the already-known `Injury to:` text
+(`0x9F040`-`0x9F142`) and found the **entire trigger mechanism**: a
+single dedicated call site (confirmed via an exhaustive ROM-wide
+byte-pattern search — exactly one hit) leads to a fully gated,
+**compound** eligibility check — a team/struct selector, a debounce
+latch, an existing-state check, a first percent-chance roll (the same
+shape as the §5 hot/cold RNG), two more setting/context gate flags, a
+**second, independent 50% coin-flip**, and finally a duration formula
+(`(byte A − byte B)`, clamped 2-6, then randomly rolled and `+1`'d →
+roughly 1-5 games) feeding directly into the known `"Injury to: [player],
+Out for [N] game(s)"` template. Two independent low-probability rolls
+gating one one event fully explains why two separate full games came back
+empty — that's the expected outcome of the mechanic as coded, not bad
+luck or a broken hypothesis. The call site for the final "injury fully
+approved, apply + announce it" step (`jsr $0009F1EA` at ROM `0x9F136`) is
+now breakpointed live, with a background `waitbp` hunt running across
+bulk unattended CPU-vs-CPU play to catch it firing and read back the real
+gate-flag/duration values against the hypothesis above. Full writeup
+(with the complete step-by-step decode) in `docs/FINDINGS.md` §7 item 8.
+
+**Also this session: fixed a real, self-inflicted tooling gap in
+`tools/nhl95ctl.py`.** Its client socket used a flat 90s timeout
+regardless of what was requested, so `runframes`/`press` calls above
+roughly 1500-2000 frames reported `ERR timed out waiting for daemon
+response` even though the daemon kept running the batch to completion
+server-side (confirmed via `status` staying `alive=True` throughout) —
+cost real time guessing safe batch sizes before the pattern was
+recognized. Fixed by scaling the client's timeout off the same per-command
+formula the daemon already uses internally for its own timeout
+(`cmd_press`'s `max(5.0, frames*0.25)`, `cmd_runframes`'s
+`max(5.0, n*0.2)`, `cmd_waitbp`'s `max_tries*3.0`), so the client no
+longer gives up before the daemon genuinely would. Also confirmed a
+subtlety worth remembering: batched `runframes`/`press` calls are safe for
+navigation (as documented), but once a *second*, rare tracing breakpoint
+is armed alongside the always-on injection one, a batch that spans it can
+silently blow straight past it (the pre-queued `c`s in blastem's stdin
+buffer keep firing regardless) — `waitbp`'s genuinely single-stepped,
+one-round-trip-per-continue design is what's actually safe once a rare
+breakpoint needs to be caught precisely, exactly as the existing gotcha
+about batched `c` already warned, just encountered from a new angle.

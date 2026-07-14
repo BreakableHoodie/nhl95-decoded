@@ -37,6 +37,7 @@ has argued about for years without ever opening the ROM to check.
 - [5. Hot/cold streaks](#5-hotcold-streaks--confirmed-real-mechanism-partially-traced)
 - [6. Player rating bytes / Overall Rating formula](#6-player-rating-bytes--jersey-number-solved-overall-rating-formula-solved-and-rom-confirmed-exact-weights--opcode-still-open)
 - [7. Open questions / candidate next steps](#7-open-questions--candidate-next-steps)
+- [8. Game modes — mapped via live exploration and the official manual](#8-game-modes--mapped-via-live-exploration-and-the-official-manual)
 
 **How to read this**: sections are long because they're a *history*, not
 just a result — an earlier hypothesis getting corrected two paragraphs
@@ -2093,3 +2094,154 @@ loop (`0x0083E88`). See §5.
     `tools/nhl95_monitor.py`'s `WATCH_ADDRESSES` includes `clock_seconds`,
     `period`, and `period_length_seconds`, all confirmed, alongside the
     existing Score/Shots entries.
+
+---
+
+## 8. Game modes — mapped via live exploration and the official manual
+
+Prompted by the repo owner naming a mode this project hadn't found yet
+(Shootout) and asking for a fuller pass across every game mode, including
+trades/season/playoffs. Two sources converged here: live exploration of
+the `Play Mode` field on the pre-game settings screen (the same screen
+documented in the Environment section of CLAUDE.md), and the official US
+Genesis manual (a scanned PDF the repo owner linked from `segaretro.org`
+— copyrighted EA/Sega material, gitignored, not redistributed in this
+repo, but now a citable source for claims like this section's).
+
+### 8.1 The full `Play Mode` list
+
+Cycling the field live (Right repeatedly) goes through **11 directly
+selectable modes** before wrapping back to the start:
+
+**Regular Game → Practice Mode → New Playoffs → New Playoffs/Best of 7 →
+New Season → Trade Players → Create Player → Sign Free Agents → Release
+Players → Shootout → Game With Trades →** *(wraps to Regular Game)*
+
+The manual (p.6) documents two more that only appear *conditionally* —
+consistent with never seeing them during live cycling from a fresh boot:
+
+- **Continue Playoffs** — appears only after winning a playoff series
+  (see 8.3).
+- **Continue Season** — appears only once a season is in progress.
+
+Manual descriptions, verbatim, for the ones not detailed further below:
+*Practice Mode* — "Set up a practice session with up to two skaters (plus
+goalie) per side." *Create Player* — create a new player saved to the
+free-agent list (36-99 rating range, assigned per-attribute). *Sign Free
+Agents* / *Release Players* — move players between team rosters and the
+free-agent pool. *Game With Trades* — "Play a single game using the teams
+altered by trades you have made" (i.e. Regular Game, but respecting
+whatever roster edits Trade Players already made — not chased live this
+session).
+
+### 8.2 Shootout — real, live-confirmed, and richer than the static find suggested
+
+Item 10 found `SHOOTOUT MODE`/`Round `/`SHOOTOUT WON BY [team]` text
+sitting in real code at ROM `0x09DFD5` and filed it as an open lead
+(issue #14), guessing it might be conditional on a tied game. Live
+testing found it's actually **both**: a directly selectable Play Mode
+(for practicing/testing shootouts on demand — `Per. Length` reads `N/A`
+for this mode, since it has none), *and* — per a repo-owner correction —
+the real tie-breaker after a scoreless overtime period in normal play.
+One nuance worth flagging: the manual's own **Period Length** section
+(p.6) states a Regular Season game's overtime "lasts for ten minutes, or
+until one team scores ('sudden death'). If neither team scores, the game
+ends in a tie" — no shootout mentioned as an automatic follow-up for
+Regular Season games specifically. Not independently reconciled this
+session (would need to actually play out a scoreless Regular Season OT to
+see what really happens) — recorded as a real discrepancy between what
+the manual states and what a knowledgeable player recalls, not resolved
+either way.
+
+Confirmed live, end to end:
+- **Roster/goalie setup**: selecting Shootout leads through the normal
+  Controller Setup screen, then a pause-menu item unique to this mode
+  (`SHOOTOUT SETUP`, absent from every other mode's pause menu — see
+  8.4) opens a dedicated screen: team name + "SHOOTOUT" header, a
+  `Shooters`/`Goalie` list (5 shooters, reorderable, plus the starting
+  goalie).
+- **HUD**: no period/clock display at all (consistent with `Per. Length:
+  N/A`) — just team abbreviations and a running score (`LA 0 / ANH 0`).
+- **Per-attempt structure**: each attempt opens with a full-screen
+  `SHOOTOUT MODE` card naming the exact shooter and goalie by jersey
+  number and name (`25 T. Yake vs. 32 K. Hrudey`), the running score, and
+  a `Round N` counter — a direct, byte-for-byte live match to the ROM
+  text found in item 10 the same session.
+- **Shot clock**: a real per-attempt countdown timer (started at `0:25`
+  in the attempts observed), separate from the game clock.
+- **Turn order**: alternates between the two teams within the same round
+  (Anaheim's shooter attempted first, then Los Angeles's, both still
+  labeled `Round 1`) rather than each team taking a full round before the
+  other goes.
+
+Not fully played through to a decisive goal/save this session (skated the
+shooter wide of the net rather than landing a clean shot) — the structural
+confirmation was the priority, not a specific shot outcome.
+
+### 8.3 Season and Playoffs — the full manual-documented flow, live-confirmed screen by screen
+
+**Season** (`New Season`): confirmed the complete flow named in
+CLAUDE.md's existing notes, now with every screen actually seen:
+`SEASON SETUP` (`Period Length`/`Penalties`/`Line Changes`/`Playoffs:
+Single Game or Best of 7`/`Injuries: Off, Single game, or Multi-game`) →
+`GAMES TODAY` (a real schedule day, e.g. "October 5": Boston at New York,
+Pittsburgh at Philadelphia, Detroit at Dallas — the last one a fresh
+reconfirmation of the Dallas-via-Season-mode finding from §2.1/§7#3) →
+`SEASON OPTIONS`, a 10-item hub matching the manual (p.20-21) exactly:
+`Play Games`, `Play Until A Day`, `NHL Standings`, `Team Schedule
+Calendar`, `Games Today`, `League Leaders`, `Team Stats`, `Player Stats`,
+`Highlights`, `End Season After Today`. Checked `NHL Standings` live: a
+real divisional structure (`WESTERN CONFERENCE` / `PACIFIC DIV.`:
+Anaheim, Calgary, Edmonton, Los Angeles, San Jose, Vancouver, all `0-0-0`
+on a fresh season) with `GR` (games remaining) reading **84** — matching
+the real 1993-94 NHL's 84-game regular-season length.
+
+**Playoffs** (`New Playoffs`): Controller Setup → a full 16-team
+**playoff bracket screen with a rendered Stanley Cup graphic** in the
+center (previously completely undocumented) — 8 first-round matchups
+shown two-conference-side-by-side (confirmed: Edmonton/Toronto,
+San Jose/Dallas, Anaheim/Chicago, Winnipeg/Vancouver on one side;
+Tampa Bay/Montreal, Ottawa/Boston, Pittsburgh/Florida, New York/Quebec on
+the other), with the player's selected Team 1 highlighted — matches the
+manual's note that "only Team 1... can advance through the playoffs."
+Confirming a pairing leads into the normal Scouting Report → gameplay
+flow, same as Exhibition. `Continue Playoffs` (see 8.1) becomes available
+after winning a series, per the manual's "Saving the Playoff Tree"
+section (p.23) — not tested live this session (would require actually
+winning a full series).
+
+### 8.4 Trade Players — and an unplanned lead for the Overall Rating research (issue #2)
+
+Confirmed the full manual-documented flow (p.11): select `Trade Players`,
+choose the two trading teams, and a **`TRADE PLAYER` screen shows both
+rosters' names, positions, and Overall Ratings side by side** — e.g.
+Anaheim's Hebert (G, 52) down to VanAllen (F, 48) against Chicago's
+Belfour (G, **98**) and Roenick (F, **94**). `C` marks a player for trade
+(a checkmark appears next to their name); the manual's remaining steps
+(switch teams with `A`, pick the matching player, confirm with `Start`)
+complete the swap.
+
+**Worth flagging for issue #2** (the still-open exact Overall Rating
+storage/opcode question): this screen renders every player's Overall
+Rating as plain, directly-readable text for an entire two-team roster at
+once, without needing to cycle the Team Roster's stat category one player
+at a time. If this screen's render path turns out to be simpler than the
+bytecode-interpreter call sites already hit twice (Scouting Report, Team
+Roster — see §6 item 1), it could be a faster route to finally tracing
+the *exact* consuming opcode, or at minimum a much faster way to
+bulk-collect live Overall Rating ground truth for future statistical
+cross-checks. Not traced this session — a concrete lead, not a finding.
+
+### 8.5 Full pre-game/pause menu, reconciled against static find (issue #13)
+
+Live-confirmed (using the already-running session from item 11's period
+work) that a **normal, non-tied Regular Game's** pause `OPTIONS` tab
+scrolls through exactly: `RESUME GAME`, `INSTANT REPLAY`, `EDIT LINES`,
+`CHANGE GOALIE`, `MANUAL GOALIE`, `TIMEOUT`, `ABORT GAME` (7 items,
+confirmed by scrolling to both ends of the list). `SHOOTOUT SETUP` does
+**not** appear here — it only appears when `Play Mode: Shootout` is
+active (confirmed in 8.2), consistent with the static scan's larger list
+(which also included `TEAM ROSTER`, `SCORING SUMMARY`, `PENALTY SUMMARY`,
+`RECORD HOLDERS`, `GAME STATS`, `PERIOD STATS`, `PLAYER STATS`, `PLAYOFF
+STATS`, `SEASON PLAYERS`, `SEASON TEAMS`) being a union across *several*
+different modes' menu states, not one master list always fully visible.

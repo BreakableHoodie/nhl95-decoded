@@ -450,6 +450,58 @@ if picked up under the existing injury/penalty-adjacent leads.)
 
 The project is now public: https://github.com/BreakableHoodie/nhl95-decoded
 (ROM, Ghidra project, and raw third-party scrapes are gitignored — never
-commit those). Docs are split into `docs/OVERVIEW.md` (plain-English) and
-`docs/FINDINGS.md` (technical deep-dive), both served via GitHub Pages at
-https://breakablehoodie.github.io/nhl95-decoded/.
+commit those). Docs are split into `docs/OVERVIEW.md` (plain-English),
+`docs/FINDINGS.md` (technical deep-dive), and `docs/GLOSSARY.md`
+(plain-English term definitions — added after a reader said they had no
+idea what a "nibble" was), all served via GitHub Pages at
+https://breakablehoodie.github.io/nhl95-decoded/ with a working
+client-side search (`docs/search.html`) and a proper site-wide design
+(`docs/_layouts/default.html` + `docs/assets/css/site.css` — a site-local
+Jekyll layout always wins over GitHub's bare default theme, which is what
+every page except search.html was stuck with before). Open threads are
+tracked as GitHub issues labeled `investigation`, not just in §7.
+
+**Since the above paragraph was written**, in the same session: nibble 11
+(previously unexplained) turned out to be a goalie-only stat (`Stick
+Left`), confirmed live by reading two Vancouver goalies' Team Roster
+values directly — every one of the 14 attribute nibbles now has a
+confirmed identity, closing item 6 completely. Separately, decoded the
+exact ROM bytecode table backing the Team Roster's stat-category cycle
+(`0x085832` skaters / `0x085994` goalies) and found its one-hot
+nibble-selector bitmask for `Overall` (`0x1FBA`) is bit-for-bit identical
+to the independently-fit `OR_WEIGHTS` formula — real ROM-level proof of
+*which* nibbles feed Overall Rating (not just a statistical fit anymore).
+Exact weight magnitudes and the consuming opcode are still open (issue
+#2) — confirmed via static search this session that `0x1FBA` appears
+nowhere else in the ROM as a literal, so finding the consumer needs live
+tracing, not more static search.
+
+A reader also asked what live gameplay actually does with the Smolinski
+clone once it exists — reproduced the bug fresh, and Team Roster showed
+`Status: Ice` with a doubled `Reg` line-count, confirming "plays normally"
+is a real outcome. Important nuance: the reader's friend has *personally
+witnessed* two other outcomes (joining from the bench, standing idle near
+the net) across past sessions, so this is one confirmed data point in a
+state-dependent bug, not the full answer — left open as issue #10.
+
+Built two new tools: `tools/rom_scan.py` (reusable string-record parser +
+pattern search, consolidating techniques used ad hoc all session) and
+`tools/nhl95_monitor.py` (polls WRAM during unattended CPU-vs-CPU games,
+logs value changes to CSV — built after the user asked about teaching
+something to play the game for research purposes; conclusion was that the
+built-in CPU AI already plays fine, what was missing was scale/logging,
+not skill, so this is deliberately not an RL agent). Also confirmed real
+game mechanics that were *not* previously documented anywhere in this
+project: injuries (`Injury to: [player], Out for [N] game(s)`, with real
+pluralization logic, found at ROM `0x09F2D5`+) and a "Team Stats"
+comparison table (`0x092410`+: Score/Shots/Shooting Pct/Power
+Play/Faceoffs Won/etc.) that's the likely source for score/clock/shot
+addresses `nhl95_monitor.py` still needs (issue #11, in progress as of
+this note via an unattended live memory-diff watch).
+
+**Radare2 MCP is now set up** (`claude mcp add radare2 -- r2pm -r r2mcp`,
+local scope) as a possible faster alternative to one-off Ghidra
+scratchpad scripts for future static work — installed via Homebrew +
+`r2pm -Uci r2mcp`, no GUI needed (unlike Ghidra's own MCP options, which
+need a live GUI session this environment can't drive). Requires a fresh
+Claude Code session to pick up (MCP servers load at session start).

@@ -2622,19 +2622,27 @@ loop (`0x0083E88`). See §5.
     during item 10's scan (found near an unrelated table, only partially
     visible in that scan's window) but not chased at the time. Widening the
     scan window (ROM `0x09C600`-`0x09CC00`) and re-parsing found the
-    complete table — but it needed a **fourth string-record format**, not
-    the "plain" `[u16 length][text][u16 suffix]` shape the original quick
-    check guessed: this table has **no suffix field at all**, just
-    `[0x00][u16 length][text, even-padded]` with `length` counting the
-    2-byte header plus text (`stride = length`). That's structurally the
-    *same* no-suffix convention already known from the injury-status and
-    months tables (item 10), just with a 2-byte length field there instead
-    of the 1-byte one those tables used — a real gotcha: naively reusing
-    `parse_stride_records` (which hard-codes a 1-byte length check) finds
-    nothing here, because its strict same-position, no-byte-skipping scan
-    never lands on a valid header when the header shape itself is
-    different. A one-off 2-byte-length variant of the same scan found the
-    complete table cleanly.
+    complete table, using the *same* no-suffix stride format already known
+    from the injury-status and months tables (item 10): `[0x00][length][text]`,
+    1-byte length, `stride = length` — `tools/rom_scan.py`'s existing
+    `parse_stride_records` handles it correctly with no changes at all.
+
+    **Correction, found during a later tooling-review pass**: this section
+    originally claimed a new "fourth string-record format" with a 2-byte
+    length field was needed here, and that reusing `parse_stride_records`
+    unmodified "silently finds nothing." That claim was wrong — re-running
+    `parse_stride_records(rom, 0x09C81E, 0x09C9DE)` directly, unmodified,
+    finds and correctly decodes all 27 records (all 9 trophies + all 9
+    criteria strings + the interleaved blank spacer records) on the first
+    try. Whatever produced the original "needs a new format" conclusion was
+    most likely a one-off mistake in that session's own throwaway scan
+    script (a wrong parameter, not a real format difference), not a genuine
+    ROM-format discovery — left here as a correction rather than quietly
+    edited away, per this document's own stated policy, and as a reminder
+    that a *methodology* claim deserves the same "verify before trusting"
+    treatment as any other finding in this project, not just the underlying
+    facts. `rom_scan.py` was never actually missing anything; no new
+    parser function was added.
 
     **Nine real trophies, in ROM order** (`0x09C81E`-`0x09C8DC`): `HART
     MEMORIAL TROPHY`, `JAMES NORRIS TROPHY`, `VEZINA TROPHY`, `ART ROSS

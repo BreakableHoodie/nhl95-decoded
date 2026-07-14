@@ -714,11 +714,13 @@ from CSV-comparison outliers, now with a live example. Full writeup in
 
 **Issue #12 (Season-mode end-of-season awards table) is also closed,
 same session — fully decoded statically.** Found while widening the scan
-window around a lead item 10 (issue #8) had only partially seen. Needed a
-fourth string-record format: no suffix field, `[0x00][u16 length][text]`
-with a *2-byte* length (the existing `parse_stride_records` helper only
-handles a 1-byte length and silently finds nothing on tables like this
-one). The complete table is 9 real 1994-95 NHL trophies (Hart, Norris,
+window around a lead item 10 (issue #8) had only partially seen. Uses the
+same no-suffix stride format as the injury-status/months tables (item 10)
+— `tools/rom_scan.py`'s existing `parse_stride_records` handles it with
+no changes needed. (A later tooling-review pass found and corrected an
+earlier, wrong claim in this note that a new "fourth format" was
+required — see FINDINGS.md §7 item 12's correction.) The complete table
+is 9 real 1994-95 NHL trophies (Hart, Norris,
 Vezina, Art Ross, Jennings, Pearson, Selke, Presidents, Conn Smythe) each
 correctly paired with its real award criteria. Live-reachability was
 checked but stayed inconclusive: Season mode's `End Season After Today`

@@ -13,7 +13,6 @@ Import from a scratchpad script, or run directly for a quick scan:
     python3 tools/rom_scan.py scan-tables 0x80000 0xa0000
 """
 import re
-import struct
 import sys
 
 ROM_PATH = "NHL 95 (USA, Europe).gen"

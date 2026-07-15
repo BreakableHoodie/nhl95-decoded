@@ -2426,10 +2426,54 @@ loop (`0x0083E88`). See §5.
    Injuries flag." Re-armed `0x9F0B0` on instance 1 (now genuinely live)
    with a 3,000-try budget to catch a real passed roll there too, then
    repeat the exact same `0x9F0B6`-precise read used on instance 2 — an
-   apples-to-apples comparison instead of an arbitrary one. Result
-   pending as of this writing; until it resolves, treat the `$FFFFBF08`
-   bit-3 hypothesis as **reopened, not confirmed** — the instance 2
-   reading is suggestive but no longer sufficient on its own.
+   apples-to-apples comparison instead of an arbitrary one.
+
+   **That hunt exhausted too (3,000/3,000, no hit) — a second exhaustion
+   in a row on instance 1 for a checkpoint that took instance 2 only 591
+   continues, and this time genuinely against live play, not a stale
+   menu.** Checked the obvious next suspect directly (the debounce latch,
+   `$FFFFBF10` bit 1) rather than assume — reads `0`/clear on both
+   instances, ruling that out as the explanation. Rather than run a
+   third identical live hunt chasing what's likely just small-sample
+   variance (591 is a single observation, not an established rate; zero
+   hits in 3,000 tries isn't actually a strong statistical anomaly
+   against an unknown true mean), switched layers per this project's own
+   "three attempts, escalate" rule and went back to static analysis,
+   which turned out to be far more decisive and far cheaper than another
+   hour-plus live hunt would have been.
+
+   **A raw byte-pattern search of the whole ROM for both gate addresses
+   as absolute-short operands found 74 references to `$FFFFBF08` and 71
+   to `$FFFFD1A7`**, spanning ROM regions from `0x07D8C2` through
+   `0x093236` — a huge, unrelated-looking spread (menu code, roster
+   code, and many other regions with no obvious connection to injuries
+   or even gameplay). The instruction prefixes (`08 38`/`08 78`/
+   `08 b8`/`08 f8`, the `BTST`/`BSET`/`BCLR` bit-instruction family) carry
+   varying bit-number operands (0 through 5+ observed across the hits,
+   not just the specific bits 3 and 2 this mechanism happens to test).
+   **This is decisive: both addresses are heavily-multiplexed, generic
+   flag words reused for many unrelated purposes throughout the ROM, not
+   dedicated single-setting registers** — the same cramped-cartridge
+   "pack multiple unrelated bits into one word" pattern this project has
+   already found elsewhere (nibble-packed player stats, the injury-
+   duration table two-players-per-word), just applied to booleans instead
+   of numbers this time. That reframes everything upstream in this
+   section: the "gate clear" pattern read on both instances wasn't
+   necessarily reading an *Injuries* flag at all — it may have been
+   reading whatever unrelated bit some *other* system last left in that
+   word, coincidentally. **Downgrading the `$FFFFBF08` bit-3 /
+   `$FFFFD1A7` bit-2 hypothesis from "reopened" to genuinely uncertain**:
+   confirming what these two specific bits actually mean now needs
+   tracing which *other* code paths write to them (a real, separately-
+   scoped static investigation — find every `BSET`/`BCLR` targeting bit 3
+   of `$FFFFBF08` specifically among the 74 hits, not just the two
+   `BTST` reads already known from this mechanism, and see what
+   condition each one is gated on), not another live capture. Not
+   pursued further this session — recorded here as a concrete, scoped
+   next step rather than a dead end, and as a useful general lesson: a
+   plausible-looking gate-flag hypothesis derived from live game-state
+   reads alone, without checking how heavily-reused the underlying
+   address is, can look far more confirmed than it actually is.
 
    **Same static-analysis session, one more push: `0x9F1EA` itself — the
    "apply + announce" routine — is now fully decoded too**, done while

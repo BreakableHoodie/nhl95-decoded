@@ -223,6 +223,32 @@ root-cause first, then check whether the same failure mode is systemic (§3,
   entire failure mode doesn't apply to it. If working through the manual
   tmux fallback path and a command's output looks empty/stale, check
   `tmux ls` before assuming anything else is wrong.
+- **Multi-instance daemon screenshots are unreliable when the windows
+  overlap on screen.** `nhl95_daemon.py --id NAME` (added for running
+  several emulators in parallel, e.g. to multiply search coverage on a
+  rare live event) makes every instance's blastem window share the same
+  X display (`:1`) with no compositor running, and `cmd_screenshot`'s
+  per-instance isolation (`xdotool search --pid` → `import -window ID`)
+  only works reliably when that target window is actually the visible,
+  exposed one. When two windows fully overlap (the default spawn
+  position for both), capturing the non-topmost one can return **the
+  topmost window's content instead of the target's own** — confirmed
+  live: a screenshot explicitly requested from instance 1's daemon
+  repeatedly showed instance 2's scoreboard instead. Moving windows to
+  non-overlapping positions (`xdotool windowmove ID X Y`, confirmed via
+  `xdotool getwindowgeometry` that the move actually took effect) did
+  **not** fully fix it either — a direct `import -window` capture
+  immediately after a move can still show a stale half-redrawn frame
+  (no compositor means no guaranteed backing store, so a window that
+  isn't currently exposed doesn't reliably repaint on demand). This was
+  not fully root-caused before being set aside (see the "3 failed fixes,
+  escalate" rule) — **for anything that actually matters, don't trust a
+  multi-instance screenshot; read state via that instance's own `raw`/
+  `dumpregs`/`p/x` commands instead**, which go through each daemon's own
+  independent pty-connected debugger session and are completely
+  unaffected by any of this X11 window-stacking mess. A real fix (a
+  compositor, or genuinely separate per-instance Xvfb displays instead of
+  sharing `:1`) is a scoped follow-up, not yet attempted.
 - **BlastEm config replaces, not merges.** If `~/.config/blastem/blastem.cfg`
   exists at all, the built-in `default.cfg` bindings are dropped entirely —
   the user config must define every binding it needs (D-pad remap *and*

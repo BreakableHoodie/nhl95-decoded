@@ -2314,6 +2314,32 @@ loop (`0x0083E88`). See §5.
    against real values, then correlate against the next `Injury to:`
    text that actually renders.
 
+   **First live hunt against `0x9F136` completed: no hit, a real negative
+   result, and it quantifies the odds.** Ran `waitbp 4 30000` — 30,000
+   single-stepped continues (each one landing on either the always-armed
+   controller-input breakpoint or the injury-apply one) against a live
+   CPU-vs-CPU Season game (Quebec @ Ottawa) — for just over two hours of
+   wall-clock time. Confirmed via direct register read afterward (`PC =
+   0x7A58A`, the controller-input breakpoint, not `0x9F136`) that it
+   genuinely exhausted the full search rather than silently hanging or
+   losing the client connection partway through — the daemon is
+   single-threaded and blocks entirely on a `waitbp` call with no way to
+   poll progress mid-search, so this required checking final state
+   directly rather than trusting any intermediate signal. 30,000 frames
+   is roughly 500 real-time seconds of game time at 60fps, i.e. a little
+   over 8 minutes of actual hockey — one body check roughly every second
+   or two in a real game means dozens to low-hundreds of real hit events
+   within that window, none of which cleared *both* independent
+   percent-rolls plus every gate flag in the chain above. Not a
+   contradiction of the mechanism — an 8-minute sample is small next to a
+   doubly-gated event this rare — but a useful, honest calibration point:
+   this mechanic is rarer than "roughly one per period" naive intuition
+   might suggest. A second, independent hunt (different matchup,
+   Vancouver @ NY Rangers, same breakpoint) was launched in parallel via
+   this session's new multi-instance daemon support — see the tooling
+   note below — to get a second data point without waiting for this one
+   to finish first.
+
    **Same static-analysis session, one more push: `0x9F1EA` itself — the
    "apply + announce" routine — is now fully decoded too**, done while
    the VM was tied up running the live breakpoint hunt above (didn't need

@@ -2340,6 +2340,33 @@ loop (`0x0083E88`). See §5.
    note below — to get a second data point without waiting for this one
    to finish first.
 
+   **Second hunt also completed: also zero hits, on a totally different
+   matchup.** `waitbp 1 30000` on the Vancouver @ NY Rangers game ran for
+   7577s (~2.10 hours) — essentially identical timing to the first hunt's
+   7524s, confirming both genuinely ran the same full 30,000-continue
+   search rather than one finishing early or hanging. Same confirmation
+   method: `PC = 0x7A58A` afterward, not `0x9F136`. **Two independent
+   games, two different matchups, ~60,000 combined single-stepped frames,
+   zero injuries either time** — a materially stronger negative result
+   than either hunt alone, and a real, still-open question about just how
+   rare this mechanic actually is in practice.
+
+   **Reframed the search rather than just running a third identical
+   hunt**: re-armed a breakpoint at `0x9F0B0` instead — the call site of
+   the *first* percent-roll (chain step 4), upstream of the two gate
+   flags and the second coin-flip that `0x9F136` sits behind. This
+   answers a cheaper, more informative question first: not "did a full
+   injury happen" but "is the game even *attempting* the first roll at a
+   reasonable rate at all." If this fires quickly, the rarity is in the
+   downstream gates/second roll, matching the mechanism as decoded. If
+   *this* also takes tens of thousands of continues, that would suggest
+   default CPU-vs-CPU play itself doesn't generate body-check-eligible
+   hits often — a different, actionable finding (e.g. worth retrying
+   with `Penalties: On` for rougher play). Both instances re-armed and
+   re-launched against this address with a smaller 6,000-try budget each
+   (this checkpoint should resolve fast if the hypothesis holds); result
+   pending.
+
    **Same static-analysis session, one more push: `0x9F1EA` itself — the
    "apply + announce" routine — is now fully decoded too**, done while
    the VM was tied up running the live breakpoint hunt above (didn't need

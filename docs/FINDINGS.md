@@ -2345,27 +2345,63 @@ loop (`0x0083E88`). See §5.
    7577s (~2.10 hours) — essentially identical timing to the first hunt's
    7524s, confirming both genuinely ran the same full 30,000-continue
    search rather than one finishing early or hanging. Same confirmation
-   method: `PC = 0x7A58A` afterward, not `0x9F136`. **Two independent
-   games, two different matchups, ~60,000 combined single-stepped frames,
-   zero injuries either time** — a materially stronger negative result
-   than either hunt alone, and a real, still-open question about just how
-   rare this mechanic actually is in practice.
+   method: `PC = 0x7A58A` afterward, not `0x9F136`.
+
+   **Correction, found minutes later while reframing the search — the
+   "two independent negative results" framing directly above is
+   misleading and needs walking back.** Re-armed both instances against
+   the earlier `0x9F0B0` checkpoint (see below) to measure attempt
+   frequency; instance 2 hit it fast (**591 continues**, roughly 10
+   seconds of game time — eligible body checks are clearly common, not
+   rare), and stepping one instruction further (a precise breakpoint at
+   `0x9F0B6`, right after the roll's `jsr` returns, reached safely via
+   `waitbp` rather than a bare `n` per this project's own self-patching-
+   primitive caution) showed the roll itself **passed** (`SR` read back
+   with `Z=0`, meaning the `beq` bail-out branch was not taken) — a rare,
+   directly-observed example of an attempt clearing the first gate.
+   Reading the two hypothesized setting-gate addresses live at that exact
+   moment (`$FFFFBF08` and `$FFFFD1A7`, both plain WRAM reads, no
+   stepping needed) found **both read `0`** — meaning bit 3 of
+   `$FFFFBF08` is clear, and since the very next instruction in the
+   routine (`btst.b #0x3,($FFFFBF08).w` / `beq`) bails out whenever that
+   bit is clear, **this specific game is structurally incapable of ever
+   producing an injury, independent of how the dice roll** — every
+   single attempt, no matter how many body checks happen or how lucky
+   the rolls, was always going to fail at this one gate. Instance 2's
+   game was launched from `controller_setup.state`'s defaults, which per
+   this document's own established finding is **Exhibition mode**
+   (`Play Mode: Regular Game`) — the same mode already documented
+   elsewhere in this item as having *no* `Injuries` menu option at all,
+   unlike Season mode's `SEASON SETUP` screen. That match is too clean to
+   be coincidence: this is a live, direct confirmation — not just a
+   "strong candidate" anymore — that **`$FFFFBF08` bit 3 is the
+   `Injuries` setting gate**, reading `0`/off in a mode that has no way
+   to turn it on. Net effect: instance 2's `0x9F136` exhaustion was never
+   informative about the compound roll probability at all — it was
+   guaranteed to fail from the start, for a completely different reason
+   than "bad luck." Only **instance 1's** hunt (genuine Season mode,
+   `Injuries: Multi-game` explicitly confirmed on) is a fair test of the
+   actual compound-probability question; that one 30,000-continue
+   exhaustion stands on its own, not reinforced by a second data point
+   the way the paragraph above claimed. Left the original claim in place
+   above (struck through in spirit, corrected here) rather than quietly
+   edited away, matching this document's standing policy on honest
+   corrections. Pending: read the same two addresses on instance 1's
+   Season-mode game for the positive-case confirmation (expect nonzero),
+   currently blocked on its own still-running `0x9F0B0` hunt.
 
    **Reframed the search rather than just running a third identical
-   hunt**: re-armed a breakpoint at `0x9F0B0` instead — the call site of
+   hunt against `0x9F136`**: armed `0x9F0B0` instead — the call site of
    the *first* percent-roll (chain step 4), upstream of the two gate
    flags and the second coin-flip that `0x9F136` sits behind. This
    answers a cheaper, more informative question first: not "did a full
    injury happen" but "is the game even *attempting* the first roll at a
-   reasonable rate at all." If this fires quickly, the rarity is in the
-   downstream gates/second roll, matching the mechanism as decoded. If
-   *this* also takes tens of thousands of continues, that would suggest
-   default CPU-vs-CPU play itself doesn't generate body-check-eligible
-   hits often — a different, actionable finding (e.g. worth retrying
-   with `Penalties: On` for rougher play). Both instances re-armed and
-   re-launched against this address with a smaller 6,000-try budget each
-   (this checkpoint should resolve fast if the hypothesis holds); result
-   pending.
+   reasonable rate at all." Confirmed yes, decisively, on instance 2 (591
+   continues to first hit) — eligible body checks are frequent; the
+   rarity of a full injury lives entirely in what comes after, exactly as
+   the decoded mechanism predicts. Instance 1's equivalent hunt (which
+   would still be meaningful there, since its Injuries gate is
+   confirmed on) was still running as of this writing.
 
    **Same static-analysis session, one more push: `0x9F1EA` itself — the
    "apply + announce" routine — is now fully decoded too**, done while

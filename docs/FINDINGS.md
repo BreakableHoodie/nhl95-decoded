@@ -2386,22 +2386,50 @@ loop (`0x0083E88`). See §5.
    the way the paragraph above claimed. Left the original claim in place
    above (struck through in spirit, corrected here) rather than quietly
    edited away, matching this document's standing policy on honest
-   corrections. Pending: read the same two addresses on instance 1's
-   Season-mode game for the positive-case confirmation (expect nonzero),
-   currently blocked on its own still-running `0x9F0B0` hunt.
+   corrections.
 
-   **Reframed the search rather than just running a third identical
-   hunt against `0x9F136`**: armed `0x9F0B0` instead — the call site of
-   the *first* percent-roll (chain step 4), upstream of the two gate
-   flags and the second coin-flip that `0x9F136` sits behind. This
-   answers a cheaper, more informative question first: not "did a full
-   injury happen" but "is the game even *attempting* the first roll at a
-   reasonable rate at all." Confirmed yes, decisively, on instance 2 (591
-   continues to first hit) — eligible body checks are frequent; the
-   rarity of a full injury lives entirely in what comes after, exactly as
-   the decoded mechanism predicts. Instance 1's equivalent hunt (which
-   would still be meaningful there, since its Injuries gate is
-   confirmed on) was still running as of this writing.
+   **Instance 1's `0x9F0B0` hunt exhausted too (6,000/6,000, no hit) —
+   but for a mundane, unrelated reason, caught by checking rather than
+   assuming.** The zero-hit result looked suspicious on its own (instance
+   2 needed only 591 continues for the same checkpoint), so before
+   trusting it, checked instance 1's actual on-screen state directly
+   (window capture, using the already-repositioned/non-overlapping
+   windows from the screenshot gotcha above) rather than assuming the
+   original Quebec-@-Ottawa game was still live. It wasn't: the Season
+   sim had already auto-advanced past that game's own conclusion,
+   through however many subsequent scheduled days, to a **new**
+   Scouting Report screen (`Senators` vs `Nordiques`) — meaning the
+   entire 6,000-continue search ran against a static pre-game menu, not
+   live hockey, and was never going to see a body check. A genuinely
+   uninformative result, not a real negative — worth recording as its
+   own small process lesson: a long-running hunt on a Season game can
+   silently outlive the specific matchup it started against.
+
+   **Advanced this new game into live play and re-checked the two gate
+   addresses — the first attempt at a fair positive-case reading came
+   back ambiguous, not confirming.** With both controllers back on CPU
+   and real gameplay running (`Nordiques @ Senators`, 1st period), a
+   plain snapshot read of `$FFFFBF08`/`$FFFFD1A7` showed the *same*
+   "gate clear" pattern as instance 2's Exhibition game (bit 3 of
+   `$FFFFBF08` = 0; bit 2 of `$FFFFD1A7` = 0, though the byte itself
+   read `1` this time, unlike instance 2's `0` — so the address isn't a
+   frozen constant, at least). This does **not** confirm the earlier
+   hypothesis the way a nonzero reading would have — but it's also not
+   a fair comparison yet: the instance 2 reading that looked so
+   convincing was taken at one very specific moment (`PC = 0x9F0B6`,
+   immediately after a first roll had just passed), not an arbitrary
+   snapshot. If these two addresses are transient per-check state rather
+   than persistent session settings, reading them at a random moment
+   with no check in progress would naturally show them clear regardless
+   of the `Injuries` setting — which would mean the "confirmation" drawn
+   from instance 2 was really just "caught mid-routine," not "read the
+   Injuries flag." Re-armed `0x9F0B0` on instance 1 (now genuinely live)
+   with a 3,000-try budget to catch a real passed roll there too, then
+   repeat the exact same `0x9F0B6`-precise read used on instance 2 — an
+   apples-to-apples comparison instead of an arbitrary one. Result
+   pending as of this writing; until it resolves, treat the `$FFFFBF08`
+   bit-3 hypothesis as **reopened, not confirmed** — the instance 2
+   reading is suggestive but no longer sufficient on its own.
 
    **Same static-analysis session, one more push: `0x9F1EA` itself — the
    "apply + announce" routine — is now fully decoded too**, done while
